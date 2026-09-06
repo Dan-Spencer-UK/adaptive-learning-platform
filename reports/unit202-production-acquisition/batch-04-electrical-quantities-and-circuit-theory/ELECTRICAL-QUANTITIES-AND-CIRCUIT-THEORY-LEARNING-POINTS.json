@@ -210,7 +210,7 @@
         "Convert a floor area given in cm^2 to m^2.",
         "Convert a tank volume given in cm^3 to m^3."
       ],
-      "evidenceReadinessNote": "Underlying practical-unit-conversion evidence downgraded to PARTIAL: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced."
+      "evidenceReadinessNote": "Underlying practical-unit-conversion evidence downgraded to PARTIALLY_VERIFIED: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced."
     },
     {
       "id": "EQCT-LP-03",
@@ -314,7 +314,7 @@
         "Explain why a 100 W lamp left on for 10 hours is described in kWh, not in watts, when billed.",
         "Explain why a high power factor is not itself 'more power'."
       ],
-      "evidenceReadinessNote": "Underlying power::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification."
+      "evidenceReadinessNote": "Underlying power::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification."
     },
     {
       "id": "EQCT-LP-06",
@@ -377,7 +377,7 @@
         "State whether power factor has a unit.",
         "Explain why a power factor of 0.8 does not mean '0.8 watts'."
       ],
-      "evidenceReadinessNote": "Underlying power-factor::DISTINCTION evidence downgraded to PARTIAL. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement."
+      "evidenceReadinessNote": "Underlying power-factor::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement."
     },
     {
       "id": "EQCT-LP-08",
@@ -398,7 +398,7 @@
         "SRC-ETW-ACWAVEFORM: frequency, symbol f, Hz",
         "SRC-BIPM-BROCHURE: hertz, unit symbol Hz"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Definition and both symbol facets combined as one inseparable identity fact, consistent with the other single-quantity identity learning points in this batch (current, voltage). Positioned early in the AC-quantities instructional sequence since capacitive/inductive reactance both depend conceptually on frequency.",
       "explicitExclusions": [
         "The period-frequency reciprocal relationship (f=1/T) as a calculation outcome",
@@ -407,7 +407,8 @@
       "applicationTypes": [
         "State the quantity symbol and SI unit for frequency.",
         "State the UK mains supply frequency and its unit."
-      ]
+      ],
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding."
     },
     {
       "id": "EQCT-LP-09",
@@ -428,7 +429,7 @@
         "SRC-ETW-CAP1: capacitance definition, symbol C, farad F",
         "SRC-BIPM-BROCHURE: farad, unit symbol F"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Deliberately split from capacitive reactance (EQCT-LP-10) even though the frozen evidence requirement bundles both quantities together in its text, because capacitance and capacitive reactance are independently-diagnosable concepts -- a learner can know what capacitance is (a fixed material/component property, farads) without yet knowing what capacitive reactance is (a frequency-dependent AC opposition, ohms), and vice versa; collapsing them into one point would hide that distinction as a single vocabulary item rather than teaching it as a genuine comparison. The QUANTITY_SYMBOL and UNIT_SYMBOL evidence requirements are shared with EQCT-LP-10 because the single frozen evidence requirement's own passage genuinely establishes both quantities' symbols together (see SOURCE-REGISTER.json); this is disclosed here and at EQCT-LP-10.",
       "explicitExclusions": [
         "Capacitive reactance itself (see EQCT-LP-10)",
@@ -438,7 +439,8 @@
       "applicationTypes": [
         "State the quantity symbol and SI unit for capacitance.",
         "Explain why doubling a capacitor's stored charge for the same voltage means its capacitance has doubled, not its capacitive reactance."
-      ]
+      ],
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding."
     },
     {
       "id": "EQCT-LP-10",
@@ -493,7 +495,7 @@
         "SRC-ETW-INDUCTOR: inductance definition, symbol L, henry H",
         "SRC-BIPM-BROCHURE: henry, unit symbol H"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Split from inductive reactance (EQCT-LP-12) for the same reason capacitance is split from capacitive reactance -- independently-diagnosable concepts. Shared QUANTITY_SYMBOL/UNIT_SYMBOL evidence with EQCT-LP-12, disclosed, since the single frozen evidence requirement's passage establishes both quantities' symbols together.",
       "explicitExclusions": [
         "Inductive reactance itself (see EQCT-LP-12)",
@@ -502,7 +504,8 @@
       ],
       "applicationTypes": [
         "State the quantity symbol and SI unit for inductance."
-      ]
+      ],
+      "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding."
     },
     {
       "id": "EQCT-LP-12",
@@ -536,7 +539,7 @@
         "Explain why an inductor presents more opposition to a higher-frequency AC signal (the opposite behaviour to a capacitor).",
         "State the unit in which inductive reactance is measured."
       ],
-      "evidenceReadinessNote": "Underlying inductance::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch."
+      "evidenceReadinessNote": "Underlying inductance::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch."
     },
     {
       "id": "EQCT-LP-13",
@@ -636,7 +639,7 @@
       "applicationTypes": [
         "State what physical quantity an ohmmeter measures."
       ],
-      "evidenceReadinessNote": "Underlying ohmmeter-measures-resistance evidence downgraded to PARTIAL (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed."
+      "evidenceReadinessNote": "Underlying ohmmeter-measures-resistance evidence downgraded to PARTIALLY_VERIFIED (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed."
     },
     {
       "id": "EQCT-LP-16",
@@ -666,7 +669,7 @@
         "Explain why a technician must switch off the supply (and discharge any capacitor) before checking a component's resistance with an ohmmeter.",
         "Identify the safety/accuracy risk of measuring resistance on an energised circuit."
       ],
-      "evidenceReadinessNote": "Underlying ohmmeter safe-use evidence downgraded to PARTIAL because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected."
+      "evidenceReadinessNote": "Underlying ohmmeter safe-use evidence downgraded to PARTIALLY_VERIFIED because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected."
     },
     {
       "id": "EQCT-LP-17",
@@ -728,7 +731,7 @@
         "State what physical quantity a domestic electricity (kWh) meter measures.",
         "Explain why an energy meter's reading keeps increasing even though the instantaneous power drawn varies."
       ],
-      "evidenceReadinessNote": "Underlying energy-meter evidence downgraded to PARTIAL: the \"integrates\" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence."
+      "evidenceReadinessNote": "Underlying energy-meter evidence downgraded to PARTIALLY_VERIFIED: the \"integrates\" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence."
     },
     {
       "id": "EQCT-LP-19",
@@ -760,5 +763,5 @@
       ]
     }
   ],
-  "correctionNote": "Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIAL; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen."
+  "correctionNote": "Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIALLY_VERIFIED; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen."
 }

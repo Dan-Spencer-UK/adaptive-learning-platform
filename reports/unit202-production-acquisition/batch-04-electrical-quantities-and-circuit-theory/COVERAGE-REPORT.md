@@ -10,13 +10,13 @@ merged or reinterpreted in this pass.
 
 Work proceeded through four internal research clusters, each validated before moving to the next:
 
-| Cluster | Requirements | Status (after the internal audit correction pass) |
+| Cluster | Requirements | Status (after the internal audit AND the Stage-2.2 source-authority correction pass) |
 |---|---|---|
-| 1. SI quantities and practical unit conversion | 9 | 8 VERIFIED, 1 PARTIAL |
-| 2. Core electrical quantities (current, voltage, resistance, resistivity, power, energy, power factor) | 26 | 23 VERIFIED, 3 PARTIAL |
-| 3. AC quantities (frequency, impedance, capacitance/capacitive reactance, inductance/inductive reactance) | 15 | 14 VERIFIED, 1 PARTIAL |
-| 4. Measuring instruments | 7 | 4 VERIFIED, 3 PARTIAL |
-| **Total** | **57** | **49 VERIFIED, 8 PARTIAL** |
+| 1. SI quantities and practical unit conversion | 9 | 8 VERIFIED, 1 PARTIALLY_VERIFIED |
+| 2. Core electrical quantities (current, voltage, resistance, resistivity, power, energy, power factor) | 26 | 21 VERIFIED, 5 PARTIALLY_VERIFIED |
+| 3. AC quantities (frequency, impedance, capacitance/capacitive reactance, inductance/inductive reactance) | 15 | 11 VERIFIED, 4 PARTIALLY_VERIFIED |
+| 4. Measuring instruments | 7 | 4 VERIFIED, 3 PARTIALLY_VERIFIED |
+| **Total** | **57** | **44 VERIFIED, 13 PARTIALLY_VERIFIED** |
 
 (Note: the task specification's own narrative described clusters 2 and 3 as "25" and "16" requirements
 respectively; the frozen plan's actual per-topic counts are 26 and 15 -- length/area/volume/mass/density/time/
@@ -29,15 +29,18 @@ frozen plan is, and it holds.)
 
 ## Evidence status totals
 
-**49 VERIFIED, 8 PARTIAL, 0 GAP** (see `EVIDENCE-RESULTS.json`, `statusTotals`). See that file's own
+**44 VERIFIED, 13 PARTIALLY_VERIFIED, 0 SOURCE_GAP** (see `EVIDENCE-RESULTS.json`, `statusTotals`). See that file's own
 `statusVocabulary` block for the exact definitions used throughout this batch.
 
 > **This batch was originally recorded as 57/57 VERIFIED. That was not earned.** An internal adversarial audit
 > pass, run after the initial acquisition and before any Product Architect review, downgraded eight results and
 > corrected a number of claims. An internal audit is a progression gate, not acceptance — it confers no Product
-> Architect approval. The eight PARTIAL results are:
+> Architect approval. A further Product-Architect-directed correction pass (Stage 2.2, below) then reclassified
+> `electronics-tutorials.ws` and downgraded five more results whose SYMBOL_OR_CONVENTION-mode requirement no
+> longer had a permitted-class source once that reclassification took effect. The thirteen PARTIALLY_VERIFIED
+> results are, first the original eight:
 >
-> | Requirement | Why it is PARTIAL |
+> | Requirement | Why it is PARTIALLY_VERIFIED |
 > |---|---|
 > | `power...::CONCEPT_DEFINITION::DISTINCTION` | The recorded `SRC-ETW-POWERTRIANGLE` passage **does not appear on the source page** (confirmed by re-fetch). Power factor's dimensionlessness is retained as a disclosed inference from the page's own `P/S = W/VA` identity, not as retrieved text. |
 > | `power-factor...::CONCEPT_DEFINITION::DISTINCTION` | Same fabricated passage. **This is the batch's power-factor guardrail, and it now rests on inference rather than an explicit authoritative statement.** |
@@ -46,7 +49,21 @@ frozen plan is, and it holds.)
 > | `ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE` | `CALCULATION_METHOD` had been marked satisfied although the evidence contains no calculation; now recorded unresolved. **The safety content itself (de-energisation *and* stored capacitor charge) is fully evidenced and unaffected.** |
 > | `energy-meter-measures-integrates-electrical-energy::EXACT_FACT` | The "integrates" half of the requirement is unevidenced by the single quoted NISTIR 8248 sentence. |
 > | `practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE` | `SRC-NIST-SP811-CH4` was cited under an authority class this requirement does not permit, with a passage that did not support its attributed claim; both were removed. The squared/cubed half remains fully evidenced. |
-> | `resistivity...::SYMBOL_OR_CONVENTION::UNIT_SYMBOL` | Rests on a disclosed compounding of two NIST passages — which is this batch's own definition of PARTIAL. |
+> | `resistivity...::SYMBOL_OR_CONVENTION::UNIT_SYMBOL` | Rests on a disclosed compounding of two NIST passages — which is this batch's own definition of PARTIALLY_VERIFIED. |
+>
+> And five more, from the Stage-2.2 source-authority correction below:
+>
+> | Requirement | Why it is PARTIALLY_VERIFIED |
+> |---|---|
+> | `power-factor...::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL` | Sole support was `SRC-ETW-POWERTRIANGLE`, now `AUTHORITATIVE_EDUCATIONAL_REFERENCE`, which this mode does not permit; no already-registered alternative establishes the cos(phi)/p.f. notation. |
+> | `power-factor...::SYMBOL_OR_CONVENTION::UNIT_SYMBOL` | Same reclassification; no already-registered alternative states power factor has no unit symbol. |
+> | `frequency...::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL` | Sole support was `SRC-ETW-ACWAVEFORM`, now educational-tier; no already-registered alternative establishes the letter `f`. |
+> | `capacitance-and-capacitive-reactance...::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL` | Sole support was `SRC-ETW-CAP1`, now educational-tier; no already-registered alternative establishes the letter `C`. |
+> | `inductance-and-inductive-reactance...::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL` | Sole support was `SRC-ETW-INDUCTOR`, now educational-tier; no already-registered alternative establishes the letter `L`. |
+>
+> Each carries a `gaps` entry naming exactly what tier of source is still needed (e.g. IEC 60027-1, an NIST/BIPM
+> quantity-symbol table, or a professional body's style guide) -- none was resolved by widening this batch's own
+> authority policy.
 >
 > Additionally, one **factually wrong** taught claim was corrected: the temperature requirement and `EQCT-LP-01`
 > had asserted that "a temperature INTERVAL or an SI base-unit value uses K". That is incorrect and was
@@ -56,16 +73,31 @@ frozen plan is, and it holds.)
 > qualification), curriculum policy recorded as if a source asserted it, and a wattmeter claim that contradicted
 > the batch's own power-factor teaching.
 
-## Open matter for Product Architect judgment: source authority classification
+## Resolved: source authority classification (Stage 2.2 correction)
 
-`electronics-tutorials.ws` (the ten `SRC-ETW-*` sources) is classified `AUTHORITATIVE_TECHNICAL_REFERENCE`, and
-that classification is **load-bearing, not cosmetic**. 22 of 57 results depend on an `SRC-ETW-*` source; 16 have
-no non-ETW candidate at all. `SYMBOL_OR_CONVENTION` requirements exclude `AUTHORITATIVE_EDUCATIONAL_REFERENCE`,
-so if the site were reclassified as educational — the class this same batch assigned to LibreTexts on comparable
-reasoning — roughly ten symbol-convention results would fail their authority gate simultaneously. The site is
-anonymous and commercial, with no named authors, editorial board, citations or errata process. **This was
-deliberately not resolved unilaterally** (resolving it means fresh acquisition, not correction) and is recorded
-in full in `SOURCE-REGISTER.json` under `openAuthorityClassificationMatterForProductArchitect`.
+`electronics-tutorials.ws` (the ten `SRC-ETW-*` sources) was classified `AUTHORITATIVE_TECHNICAL_REFERENCE`,
+load-bearing for 22 of 57 results. Per the Product Architect's Stage 2.2 direction, it is now reclassified
+`AUTHORITATIVE_EDUCATIONAL_REFERENCE` (the site is anonymous and commercial, with no named authors, editorial
+board, citations or errata process) and retained only as supplementary evidence. Every affected result was
+resolved without reacquiring all 22 separately:
+
+- **6 results** (current::DEFINITION; voltage/resistance::QUANTITY_SYMBOL; impedance::DEFINITION/DISTINCTION/
+  QUANTITY_SYMBOL) already had an already-registered, already-read, unused candidate --
+  `SRC-EOLSS-ELECQUANT`, a peer-reviewed EOLSS/UNESCO encyclopedia chapter -- whose passage genuinely supports
+  the claim; each now carries an added `SRC-EOLSS-ELECQUANT` claim binding, independent of ETW.
+- **2 results** (resistance/impedance::UNIT_SYMBOL, both "the ohm, symbol Ω") are now additionally bound to
+  the already-registered `SRC-BIPM-BROCHURE` (SI Brochure Table 2), which already lists the ohm and was already
+  used for six other units in this same batch but not, until now, for the ohm.
+- **11 results** are `CONCEPT_DEFINITION`-mode, whose permitted authority classes already include
+  `AUTHORITATIVE_EDUCATIONAL_REFERENCE` -- these needed no re-sourcing at all; only the source's own
+  classification changed.
+- **5 results** (power factor's quantity/unit symbol; frequency/capacitance/inductance's quantity-symbol
+  letters) had no already-registered alternative and are honestly downgraded to PARTIALLY_VERIFIED above,
+  each disclosing exactly what tier of source remains needed, rather than left falsely VERIFIED on
+  educational-tier evidence a SYMBOL_OR_CONVENTION requirement does not permit.
+
+No requirement's permitted authority classes were widened to make a result green, and no new live research was
+performed -- every rebinding above reuses a source already registered and already read in this batch.
 
 ## Sources
 

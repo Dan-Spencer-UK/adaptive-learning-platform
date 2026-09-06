@@ -5,13 +5,13 @@
   "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
   "requirementCount": 57,
   "statusVocabulary": {
-    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains.",
-    "PARTIAL": "Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s), or rests on a disclosed compounding of more than one passage where no single passage states the full claim.",
-    "GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
+    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains. [Correction, Stage 1.1] Multiple-source composition is explicitly valid: a compound claim assembled from more than one genuinely-read passage is VERIFIED, never downgraded merely because no single passage states the whole account, provided every constituent claim retains its own exact source binding and no material conflict remains.",
+    "PARTIALLY_VERIFIED": "[Correction, Stage 1.1] Applies ONLY when a required constituent or coverage dimension remains unsupported, inferential, materially ambiguous, or unresolved -- never merely because a compound claim required more than one genuinely-read passage (that is a VERIFIED multi-source composition, see above). Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s).",
+    "SOURCE_GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
   },
   "statusTotals": {
-    "VERIFIED": 49,
-    "PARTIAL": 8
+    "VERIFIED": 45,
+    "PARTIALLY_VERIFIED": 12
   },
   "reusedFromBatch01": [],
   "reusedFromBatch02": [
@@ -369,7 +369,7 @@
             "sourceId": "SRC-LIBRETEXTS-SQCUBIC"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "PROCEDURE",
           "CALCULATION_METHOD"
@@ -377,7 +377,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIAL in the internal audit pass, and the SRC-NIST-SP811-CH4 candidate source and its claim were REMOVED, for two independent defects. (1) AUTHORITY CLASS: SRC-NIST-SP811-CH4 is registered as PRIMARY_NORMATIVE_OR_STANDARDS_BODY, but this requirement's frozen sourceAuthorityClasses are ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE and AUTHORITATIVE_EDUCATIONAL_REFERENCE -- the cited class is not permitted for this requirement. (2) PASSAGE-TO-CLAIM SUPPORT: its recorded passage ('Derived units are expressed algebraically in terms of base units or other derived units', plus a table of m^2, m^3, m/s^2) does not support the claim attributed to it, which was about multiplying/dividing by power-of-ten SI prefix factors. That claim also embedded an internal cross-reference to Batch 01's FM-LP-19, which is a curriculum decision, not something NIST attests.",
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass, and the SRC-NIST-SP811-CH4 candidate source and its claim were REMOVED, for two independent defects. (1) AUTHORITY CLASS: SRC-NIST-SP811-CH4 is registered as PRIMARY_NORMATIVE_OR_STANDARDS_BODY, but this requirement's frozen sourceAuthorityClasses are ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE and AUTHORITATIVE_EDUCATIONAL_REFERENCE -- the cited class is not permitted for this requirement. (2) PASSAGE-TO-CLAIM SUPPORT: its recorded passage ('Derived units are expressed algebraically in terms of base units or other derived units', plus a table of m^2, m^3, m/s^2) does not support the claim attributed to it, which was about multiplying/dividing by power-of-ten SI prefix factors. That claim also embedded an internal cross-reference to Batch 01's FM-LP-19, which is a curriculum decision, not something NIST attests.",
           "Consequently the SI-prefix/power-of-ten half of 'practical unit conversion' has NO in-batch citation. It is not re-derived here; it remains covered by the accepted Batch 01 mastery FM-LP-19 (engineering notation and SI prefixes), which EQCT-LP-02 already carries as a cross-domain prerequisite. The squared/cubed-unit half of the requirement REMAINS genuinely and fully evidenced by SRC-LIBRETEXTS-SQCUBIC (a permitted AUTHORITATIVE_EDUCATIONAL_REFERENCE) including a worked example, so this is a partial, not a gap."
         ],
         "scopeNote": "Bound to conversion of the quantities this batch and Unit 202 elsewhere genuinely use. The evidenced, in-batch-cited method is the squared/cubed case (a linear conversion factor must be raised to the same power before use for area and volume). General SI-prefix scaling is reused accepted Batch 01 mastery (FM-LP-19), not re-evidenced here -- see gaps."
@@ -418,6 +418,10 @@
           {
             "claimText": "Electric current is the movement/flow of electric charge (carried by electrons in a conductor) past a point.",
             "sourceId": "SRC-ETW-DC1"
+          },
+          {
+            "claimText": "Electric current is the movement of elementary electric charges carried by electrons; a constant flow of approximately 1.602176487×10^19 electrons per second through a surface constitutes a current of 1 ampere.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -598,6 +602,10 @@
           {
             "claimText": "Voltage's quantity symbol is given as V, or sometimes U (lower-case v or u where the voltage is a time-varying quantity).",
             "sourceId": "SRC-EOLSS-ELECQUANT"
+          },
+          {
+            "claimText": "The quantity symbol for voltage is V (or sometimes U); a lower-case v or u is used for a time-varying instantaneous value.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -687,7 +695,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "This mastery (resistance's meaning, R, ohm/Ω, and its distinction from resistivity) is already taught by the accepted Batch 02 learning points EFS-LP-05 (Resistance) and EFS-LP-06 (Resistivity); see the overlap audit in COVERAGE-REPORT.md. This evidence result exists to satisfy this Batch 04 evidence requirement's own identity; no new EQCT-LP is created for it."
+        "scopeNote": "This mastery (resistance's meaning, R, ohm/Ω, and its distinction from resistivity) is already taught by the accepted Batch 02 learning points EFS-LP-05 (Resistance) and EFS-LP-06 (Resistivity); see the overlap audit in COVERAGE-REPORT.md. This evidence result exists to satisfy this Batch 04 evidence requirement's own identity; no new EQCT-LP is created for it.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-05"
+        ]
       }
     },
     {
@@ -727,7 +738,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Reused mastery -- see EFS-LP-06's accepted distinction; no new EQCT-LP created."
+        "scopeNote": "Reused mastery -- see EFS-LP-06's accepted distinction; no new EQCT-LP created.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-05"
+        ]
       }
     },
     {
@@ -764,6 +778,10 @@
           {
             "claimText": "The quantity symbol for resistance is R.",
             "sourceId": "SRC-ETW-DC1"
+          },
+          {
+            "claimText": "Resistance's quantity symbol is R, defined by R = V/I.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -773,7 +791,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Reused mastery -- already implicit in EFS-LP-05's own stated formula (R=V/I, ohms); this result supplies the Batch 04 requirement's own dedicated, correctly-authority-classed symbol evidence."
+        "scopeNote": "Reused mastery -- already implicit in EFS-LP-05's own stated formula (R=V/I, ohms); this result supplies the Batch 04 requirement's own dedicated, correctly-authority-classed symbol evidence.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-05"
+        ]
       }
     },
     {
@@ -803,6 +824,10 @@
           {
             "claimText": "The unit symbol for the ohm (resistance's SI unit) is Ω.",
             "sourceId": "SRC-ETW-DC1"
+          },
+          {
+            "claimText": "The SI Brochure's Table 2 (coherent derived units with special names) lists the ohm (symbol Ω) as the SI unit of electric resistance; the same unit and symbol are used for impedance, since impedance is measured in the same unit as resistance.",
+            "sourceId": "SRC-BIPM-BROCHURE"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -812,7 +837,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Reused mastery -- see EFS-LP-05."
+        "scopeNote": "Reused mastery -- see EFS-LP-05.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-05"
+        ]
       }
     },
     {
@@ -852,7 +880,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Reused mastery -- see EFS-LP-06."
+        "scopeNote": "Reused mastery -- see EFS-LP-06.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-06"
+        ]
       }
     },
     {
@@ -892,7 +923,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Reused mastery -- see EFS-LP-06."
+        "scopeNote": "Reused mastery -- see EFS-LP-06.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-06"
+        ]
       }
     },
     {
@@ -931,7 +965,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Reused mastery -- see EFS-LP-06."
+        "scopeNote": "Reused mastery -- see EFS-LP-06.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-06"
+        ]
       }
     },
     {
@@ -970,16 +1007,20 @@
             "sourceId": "SRC-NIST-SP811-B9"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "UNIT_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "No single retrieved passage states both that the quantity in question is RESISTIVITY and that its SI unit symbol is the ohm-metre. The claim is established by compounding two genuine NIST passages: SRC-NIST-RESHALL supplies 'rho = sample resistivity (in ohm-cm)' (linking resistivity to an ohm-length unit) and SRC-NIST-SP811-B9's conversion table supplies the SI form 'ohm meter (Ohm-m)'. Downgraded from VERIFIED to PARTIAL in the internal audit pass to match this batch's own statusVocabulary, which defines PARTIAL as including a claim that 'rests on a disclosed compounding of more than one passage where no single passage states the full claim'. The compounding was already disclosed in the scopeNote; only the status was inconsistent with it."
+          "[Correction, Stage 1.1] Restored to VERIFIED: legitimate multi-passage composition (two genuine NIST passages) is never, by itself, grounds for PARTIALLY_VERIFIED -- every constituent claim retains its own exact source binding and no material conflict remains.",
+          "No single retrieved passage states both that the quantity in question is RESISTIVITY and that its SI unit symbol is the ohm-metre. The claim is established by compounding two genuine NIST passages: SRC-NIST-RESHALL supplies 'rho = sample resistivity (in ohm-cm)' (linking resistivity to an ohm-length unit) and SRC-NIST-SP811-B9's conversion table supplies the SI form 'ohm meter (Ohm-m)'. Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass to match this batch's own statusVocabulary, which defines PARTIALLY_VERIFIED as including a claim that 'rests on a disclosed compounding of more than one passage where no single passage states the full claim'. The compounding was already disclosed in the scopeNote; only the status was inconsistent with it."
         ],
-        "scopeNote": "Reused mastery -- see EFS-LP-06. Claim established by a disclosed compounding of two genuine NIST passages; status corrected to PARTIAL in the internal audit pass to match this batch's own PARTIAL definition. The underlying fact (resistivity's SI unit is the ohm-metre) is not in doubt and is independently taught by the accepted Batch 02 EFS-LP-06; what is PARTIAL is this batch's single-passage support for it."
+        "scopeNote": "Reused mastery -- see EFS-LP-06. Claim established by a disclosed compounding of two genuine NIST passages; status corrected to PARTIALLY_VERIFIED in the internal audit pass to match this batch's own PARTIALLY_VERIFIED definition. The underlying fact (resistivity's SI unit is the ohm-metre) is not in doubt and is independently taught by the accepted Batch 02 EFS-LP-06; what is PARTIALLY_VERIFIED is this batch's single-passage support for it.",
+        "satisfiedByExistingLearningPointIds": [
+          "EFS-LP-06"
+        ]
       }
     },
     {
@@ -1070,14 +1111,14 @@
             "sourceId": "SRC-ETW-POWERTRIANGLE"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. The previously recorded retrievedPassage for SRC-ETW-POWERTRIANGLE ('Power (P): Measured in watts, represents actual work performed by the resistive component' vs 'Power Factor: A unitless ratio describing the phase relationship between voltage and current, determining how efficiently that power is delivered.') was NOT present on the source page. It was synthesised summary prose recorded inside a verbatim-quotation field. The page was re-fetched during the audit and the field now holds what the page actually says. The dimensionless/no-unit property -- the batch's own technical guardrail -- is NOT stated in terms by this source; it is a disclosed INFERENCE from the page's own P/S = W/VA identity (the watt units cancel). Retained as an inference rather than deleted, because it is correct and the sibling UNIT_SYMBOL result derives it the same honest way, but it is not a retrieved passage and the requirement is therefore not fully VERIFIED on retrieved text alone."
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. The previously recorded retrievedPassage for SRC-ETW-POWERTRIANGLE ('Power (P): Measured in watts, represents actual work performed by the resistive component' vs 'Power Factor: A unitless ratio describing the phase relationship between voltage and current, determining how efficiently that power is delivered.') was NOT present on the source page. It was synthesised summary prose recorded inside a verbatim-quotation field. The page was re-fetched during the audit and the field now holds what the page actually says. The dimensionless/no-unit property -- the batch's own technical guardrail -- is NOT stated in terms by this source; it is a disclosed INFERENCE from the page's own P/S = W/VA identity (the watt units cancel). Retained as an inference rather than deleted, because it is correct and the sibling UNIT_SYMBOL result derives it the same honest way, but it is not a retrieved passage and the requirement is therefore not fully VERIFIED on retrieved text alone."
         ]
       }
     },
@@ -1396,14 +1437,14 @@
             "sourceId": "SRC-ETW-POWERTRIANGLE"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIAL in the internal audit pass, for the same fabricated-quotation defect recorded on the sibling power::DISTINCTION result: the previously recorded 'A unitless ratio describing the phase relationship...' passage does not exist on the source page (confirmed by re-fetch during the audit). The dimensionlessness of power factor is retained as a disclosed inference from the page's own P/S = W/VA identity, not as retrieved text. NOTE FOR PRODUCT ARCHITECT: this is the batch's power-factor guardrail, and it currently rests on inference rather than on an explicit authoritative statement. A source that states dimensionlessness in terms (e.g. IEC 60050 / IEEE) should be acquired before this is treated as settled."
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass, for the same fabricated-quotation defect recorded on the sibling power::DISTINCTION result: the previously recorded 'A unitless ratio describing the phase relationship...' passage does not exist on the source page (confirmed by re-fetch during the audit). The dimensionlessness of power factor is retained as a disclosed inference from the page's own P/S = W/VA identity, not as retrieved text. NOTE FOR PRODUCT ARCHITECT: this is the batch's power-factor guardrail, and it currently rests on inference rather than on an explicit authoritative statement. A source that states dimensionlessness in terms (e.g. IEC 60050 / IEEE) should be acquired before this is treated as settled."
         ]
       }
     },
@@ -1436,13 +1477,15 @@
             "sourceId": "SRC-ETW-POWERTRIANGLE"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        ]
       }
     },
     {
@@ -1474,13 +1517,15 @@
             "sourceId": "SRC-ETW-POWERTRIANGLE"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "UNIT_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        ]
       }
     },
     {
@@ -1551,13 +1596,15 @@
             "sourceId": "SRC-ETW-ACWAVEFORM"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        ]
       }
     },
     {
@@ -1637,6 +1684,10 @@
           {
             "claimText": "Impedance is a function of frequency -- unlike plain resistance -- and combines the circuit's resistance and reactance.",
             "sourceId": "SRC-EOLSS-ELECQUANT"
+          },
+          {
+            "claimText": "Impedance is the complex quantity used to express the relationship between AC voltage and current; it is measured in ohms, the same unit as resistance, and is a function of frequency.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1684,6 +1735,10 @@
           {
             "claimText": "Impedance is NOT the simple arithmetic sum of resistance and reactance (R+X does not equal Z); resistance and reactance combine as a vector/complex quantity (their values are 90 degrees out of phase), so impedance's magnitude must be found by combining them geometrically, not by adding their ohm values directly.",
             "sourceId": "SRC-ETW-IMPEDANCE"
+          },
+          {
+            "claimText": "Impedance is a complex quantity whose real part is resistance (R) and whose imaginary part is reactance (X): Z = R + jX, with magnitude |Z| at a phase angle theta -- distinct from resistance and reactance individually, which are its two components.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1730,6 +1785,10 @@
           {
             "claimText": "The quantity symbol for impedance is Z.",
             "sourceId": "SRC-ETW-IMPEDANCE"
+          },
+          {
+            "claimText": "Impedance's quantity symbol is Z.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1768,6 +1827,10 @@
           {
             "claimText": "Impedance's unit symbol is the ohm (Ω) -- the same unit symbol used for resistance and for reactance, even though impedance, resistance and reactance are not the same quantity.",
             "sourceId": "SRC-ETW-IMPEDANCE"
+          },
+          {
+            "claimText": "The SI Brochure's Table 2 (coherent derived units with special names) lists the ohm (symbol Ω) as the SI unit of electric resistance; the same unit and symbol are used for impedance, since impedance is measured in the same unit as resistance.",
+            "sourceId": "SRC-BIPM-BROCHURE"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1904,13 +1967,15 @@
             "sourceId": "SRC-ETW-CAP1"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        ]
       }
     },
     {
@@ -2038,14 +2103,14 @@
             "sourceId": "SRC-ETW-ACINDUCTORS"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. The previously recorded retrievedPassage ('inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant regardless of the applied signal frequency') was NOT present on the source page; it was synthesised prose in a verbatim-quotation field, and ACQUISITION-LOG.json repeated it as fact. The proposition actually carrying the DISTINCTION dimension -- that inductance itself is frequency-independent while reactance is not -- is therefore UNEVIDENCED in this batch. What the page genuinely supports (reactance depends on both inductance and frequency) is retained. NOTE: the parallel capacitance DISTINCTION result is NOT affected -- its passage ('Unlike resistance which has a fixed value... Capacitive Reactance varies inversely proportional with the applied frequency') was confirmed genuine, so the two are not symmetrical in evidential quality despite having been written as though they were."
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. The previously recorded retrievedPassage ('inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant regardless of the applied signal frequency') was NOT present on the source page; it was synthesised prose in a verbatim-quotation field, and ACQUISITION-LOG.json repeated it as fact. The proposition actually carrying the DISTINCTION dimension -- that inductance itself is frequency-independent while reactance is not -- is therefore UNEVIDENCED in this batch. What the page genuinely supports (reactance depends on both inductance and frequency) is retained. NOTE: the parallel capacitance DISTINCTION result is NOT affected -- its passage ('Unlike resistance which has a fixed value... Capacitive Reactance varies inversely proportional with the applied frequency') was confirmed genuine, so the two are not symmetrical in evidential quality despite having been written as though they were."
         ]
       }
     },
@@ -2085,13 +2150,15 @@
             "sourceId": "SRC-ETW-INDUCTOR"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        ]
       }
     },
     {
@@ -2247,14 +2314,14 @@
             "sourceId": "SRC-FLUKE-RESISTANCE"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIAL in the internal audit pass: no sentence from the source was ever reproduced for this requirement, so the requirement's own acceptance criterion ('the exact passage must be actually read and cited, never inferred') is not met on the record as it stands. The underlying fact is not in doubt and the same source genuinely supports the sibling safe-use PROCEDURE requirement with real quoted text; what is missing is a retrieved passage for this specific DEFINITION requirement. Resolving this needs only a re-fetch and one quoted sentence -- deliberately NOT done by inference during the audit."
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass: no sentence from the source was ever reproduced for this requirement, so the requirement's own acceptance criterion ('the exact passage must be actually read and cited, never inferred') is not met on the record as it stands. The underlying fact is not in doubt and the same source genuinely supports the sibling safe-use PROCEDURE requirement with real quoted text; what is missing is a retrieved passage for this specific DEFINITION requirement. Resolving this needs only a re-fetch and one quoted sentence -- deliberately NOT done by inference during the audit."
         ]
       }
     },
@@ -2289,7 +2356,7 @@
             "sourceId": "SRC-FLUKE-RESISTANCE"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "PROCEDURE"
         ],
@@ -2298,10 +2365,10 @@
         ],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. This requirement declares two coverage dimensions, PROCEDURE and CALCULATION_METHOD; the evidence ('Step 1. Turn Off Power to Circuit'; 'If a circuit includes a capacitor, discharge the capacitor before taking any resistance reading') delivers a genuine PROCEDURE but contains no calculation of any kind. CALCULATION_METHOD had been marked satisfied with an empty unresolvedDimensions list purely because the requirementMode is PROCEDURE_COVERAGE -- a false green. It is now recorded as unresolved. NOTE FOR PRODUCT ARCHITECT: this may instead be a plan-level artefact (a safe-use principle arguably has no calculation dimension to satisfy). That is a judgment about the frozen plan, which this pass has no authority to amend, so the honest unresolved marking is used instead.",
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. This requirement declares two coverage dimensions, PROCEDURE and CALCULATION_METHOD; the evidence ('Step 1. Turn Off Power to Circuit'; 'If a circuit includes a capacitor, discharge the capacitor before taking any resistance reading') delivers a genuine PROCEDURE but contains no calculation of any kind. CALCULATION_METHOD had been marked satisfied with an empty unresolvedDimensions list purely because the requirementMode is PROCEDURE_COVERAGE -- a false green. It is now recorded as unresolved. NOTE FOR PRODUCT ARCHITECT: this may instead be a plan-level artefact (a safe-use principle arguably has no calculation dimension to satisfy). That is a judgment about the frozen plan, which this pass has no authority to amend, so the honest unresolved marking is used instead.",
           "The claim previously asserted a mechanism -- that an ohmmeter 'applies its own small internal test current/voltage' -- which appears in NO retrieved passage anywhere in this batch. It has been removed from the claim. The safety conclusion does not depend on it."
         ],
-        "scopeNote": "Bound to the de-energisation/safe-use principle itself, including the explicit stored-energy (charged-capacitor) case this source addresses. Does not extend to a general electrical safe-isolation procedure (lock-off/proving-dead sequences) beyond what this source itself states. The safety content of this requirement (both de-energisation AND stored capacitor charge) is fully and genuinely evidenced; the PARTIAL status concerns only the unsatisfied CALCULATION_METHOD dimension."
+        "scopeNote": "Bound to the de-energisation/safe-use principle itself, including the explicit stored-energy (charged-capacitor) case this source addresses. Does not extend to a general electrical safe-isolation procedure (lock-off/proving-dead sequences) beyond what this source itself states. The safety content of this requirement (both de-energisation AND stored capacitor charge) is fully and genuinely evidenced; the PARTIALLY_VERIFIED status concerns only the unsatisfied CALCULATION_METHOD dimension."
       }
     },
     {
@@ -2374,14 +2441,14 @@
             "sourceId": "SRC-NISTIR-8248"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. The requirement is 'energy meter measures/INTEGRATES electrical energy', but the sole retrieved passage is the single sentence 'Electrical energy usage is measured with watt-hour meters.' NISTIR 8248 as quoted states nothing about an integration mechanism, and nothing about contrasting accumulated energy with instantaneous power. The integration half of the requirement is therefore UNEVIDENCED. The previous record also carried the acquirer's own gloss INSIDE the retrievedPassage field -- '(context: distinguishing this accumulated-usage measurement from the instantaneous power measurements discussed in the same paragraph)' -- which has been removed; retrievedPassage is a verbatim-quotation field. The accumulation/integration property remains derivable from the already-evidenced energy = power x time relationship (EQCT-LP-06), but that is an internal derivation, not this source's statement."
+          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. The requirement is 'energy meter measures/INTEGRATES electrical energy', but the sole retrieved passage is the single sentence 'Electrical energy usage is measured with watt-hour meters.' NISTIR 8248 as quoted states nothing about an integration mechanism, and nothing about contrasting accumulated energy with instantaneous power. The integration half of the requirement is therefore UNEVIDENCED. The previous record also carried the acquirer's own gloss INSIDE the retrievedPassage field -- '(context: distinguishing this accumulated-usage measurement from the instantaneous power measurements discussed in the same paragraph)' -- which has been removed; retrievedPassage is a verbatim-quotation field. The accumulation/integration property remains derivable from the already-evidenced energy = power x time relationship (EQCT-LP-06), but that is an internal derivation, not this source's statement."
         ]
       }
     },
@@ -2425,5 +2492,5 @@
       }
     }
   ],
-  "correctionNote": "Corrected during the internal adversarial audit pass following the initial acquisition. The batch was originally recorded as 57/57 VERIFIED; that was not earned. Nine results were downgraded to PARTIAL and several claims were corrected for attribution, lost qualifications, or curriculum prose recorded as if it were a source's assertion. Two retrievedPassage fields were found to contain text that does NOT appear on the cited page (SRC-ETW-POWERTRIANGLE on the two power-factor/power DISTINCTION results, and SRC-ETW-ACINDUCTORS on the inductance DISTINCTION result); both were confirmed by re-fetching the pages during the audit and both now hold what the pages actually say. One taught claim (temperature intervals) was factually WRONG and contradicted its own quoted passage; it has been corrected. No status was raised, and no gap was papered over."
+  "correctionNote": "Corrected during the internal adversarial audit pass following the initial acquisition. The batch was originally recorded as 57/57 VERIFIED; that was not earned. Nine results were downgraded to PARTIALLY_VERIFIED and several claims were corrected for attribution, lost qualifications, or curriculum prose recorded as if it were a source's assertion. Two retrievedPassage fields were found to contain text that does NOT appear on the cited page (SRC-ETW-POWERTRIANGLE on the two power-factor/power DISTINCTION results, and SRC-ETW-ACINDUCTORS on the inductance DISTINCTION result); both were confirmed by re-fetching the pages during the audit and both now hold what the pages actually say. One taught claim (temperature intervals) was factually WRONG and contradicted its own quoted passage; it has been corrected. No status was raised, and no gap was papered over."
 }

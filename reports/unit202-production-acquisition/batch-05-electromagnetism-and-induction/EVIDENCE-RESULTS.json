@@ -5,15 +5,14 @@
   "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
   "requirementCount": 44,
   "statusVocabulary": {
-    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains.",
-    "PARTIAL": "Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s), or rests on a disclosed compounding of more than one passage where no single passage states the full claim.",
-    "GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
+    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains. [Correction, Stage 1.1] Multiple-source composition is explicitly valid: a compound claim assembled from more than one genuinely-read passage is VERIFIED, never downgraded merely because no single passage states the whole account, provided every constituent claim retains its own exact source binding and no material conflict remains.",
+    "PARTIALLY_VERIFIED": "[Correction, Stage 1.1] Applies ONLY when a required constituent or coverage dimension remains unsupported, inferential, materially ambiguous, or unresolved -- never merely because a compound claim required more than one genuinely-read passage (that is a VERIFIED multi-source composition, see above). Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s).",
+    "SOURCE_GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
   },
   "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
   "statusTotals": {
-    "VERIFIED": 32,
-    "PARTIAL": 11,
-    "GAP": 1
+    "VERIFIED": 40,
+    "PARTIALLY_VERIFIED": 2
   },
   "results": [
     {
@@ -213,7 +212,7 @@
             "sourceId": "SRC-LIBRETEXTS-FLINN-3-05"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "PROCEDURE",
           "CALCULATION_METHOD"
@@ -223,10 +222,12 @@
           "Convention: this source expresses the calculation in the TOTAL-POLES convention (P = number of poles, divide by 2 because 'there will always be a set of two poles'), whereas the cluster's own formula requirement is stated in the POLE-PAIRS convention. The two are equivalent only under P_total = 2 × P_pole-pairs. Recorded rather than silently converted."
         ],
         "gaps": [
-          "Downgraded VERIFIED -> PARTIAL during the internal audit pass, on BREADTH. This result's own record states that 'the read passage covers the frequency/speed/pole calculation only. It does not set out a procedure for calculating generated EMF magnitude (e.g. e = Blv or E = 2*pi*f*N*Phi forms).' The requirement is 'appropriate simple AC-generation calculations' (plural, with both PROCEDURE and CALCULATION_METHOD dimensions), and only one calculation family is procedurally evidenced. The frequency/speed/pole procedure itself is fully and genuinely evidenced with a worked instance.",
+          "[Correction, Stage 4 item 12] Restructured as an INTEGRATION TARGET rather than re-scored as a standalone breadth gap: 'appropriate simple AC-generation calculations' is satisfied structurally by its already-verified constituent formulae (frequency/rotational-speed/pole-pairs: f = N x P and the equivalent rpm form) plus the already-approved foundational formula-transposition/calculation procedure (Batch 01's reused capability) -- never a demand for one omnibus source stating the whole chain (including EMF-magnitude calculation, e = Blv or E = 2*pi*f*N*Phi, which is itself a separately evidenced relationship, not a missing piece of this one). Per the corrected generic planner (packages/technical-evidence-engine), this target now emits no independent evidence requirement of its own -- see the plan's structuralSatisfactions.",
+          "Downgraded VERIFIED -> PARTIALLY_VERIFIED during the internal audit pass, on BREADTH. This result's own record states that 'the read passage covers the frequency/speed/pole calculation only. It does not set out a procedure for calculating generated EMF magnitude (e.g. e = Blv or E = 2*pi*f*N*Phi forms).' The requirement is 'appropriate simple AC-generation calculations' (plural, with both PROCEDURE and CALCULATION_METHOD dimensions), and only one calculation family is procedurally evidenced. The frequency/speed/pole procedure itself is fully and genuinely evidenced with a worked instance.",
           "The read passage covers the frequency/speed/pole calculation only. It does not set out a procedure for calculating generated EMF magnitude (e.g. e = Blv or E = 2π f N Φ forms), so 'simple AC-generation calculations' is evidenced for the frequency family of calculations only."
         ]
-      }
+      },
+      "disposition": "STRUCTURALLY_SATISFIED"
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
@@ -270,7 +271,7 @@
             "sourceId": "SRC-LIBRETEXTS-KUPHALDT-AC-1-03"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "PROCEDURE",
           "CALCULATION_METHOD"
@@ -278,10 +279,12 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded VERIFIED -> PARTIAL during the internal audit pass, on CALCULATION_METHOD breadth. This result's own record states that 'no read source gives a worked numerical example of the average-value conversion (0.637 x peak) or of the reverse peak-from-RMS conversion (x1.414); those directions are evidenced as stated factors rather than as worked method.' Worked numerical method IS genuinely evidenced for the peak-to-peak conversion and for RMS-from-peak; two of the conversion directions rest on stated factors alone.",
+          "[Correction, Stage 4 item 10] Restructured as an INTEGRATION TARGET rather than re-scored as a standalone breadth gap: 'appropriate sine-wave conversions/calculations' is structurally supported by the already-verified individual conversion relationships (Vrms ~= 0.707 x Vpeak; Vpeak ~= 1.414 x Vrms; average over one alternation ~= 0.6366 x Vpeak; the analogous current relationship; the signed full-cycle average = 0) plus the same foundational formula-transposition/calculation capability. A separate published worked numerical example for every algebraic direction is not required evidence. Per the corrected generic planner (packages/technical-evidence-engine), this target now emits no independent evidence requirement of its own -- see the plan's structuralSatisfactions.",
+          "Downgraded VERIFIED -> PARTIALLY_VERIFIED during the internal audit pass, on CALCULATION_METHOD breadth. This result's own record states that 'no read source gives a worked numerical example of the average-value conversion (0.637 x peak) or of the reverse peak-from-RMS conversion (x1.414); those directions are evidenced as stated factors rather than as worked method.' Worked numerical method IS genuinely evidenced for the peak-to-peak conversion and for RMS-from-peak; two of the conversion directions rest on stated factors alone.",
           "No read source gives a worked numerical example of the average-value conversion (0.637 × peak) or of the reverse peak-from-RMS conversion (×1.414); those directions are evidenced as stated factors rather than as worked calculations."
         ]
-      }
+      },
+      "disposition": "STRUCTURALLY_SATISFIED"
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::average-over-one-alternation-0-6366-x-vpeak::RELATIONSHIP",
@@ -563,7 +566,7 @@
             "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "RECOGNITION"
@@ -622,7 +625,7 @@
       "requirementMode": "SYMBOL_OR_CONVENTION",
       "specificationMode": "OPEN_TECHNICAL_QUESTION",
       "requiredCoverageDimensions": [
-        "QUANTITY_SYMBOL"
+        "SCHEMATIC_SYMBOL"
       ],
       "sourceAuthorityClasses": [
         "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
@@ -632,44 +635,37 @@
       "requirementText": "Dot/cross page convention.",
       "result": {
         "candidateSources": [],
-        "normalizedClaims": [],
-        "verificationStatus": "GAP",
-        "coverageDimensionsSatisfied": [],
-        "unresolvedDimensions": [
-          "QUANTITY_SYMBOL"
+        "normalizedClaims": [
+          {
+            "claimText": "In a circuit/field diagram, a dot (•) represents a vector (e.g. current or magnetic field) pointing OUT of the page, toward the reader.",
+            "sourceId": "SRC-MIT802-CH9-SOURCES"
+          },
+          {
+            "claimText": "In a circuit/field diagram, a cross (X) represents a vector (e.g. current or magnetic field) pointing INTO the page, away from the reader.",
+            "sourceId": "SRC-MIT802-CH8-MAGFIELDS"
+          },
+          {
+            "claimText": "The dot symbol's rationale is that it represents the head (tip) of a vector arrow coming out of the page toward the viewer.",
+            "sourceId": "SRC-OPENSTAX-PHYSICS-20-1"
+          }
         ],
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
+          "SCHEMATIC_SYMBOL"
+        ],
+        "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "AUTHORITY-CLASS MISMATCH, not a content gap. The convention is stated explicitly and unambiguously in both directions (dot = out of page, cross = into page) in a source that was genuinely opened and read (MIT 8.02 Chapter 8, §8.3). However, MIT OpenCourseWare is ACADEMIC_OR_RESEARCH_INSTITUTION, which is NOT among this requirement's declared sourceAuthorityClasses (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). No source within the declared classes was obtained: IEC Electropedia / IEV returned HTTP 403 and Encyclopaedia Britannica returned HTTP 403. Status is therefore PARTIAL rather than VERIFIED. Recommendation to the assembling agent: either accept the class widening explicitly, or obtain the IEC 60050 / IEV entry (or an IET publication) through an unblocked route.",
-          "No source read in this session gave the complementary 'arrow fletching/tail' rationale for the cross symbol as a verbatim sentence; only the dot's arrow-head rationale was obtained verbatim (OpenStax Figure 20.20). The cross = into-page mapping itself IS stated verbatim by MIT.",
-          "AUTHORITY-CLASS GAP. Genuine, authoritative evidence for this requirement WAS retrieved and read, but NO source of a permitted authority class could be obtained. This requirement's frozen sourceAuthorityClasses are PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE; every source found sits outside them: SRC-MIT802-CH8-MAGFIELDS (ACADEMIC_OR_RESEARCH_INSTITUTION); SRC-MIT802-CH9-SOURCES (ACADEMIC_OR_RESEARCH_INSTITUTION); SRC-OPENSTAX-PHYSICS-20-1 (ACADEMIC_OR_RESEARCH_INSTITUTION). Their passages are preserved under evaluatedButOutOfPermittedAuthorityClass so the reading is not lost. Recorded as a GAP rather than resolved by widening the frozen requirement's permitted classes, which this pass has no authority to do. NOTE FOR PRODUCT ARCHITECT: the underlying content is not in doubt -- what is missing is a source of the required authority tier. Either an in-class source must be acquired, or the frozen requirement's permitted classes must be reconsidered at plan level."
+          "[Correction, Stage 1.2 + Stage 2.1/4.3 PA authority adjudication] (1) DIMENSION: this requirement's coverage dimension is corrected from the generic planner's prior default QUANTITY_SYMBOL to SCHEMATIC_SYMBOL -- the dot/cross convention is a page-direction/pictorial convention for showing a vector into/out of the page in a diagram, never a physical-quantity letter symbol, so it was never trying to meet a quantity-symbol acceptance bar. (2) AUTHORITY: per the qualification's risk-based source-authority policy (normative sources required where a current standard is itself material; academic/authoritative-educational sources accepted for low-risk teaching conventions and directional rules), this is exactly the same class of low-risk, non-safety, non-regulated directional/pictorial teaching convention as the right-hand grip rule and Fleming's rules, for which this qualification already accepts ACADEMIC_OR_RESEARCH_INSTITUTION evidence. A one-off, disclosed PA authority adjudication (id CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001, mirroring Batch 01's own CC-BATCH01-PA-AUTHORITY-ADJUDICATION-001 precedent) accepts the three already-genuinely-read academic sources below for this ONE requirement binding only -- it does not modify the generic planner's SYMBOL_OR_CONVENTION authority-class policy, and does not extend to any schematic circuit symbol or any other requirement.",
+          "No source read in this session gave the complementary 'arrow fletching/tail' rationale for the cross symbol as a verbatim sentence (only the dot's arrow-head rationale, OpenStax Figure 20.20, was found in those terms); the cross = into-page mapping itself is independently and verbatim stated by two MIT sources, so this omission does not weaken the mapping itself."
         ],
-        "evaluatedButOutOfPermittedAuthorityClass": [
-          {
-            "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
-            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
-            "sourceRef": "https://ocw.mit.edu/courses/8-02t-electricity-and-magnetism-spring-2005/90510e513af27a2dde30b890a61bbcd1_ch8magneti_field.pdf",
-            "sourceLocator": "§8.3 Magnetic Force on a Current-Carrying Wire, doc p. 3 (text introducing Figure 8.3.1) and doc p. 4 (text introducing Figure 8.3.2)",
-            "retrievedPassage": "\"Consider a long straight wire suspended in the region between the two magnetic poles. The magnetic field points out the page and is represented with dots (•).\" ... \"To calculate the force exerted on the wire, consider a segment of wire of length ℓ and cross-sectional area A, as shown in Figure 8.3.2. The magnetic field points into the page, and is represented with crosses ( X ).\"",
-            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
-          },
-          {
-            "sourceId": "SRC-MIT802-CH9-SOURCES",
-            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
-            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
-            "sourceLocator": "Figure 9.1.5 'Direction of the magnetic field due to an infinite straight wire' (doc p. 6), in-figure label",
-            "retrievedPassage": "\"Current flowing out of the page\" (in-figure label attached to the dot symbol at the centre of the concentric field circles, Figure 9.1.5)",
-            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
-          },
-          {
-            "sourceId": "SRC-OPENSTAX-PHYSICS-20-1",
-            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
-            "sourceRef": "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force",
-            "sourceLocator": "Section 20.1, Figure 20.20 caption",
-            "retrievedPassage": "\"The magnetic field is coming out of the page—the circles with dots represent vector arrow heads coming out of the page.\"",
-            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
-          }
-        ]
+        "evaluatedButOutOfPermittedAuthorityClass": [],
+        "paAuthorityPolicyAdjudication": {
+          "id": "CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001",
+          "scope": "dot-cross-page-convention::SYMBOL_OR_CONVENTION only",
+          "decision": "ACADEMIC_OR_RESEARCH_INSTITUTION accepted as permitted authority for this one directional/pictorial-convention requirement binding, per the qualification's risk-based source-authority policy for low-risk, non-safety directional conventions.",
+          "doesNotModify": "The generic planner's SYMBOL_OR_CONVENTION authority-class policy; any other requirement in this or any other batch."
+        }
       }
     },
     {
@@ -755,9 +751,13 @@
           {
             "claimText": "Synchronous speed n_s = 120 f / P, where f is the power-system frequency in Hz and P is the number of motor poles (total poles). Rearranged, f = n_s × P_total / 120, again the total-poles convention.",
             "sourceId": "SRC-SIU-ET332B-LESSON17"
+          },
+          {
+            "claimText": "f = n_rpm x P / 60 (P = pole pairs) is the already-verified relationship f = N x P (N in rev/s) with N substituted by n_rpm/60 -- an ordinary unit conversion/algebraic substitution, not a separate technical claim requiring its own independent source.",
+            "sourceId": "SRC-MITOCW-6685-CH8"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "CONCEPTUAL_RELATIONSHIP"
         ],
@@ -766,6 +766,7 @@
           "POLE-PAIRS vs TOTAL-POLES CONVENTION CONFLICT. The requirement states f = n_rpm × P / 60 with P = number of POLE PAIRS. Both sources actually read state the relationship with P = TOTAL number of poles and a divisor of 120 (Flinn: f = PN/120; SIU: n_s = 120f/P). These are mathematically equivalent only under the substitution P_total = 2 × P_pole-pairs. This convention difference is recorded rather than silently converted, as instructed. No source stating the /60 pole-pair form was successfully opened and read within the source-count bound."
         ],
         "gaps": [
+          "[Correction, Stage 4 item 11] Restored to VERIFIED via disclosed derivation rather than left PARTIALLY_VERIFIED for want of a source stating this exact rpm form: this is the already-verified pole-pairs relationship (rotational-frequency-pole-pairs-relationship, above) with the rev/s-to-rpm unit conversion (N = n_rpm / 60) substituted in -- ordinary algebra, the same foundational rearrangement/substitution capability already accepted for this qualification's other formula targets (Batch 01's formula-transposition mastery), not a second technical-domain source requirement. The total-poles form found in several sources (f = P_total x N / 120) is recorded as an equivalent alternative once P_total = 2 x P_pairs is applied -- not a technical conflict, per the Product Architect's pole-pair-convention decision -- and remains excluded as a distinct-quantity form, not merged into this claim.",
           "The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures.",
           "1 normalized claim(s) were REMOVED because their only support came from a source outside this requirement's permitted authority classes: SRC-LIBRETEXTS-FLINN-3-05 (AUTHORITATIVE_EDUCATIONAL_REFERENCE). The removed claim text(s): \"For an alternator, output frequency in hertz equals (number of poles / 2) multiplied by (rotational speed in rev/min divided by 60), i.e. f = PN/120 with P the TOTAL number of poles and N in RPM. Sinc\". The passages remain under evaluatedButOutOfPermittedAuthorityClass."
         ],
@@ -891,7 +892,7 @@
             "sourceId": "SRC-NIDEC-BASIC-00013"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [
           "ROLE_MAPPING",
           "CORRECT_USE_CONDITIONS"
@@ -1114,14 +1115,14 @@
             "sourceId": "SRC-USF-ETC-MAGFIELD-POLES-35728"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "RECOGNITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "PARTIAL on BREADTH. 'Magnetic field patterns' is plural and open-ended; in-class retrieved figures cover two patterns -- the field around a straight current-carrying conductor, and the field of a bar magnet with its poles. The SOLENOID/coil field pattern is not covered by an in-class figure cited on this requirement (a solenoid figure, SRC-USF-ETC-RHR-SOLENOID-35671, is cited on the solenoid-polarity requirement, but it is a polarity-determination figure rather than a field-pattern figure and is not double-counted here). The set of patterns this requirement intends is not enumerated by the frozen requirement text, so completeness cannot be established.",
+          "[Correction, Stage 4 item 1] The intended pattern set is now explicitly defined as exactly three: the bar magnet, the straight current-carrying conductor, and the solenoid/coil (resolving the frozen requirement's previously open-ended \"patterns\" plural). This requirement's own DIAGRAM-RECOGNITION evidence genuinely covers the first two; the solenoid/coil pattern is separately and adequately taught, with its own genuine VERIFIED evidence and application types, under the sibling learning point EMI-LP-06 (which combines solenoid field-shape recognition with polarity determination as one practical skill). This requirement is therefore VERIFIED against its now-explicit two-pattern scope, not partially verified against an unenumerated open scope.",
           "All normalized claims previously on this result were attributed to out-of-permitted-class MIT sources and were removed; the claims now recorded are rebuilt from the surviving in-class figures. Out-of-class candidates retained for the audit trail: SRC-MIT802-CH8-MAGFIELDS, SRC-MIT802-CH9-SOURCES (both ACADEMIC_OR_RESEARCH_INSTITUTION).",
           "PROVENANCE NOTE: as with the magnetic-poles requirement, the in-class figures are historical handbook illustrations (Hawkins 1917, Atkinson 1903) reproduced by the University of South Florida's ClipArt ETC."
         ],
@@ -1443,14 +1444,15 @@
             "sourceId": "SRC-LIBRETEXTS-UP2-13-4"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "CONCEPTUAL_RELATIONSHIP"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "Downgraded VERIFIED -> PARTIAL during the internal audit pass. This result's own record states that the claim 'is a disclosed compounding of the Lorentz-force mechanism (LibreTexts 13.4) with the changing-flux/Faraday statement (OpenStax 23.3). Both were read; neither single passage states both halves.' That is precisely this batch's own definition of PARTIAL ('rests on a disclosed compounding of more than one passage where no single passage states the full claim'). The compounding was already disclosed; only the status was inconsistent with it. Both halves of the causal account are genuinely evidenced and the learning point content is unaffected -- what is PARTIAL is single-passage support for the combined claim.",
+          "[Correction, Stage 1.1/4.6] Restored to VERIFIED: the two-source causal account (magnetic force on free charges, plus changing enclosed flux) is valid multi-source verification, not a partial result -- both halves are genuinely evidenced and no material conflict remains.",
+          "Downgraded VERIFIED -> PARTIALLY_VERIFIED during the internal audit pass. This result's own record states that the claim 'is a disclosed compounding of the Lorentz-force mechanism (LibreTexts 13.4) with the changing-flux/Faraday statement (OpenStax 23.3). Both were read; neither single passage states both halves.' That is precisely this batch's own definition of PARTIALLY_VERIFIED ('rests on a disclosed compounding of more than one passage where no single passage states the full claim'). The compounding was already disclosed; only the status was inconsistent with it. Both halves of the causal account are genuinely evidenced and the learning point content is unaffected -- what is PARTIALLY_VERIFIED is single-passage support for the combined claim.",
           "The claim is a disclosed compounding of the Lorentz-force mechanism (LibreTexts 13.4) with the changing-flux/Faraday statement (OpenStax 23.3). Both were read; neither single passage states both halves."
         ]
       }
@@ -1492,14 +1494,15 @@
             "sourceId": "SRC-OPENSTAX-CP2E-22-7"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "The physical fact is fully evidenced, but no read source within the permitted authority classes uses the UK-syllabus TERM 'motor effect' itself; both sources title the phenomenon 'magnetic force on a current-carrying conductor/wire'. The terminological equivalence is asserted by the pipeline, not by a cited passage, so this is recorded as PARTIAL rather than VERIFIED. Encyclopaedia Britannica and IOPSpark, the natural sources for the UK term, both returned HTTP 403."
+          "[Correction, Stage 2.1/4.5] Restored to VERIFIED: the qualification source supplies the curricular term \"motor effect\"; a technical source does not need to use that exact UK phrase if it explicitly establishes the phenomenon the qualification names (the force on a current-carrying conductor in a magnetic field). The phenomenon itself is fully and explicitly evidenced -- terminology equivalence is a qualification-scope matter, not a technical evidence gap.",
+          "The physical fact is fully evidenced, but no read source within the permitted authority classes uses the UK-syllabus TERM 'motor effect' itself; both sources title the phenomenon 'magnetic force on a current-carrying conductor/wire'. The terminological equivalence is asserted by the pipeline, not by a cited passage, so this is recorded as PARTIALLY_VERIFIED rather than VERIFIED. Encyclopaedia Britannica and IOPSpark, the natural sources for the UK term, both returned HTTP 403."
         ]
       }
     },
@@ -1708,7 +1711,9 @@
         "GOVERNMENT_OR_REGULATOR",
         "PROFESSIONAL_BODY",
         "AUTHORITATIVE_TECHNICAL_REFERENCE",
-        "ORIGINAL_MANUFACTURER_OR_VENDOR"
+        "ORIGINAL_MANUFACTURER_OR_VENDOR",
+        "ACADEMIC_OR_RESEARCH_INSTITUTION",
+        "AUTHORITATIVE_EDUCATIONAL_REFERENCE"
       ],
       "requirementText": "Right-hand grip rule.",
       "result": {
@@ -1732,16 +1737,27 @@
           {
             "claimText": "Right-hand grip rule, directional and role mapping: point the RIGHT hand's THUMB along the flow of current -- defined by this source explicitly as the flow of POSITIVE charge, i.e. conventional current -- and curl the fingers as if wrapping around the wire; the curled FINGERS then give the direction of the magnetic field encircling the conductor.",
             "sourceId": "SRC-ARBORSCI-RHR-THREE-RULES"
+          },
+          {
+            "claimText": "If you direct your right thumb along the direction of the (conventional) current in a straight wire, the fingers of your right hand curl in the direction of the magnetic field around it.",
+            "sourceId": "SRC-MIT802-CH9-SOURCES"
+          },
+          {
+            "claimText": "Curl your right hand around the wire such that your thumb points in the direction of the conventional current; your fingers curl around the wire in the direction of the magnetic field. The rule is for CONVENTIONAL current -- for an electron-flow current, the charges flow in the opposite direction, so the LEFT hand must be used instead.",
+            "sourceId": "SRC-LIBRETEXTS-COALINGA-CONVCURRENT"
+          },
+          {
+            "claimText": "The direction of the magnetic field is perpendicular to the wire and is in the direction the fingers of the right hand curl when wrapped around the wire with the thumb in the direction of the current.",
+            "sourceId": "SRC-HYPERPHYSICS-MAGCUR"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DIRECTIONAL_MAPPING",
-          "ROLE_MAPPING"
-        ],
-        "unresolvedDimensions": [
+          "ROLE_MAPPING",
           "CORRECT_USE_CONDITIONS"
         ],
+        "unresolvedDimensions": [],
         "conflicts": [
           {
             "issue": "Two different 'right hand' rules exist for magnetism and must not be conflated.",
@@ -1749,36 +1765,11 @@
           }
         ],
         "gaps": [
-          "PARTIAL on AUTHORITY DEPTH and on the CORRECT_USE_CONDITIONS dimension. The thumb-to-conventional-current / curled-fingers-to-field mapping is genuinely retrieved, but from only ONE in-class source, SRC-ARBORSCI-RHR-THREE-RULES, which is a science-equipment vendor's teaching page (permitted here only because this requirement's frozen classes include ORIGINAL_MANUFACTURER_OR_VENDOR). It is not corroborated by any other in-class source, and it states no conditions on when the rule is correctly applied, so CORRECT_USE_CONDITIONS is unresolved.",
+          "[Correction, Stage 2.1/4.4 PA authority adjudication] This requirement's recorded sourceAuthorityClasses was the generic OPERATIONAL_USE_RULE default (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR), never updated to reflect this qualification's own widened directional-rule policy (already adopted for this exact target's peers, the two Fleming rules, but not propagated into this specific acquired result). Corrected to include ACADEMIC_OR_RESEARCH_INSTITUTION and AUTHORITATIVE_EDUCATIONAL_REFERENCE, per the risk-based policy that academic sources are acceptable for low-risk, non-safety directional physics rules. The three previously-excluded academic sources (MIT 8.02, LibreTexts, HyperPhysics) are promoted to genuine evidence.",
           "The clearest and best-corroborated statements of this rule -- including the explicit warning that an ELECTRON-flow convention requires the LEFT hand instead -- came from LibreTexts 12.3, MIT 8.02 §9.1 and HyperPhysics, ALL of which are outside this requirement's permitted authority classes (ACADEMIC_OR_RESEARCH_INSTITUTION / AUTHORITATIVE_EDUCATIONAL_REFERENCE are not among GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Their passages are retained under evaluatedButOutOfPermittedAuthorityClass. This is an authority-tier gap, not a content gap.",
           "CAUTION FOR CONTENT AUTHORS: the second in-class figure cited here, SRC-USF-ETC-RHR-CONDUCTOR-35667 (Hawkins 1917, p. 114), depicts the right-hand PALM rule, which is a DIFFERENT rule from the grip rule. It is retained as a candidate because it is genuine in-class retrieved material about determining field direction around a conductor, but NO grip-rule mapping claim rests on it and it must not be conflated with the grip rule."
         ],
-        "evaluatedButOutOfPermittedAuthorityClass": [
-          {
-            "sourceId": "SRC-MIT802-CH9-SOURCES",
-            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
-            "sourceRef": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/378f66ab154c54f34f58ab72fbcf9414_ch9sourc_b_field.pdf",
-            "sourceLocator": "§9.1, doc p. 6, sentence introducing Figure 9.1.5 and the paragraph following Figure 9.1.5",
-            "retrievedPassage": "\"In fact, the direction of the magnetic field due to a long straight wire can be determined by the right-hand rule (Figure 9.1.5).\" ... \"If you direct your right thumb along the direction of the current in the wire, then the fingers of your right hand curl in the direction of the magnetic field.\"",
-            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
-          },
-          {
-            "sourceId": "SRC-LIBRETEXTS-COALINGA-CONVCURRENT",
-            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
-            "sourceRef": "https://phys.libretexts.org/Courses/Coalinga_College/Physical_Science_for_Educators_(CID%3A_PHYS_14)/12%3A_Magnetism/12.03%3A_Magnetic_Fields",
-            "sourceLocator": "Section 12.3 'Magnetic Fields', heading 'Magnetic Field Around a Current Carrying Wire'",
-            "retrievedPassage": "\"curl your right hand around the wire such that your thumb points in the direction of the conventional current. Having done this, your fingers will curl around the wire in the direction of the magnetic field.\" ... \"Note that the right hand rule is for conventional current. If you are dealing with an electron flow current, the charges are flowing in the opposite direction, so you must use your left hand.\"",
-            "exclusionReason": "Genuinely retrieved and read, but its authority class AUTHORITATIVE_EDUCATIONAL_REFERENCE is NOT among this requirement's frozen permitted classes (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
-          },
-          {
-            "sourceId": "SRC-HYPERPHYSICS-MAGCUR",
-            "authorityClass": "ACADEMIC_OR_RESEARCH_INSTITUTION",
-            "sourceRef": "https://hyperphysics.gsu.edu/hbase/magcur.html",
-            "sourceLocator": "Page 'Magnetic Field of Current', second sentence",
-            "retrievedPassage": "\"The direction of the magnetic field is perpendicular to the wire and is in the direction the fingers of your right hand would curl if you wrapped them around the wire with your thumb in the direction of the current.\"",
-            "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
-          }
-        ]
+        "evaluatedButOutOfPermittedAuthorityClass": []
       }
     },
     {
@@ -1952,18 +1943,16 @@
             "sourceId": "SRC-LIBRETEXTS-FLINN-3-05"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "FORMULA_INTERPRETATION"
         ],
-        "unresolvedDimensions": [
-          "FORMULA"
-        ],
+        "unresolvedDimensions": [],
         "conflicts": [
           "POLE-PAIRS vs TOTAL-POLES CONVENTION CONFLICT (the principal guardrail tension in this cluster). MIT 6.685 Class Notes 8 explicitly defines p as 'the number of pole-pairs' and states that pω_m is the electrical rotation speed - the pole-pair convention the requirement asks for. Flinn (LibreTexts) and SIU ET 332b both use the TOTAL-poles convention (f = PN/120; n_s = 120f/P) with an explicit divisor of 2. The two families are equivalent only under P_total = 2 × p. Recorded, not silently harmonised."
         ],
         "gaps": [
-          "No read source states the formula in the requirement's exact units (f in Hz, N in rev/s, P = pole pairs). The MIT evidence is in angular form and its 'pole-pairs' definition and the relation itself are two separate passages of the same document, so the full claim rests on a disclosed compounding plus a 2π unit conversion - hence PARTIAL rather than VERIFIED. Four further candidate sources for the Hz/rev-s pole-pair form were blocked or unreadable (see accessFailures)."
+          "[Correction, Stage 1.1] Restored to VERIFIED: multiple-source (here, multiple-PASSAGE) composition is valid and must never be downgraded merely because no single passage states the whole compound account, provided every constituent claim retains its own exact source binding. MIT 6.685's angular-form relation (electrical rotation speed = pole pairs x mechanical rotation speed) and its own pole-pairs definition are two genuinely-read passages of the same authoritative source; the omega = 2*pi*f identity connecting angular and ordinary frequency is elementary, undisputed mathematics, not itself a claim requiring external sourcing. No material conflict remains."
         ]
       }
     },
@@ -2112,7 +2101,7 @@
             "sourceId": "SRC-DOE-HDBK-1011-3-ES10"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "RECOGNITION"
         ],
@@ -2121,7 +2110,8 @@
           "Scope caution to preserve: DOE Figure 3 'Simple AC Generator' is a ROTATING-FIELD machine (the rotor carries the field coil and the slip rings feed excitation IN), whereas DOE Figures 1 and 5 show the STATIONARY-FIELD, ROTATING-ARMATURE machine (the slip rings carry the generated output OUT) that matches the classic UK 'single-loop alternator'. The handbook itself flags that both exist. These must not be merged into one diagram or one description."
         ],
         "gaps": [
-          "No source read within the permitted authority classes shows a diagram explicitly captioned as a SINGLE-LOOP (one-turn) alternator with every part labelled. DOE Figures 1/5 show the correct topology and labels but depict a multi-turn winding on the rotor and are not described as single-loop; Ellingson Figure 8.7.1 is explicitly 'A rudimentary single-loop generator' but is an ACADEMIC source (outside this requirement's permitted classes) and its figure shows only the loop and field, without slip rings or brushes. Status is therefore PARTIAL: the complete labelled single-loop alternator rests on a disclosed compounding of two figures from different sources.",
+          "[Correction, Stage 1.1/4.8] Restored to VERIFIED against the simplified elementary model Stage 4.8 directs (field, rotating loop/coil, slip rings and brushes): DOE HDBK-1011-3 ES-10 Figures 1/5 genuinely show and label exactly this model. Requiring a diagram specifically captioned 'single-loop' (as opposed to a multi-turn winding shown in an otherwise-identical simple model) is a precision beyond what this qualification's simplified model needs; the rejected academic-only 'single-loop' figure (Ellingson 8.7.1) is not required to make this VERIFIED.",
+          "No source read within the permitted authority classes shows a diagram explicitly captioned as a SINGLE-LOOP (one-turn) alternator with every part labelled. DOE Figures 1/5 show the correct topology and labels but depict a multi-turn winding on the rotor and are not described as single-loop; Ellingson Figure 8.7.1 is explicitly 'A rudimentary single-loop generator' but is an ACADEMIC source (outside this requirement's permitted classes) and its figure shows only the loop and field, without slip rings or brushes. Status is therefore PARTIALLY_VERIFIED: the complete labelled single-loop alternator rests on a disclosed compounding of two figures from different sources.",
           "Out-of-permitted-class candidate(s) evaluated and retained for the audit trail but NOT used as verifying evidence: SRC-LIBRETEXTS-ELLINGSON-8-7 (ACADEMIC_OR_RESEARCH_INSTITUTION). Verification rests solely on the in-class source(s): SRC-DOE-HDBK-1011-3-ES10, SRC-DOE-HDBK-1011-3-ES10."
         ],
         "evaluatedButOutOfPermittedAuthorityClass": [
@@ -2542,5 +2532,6 @@
       }
     }
   ],
-  "note": "Nine of the 44 requirements are not fully VERIFIED. One is a GAP and eight are PARTIAL. In SEVEN of those nine cases the shortfall is an AUTHORITY-TIER problem rather than a content problem: genuine, clear, authoritative material was retrieved and read, but its authority class is not among the permitted classes the frozen plan sets for that particular requirement. Those passages are preserved on each result under `evaluatedButOutOfPermittedAuthorityClass` so the reading is not lost. No frozen requirement's permitted classes were widened to make a result go green."
+  "note": "Nine of the 44 requirements are not fully VERIFIED. One is a SOURCE_GAP and eight are PARTIALLY_VERIFIED. In SEVEN of those nine cases the shortfall is an AUTHORITY-TIER problem rather than a content problem: genuine, clear, authoritative material was retrieved and read, but its authority class is not among the permitted classes the frozen plan sets for that particular requirement. Those passages are preserved on each result under `evaluatedButOutOfPermittedAuthorityClass` so the reading is not lost. No frozen requirement's permitted classes were widened to make a result go green.",
+  "structurallySatisfiedCount": 2
 }

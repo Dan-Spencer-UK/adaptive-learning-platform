@@ -5,15 +5,14 @@
   "sourcePlan": "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json",
   "requirementCount": 40,
   "statusVocabulary": {
-    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains.",
-    "PARTIAL": "Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s), or rests on a disclosed compounding of more than one passage where no single passage states the full claim.",
-    "GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
+    "VERIFIED": "At least one genuinely retrieved-and-read authoritative source (matching this requirement's own permitted sourceAuthorityClasses) explicitly supports the exact requirement text/dimension; no unresolved gap remains. [Correction, Stage 1.1] Multiple-source composition is explicitly valid: a compound claim assembled from more than one genuinely-read passage is VERIFIED, never downgraded merely because no single passage states the whole account, provided every constituent claim retains its own exact source binding and no material conflict remains.",
+    "PARTIALLY_VERIFIED": "[Correction, Stage 1.1] Applies ONLY when a required constituent or coverage dimension remains unsupported, inferential, materially ambiguous, or unresolved -- never merely because a compound claim required more than one genuinely-read passage (that is a VERIFIED multi-source composition, see above). Genuine evidence was found and read but only partially satisfies the requirement's coverage dimension(s).",
+    "SOURCE_GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
   },
   "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
   "statusTotals": {
-    "VERIFIED": 27,
-    "PARTIAL": 12,
-    "GAP": 1
+    "VERIFIED": 30,
+    "PARTIALLY_VERIFIED": 7
   },
   "results": [
     {
@@ -413,7 +412,7 @@
             "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
@@ -428,7 +427,9 @@
           "The requirement object marks this item acquisitionPriority OPTIONAL_CONTEXT, which is consistent with it being a detail that need not be pinned down to close the unit; a human reviewer may prefer to descope it rather than force a value set.",
           "No mains construction or wiring instructions were captured. The values recorded above are manufacturer design-reference data attached to named published figures, not installation or DIY build guidance, and must not be presented to learners as instructions for building or wiring a mains dimmer."
         ]
-      }
+      },
+      "disposition": "RETIRED_OUT_OF_SCOPE",
+      "dispositionRationale": "[Correction, Stage 5 exemplar decision 1] The exact dimmer RC timing values are never canonical technical truth for this qualification -- the frozen requirement names no determinate circuit, and the one manufacturer note found gives four mutually inconsistent value sets. Retired from canonical mastery rather than left as an empty held learning point. The conceptual dimmer content (phase control, the TRIAC's and DIAC's roles) remains fully evidenced and READY under EDA-LP-18."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
@@ -735,7 +736,7 @@
             "sourceId": "SRC-ONSEMI-AND8116D-RELAY-DRIVERS"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
@@ -751,7 +752,9 @@
           "The requirement object marks this item acquisitionPriority OPTIONAL_CONTEXT, so descoping it is a legitimate reviewer option in preference to adopting a substitute circuit.",
           "Related but separate evidence exists in AN1003 (Figure 16.13 'Precision Proportional Temperature Control', which uses a thermistor and a UJT ramp-and-pedestal firing circuit driving a triac, and Figure 16.23 'Microcontroller heater control', which drives a triac). Neither uses a transistor-driven relay, so neither can stand in for the requirement; noting them only so a reviewer knows the authoritative heating circuits that WERE found are thyristor-switched, not relay-switched."
         ]
-      }
+      },
+      "disposition": "RETIRED_OUT_OF_SCOPE",
+      "dispositionRationale": "[Correction, Stage 5 exemplar decision 2] The exact heating transistor/relay topology is never canonical technical truth for this qualification -- the frozen requirement names no determinate circuit; the only authoritative topology located is a generic relay driver scoped by its own source to industrial/automotive use, and the authoritative heating circuits found are thyristor-switched rather than relay-switched. Retired from canonical mastery. The conceptual heating-control content (function, thermistor sensing role) remains fully evidenced and READY under EDA-LP-20."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-thermistor-sensing-role::EXACT_FACT",
@@ -1015,14 +1018,13 @@
             "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [],
-        "unresolvedDimensions": [
-          "DEFINITION"
-        ],
+        "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "DISCLOSED COMPOUNDING: no single retrieved passage states the complete claim 'in a motor application, a bridge rectifier converts AC to DC'. The claim is assembled from three passages in two documents: (a) onsemi HB214/D p.92 gives 'the function of rectification is to convert alternating current to direct current'; (b) onsemi HB214/D Table 16 p.91 and HyperPhysics identify the bridge as a four-diode full-wave rectifier circuit; (c) Littelfuse AN1003 p.16-5 places a rectifier bridge between the AC supply and a DC motor. Per the status vocabulary, a claim resting on disclosed compounding of more than one passage is PARTIAL, not VERIFIED.",
+          "[Correction, Stage 1.1/5.7] Restored to VERIFIED: bridge-rectifier behaviour supported across multiple authoritative sources (onsemi, Littelfuse, HyperPhysics) is valid multi-source verification, not a partial result.",
+          "DISCLOSED COMPOUNDING: no single retrieved passage states the complete claim 'in a motor application, a bridge rectifier converts AC to DC'. The claim is assembled from three passages in two documents: (a) onsemi HB214/D p.92 gives 'the function of rectification is to convert alternating current to direct current'; (b) onsemi HB214/D Table 16 p.91 and HyperPhysics identify the bridge as a four-diode full-wave rectifier circuit; (c) Littelfuse AN1003 p.16-5 places a rectifier bridge between the AC supply and a DC motor. Per the status vocabulary, a claim resting on disclosed compounding of more than one passage is PARTIALLY_VERIFIED, not VERIFIED.",
           "The HyperPhysics 'Bridge Rectifier' page as actually read states 'achieve full-wave rectification' and 'accomplishing full-wave rectification'; it does NOT literally contain the words 'converts AC to DC'. That wording comes from HB214/D. This is recorded so that no reviewer attributes the AC-to-DC wording to the academic source.",
           "AN1003's motor passage is about a permanent-magnet DC motor and an alternistor triac controller placed on the AC side of the bridge. It does not say the bridge 'converts AC to DC' in those words, and it is a specific PM-motor arrangement rather than a general statement about motors. A UK Level-2 course claim of the form 'in a motor circuit the bridge rectifier converts the AC supply to DC to drive the motor' is consistent with the evidence but is a synthesis, and should be presented as such.",
           "Access constraints limited the search for a single-passage source: Britannica ('rectifier') returned HTTP 403 and IEC Electropedia (IEV 551-12-07 'rectifier', a PRIMARY_NORMATIVE_OR_STANDARDS_BODY definition that would likely have closed this cleanly) returned HTTP 403 on both HTTPS and HTTP. A reviewer with IEC access should retrieve IEV 551-12-07 to upgrade this to VERIFIED.",
@@ -1278,15 +1280,15 @@
             "sourceId": "SRC-ONSEMI-2N3903-2N3904-TO92"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "RECOGNITION"
         ],
         "conflicts": [],
         "gaps": [
-          "BREADTH GAP. Retrieved physical-appearance / package / marking evidence covers only 4 of the 15 Unit 202 component families, and covers the thyristor family only at the level of package names: COVERED = diode / rectifier diode (DO-41 axial molded epoxy body, colour band denotes cathode - Vishay 88503); capacitor, specifically aluminium electrolytic (radial leads, cylindrical aluminium case with pressure relief, blue sleeve, negative terminal identification in the marking - Vishay 048 RML); transistor (TO-92 CASE 29 STYLE 1 with pin callouts and a body marking diagram - onsemi 2N3903/2N3904); thyristor (SCR), TRIAC and DIAC (package names TO-92, DO-15, TO-220, TO-218, DO-35 only - Littelfuse AN1004). NOT COVERED by any retrieved appearance source: resistor (no retrieved source for axial colour-band appearance or E-series body coding), LED, Zener diode, photodiode, LDR, thermistor, bridge rectifier assembly, inverter, relay.",
-          "MEDIUM GAP. No retrieved source supplies PHOTOGRAPHS. All appearance evidence retrieved is textual mechanical-data / marking-diagram / package-name information plus package outline drawings in manufacturer datasheets. No photographic image of any component was retrieved, and none was generated or described from memory.",
+          "BREADTH SOURCE_GAP. Retrieved physical-appearance / package / marking evidence covers only 4 of the 15 Unit 202 component families, and covers the thyristor family only at the level of package names: COVERED = diode / rectifier diode (DO-41 axial molded epoxy body, colour band denotes cathode - Vishay 88503); capacitor, specifically aluminium electrolytic (radial leads, cylindrical aluminium case with pressure relief, blue sleeve, negative terminal identification in the marking - Vishay 048 RML); transistor (TO-92 CASE 29 STYLE 1 with pin callouts and a body marking diagram - onsemi 2N3903/2N3904); thyristor (SCR), TRIAC and DIAC (package names TO-92, DO-15, TO-220, TO-218, DO-35 only - Littelfuse AN1004). NOT COVERED by any retrieved appearance source: resistor (no retrieved source for axial colour-band appearance or E-series body coding), LED, Zener diode, photodiode, LDR, thermistor, bridge rectifier assembly, inverter, relay.",
+          "MEDIUM SOURCE_GAP. No retrieved source supplies PHOTOGRAPHS. All appearance evidence retrieved is textual mechanical-data / marking-diagram / package-name information plus package outline drawings in manufacturer datasheets. No photographic image of any component was retrieved, and none was generated or described from memory.",
           "The requirement's acquisitionPriority in the source requirement set is OPTIONAL_CONTEXT; the bounded search limit of four serious candidate sources was reached for this requirement (Vishay 88503, Vishay 048 RML, onsemi 2N3903/2N3904, Littelfuse AN1004), so the remaining families are recorded as an honest gap rather than pursued further. One further candidate (Vishay MRS25 resistor datasheet, for axial resistor colour-band appearance) returned HTTP 404 and is logged in accessFailures."
         ]
       }
@@ -1466,7 +1468,7 @@
             "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
           },
           {
-            "claimText": "LED - QUALIFIED / PARTIAL. This 1975 standard does NOT list a symbol under the name 'light-emitting diode' in its semiconductor section. The nearest named symbol is item 8.5.4.2 'Photoemissive type' (page 56), a diode symbol with two arrows directed AWAY from the device, which is cross-referenced 'See also item 11.1.1'; and item 11.1 'Lamp' is itself cross-referenced 'See also item 8.5.4.2'. The literal term appears only in NOTE 11.1.1B, where 'LED  Light-emitting diode' is one of the letter codes that may be inserted within or placed adjacent to the general lamp symbol 11.1.1. Any teaching of the modern diode-with-two-emission-arrows LED symbol should therefore be traced either to item 8.5.4.2 (named 'photoemissive type') or to a current IEC 60617 / BS EN 60617 source, which was not reachable in this session.",
+            "claimText": "LED - QUALIFIED / PARTIALLY_VERIFIED. This 1975 standard does NOT list a symbol under the name 'light-emitting diode' in its semiconductor section. The nearest named symbol is item 8.5.4.2 'Photoemissive type' (page 56), a diode symbol with two arrows directed AWAY from the device, which is cross-referenced 'See also item 11.1.1'; and item 11.1 'Lamp' is itself cross-referenced 'See also item 8.5.4.2'. The literal term appears only in NOTE 11.1.1B, where 'LED  Light-emitting diode' is one of the letter codes that may be inserted within or placed adjacent to the general lamp symbol 11.1.1. Any teaching of the modern diode-with-two-emission-arrows LED symbol should therefore be traced either to item 8.5.4.2 (named 'photoemissive type') or to a current IEC 60617 / BS EN 60617 source, which was not reachable in this session.",
             "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
           },
           {
@@ -1478,7 +1480,7 @@
             "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "QUANTITY_SYMBOL"
@@ -1488,8 +1490,9 @@
           "ALTERNATIVE-FORM AMBIGUITY (reported, not resolved): IEEE Std 315-1975 item 2.1.1 gives TWO alternative resistor symbols, the zigzag and the plain rectangle, both flagged IEC, with no single preferred form stated; and item 2.2.1 gives two capacitor styles, noting Style 1 (two parallel straight lines) as 'IEC preferred'. UK/BS EN 60617 practice generally uses the rectangle for the resistor, but that preference was NOT confirmed from a retrieved source in this session."
         ],
         "gaps": [
+          "[Correction, Stage 2.3] The current IEC 60617 database (webstore.iec.ch graphical-symbols database) was checked in this pass. It is IEC's official, current source and is the qualification-appropriate normative reference per this batch's risk-based authority policy -- but genuinely accessing it beyond its generic public welcome page (six unlabelled representative sample thumbnails, no searchable reference numbers or component-specific detail) requires a paid subscription/login (\"requires password\"). No specific symbol (e.g. a reference number for the diode, LED, TRIAC or photodiode symbol) could be verified from what is actually visible without that access. Honestly recorded as a genuine, currently-unresolved symbol-currency dependency, not claimed as resolved by an inaccessible detail. The 1975 ANSI Y32.2/IEEE 315 standard remains the best currently-verified evidence for 13 of 15 families, with its currency limitation disclosed rather than concealed.",
           "13 of the 15 Unit 202 component families have a named, directly-read graphic symbol in the retrieved standard: resistor (2.1.1), capacitor (2.2.1 / 2.2.2), diode (8.5.1), Zener/breakdown diode (8.5.6 / 8.5.6.1), photodiode (8.5.4 / 8.5.4.1), LDR (2.1.13, via 8.7.2), thermistor (2.1.12), transistor (8.6.1 / 8.6.2), thyristor SCR (8.6.12 / 8.6.13, and 8.5.8), TRIAC (8.6.15), DIAC (8.5.6.4 and 8.5.9), rectifier including bridge rectifier (16.3, 16.3.1, 16.3.3), relay (4.30, 4.30.1, 4.30.2).",
-          "2 of the 15 families are NOT covered by a dedicated, named graphic symbol in the retrieved standard: LED (present only as the letter code 'LED' applied to the general lamp symbol 11.1.1 per NOTE 11.1.1B, with the nearest graphic being item 8.5.4.2 'Photoemissive type'), and INVERTER (present only as the letter combination 'ST-INV  Static inverter' placed inside the general circuit-element rectangle of item 16.1.1). Because the requirement is explicitly a breadth requirement over 'each named AC6.2 component/device family', this is recorded as PARTIAL rather than VERIFIED.",
+          "2 of the 15 families are NOT covered by a dedicated, named graphic symbol in the retrieved standard: LED (present only as the letter code 'LED' applied to the general lamp symbol 11.1.1 per NOTE 11.1.1B, with the nearest graphic being item 8.5.4.2 'Photoemissive type'), and INVERTER (present only as the letter combination 'ST-INV  Static inverter' placed inside the general circuit-element rectangle of item 16.1.1). Because the requirement is explicitly a breadth requirement over 'each named AC6.2 component/device family', this is recorded as PARTIALLY_VERIFIED rather than VERIFIED.",
           "The normative IEC 60617 / BS EN 60617 symbol table itself was NOT reached (see accessFailures); no symbol in this cluster is verified against the current IEC/BS text."
         ]
       }
@@ -1519,7 +1522,7 @@
           }
         ],
         "normalizedClaims": [],
-        "verificationStatus": "GAP",
+        "verificationStatus": "SOURCE_GAP",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
@@ -1534,7 +1537,9 @@
           "BS EN 50131-1 (General requirements) and BS EN 50131-2-6 (Opening contacts (magnetic)) are the likely normative home for detection-circuit and interconnection-monitoring requirements, but their clause text sits behind the BSI paywall and was not read. Only the series part titles were retrievable.",
           "Four candidate routes were exhausted: (1) Littelfuse/Teccor thyristor application-note compendium (read in full; no alarm topology); (2) onsemi 'Thyristor Theory and Design Considerations' handbook (onsemi.com returned only a navigation shell, twice); (3) academic SCR lecture notes at lscollege.ac.in and arsdcollege.ac.in (TLS certificate failure / connection refused); (4) UCSB HEP SCR notes (connection refused). Britannica was 403 throughout."
         ]
-      }
+      },
+      "disposition": "RETIRED_OUT_OF_SCOPE",
+      "dispositionRationale": "[Correction, Stage 5 exemplar decision 3] The exact NC-loop/bias topology of a specific security alarm circuit is never canonical technical truth for this qualification -- the frozen requirement names no circuit, no figure and no source document, and the generic pattern found appears only on vendor blogs/installer marketing/DIY sites, all outside permitted authority classes. Retired from canonical mastery, not claimed as an unnamed private/provider circuit presented as universal truth."
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
@@ -1584,7 +1589,7 @@
             "sourceId": "SRC-LITTELFUSE-THYRISTOR-APPNOTES"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
@@ -1593,6 +1598,7 @@
           "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: the specific security alarm circuit whose SCR role is asserted is not identified in the requirement text."
         ],
         "gaps": [
+          "[Correction, Stage 5 exemplar decision 3] SCR latching itself (trigger, latch-on, remain conducting until current falls below holding current) is fully and genuinely evidenced as general device behaviour and is retained as transferable technical truth. The compound claim that an SCR specifically 'keeps a sounder energised' in an alarm circuit is NOT evidenced by any retrieved source and is explicitly excluded from taught content -- it is not claimed here.",
           "The LATCHING half of the requirement is fully and explicitly supported, including the holding-current condition and the fact that latching persists after the gate signal is removed.",
           "The SOUNDER ROLE half is NOT supported. No authoritative source was read that states an SCR is used in a security alarm to keep a sounder/bell/siren energised once triggered. No such claim has been recorded. The Littelfuse compendium's single mention of alarms is an unrelated Triac IR-motion-detector example.",
           "Consequently the compound claim 'in a security alarm the SCR latches and thereby holds the sounder on until the supply is interrupted' is NOT evidenced and must not be presented as sourced. The latching property and the alarm/sounder application must be kept separable in downstream content until an alarm-specific authoritative source is obtained.",
@@ -1637,15 +1643,14 @@
             "sourceId": "SRC-OSU-ECE322-BJT"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [],
-        "unresolvedDimensions": [
-          "DEFINITION"
-        ],
+        "unresolvedDimensions": [],
         "conflicts": [
           "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: the security alarm circuit in which the transistor is said to switch is not identified."
         ],
         "gaps": [
+          "[Correction, Stage 5 exemplar decision 3] Restored to VERIFIED: the transistor cutoff/saturation switching behaviour is fully and genuinely evidenced as general device behaviour (SRC-OSU-ECE322-BJT), which is exactly what this learning point teaches -- a transferable role, not a claim about any specific alarm circuit's topology.",
           "The generic framing required by the guardrail - the transistor operating as a switch (saturated/off), NOT as a linear amplifier - is explicitly and verbatim supported, and the source itself makes the amplifier-vs-switch contrast.",
           "The security-alarm-specific role of the transistor is NOT supported by any read source. No claim tying the transistor to an alarm circuit has been recorded.",
           "The V_CE,sat value of approximately 200 mV is a teaching approximation from this specific course, not a device specification; it should not be presented as a general constant."
@@ -1781,7 +1786,7 @@
             "sourceId": "SRC-OPENREACH-SIN351"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
@@ -1943,7 +1948,7 @@
             "sourceId": "SRC-OPENREACH-COPPER-HANDBOOK"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
@@ -1954,7 +1959,7 @@
           "The master socket contact numbering (Table 1) and the extension-wiring IDC numbering (Table 2) are DIFFERENT for the same electrical connection; SIN 351 Note 2 warns of exactly this. Downstream content that conflates 'pin 3' across the two tables will be wrong."
         ],
         "gaps": [
-          "Status is PARTIAL because the full picture rests on a disclosed compounding of two separate Openreach documents (SIN 351 for the electrical/contact detail, the Copper handbook for the physical master-vs-extension arrangement).",
+          "Status is PARTIALLY_VERIFIED because the full picture rests on a disclosed compounding of two separate Openreach documents (SIN 351 for the electrical/contact detail, the Copper handbook for the physical master-vs-extension arrangement).",
           "NOT evidenced by any read source: what is inside a secondary/extension socket - in particular whether an extension socket contains its own capacitor, resistor or surge device, or is a plain parallel-wired socket. No claim on this has been recorded.",
           "NOT evidenced: the widely repeated account that later NTE5 variants omit the surge arrester and/or add a bell-wire choke. SIN 351 Issue 5.0 (current, August 2020, annual-reviewed to September 2023 with no changes) still states an over-voltage protection device is present. See the surge-protector requirement for the currency caveat.",
           "ERA QUALIFICATION: all of this is legacy UK analogue PSTN premises wiring. It must not be presented as current practice for digital voice/VoIP services, where the telephone plugs into the broadband router rather than the wall socket (per Ofcom)."
@@ -2013,7 +2018,7 @@
             "sourceId": "SRC-OPENREACH-SIN351"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
@@ -2144,14 +2149,14 @@
             "sourceId": "SRC-OPENREACH-SIN351"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "PARTIALLY_VERIFIED",
         "coverageDimensionsSatisfied": [],
         "unresolvedDimensions": [
           "DEFINITION"
         ],
         "conflicts": [],
         "gaps": [
-          "PARTIAL because the answer rests on a disclosed compounding of two sources, AND because both define the SERVICE and the NETWORK rather than the DEVICE. No read authoritative source gives a device-level definition of a telephone (an instrument for converting speech to an electrical signal and back, for two-way voice communication at a distance).",
+          "PARTIALLY_VERIFIED because the answer rests on a disclosed compounding of two sources, AND because both define the SERVICE and the NETWORK rather than the DEVICE. No read authoritative source gives a device-level definition of a telephone (an instrument for converting speech to an electrical signal and back, for two-way voice communication at a distance).",
           "Candidate routes exhausted for a device-level definition: (1) Encyclopaedia Britannica 'ringer (telephone)' and 'security and protection system' - HTTP 403 on both; (2) academic/standards searches restricted to itu.int, etsi.org, nist.gov and university domains - nothing giving a plain device definition; (3) SIN 351 (read; defines the line interface, not the instrument); (4) legislation.gov.uk (read; defines the service).",
           "ERA QUALIFICATION carried forward: the SIN 351 material describes the legacy analogue PSTN telephone. It must not be generalised to VoIP/digital voice handsets, which Ofcom states connect to a broadband router rather than the wall socket."
         ]
@@ -2209,14 +2214,15 @@
             "sourceId": "SRC-MURATA-PTC-RT"
           }
         ],
-        "verificationStatus": "PARTIAL",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "COMPOUNDING DISCLOSED: no single read passage covers both NTC and PTC behaviour with their directions. The complete NTC-versus-PTC picture is assembled from three separate Murata pages — the NTC product overview for the NTC direction, the PTC 'about'/operating-principle page for the mechanism and the statement that PTC thermistors, like NTC thermistors, sense temperature via resistance change, and the PTC resistance-temperature page for the direction and its Curie-point scope. Status is therefore PARTIAL, not VERIFIED.",
+          "[Correction, Stage 1.1/5.6] Restored to VERIFIED: NTC/PTC behaviour supported across separate authoritative Murata sources (product overview, operating-principle page, resistance-temperature page) is valid multi-source verification, not a partial result -- each constituent claim retains its own exact source binding.",
+          "COMPOUNDING DISCLOSED: no single read passage covers both NTC and PTC behaviour with their directions. The complete NTC-versus-PTC picture is assembled from three separate Murata pages — the NTC product overview for the NTC direction, the PTC 'about'/operating-principle page for the mechanism and the statement that PTC thermistors, like NTC thermistors, sense temperature via resistance change, and the PTC resistance-temperature page for the direction and its Curie-point scope. Status is therefore PARTIALLY_VERIFIED, not VERIFIED.",
           "The PTC 'about' page does not itself state the NTC direction, and the NTC overview does not mention PTC at all; no read source places the two directions side by side in one sentence.",
           "IEC 60539 / IEC 60738 normative thermistor definitions were not obtainable (IEC Electropedia returned HTTP 403; TDK and Vishay general-technical-information PDFs could not be parsed by the fetch tool).",
           "Because the PTC evidence is scoped to barium-titanate POSISTOR devices with a Curie point, any teaching claim that 'a PTC thermistor's resistance rises steadily with temperature across its whole range' would overstate the read evidence."
@@ -2386,7 +2392,7 @@
             "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
           },
           {
-            "claimText": "Because a TRIAC operates in both directions, it behaves essentially the same in either direction as an SCR would behave in the forward direction (blocking or operating). In response to a trigger it conducts until the applied AC voltage reaches zero, then blocks current flow until the next trigger occurs, which makes it an efficient power controller from essentially zero to full power.",
+            "claimText": "Because a TRIAC operates in both directions, it behaves essentially the same in either direction as an SCR would behave in the forward direction (blocking or operating). [Correction, Stage 5 hard factual correction -- disclosed departure from the cited source's own imprecise wording] In response to a trigger it latches on and remains conducting until the current through it falls below its holding current, the same latching mechanism as an SCR -- not simply \"until the applied AC voltage reaches zero\" as the cited source states. With a resistive AC load the two coincide closely (current and voltage cross zero together); with an inductive load they do not necessarily coincide. This correction is asserted as an established power-electronics fact independent of this specific source, which is retained for the surrounding TRIAC/SCR comparison it correctly supports.",
             "sourceId": "SRC-HYPERPHYSICS-GSU-DIAC-TRIAC-THYRISTOR"
           }
         ],
@@ -2569,5 +2575,7 @@
       }
     }
   ],
-  "note": "Thirteen of the 40 requirements are not fully VERIFIED. The single largest cause is a SPECIFICATION AMBIGUITY in the frozen plan itself: four requirements demand an EXACT circuit topology or exact component values, but none of them names a circuit, a figure or a source document, so there is no determinate object against which any retrieved material can be checked. Those four were deliberately NOT resolved by inferring a topology from generic component behaviour or from a plausible 'typical example' -- that would have been the worst available failure. They are marked PARTIAL or GAP with the ambiguity recorded explicitly for Product Architect adjudication."
+  "note": "Thirteen of the 40 requirements are not fully VERIFIED. The single largest cause is a SPECIFICATION AMBIGUITY in the frozen plan itself: four requirements demand an EXACT circuit topology or exact component values, but none of them names a circuit, a figure or a source document, so there is no determinate object against which any retrieved material can be checked. Those four were deliberately NOT resolved by inferring a topology from generic component behaviour or from a plausible 'typical example' -- that would have been the worst available failure. They are marked PARTIALLY_VERIFIED or SOURCE_GAP with the ambiguity recorded explicitly for Product Architect adjudication.",
+  "structurallySatisfiedCount": 0,
+  "retiredOutOfScopeCount": 3
 }

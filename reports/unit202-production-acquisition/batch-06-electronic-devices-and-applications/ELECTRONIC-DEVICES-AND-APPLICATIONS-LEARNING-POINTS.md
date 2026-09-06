@@ -2,7 +2,7 @@
 
 **Status:** `PROPOSED_FOR_PA_REVIEW` -- none of these learning points is accepted, frozen or identity-locked.
 
-Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIAL or GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
+Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
 
 **Readiness:** 19 READY, 10 HELD_PENDING_EVIDENCE_CORRECTION.
 
@@ -336,9 +336,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EDA-LP-09` -- Thermistor: basic operating principle, and the NTC/PTC distinction
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on DISCLOSED COMPOUNDING. Both directions are genuinely evidenced, and the PTC Curie-point scope limitation is preserved, but no single retrieved passage covers both families -- the claim is built from three separately read manufacturer pages. The content taught above is fully supported; what is missing is single-passage support for the combined NTC-and-PTC statement. No normative source (IEC 60539/60738) was reachable.
+**Evidence readiness note:** [Correction, Stage 1.1/5.6] Previously held on disclosed compounding of NTC and PTC evidence across separate Murata pages. Corrected: multi-source composition is valid verification, never a partial result. Now fully VERIFIED.
 
 **Learner outcome:** The learner will be able to explain what a thermistor does and distinguish NTC from PTC types by the direction of their resistance change.
 
@@ -351,7 +351,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-179`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-MURATA-PTC-ABOUT: A thermistor is a resistive element whose resistance changes with temperature, and thermistors are used as tem...
@@ -452,7 +452,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to explain what a TRIAC does and how it differs from an SCR.
 
-**Knowledge / procedure:** A TRIAC (triode AC switch) is a three-terminal BIDIRECTIONAL thyristor whose primary function is to CONTROL POWER BILATERALLY IN AN AC CIRCUIT. Its operation can be related to two SCRs connected in parallel in opposite directions, but it has a SINGLE gate, and it can be triggered on by a gate signal of EITHER POLARITY. Because it operates in both directions, it behaves in either direction essentially as an SCR behaves in its forward direction. In response to a trigger it conducts until the applied AC voltage reaches zero, then blocks current flow until the next trigger occurs -- which is what makes it an efficient AC power-control switch.
+**Knowledge / procedure:** A TRIAC (triode AC switch) is a three-terminal BIDIRECTIONAL thyristor whose primary function is to CONTROL POWER BILATERALLY IN AN AC CIRCUIT. Its operation can be related to two SCRs connected in parallel in opposite directions, but it has a SINGLE gate, and it can be triggered on by a gate signal of EITHER POLARITY. Because it operates in both directions, it behaves in either direction essentially as an SCR behaves in its forward direction. [Correction, Stage 5 hard factual correction] In response to a trigger it LATCHES ON and remains conducting until the current through it falls below its HOLDING CURRENT (IH) -- the same latching mechanism already taught for the SCR (EDA-LP-11) -- NOT simply "until the applied AC voltage reaches zero". With a RESISTIVE AC load, current and voltage cross zero together, so turn-off happens close to the voltage zero crossing and the two descriptions coincide in that one case. With an INDUCTIVE load (e.g. a motor), current lags voltage, so the current's own zero crossing -- and therefore the TRIAC's actual turn-off point -- does NOT necessarily coincide with the applied voltage reaching zero. Once it turns off, it blocks current flow until the next trigger occurs -- which is what makes it an efficient AC power-control switch.
 
 **Within-domain prerequisites:** `EDA-LP-11`
 
@@ -594,7 +594,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on BOTH BREADTH and STANDARD CURRENCY, and this learning point must not be published as-is without a Product Architect decision. (1) BREADTH: retrieved symbol evidence covers 13 of the 15 component families. There is NO evidence for the LED symbol -- the standard read does not list a symbol named "light-emitting diode", the nearest being a "photoemissive type" item -- and NO distinct symbol for an INVERTER, which appears only as a lettered general circuit-element rectangle. The LED entry above is therefore ABSENT from the knowledge content deliberately, and must not be filled in from memory. (2) CURRENCY: all symbol evidence traces to the 1975 ANSI Y32.2 / CSA Z99 / IEEE Std 315 standard (self-described as harmonised with IEC Publication 117), read from a third-party university-hosted scan because the IEC 60617 official database and IEC Electropedia both returned 403. NOTHING is verified against current BS EN 60617, which is the standard a UK qualification would be expected to follow. (3) The resistor has two alternative standard forms (zigzag and rectangle) with no stated preference; the UK convention was not confirmed from a retrieved source.
+**Evidence readiness note:** Underlying evidence is PARTIALLY_VERIFIED on BOTH BREADTH and STANDARD CURRENCY, and this learning point must not be published as-is without a Product Architect decision. (1) BREADTH: retrieved symbol evidence covers 13 of the 15 component families. There is NO evidence for the LED symbol -- the standard read does not list a symbol named "light-emitting diode", the nearest being a "photoemissive type" item -- and NO distinct symbol for an INVERTER, which appears only as a lettered general circuit-element rectangle. The LED entry above is therefore ABSENT from the knowledge content deliberately, and must not be filled in from memory. (2) CURRENCY: all symbol evidence traces to the 1975 ANSI Y32.2 / CSA Z99 / IEEE Std 315 standard (self-described as harmonised with IEC Publication 117), read from a third-party university-hosted scan because the IEC 60617 official database and IEC Electropedia both returned 403. NOTHING is verified against current BS EN 60617, which is the standard a UK qualification would be expected to follow. (3) The resistor has two alternative standard forms (zigzag and rectangle) with no stated preference; the UK convention was not confirmed from a retrieved source.
 
 **Learner outcome:** The learner will be able to identify the standard schematic symbol for each of the Unit 202 component families on a circuit diagram.
 
@@ -607,14 +607,14 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-184`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS: The standard graphic symbols for the Unit 202 component families are defined in ANSI Y32.2-1975 / CSA Z99-1975...
 - SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS: RESISTOR - item 2.1.1 'Resistor / General', shown in two alternative forms both marked IEC: a zigzag line, and...
 - SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS: DIODE - item 8.5.1 'Semiconductor diode; semiconductor rectifier diode; metallic rectifier', a triangle agains...
 - SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS: RELAY - item 4.30 'Relay', with 4.30.1 'Basic' shown as a circle enclosing the letter R, and 4.30.2 'Applicati...
-- SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS: LED - QUALIFIED / PARTIAL. This 1975 standard does NOT list a symbol under the name 'light-emitting diode' in ...
+- SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS: LED - QUALIFIED / PARTIALLY_VERIFIED. This 1975 standard does NOT list a symbol under the name 'light-emitting diode' in ...
 - SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS: INVERTER - QUALIFIED / NOT COVERED as a distinct graphic symbol. In this standard a static inverter is represe...
 - SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS: Manufacturer corroboration for the three thyristor-family symbols specifically: Littelfuse AN1001 Figure AN100...
 
@@ -637,7 +637,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on BREADTH, and this learning point covers only part of the component set. Appearance evidence was obtained for 4 of 15 families (diode/rectifier, aluminium electrolytic capacitor, bipolar transistor, and thyristor-family devices at PACKAGE-NAME level only). NO appearance evidence was obtained for: resistor, LED, Zener diode, photodiode, LDR, thermistor, bridge-rectifier assembly, inverter or relay. Furthermore NO PHOTOGRAPHS were retrieved at all -- all evidence is manufacturer mechanical data, package-outline drawings and marking diagrams, and none was invented. A Product Architect decision is needed on whether to commission or license photographic material before this outcome can be delivered.
+**Evidence readiness note:** Underlying evidence is PARTIALLY_VERIFIED on BREADTH, and this learning point covers only part of the component set. Appearance evidence was obtained for 4 of 15 families (diode/rectifier, aluminium electrolytic capacitor, bipolar transistor, and thyristor-family devices at PACKAGE-NAME level only). NO appearance evidence was obtained for: resistor, LED, Zener diode, photodiode, LDR, thermistor, bridge-rectifier assembly, inverter or relay. Furthermore NO PHOTOGRAPHS were retrieved at all -- all evidence is manufacturer mechanical data, package-outline drawings and marking diagrams, and none was invented. A Product Architect decision is needed on whether to commission or license photographic material before this outcome can be delivered.
 
 **Learner outcome:** The learner will be able to recognise common components from their typical physical appearance and markings, and explain why appearance alone is not conclusive.
 
@@ -650,7 +650,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-186`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-VISHAY-1N4001-DO41-PLASTIC-RECTIFIER: Diode / rectifier diode (1N4001-1N4007 family): typical physical appearance is a small axial-leaded, molded ep...
@@ -727,15 +727,15 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ---
 
-### `EDA-LP-19` -- Dimmer: exact RC timing implementation and component values
+### `EDA-LP-19` -- Dimmer: exact RC timing implementation and component values [RETIRED_OUT_OF_SCOPE]
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** RETIRED_OUT_OF_SCOPE
 
-**Evidence readiness note:** Underlying evidence is PARTIAL, and the root problem is a SPECIFICATION AMBIGUITY that only the Product Architect can resolve. The frozen requirement text names no figure, no circuit and no source document, so there is no determinate circuit against which any retrieved values can be checked. Exact values WERE found and are recorded verbatim in the evidence results, but the single manufacturer application note relied upon gives FOUR mutually inconsistent value sets across its own figures, differing by supply voltage, load current and control range; and a second manufacturer source implements the same function with NO RC timing network at all, because the timing is done in microcontroller firmware. Selecting one set would be an editorial choice presented as a fact, and was deliberately not done. Note that this requirement is OPTIONAL_CONTEXT priority in the frozen plan, so descoping it is a legitimate option.
+**Evidence readiness note (Stage 5 exemplar decision 1):** Retired rather than left held. The exact dimmer RC timing values are never canonical technical truth for this qualification: the frozen requirement text names no figure, no circuit and no source document, so there is no determinate circuit against which any retrieved values can be checked, and the one manufacturer application note relied upon gives FOUR mutually inconsistent value sets across its own figures, while a second manufacturer implements the same function with no RC network at all (firmware timing). Selecting one set would be an editorial invention presented as fact. This is a scope decision, not an unresolved technical-evidence gap. The conceptual dimmer content (what a dimmer does, how phase control works, the TRIAC's and DIAC's roles) remains fully evidenced and READY under EDA-LP-18.
 
-**Learner outcome:** The learner will be able to identify the RC timing components in a specific dimmer circuit and state their values.
+**Learner outcome:** (retired -- not taught as canonical mastery)
 
-**Knowledge / procedure:** HELD -- NO EXACT IMPLEMENTATION IS TAUGHT HERE. See the evidence readiness note. Manufacturer reference circuits do specify exact values for their OWN named circuits (for example a basic DIAC-TRIAC phase control using R1 = 250K adjustable, R2 = 3.3K, C1 = 0.1 uF with a named DIAC and TRIAC), but which circuit this requirement intends is not determinable, and the manufacturer note itself gives several mutually inconsistent value sets for different supply voltages and load currents.
+**Knowledge / procedure:** RETIRED_OUT_OF_SCOPE. No exact RC implementation is, or ever will be, taught as canonical mastery for this qualification. See the evidence readiness note. Manufacturer reference circuits do specify exact values for their OWN named circuits (for example a basic DIAC-TRIAC phase control using R1 = 250K adjustable, R2 = 3.3K, C1 = 0.1 uF with a named DIAC and TRIAC), but which circuit this requirement intends is not determinable, and the manufacturer note itself gives several mutually inconsistent value sets for different supply voltages and load currents.
 
 **Within-domain prerequisites:** `EDA-LP-18`
 
@@ -744,7 +744,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-164`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL: Littelfuse/Teccor AN1003 states exact RC timing component values for its OWN named reference circuits: Figure ...
@@ -807,15 +807,15 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ---
 
-### `EDA-LP-21` -- Heating: exact transistor/relay switching topology
+### `EDA-LP-21` -- Heating: exact transistor/relay switching topology [RETIRED_OUT_OF_SCOPE]
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** RETIRED_OUT_OF_SCOPE
 
-**Evidence readiness note:** Underlying evidence is PARTIAL, with the same SPECIFICATION AMBIGUITY problem as EDA-LP-19: the frozen requirement names no figure, circuit or source document, so there is no determinate topology to verify. The only authoritative topology retrieved is a manufacturer's GENERIC discrete relay driver (bipolar transistor, two bias resistors, free-wheeling diode), and that source itself scopes it to INDUSTRIAL AND AUTOMOTIVE applications with the relay driven by a microprocessor -- never to heating. A telling further finding for the reviewer: the authoritative HEATING circuits that WERE located are THYRISTOR-switched, not relay-switched, so the generic relay evidence may not even concern the right device family. The topology was deliberately NOT inferred from generic component behaviour.
+**Evidence readiness note (Stage 5 exemplar decision 2):** Retired rather than left held. The exact heating transistor/relay topology is never canonical technical truth for this qualification: the frozen requirement names no figure, circuit or source document, so there is no determinate topology to verify. The only authoritative topology retrieved is a manufacturer's GENERIC discrete relay driver (bipolar transistor, two bias resistors, free-wheeling diode), and that source itself scopes it to INDUSTRIAL AND AUTOMOTIVE applications with the relay driven by a microprocessor -- never to heating. The authoritative HEATING circuits that WERE located are THYRISTOR-switched, not relay-switched, so the generic relay evidence does not even concern the right device family. This is a scope decision, not an unresolved technical-evidence gap. The conceptual heating-control content (function, thermistor sensing role) remains fully evidenced and READY under EDA-LP-20.
 
-**Learner outcome:** The learner will be able to describe the exact transistor and relay arrangement used to switch the heating load in a specified circuit.
+**Learner outcome:** (retired -- not taught as canonical mastery)
 
-**Knowledge / procedure:** HELD -- NO EXACT HEATING TOPOLOGY IS TAUGHT HERE. See the evidence readiness note. A generic discrete relay-driver topology is evidenced (a bipolar transistor, two bias resistors and a free-wheeling diode), but its source scopes it explicitly to industrial and automotive applications, never to heating.
+**Knowledge / procedure:** RETIRED_OUT_OF_SCOPE. No exact heating transistor/relay topology is, or ever will be, taught as canonical mastery for this qualification. See the evidence readiness note. A generic discrete relay-driver topology is evidenced (a bipolar transistor, two bias resistors and a free-wheeling diode), but its source scopes it explicitly to industrial and automotive applications, never to heating, and the authoritative heating circuits actually found use a different device family (thyristors).
 
 **Within-domain prerequisites:** `EDA-LP-20`, `EDA-LP-10`
 
@@ -824,7 +824,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-166`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::heating-exact-transistor-relay-topology::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-ONSEMI-AND8116D-RELAY-DRIVERS: The traditional and most popular discrete relay-driver topology, as stated by an established semiconductor man...
@@ -848,7 +848,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to explain what electronic motor control does and how phase-controlled switching regulates motor speed.
 
-**Knowledge / procedure:** FUNCTION: motor control is a named application category for electronic power-control devices, appearing alongside light dimming and heat control as one of the three applications served by the same thyristor phase-control circuit family. Its function at this level is to REGULATE THE POWER delivered to the motor and thereby its SPEED. HOW THE SWITCHING WORKS: an electronic switching device -- a TRIAC for full-wave AC control, or an SCR for half-wave control -- is held in the off condition, blocking all current except a minute leakage, until it is triggered into conduction within each half-cycle. Because the device can be triggered earlier or later within the half-cycle, the output power, and therefore the motor speed, is controlled by the PHASE DELAY of the drive. A half-wave phase-control circuit using an SCR is used for controlling a universal motor, the RC network's phase-shifting characteristics permitting firing beyond the peak of the applied voltage to give small conduction angles. QUALIFICATION: a universal motor is an INDUCTIVE load, and the phase lag of current behind voltage creates strong dynamic constraints on the switching device at turn-off -- which is why motor control is more demanding of the device than the resistive-load dimmer case.
+**Knowledge / procedure:** FUNCTION: motor control is a named application category for electronic power-control devices, appearing alongside light dimming and heat control as one of the three applications served by the same thyristor phase-control circuit family. Its function at this level is to REGULATE THE POWER delivered to the motor and thereby its SPEED. HOW THE SWITCHING WORKS: an electronic switching device -- a TRIAC for full-wave AC control, or an SCR for half-wave control -- is held in the off condition, blocking all current except a minute leakage, until it is triggered into conduction within each half-cycle. Because the device can be triggered earlier or later within the half-cycle, the output power, and therefore the motor speed, is controlled by the PHASE DELAY of the drive. A half-wave phase-control circuit using an SCR is used for controlling a universal motor, the RC network's phase-shifting characteristics permitting firing beyond the peak of the applied voltage to give small conduction angles. QUALIFICATION [Correction, Stage 5 hard factual correction]: a universal motor is an INDUCTIVE load, so its current LAGS its voltage. Both the SCR and the TRIAC turn off when current falls below the holding current, not simply when the applied voltage reaches zero (see EDA-LP-11, EDA-LP-12); for this inductive load, the current's own zero crossing does not coincide with the voltage's zero crossing, so turn-off happens at a different point in the cycle than it would for a resistive load -- which is why motor control is more demanding of the device than the resistive-load dimmer case.
 
 **Within-domain prerequisites:** `EDA-LP-11`, `EDA-LP-12`, `EDA-LP-18`
 
@@ -888,9 +888,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EDA-LP-23` -- Motor drives: the bridge rectifier converting AC to DC
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on DISCLOSED COMPOUNDING. Every element of the content above is genuinely evidenced and read, but the complete claim is assembled from three passages across two documents -- no single passage states the rectification function, the four-diode bridge arrangement AND the motor-application connection together. The normative IEC definition of "rectifier" (IEV 551-12-07) would likely have consolidated this, but IEC Electropedia returned 403 on every attempt.
+**Evidence readiness note:** [Correction, Stage 1.1/5.7] Previously held on disclosed compounding across three passages in two manufacturer documents. Corrected: multi-source composition is valid verification, never a partial result. Now fully VERIFIED.
 
 **Learner outcome:** The learner will be able to explain why a bridge rectifier is used in a DC motor drive and how it is connected.
 
@@ -903,7 +903,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-168`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-ONSEMI-HB214D-RECTIFIER-HANDBOOK: The function of rectification is to convert alternating current to direct current....
@@ -964,15 +964,17 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ---
 
-### `EDA-LP-25` -- Security alarm circuit: NC loop, transistor switching and SCR latching
+### `EDA-LP-25` -- Security alarm application: transferable component roles (NC detection, transistor switching, SCR latching) [TRANSFORMED_TO_EXEMPLAR]
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** One underlying requirement is a GAP and two are PARTIAL. The GAP, security-alarm-exact-nc-contact-bias-topology, is a SPECIFICATION AMBIGUITY: the frozen requirement names no circuit, no figure and no source document, so there is no determinate object to verify. The generic normally-closed-loop-plus-end-of-line-resistor pattern WAS found, but only on vendor blogs, installer marketing and DIY sites -- all outside the permitted authority classes -- and it was therefore excluded entirely and is recorded nowhere in the evidence. Nothing was inferred or substituted. That ambiguity PROPAGATES to the SCR and transistor requirements, which presuppose the same unnamed circuit: the SCR latching mechanism and the transistor cutoff/saturation switching behaviour are both fully evidenced as GENERAL DEVICE BEHAVIOUR, but no read source ties either to a specific alarm circuit, and in particular no source states that an SCR keeps a sounder energised in an alarm. Product Architect adjudication is required on whether these three requirements refer to a specific course circuit that must be supplied, or should be rewritten in general-behaviour terms.
+**Outstanding production dependency:** REPRESENTATIVE_EXEMPLAR_AUTHORING (a validated worked alarm circuit, not a technical-evidence gap)
 
-**Learner outcome:** The learner will be able to describe the exact normally-closed loop and bias arrangement of a specified security alarm circuit and explain the roles of the transistor and SCR within it.
+**Evidence readiness note (Stage 5 exemplar decision 3):** Transformed rather than left held. The exact NC-loop/bias topology of a specific security alarm circuit is never canonical technical truth for this qualification (the frozen requirement names no circuit, figure or source document, and the generic pattern found appears only on vendor blogs/installer marketing/DIY sites, all outside permitted authority classes) and is retired from canonical mastery. The TRANSFERABLE roles -- transistor switching and SCR latching -- ARE fully and genuinely evidenced as general device behaviour and are retained as READY technical content. The claim that an SCR specifically "keeps a sounder energised" is NOT evidenced by any retrieved source and is dropped. A representative, validated worked alarm circuit remains an outstanding REPRESENTATIVE_EXEMPLAR_AUTHORING dependency for downstream lesson production -- this may block final lesson production without making the underlying transferable-role technical facts unsupported.
 
-**Knowledge / procedure:** HELD -- NO EXACT ALARM CIRCUIT IS TAUGHT HERE. See the evidence readiness note. What IS separately evidenced, as general device behaviour rather than as this circuit's topology: a bipolar transistor used as a switch operates as a NON-LINEAR switch alternating between the CUTOFF region (an open switch, both junctions reverse biased) and the SATURATION region (a closed switch); and an SCR LATCHES -- once a momentary gate pulse has triggered it and the anode current exceeds the latching current, it remains conducting even after the trigger is removed, until the current falls below the holding current. That latching property is why an SCR is useful in an alarm, but no retrieved source states the sounder role in an alarm circuit.
+**Learner outcome:** The learner will be able to explain the transistor's cutoff/saturation switching role and the SCR's latching behaviour as transferable building blocks that a security-alarm detection circuit can use, without reference to any one specific, unnamed circuit.
+
+**Knowledge / procedure:** TRANSFERABLE ROLES (retained as technical truth, general device behaviour): a bipolar transistor used as a switch operates as a NON-LINEAR switch alternating between the CUTOFF region (an open switch, both junctions reverse biased) and the SATURATION region (a closed switch) -- this is the switching role a transistor can play in a normally-closed detection loop. An SCR LATCHES -- once a momentary gate pulse has triggered it and the anode current exceeds the latching current, it remains conducting even after the trigger is removed, until the current falls below the holding current -- this latching property is why an SCR is a plausible building block for maintaining an alarm condition once triggered. NOT TAUGHT (retired/outstanding): no exact normally-closed loop, bias topology, or SCR-to-sounder connection is taught as canonical mastery -- no governed public exemplar circuit exists in the evidence, and the widely-repeated vendor/installer pattern is excluded as out-of-class. Authoring a validated representative exemplar circuit is a downstream production task, not a technical-evidence gap.
 
 **Within-domain prerequisites:** `EDA-LP-24`, `EDA-LP-10`, `EDA-LP-11`
 
@@ -981,25 +983,27 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-155`, `unit202::ACQ-153`, `unit202::ACQ-154`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT` -- **GAP**
-- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT` -- **PARTIAL**
-- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT` -- **RETIRED_OUT_OF_SCOPE**
+- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT` -- **PARTIALLY_VERIFIED** (latching itself is fully evidenced; the sounder-energising claim is dropped as unevidenced)
+- `ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-LITTELFUSE-THYRISTOR-APPNOTES: An SCR (silicon controlled rectifier) latches: once a momentary gate pulse has triggered it and the anode-to-c...
 - SRC-LITTELFUSE-THYRISTOR-APPNOTES: Holding current (IH) is defined by the manufacturer as the minimum principal current required to maintain the ...
 - SRC-OSU-ECE322-BJT: A bipolar junction transistor used as a switch operates as a non-linear switch, alternating between the cutoff...
 
-**Depth justification:** The three circuit-level alarm requirements are combined into one held learning point because all three presuppose the SAME unidentified circuit -- the ambiguity in the first propagates to the other two, so holding them together keeps that shared dependency visible rather than scattering it across three points. Held separately from EDA-LP-24 so the application-category content remains deliverable.
+**Depth justification:** The three circuit-level alarm requirements were originally combined into one held learning point because all three presuppose the SAME unidentified circuit. Stage 5 resolves that shared dependency by disposition rather than leaving it held indefinitely: the transferable device-level roles are separated out and retained as READY technical content, independent of which exact circuit a downstream author eventually validates as the representative exemplar. Kept separate from EDA-LP-24 so the application-category content remains independently deliverable.
 
 **Explicit exclusions:**
-- Any specific alarm circuit topology as taught content, pending Product Architect adjudication
-- The sounder role within an alarm circuit -- NOT evidenced by any retrieved source
+- Any specific alarm circuit topology as canonical taught content -- retired out of scope (Stage 5 exemplar decision 3); authoring one is a downstream REPRESENTATIVE_EXEMPLAR_AUTHORING production task, not technical evidence
+- The sounder role within an alarm circuit -- NOT evidenced by any retrieved source; not claimed
 - End-of-line resistor supervision and tamper-loop design
 - Alarm panel programming and installation practice
 
 **Representative application types:**
-- (Held pending adjudication -- no circuit-specific application types are proposed while the intended circuit is unidentified.)
+- Identify whether a transistor is in cutoff or saturation given a described bias condition.
+- Explain why an SCR, once triggered, continues conducting even after the triggering signal is removed.
+- Explain in general terms why a normally-closed loop and a latching device are useful building blocks for a security-alarm detection circuit (without reference to any one specific circuit).
 
 ---
 
@@ -1007,7 +1011,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note:** The legacy-PSTN framing requirement is fully VERIFIED from Ofcom and Openreach sources. The telephones-application-category requirement is PARTIAL: the UK regulatory definition of the telephone SERVICE and the network's role at the termination point are well evidenced, but no retrieved source gives a device-level definition of a telephone (Encyclopaedia Britannica returned 403 throughout, and legislation.gov.uk defines the service rather than the device).
+**Evidence readiness note:** The legacy-PSTN framing requirement is fully VERIFIED from Ofcom and Openreach sources. The telephones-application-category requirement is PARTIALLY_VERIFIED: the UK regulatory definition of the telephone SERVICE and the network's role at the termination point are well evidenced, but no retrieved source gives a device-level definition of a telephone (Encyclopaedia Britannica returned 403 throughout, and legislation.gov.uk defines the service rather than the device).
 
 **Learner outcome:** The learner will be able to explain what the legacy PSTN is, describe its current status in the UK, and state what the telephone service provides.
 
@@ -1021,7 +1025,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence-requirement IDs and their status:**
 - `ER::provisional::unit202::electronic-devices-and-applications::telephone-legacy-pstn-framing::EXACT_FACT` -- **VERIFIED**
-- `ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-OFCOM-PSTN-LETTER-2026: The public switched telephone network (PSTN) is the traditional UK telephone network; Ofcom describes provider...
@@ -1052,7 +1056,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on TERMINOLOGY and BREADTH. The master socket is very well evidenced from Openreach SIN 351, including the full contact table, the IDC map and the cable specification. However: (1) TERMINOLOGY MISMATCH -- the frozen requirement says "secondary socket", but Openreach only ever uses the term "extension socket"; a reviewer must adjudicate whether these are intended as the same thing. (2) NO retrieved source describes the INTERNALS of a secondary/extension socket, so only the master socket is genuinely evidenced at component level.
+**Evidence readiness note:** Underlying evidence is PARTIALLY_VERIFIED on TERMINOLOGY and BREADTH. The master socket is very well evidenced from Openreach SIN 351, including the full contact table, the IDC map and the cable specification. However: (1) TERMINOLOGY MISMATCH -- the frozen requirement says "secondary socket", but Openreach only ever uses the term "extension socket"; a reviewer must adjudicate whether these are intended as the same thing. (2) NO retrieved source describes the INTERNALS of a secondary/extension socket, so only the master socket is genuinely evidenced at component level.
 
 **Learner outcome:** The learner will be able to describe the UK master socket arrangement, state where the customer boundary lies, and explain the contact and IDC numbering hazard.
 
@@ -1065,7 +1069,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-159`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::telephone-master-secondary-socket-details::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-OPENREACH-SIN351: In the UK legacy analogue PSTN the Openreach network interface consists of two conductors, the 'A' and 'B' wir...
@@ -1093,7 +1097,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note:** Two of the three underlying requirements are PARTIAL, and the shortfall is specifically about FUNCTION rather than presence. Openreach SIN 351 authoritatively establishes that the 1.8 uF capacitor, the 470 kohm resistor and the over-voltage protection device are present, their values, and how they are connected. It does NOT state that the capacitor blocks DC and passes AC ringing current to the ringer, nor that the resistor serves line testing -- both are widely repeated attributions that no retrieved authoritative source confirms, and both have therefore been excluded from the taught content rather than assumed. A further CURRENCY CONFLICT is recorded and not harmonised: many excluded sources claim sockets have omitted the surge arrester since around 2012, whereas the current Openreach SIN still specifies one as present.
+**Evidence readiness note:** Two of the three underlying requirements are PARTIALLY_VERIFIED, and the shortfall is specifically about FUNCTION rather than presence. Openreach SIN 351 authoritatively establishes that the 1.8 uF capacitor, the 470 kohm resistor and the over-voltage protection device are present, their values, and how they are connected. It does NOT state that the capacitor blocks DC and passes AC ringing current to the ringer, nor that the resistor serves line testing -- both are widely repeated attributions that no retrieved authoritative source confirms, and both have therefore been excluded from the taught content rather than assumed. A further CURRENCY CONFLICT is recorded and not harmonised: many excluded sources claim sockets have omitted the surge arrester since around 2012, whereas the current Openreach SIN still specifies one as present.
 
 **Learner outcome:** The learner will be able to identify the components inside a UK master socket and state what is authoritatively known about each.
 
@@ -1106,8 +1110,8 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-156`, `unit202::ACQ-157`, `unit202::ACQ-158`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT` -- **PARTIAL**
-- `ER::provisional::unit202::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT` -- **PARTIALLY_VERIFIED**
+- `ER::provisional::unit202::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 - `ER::provisional::unit202::electronic-devices-and-applications::telephone-surge-protector::EXACT_FACT` -- **VERIFIED**
 
 **Normalized claim references:**

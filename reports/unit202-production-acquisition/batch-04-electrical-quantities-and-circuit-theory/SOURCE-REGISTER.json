@@ -177,7 +177,7 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "DC Circuit Theory of Voltage, Current and Resistance",
       "url": "https://www.electronics-tutorials.ws/dccircuits/dcp_1.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "A substantive, systematically-organised, multi-chapter electronics/electrical-engineering technical reference textbook (long-established, widely used in technical/vocational electrical education), not a marketing page; classified as an authoritative technical reference rather than an academic institution's own page since it is an independent technical publisher, not a university.",
       "locator": "electronics-tutorials.ws, DC Circuit Theory page, summary table of voltage/current/resistance symbols and units",
       "supportsRequirementSuffixes": [
@@ -186,7 +186,8 @@
         "voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -199,13 +200,14 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Ohms Law Tutorial and Power in Electrical Circuits",
       "url": "https://www.electronics-tutorials.ws/dccircuits/dcp_3.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Ohms Law and Power page, 'Unit of Power P = V x I ... Watt [W]' and watt-hour/kWh energy discussion",
       "supportsRequirementSuffixes": [
         "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION",
         "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -218,14 +220,15 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Electrical Energy, Power and Charge in an Electrical Circuit",
       "url": "https://www.electronics-tutorials.ws/dccircuits/electrical-energy.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Electrical Energy page: energy defined as ability to produce work; joule defined as 'one ampere at one volt, moving in one second'; kWh = 3.6 MJ; Power (P, watts) as rate vs Energy as cumulative work over time (Work = Power x Time)",
       "supportsRequirementSuffixes": [
         "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
         "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
         "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -238,7 +241,7 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Impedance and Complex AC Impedance",
       "url": "https://www.electronics-tutorials.ws/accircuits/impedance.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Impedance page: 'Impedance is the total opposition to the flow of alternating electrical current...expressed in Ohms'; 'Impedance combines resistance (R) and reactance (X) into one single complex number'; 'R + X does not equal Z' (reactance is 90 degrees out of phase with the resistive component, so impedance is their vector sum, not their arithmetic sum)",
       "supportsRequirementSuffixes": [
@@ -246,7 +249,8 @@
         "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
         "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -259,7 +263,7 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Understanding the Power Triangle and Power Factor in AC Circuits",
       "url": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Power Triangle page: 'Cos(phi) = Real/Apparent = P/S = W/VA = power factor, p.f.'; power factor expressed as a decimal (e.g. 0.95) or percentage, i.e. dimensionless; power factor distinguished from power P (watts)",
       "supportsRequirementSuffixes": [
@@ -267,7 +271,8 @@
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION",
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -280,13 +285,14 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Capacitance and Charge",
       "url": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Capacitance page: 'Capacitance is the electrical property of a capacitor...measure of a capacitor's ability to store an electrical charge...unit of capacitance being the Farad (F)'; letter symbol C",
       "supportsRequirementSuffixes": [
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -299,14 +305,15 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Passive Low Pass Filter",
       "url": "https://www.electronics-tutorials.ws/filter/filter_1.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Passive Low Pass Filter page: capacitive reactance Xc 'limits the flow of alternating current...measured in Ohms, the same unit as resistance'; Xc = 1/(2.pi.f.C); 'Capacitive Reactance varies inversely proportional with the applied frequency', unlike resistance which has a fixed value",
       "supportsRequirementSuffixes": [
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -319,13 +326,14 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Inductance of a Coil",
       "url": "https://www.electronics-tutorials.ws/inductor/inductor.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Inductance page: 'This ability of an inductor to resist changes in current...is called Inductance which is given the symbol L with units of Henry, (H)'",
       "supportsRequirementSuffixes": [
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -338,14 +346,15 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "Inductive Reactance - The Reactance of an Inductor",
       "url": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, Inductive Reactance page: 'Inductive Reactance, which is given the symbol XL...measured in Ohm's...XL = 2.pi.f.L...proportional to frequency'; 'inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant'",
       "supportsRequirementSuffixes": [
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -358,13 +367,14 @@
       "publisher": "Electronics Tutorials (electronics-tutorials.ws)",
       "title": "AC Waveform and AC Circuit Theory of Sinusoids",
       "url": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
-      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
       "authorityRationale": "Same site/classification as SRC-ETW-DC1.",
       "locator": "electronics-tutorials.ws, AC Waveform page: 'The number of complete cycles...within one second...is called the Frequency, symbol f, of the alternating waveform. Frequency is measured in Hertz, (Hz)'",
       "supportsRequirementSuffixes": [
         "frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION",
         "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
-      ]
+      ],
+      "reclassificationNote": "[Correction, Stage 2.2] Reclassified from AUTHORITATIVE_TECHNICAL_REFERENCE to AUTHORITATIVE_EDUCATIONAL_REFERENCE: electronics-tutorials.ws is an anonymous commercial tutorial website with no named authors, no editorial board, no citations, no revision history and no errata process -- it does not meet the bar for a load-bearing technical reference. Retained as supplementary/educational evidence only; every result that depended on it as its SOLE support for a SYMBOL_OR_CONVENTION-mode requirement (which does not permit AUTHORITATIVE_EDUCATIONAL_REFERENCE) has been re-sourced against an already-registered stronger source or, where none exists, honestly downgraded rather than left falsely VERIFIED."
     },
     {
       "accessDate": "2026-09-05",
@@ -529,11 +539,15 @@
   ],
   "correctionNote": "Corrected during the internal adversarial audit pass. Three supportsRequirementSuffixes entries were REMOVED as over-claims -- each asserted that a source supported a requirement on which it was not actually a candidate source (SRC-ETW-INDUCTOR on the inductance UNIT_SYMBOL requirement; SRC-EOLSS-ELECQUANT on the capacitance and inductance DEFINITION requirements). The register now matches the evidence results exactly.",
   "openAuthorityClassificationMatterForProductArchitect": {
-    "concern": "electronics-tutorials.ws (the ten SRC-ETW-* sources) is classified AUTHORITATIVE_TECHNICAL_REFERENCE, and that classification is load-bearing rather than cosmetic.",
-    "scale": "22 of this batch's 57 results depend on an SRC-ETW-* source. 16 results have NO non-ETW candidate source at all (resistance UNIT_SYMBOL; power DISTINCTION; energy DISTINCTION; all four power-factor facets; frequency DEFINITION and QUANTITY_SYMBOL; impedance UNIT_SYMBOL; capacitance DEFINITION, DISTINCTION and QUANTITY_SYMBOL; inductance DEFINITION, DISTINCTION and QUANTITY_SYMBOL). A further 6 list a non-ETW candidate but attribute every normalized claim to ETW.",
-    "whyItMatters": "SYMBOL_OR_CONVENTION requirements in the frozen plan permit only PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY and AUTHORITATIVE_TECHNICAL_REFERENCE -- AUTHORITATIVE_EDUCATIONAL_REFERENCE is excluded. If electronics-tutorials.ws were reclassified as an educational reference (which is the class this same batch assigned to LibreTexts on comparable reasoning), then roughly ten symbol-convention results would fail their permitted-authority gate simultaneously.",
-    "counterConsideration": "The site is an anonymous commercial tutorial website: no named authors, no editorial board, no citations, no revision history and no errata process. The registered rationale describes it as 'long-established, widely used in technical/vocational electrical education', which is an assertion made by the acquisition rather than an evidenced fact.",
-    "sharpestInstance": "resistance's UNIT_SYMBOL (the ohm) rests solely on SRC-ETW-DC1, while SRC-BIPM-BROCHURE -- a PRIMARY_NORMATIVE source already registered and already read, whose own registered locator explicitly lists 'electric resistance-ohm' in Table 2 -- was used for the ampere, volt, watt, joule, hertz, farad and henry but not the ohm.",
-    "dispositionInThisPass": "NOT resolved unilaterally. Reclassifying the site would cascade into roughly ten simultaneous authority-gate failures, and re-sourcing those results is fresh acquisition rather than correction. This is recorded as an explicit matter for Product Architect judgment at the consolidated review, and is NOT counted as a defect corrected."
+    "status": "RESOLVED (Stage 2.2 correction pass)",
+    "resolution": "electronics-tutorials.ws (SRC-ETW-*) reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE. 6 results rebound to the already-registered SRC-EOLSS-ELECQUANT; 2 results (the ohm unit symbol, twice) additionally bound to the already-registered SRC-BIPM-BROCHURE; 11 CONCEPT_DEFINITION-mode results needed no resourcing since that mode already permits AUTHORITATIVE_EDUCATIONAL_REFERENCE; 5 results with no viable already-registered alternative were honestly downgraded to PARTIALLY_VERIFIED rather than left falsely VERIFIED. See COVERAGE-REPORT.md for the full breakdown.",
+    "originalConcern": {
+      "concern": "electronics-tutorials.ws (the ten SRC-ETW-* sources) is classified AUTHORITATIVE_TECHNICAL_REFERENCE, and that classification is load-bearing rather than cosmetic.",
+      "scale": "22 of this batch's 57 results depend on an SRC-ETW-* source. 16 results have NO non-ETW candidate source at all (resistance UNIT_SYMBOL; power DISTINCTION; energy DISTINCTION; all four power-factor facets; frequency DEFINITION and QUANTITY_SYMBOL; impedance UNIT_SYMBOL; capacitance DEFINITION, DISTINCTION and QUANTITY_SYMBOL; inductance DEFINITION, DISTINCTION and QUANTITY_SYMBOL). A further 6 list a non-ETW candidate but attribute every normalized claim to ETW.",
+      "whyItMatters": "SYMBOL_OR_CONVENTION requirements in the frozen plan permit only PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY and AUTHORITATIVE_TECHNICAL_REFERENCE -- AUTHORITATIVE_EDUCATIONAL_REFERENCE is excluded. If electronics-tutorials.ws were reclassified as an educational reference (which is the class this same batch assigned to LibreTexts on comparable reasoning), then roughly ten symbol-convention results would fail their permitted-authority gate simultaneously.",
+      "counterConsideration": "The site is an anonymous commercial tutorial website: no named authors, no editorial board, no citations, no revision history and no errata process. The registered rationale describes it as 'long-established, widely used in technical/vocational electrical education', which is an assertion made by the acquisition rather than an evidenced fact.",
+      "sharpestInstance": "resistance's UNIT_SYMBOL (the ohm) rests solely on SRC-ETW-DC1, while SRC-BIPM-BROCHURE -- a PRIMARY_NORMATIVE source already registered and already read, whose own registered locator explicitly lists 'electric resistance-ohm' in Table 2 -- was used for the ampere, volt, watt, joule, hertz, farad and henry but not the ohm.",
+      "dispositionInThisPass": "NOT resolved unilaterally. Reclassifying the site would cascade into roughly ten simultaneous authority-gate failures, and re-sourcing those results is fresh acquisition rather than correction. This is recorded as an explicit matter for Product Architect judgment at the consolidated review, and is NOT counted as a defect corrected."
+    }
   }
 }

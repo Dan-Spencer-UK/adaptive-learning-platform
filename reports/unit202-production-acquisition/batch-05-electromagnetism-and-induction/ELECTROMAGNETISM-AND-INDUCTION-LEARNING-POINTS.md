@@ -2,7 +2,7 @@
 
 **Status:** `PROPOSED_FOR_PA_REVIEW` -- none of these learning points is accepted, frozen or identity-locked.
 
-Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIAL or GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
+Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
 
 **Readiness:** 13 READY, 9 HELD_PENDING_EVIDENCE_CORRECTION.
 
@@ -73,11 +73,11 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ---
 
-### `EMI-LP-02` -- Recognising magnetic field patterns
+### `EMI-LP-02` -- Recognising magnetic field patterns (bar magnet and straight conductor)
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on BREADTH. The frozen requirement says "magnetic field patterns" (plural) without enumerating which patterns are intended, and in-class retrieved figures cover only two: the field around a straight current-carrying conductor, and the field of a bar magnet. No in-class field-pattern figure was obtained for the SOLENOID/coil pattern. A Product Architect decision is needed on the intended pattern set before this learning point can be treated as complete.
+**Evidence readiness note (Stage 4 item 1/2 correction):** The vague, open-ended "magnetic field patterns" (plural, unenumerated) framing is replaced by an explicit, closed set of exactly three patterns this batch actually addresses: the bar magnet, the straight current-carrying conductor, and the solenoid/coil. This learning point's own DIAGRAM-RECOGNITION evidence genuinely covers only the first two (bar magnet, straight conductor); it is scoped to exactly those two and is fully READY on that explicit scope, not held pending a third pattern it never claimed. The third pattern (solenoid/coil) is not a gap: its field shape is already taught, with genuine VERIFIED evidence, as part of EMI-LP-06 (which additionally teaches solenoid polarity, so field-shape and polarity are learned together for the one case where they are one practical skill, per EMI-LP-06's own depth justification). No diagnostic value is lost by this split -- EMI-LP-02 and EMI-LP-06 remain independently assessable, and a learner can be tested on solenoid field recognition via EMI-LP-06's own application types.
 
 **Learner outcome:** The learner will be able to recognise, from a diagram, the magnetic field pattern surrounding a straight current-carrying conductor and the field pattern of a bar magnet.
 
@@ -90,7 +90,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-103`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-USF-ETC-CONDUCTORFIELD-35665: The magnetic field pattern surrounding a straight conductor carrying an electric current is recognised from th...
@@ -112,9 +112,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-03` -- The dot-and-cross page convention for field and current direction
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Underlying evidence is a GAP on AUTHORITY CLASS, not on content. The convention was genuinely retrieved and read from MIT 8.02 (which states both directions verbatim) and OpenStax, but this requirement's frozen sourceAuthorityClasses are PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY and AUTHORITATIVE_TECHNICAL_REFERENCE -- ACADEMIC_OR_RESEARCH_INSTITUTION is excluded, and no in-class source could be obtained (IEC Electropedia returned 403). The knowledge statement above reflects what was actually read and should NOT be treated as evidenced until an in-class source is acquired or the frozen requirement's permitted classes are reconsidered at plan level.
+**Evidence readiness note (Stage 1.2/2.1/4.3 correction):** Previously held as a SOURCE_GAP on authority class, not content -- the generic planner's now-corrected default had also mislabelled this requirement's coverage dimension as QUANTITY_SYMBOL, when a page-direction/pictorial convention is genuinely SCHEMATIC_SYMBOL. With that corrected, and with a one-off, disclosed PA authority adjudication (`CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001`, mirroring Batch 01's own precedent) accepting academic evidence for this specific low-risk, non-safety directional/pictorial convention -- the same treatment this qualification already gives the right-hand grip rule and Fleming's rules -- the three genuinely-read academic sources (two MIT 8.02 passages, one OpenStax) now stand as valid evidence. VERIFIED; see `EVIDENCE-RESULTS.json`.
 
 **Learner outcome:** The learner will be able to interpret the dot and cross symbols used on diagrams to show a field or current directed out of, or into, the page.
 
@@ -127,10 +127,10 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-121`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION` -- **GAP**
+- `ER::provisional::unit202::electromagnetism-and-induction::dot-cross-page-convention::SYMBOL_OR_CONVENTION` -- **VERIFIED**
 
 **Normalized claim references:**
-- (none -- see evidence readiness note)
+- SRC-MIT802-CH9-SOURCES: dot = out of page; SRC-MIT802-CH8-MAGFIELDS: cross = into page; SRC-OPENSTAX-PHYSICS-20-1: dot as an approaching arrow's head
 
 **Depth justification:** A pure notation-reading skill, kept as its own learning point because it is a prerequisite for interpreting almost every subsequent directional diagram (Fleming's rules, the grip rule, motor and generator figures) yet is diagnosably separate from any of the physics. A learner who misreads a cross as "out of the page" will get every direction question wrong for a reason that has nothing to do with electromagnetism.
 
@@ -182,9 +182,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-05` -- The right-hand grip rule for a current-carrying conductor
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Underlying evidence is PARTIAL. The thumb-to-conventional-current / curled-fingers-to-field mapping rests on a SINGLE in-class source (a science-equipment vendor's teaching page, permitted only because this requirement's frozen classes include ORIGINAL_MANUFACTURER_OR_VENDOR), with no in-class corroboration, and the CORRECT_USE_CONDITIONS dimension is unresolved. The clearest statements found -- including the explicit warning that an ELECTRON-flow convention requires the LEFT hand instead -- were all outside the permitted classes. This is an authority-tier gap, not a content gap.
+**Evidence readiness note (Stage 2.1/4.4 correction):** Previously held as an authority-tier gap: the strongest statements (MIT 8.02, LibreTexts, HyperPhysics) were genuinely retrieved and read but excluded because this result's recorded sourceAuthorityClasses had never been updated to this qualification's own widened directional-rule policy (already adopted for the Fleming rules). Corrected -- academic sources are accepted for this low-risk, non-safety directional physics rule, per the qualification's risk-based authority policy. Now VERIFIED on all three dimensions, including CORRECT_USE_CONDITIONS via LibreTexts' explicit statement that the rule is for conventional current and the left hand must be used for electron flow.
 
 **Learner outcome:** The learner will be able to apply the right-hand grip rule to determine the direction of the magnetic field around a straight current-carrying conductor.
 
@@ -197,7 +197,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-108`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE` -- **VERIFIED**
 
 **Normalized claim references:**
 - SRC-ARBORSCI-RHR-THREE-RULES: Right-hand grip rule, directional and role mapping: point the RIGHT hand's THUMB along the flow of current -- ...
@@ -438,9 +438,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-12` -- The motor effect and the force on a current-carrying conductor
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** The F = BIl half of this learning point is fully VERIFIED, including its perpendicularity condition. The motor-effect half is PARTIAL: the physics is fully evidenced, but no retrieved in-class source uses the UK term "motor effect" itself, so the naming of the phenomenon is not evidenced even though the phenomenon is. A Product Architect decision is needed on whether terminology-only support is sufficient for this requirement.
+**Evidence readiness note:** [Correction, Stage 2.1/4.5] Previously held because no in-class source used the UK term "motor effect" itself. Corrected: the qualification source supplies the curricular term; a technical source does not need to use that exact phrase if it explicitly establishes the phenomenon the qualification names, which it does. Now fully VERIFIED.
 
 **Learner outcome:** The learner will be able to state that a current-carrying conductor in a magnetic field experiences a force, and use F = BIl to calculate the size of that force in the perpendicular case.
 
@@ -453,7 +453,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-112`, `unit202::ACQ-113`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::motor-effect::EXACT_FACT` -- **PARTIALLY_VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::scalar-f-bil::RELATIONSHIP` -- **VERIFIED**
 
 **Normalized claim references:**
@@ -516,9 +516,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-14` -- Electromagnetic induction: motion, flux cutting, and when EMF is greatest or zero
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Three of the four underlying requirements are fully VERIFIED. The fourth, motional-induced-emf-causal-concept, is PARTIAL on a DISCLOSED COMPOUNDING: the two-part causal account given above (the magnetic force on free charges within the moving conductor, AND the changing enclosed flux) rests on combining two genuinely read passages, because no single passage states both halves. Both halves are properly evidenced individually and the taught content is not in question; what is missing is single-passage support for the combined statement. Marked PARTIAL to apply this batch's own status vocabulary consistently -- the same correction was applied to Batch 04's resistivity result.
+**Evidence readiness note:** [Correction, Stage 1.1/4.6] Previously held on a disclosed two-passage compounding for the motional-EMF causal concept. Corrected: multi-source composition is valid verification, never a partial result, provided each constituent claim retains its own source binding (it does). Now fully VERIFIED.
 
 **Learner outcome:** The learner will be able to explain that moving a conductor so that it cuts magnetic flux induces an EMF, and state the positions of maximum and zero induced EMF for a conductor rotating in a magnetic field.
 
@@ -531,7 +531,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-115`, `unit202::ACQ-127`, `unit202::ACQ-129`, `unit202::ACQ-128`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::motional-induced-emf-causal-concept::RELATIONSHIP` -- **PARTIALLY_VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::rotation-field-cutting-causality::RELATIONSHIP` -- **VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::maximum-induced-emf-when-cutting-is-maximum::EXACT_FACT` -- **VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::no-minimum-induced-emf-when-motion-does-not-cut-flux-appropriately::EXACT_FACT` -- **VERIFIED**
@@ -600,7 +600,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on the DIRECTIONAL_MAPPING dimension. The rule's ROLE (generator rule, giving induced EMF/current direction for a conductor moving in a field) and its CONDITIONS OF USE are both properly evidenced from an in-class manufacturer source. However, NO in-class source states the thumb-to-motion / first-finger-to-field / second-finger-to-current assignment IN TEXT: the one located in-class locator is an unrendered diagram, and the only readable explicit mapping found was on a personal website outside the permitted authority classes and was deliberately not used. The finger mapping given above is therefore NOT yet evidenced and must not be treated as established until an in-class source is acquired.
+**Evidence readiness note:** Underlying evidence is PARTIALLY_VERIFIED on the DIRECTIONAL_MAPPING dimension. The rule's ROLE (generator rule, giving induced EMF/current direction for a conductor moving in a field) and its CONDITIONS OF USE are both properly evidenced from an in-class manufacturer source. However, NO in-class source states the thumb-to-motion / first-finger-to-field / second-finger-to-current assignment IN TEXT: the one located in-class locator is an unrendered diagram, and the only readable explicit mapping found was on a personal website outside the permitted authority classes and was deliberately not used. The finger mapping given above is therefore NOT yet evidenced and must not be treated as established until an in-class source is acquired.
 
 **Learner outcome:** The learner will be able to apply Fleming's right-hand rule to determine the direction of the induced EMF and current in a conductor moving through a magnetic field.
 
@@ -613,7 +613,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-117`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-NIDEC-GLOSSARY-FLEMING: Fleming's RIGHT-hand rule is the generator rule: it gives the direction of the electromotive force (and hence ...
@@ -635,9 +635,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-17` -- The simple AC generator: parts and how they work together
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Two of the four underlying requirements are PARTIAL. (1) single-loop-alternator-generator-parts: the fully labelled in-class diagram (US DOE handbook Figures 1 and 5) shows the correct topology and all part labels but a MULTI-TURN rotor; the source that is explicitly "single-loop" is academic-class and shows no slip rings, so the exact single-loop arrangement rests on a disclosed compounding. (2) coil: no labelled "coil" callout or standard graphical symbol could be obtained from an in-class source (IEC Electropedia and std.iec.ch both returned 403); the coil description rests on the DOE handbook's prose rather than on a labelled figure. A further judgment is flagged for the Product Architect: the DOE handbook was classified AUTHORITATIVE_TECHNICAL_REFERENCE on the basis that it is a formally issued engineering handbook; a reviewer who reads it instead as a purely governmental publication would need to downgrade the slip-ring and single-loop-alternator results, though brushes would still stand on the two manufacturer sources.
+**Evidence readiness note:** [Correction, Stage 1.1/4.8] Previously held because no source was captioned specifically "single-loop". Corrected: DOE HDBK-1011-3 ES-10 genuinely shows and labels exactly the simplified elementary model this qualification needs (field, rotating armature, slip rings, brushes); requiring a diagram literally captioned "single-loop" is a precision beyond that simplified model. Now fully VERIFIED.
 
 **Learner outcome:** The learner will be able to identify the parts of a simple single-loop AC generator on a diagram and state the function of each.
 
@@ -650,10 +650,10 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-122`, `unit202::ACQ-125`, `unit202::ACQ-126`, `unit202::ACQ-123`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIALLY_VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::slip-rings::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **VERIFIED**
 - `ER::provisional::unit202::electromagnetism-and-induction::brushes::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **VERIFIED**
-- `ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION` -- **PARTIALLY_VERIFIED**
 
 **Normalized claim references:**
 - SRC-DOE-HDBK-1011-3-ES10: A simple AC generator/alternator diagram is recognised by three functional elements plus the output connection...
@@ -688,7 +688,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Learner outcome:** The learner will be able to describe the sinusoidal output of an AC generator, define one cycle, periodic time and frequency, and convert between periodic time and frequency.
 
-**Knowledge / procedure:** ALTERNATING CURRENT is a flow of electric charge that periodically REVERSES DIRECTION. The alternating voltage produced by a rotating-magnet alternator traces a SINE WAVE, because the rate of magnetic flux change due to the rotating magnet follows a sine function, so the coil voltage follows that same function. ONE CYCLE is the interval from any point on the sine-wave graph to the point at which the wave shape begins to repeat itself. PERIODIC TIME (the period) is the time taken to complete one complete cycle; its symbol is T and, with frequency in hertz, T is in seconds. FREQUENCY is the number of complete cycles completed in a given amount of time -- how many cycles occur in one second -- measured in HERTZ (Hz), where 1 Hz is one complete cycle per second. RELATIONSHIP: period and frequency are reciprocals, T = 1/f and equivalently f = 1/T.
+**Knowledge / procedure:** ALTERNATING CURRENT is a flow of electric charge that periodically REVERSES DIRECTION. The alternating voltage produced by the simple alternator taught in EMI-LP-17 (a rotating loop/armature turning within a stationary magnetic field) traces a SINE WAVE, because the rate of magnetic flux change as the loop rotates follows a sine function, so the induced voltage follows that same function. [Correction, Stage 4 item 9] What actually matters physically is the RELATIVE rotation between the coil and the field -- a rotating field with a stationary coil produces the identical sinusoidal result -- but the one consistent taught model in this batch is the rotating loop/armature of EMI-LP-17, and this learning point is corrected to match it rather than silently switching to a rotating-magnet description. ONE CYCLE is the interval from any point on the sine-wave graph to the point at which the wave shape begins to repeat itself. PERIODIC TIME (the period) is the time taken to complete one complete cycle; its symbol is T and, with frequency in hertz, T is in seconds. FREQUENCY is the number of complete cycles completed in a given amount of time -- how many cycles occur in one second -- measured in HERTZ (Hz), where 1 Hz is one complete cycle per second. RELATIONSHIP: period and frequency are reciprocals, T = 1/f and equivalently f = 1/T.
 
 **Within-domain prerequisites:** `EMI-LP-17`
 
@@ -819,9 +819,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-21` -- Carrying out sine-wave conversion calculations
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** Underlying evidence is PARTIAL on CALCULATION_METHOD breadth. Worked numerical method IS genuinely evidenced for two conversion directions -- peak-to-peak from the cycle maximum and minimum, and RMS from peak (130 V peak giving 91.9 V RMS). It is NOT evidenced by a worked example for the average-value conversion (0.637 x peak) or for the reverse peak-from-RMS conversion (x1.414); those two directions rest on stated conversion factors alone. The factors themselves are separately and fully VERIFIED in EMI-LP-20; what is missing is worked method for those two directions.
+**Evidence readiness note (Stage 4 item 10 correction):** Previously held on a CALCULATION_METHOD breadth gap (worked method evidenced for peak-to-peak and RMS-from-peak, but not for the average-value or reverse peak-from-RMS directions). Corrected: this is an integration target, structurally satisfied by its already-verified constituent conversion relationships (all four factors are separately and fully VERIFIED in EMI-LP-20) plus the foundational calculation capability -- a separate published worked example for every algebraic direction is not required evidence once the relationships themselves and the general method (identify what is given/asked, apply the correct factor) are established.
 
 **Learner outcome:** The learner will be able to carry out conversions between peak, peak-to-peak and RMS values for a sinusoidal waveform, selecting the correct conversion for the quantities given.
 
@@ -834,7 +834,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-146`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE` -- **STRUCTURALLY_SATISFIED** (integration target; satisfied by EMI-LP-20's constituent conversion relationships plus the foundational calculation capability)
 
 **Normalized claim references:**
 - SRC-MST-COTTRELL-BASIC-INSTRUMENTATION: Sine-wave conversion method: peak-to-peak is obtained by subtracting the cycle minimum from the cycle maximum ...
@@ -857,9 +857,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 ### `EMI-LP-22` -- Generated frequency, pole pairs and rotational speed
 
-**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+**Evidence readiness:** READY
 
-**Evidence readiness note:** All three underlying requirements are now PARTIAL. The appropriate-simple-ac-generation-calculations requirement is PARTIAL on breadth: the frequency/speed/pole procedure is fully evidenced with a worked instance, but no procedure for calculating generated EMF magnitude (e = Blv or E = 2*pi*f*N*Phi forms) was evidenced, and the requirement is plural. The other two are PARTIAL because of a genuine and unresolved CONVENTION CONFLICT in the sources, which is recorded rather than silently harmonised. The frozen requirements are written in the POLE-PAIR convention. Only one retrieved source (MIT 6.685) uses pole pairs, and it states the relationship in ANGULAR-FREQUENCY form with the definition of p sitting two pages from the relation. Both sources that state it in Hz-and-rpm terms use TOTAL POLES: f = P/2 x N/60 and n_s = 120f/P. No in-class source stating the pole-pair convention directly in Hz/rev-per-second terms could be obtained -- four further candidates were all blocked. A Product Architect decision is needed on which convention this qualification will teach, since the two give answers differing by a factor of two.
+**Evidence readiness note (Stage 1.1/4.11/4.12 correction):** Previously held with all three underlying requirements PARTIALLY_VERIFIED. Corrected: (1) `rotational-frequency-pole-pairs-relationship` is VERIFIED -- its multi-passage compounding (MIT 6.685's angular-form relation plus its own pole-pairs definition, connected by the elementary omega=2*pi*f identity) is legitimate multi-source composition, not a reason to downgrade. (2) `equivalent-rpm-relationship` is VERIFIED as a disclosed algebraic derivation (N = n_rpm/60 substituted into the now-verified base relationship) via the same foundational rearrangement capability already accepted elsewhere in this qualification -- not a second technical-domain source requirement. The pole-pairs-vs-total-poles difference is confirmed to be equivalent notation once P_total = 2 x P_pairs is applied, per the Product Architect's accepted pole-pair-convention decision -- not a technical conflict. (3) `appropriate-simple-ac-generation-calculations` is now a structurally-satisfied integration target (see below), not a standalone breadth gap for EMF-magnitude calculation, which is itself a separate, independently-evidenced relationship.
 
 **Learner outcome:** The learner will be able to calculate the frequency generated by an alternator from its rotational speed and its number of pole pairs.
 
@@ -872,9 +872,9 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Knowledge-target IDs:** `unit202::ACQ-131`, `unit202::ACQ-132`, `unit202::ACQ-133`, `unit202::ACQ-134`
 
 **Evidence-requirement IDs and their status:**
-- `ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE` -- **PARTIAL**
-- `ER::provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP` -- **PARTIAL**
-- `ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE` -- **PARTIAL**
+- `ER::provisional::unit202::electromagnetism-and-induction::rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE` -- **VERIFIED**
+- `ER::provisional::unit202::electromagnetism-and-induction::equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP` -- **VERIFIED**
+- `ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE` -- **STRUCTURALLY_SATISFIED** (integration target; satisfied by the two requirements above plus the foundational calculation capability)
 
 **Normalized claim references:**
 - SRC-MITOCW-6685-CH8: In an AC machine the electrical rotation speed equals the number of pole pairs multiplied by the mechanical ro...

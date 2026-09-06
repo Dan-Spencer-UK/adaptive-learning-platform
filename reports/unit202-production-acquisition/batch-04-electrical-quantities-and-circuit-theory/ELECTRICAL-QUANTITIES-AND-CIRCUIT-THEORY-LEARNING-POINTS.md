@@ -123,7 +123,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 - Identify which of a list of candidate units (e.g. kg, kg/m^3, m^3) is the correct SI unit for density.
 - Explain why 20 degC and 20 K are not the same temperature.
 
-> **Internal audit correction pass.** Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIAL; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen.
+> **Internal audit correction pass.** Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIALLY_VERIFIED; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen.
 
 ---
 
@@ -131,7 +131,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note (internal audit pass):** Underlying practical-unit-conversion evidence downgraded to PARTIAL: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced.
+**Evidence readiness note (internal audit pass):** Underlying practical-unit-conversion evidence downgraded to PARTIALLY_VERIFIED: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced.
 
 **Learner outcome:** The learner will be able to convert a measured value between SI-prefixed multiples/sub-multiples of a unit, and correctly convert values in a squared (area) or cubed (volume) unit by applying the appropriate power of the linear conversion factor.
 
@@ -233,7 +233,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note (internal audit pass):** Underlying power::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification.
+**Evidence readiness note (internal audit pass):** Underlying power::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification.
 
 **Learner outcome:** The learner will be able to state what electrical power is, its quantity symbol (P) and SI unit (watt, W), and explain how power differs from both energy and power factor.
 
@@ -305,7 +305,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note (internal audit pass):** Underlying power-factor::DISTINCTION evidence downgraded to PARTIAL. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement.
+**Evidence readiness note (internal audit pass):** Underlying power-factor::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement.
 
 **Learner outcome:** The learner will be able to state what power factor is, its conventional notation (cos phi / p.f.), that it is dimensionless with no unit, and explain how it differs from power.
 
@@ -340,7 +340,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-08` -- Frequency: meaning, quantity symbol and unit
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (Stage 2.2 correction):** Moved from READY: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter (f) sourcing is outstanding.
 
 **Learner outcome:** The learner will be able to state what frequency is, its quantity symbol (f), and its SI unit name and symbol (hertz, Hz).
 
@@ -373,11 +375,13 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-09` -- Capacitance: meaning, quantity symbol and unit
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (Stage 2.2 correction):** Moved from READY: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter (C) sourcing is outstanding.
 
 **Learner outcome:** The learner will be able to state what capacitance is, its quantity symbol (C), and its SI unit name and symbol (farad, F).
 
-**Knowledge / procedure:** Capacitance is a capacitor's fixed physical ability to store electrical charge on its plates for a given applied voltage; it does not itself depend on the frequency of any applied signal. Its quantity symbol is C; its SI unit is the farad, symbol F.
+**Knowledge / procedure:** Capacitance is a capacitor's physical ability to store electrical charge on its plates for a given applied voltage. At this level, capacitance is treated as a basic property of the component (set by its construction), in contrast with capacitive reactance, which is explicitly frequency-dependent; this is the ideal/basic-component model appropriate here, not a claim that a real capacitor's capacitance can never be affected by anything (e.g. temperature or applied voltage in a real device) -- that further nuance is out of scope for this qualification. Its quantity symbol is C; its SI unit is the farad, symbol F.
 
 **Within-domain prerequisites:** (none)
 
@@ -442,11 +446,13 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-11` -- Inductance: meaning, quantity symbol and unit
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (Stage 2.2 correction):** Moved from READY: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter (L) sourcing is outstanding.
 
 **Learner outcome:** The learner will be able to state what inductance is, its quantity symbol (L), and its SI unit name and symbol (henry, H).
 
-**Knowledge / procedure:** Inductance is a coil's fixed physical ability to oppose changes in current, independent of the frequency of any applied signal. Its quantity symbol is L; its SI unit is the henry, symbol H.
+**Knowledge / procedure:** Inductance is a coil's physical ability to oppose changes in current. At this level, inductance is treated as a basic property of the component (set by its construction, e.g. turns and core), in contrast with inductive reactance, which is explicitly frequency-dependent; this is the ideal/basic-component model appropriate here, not a claim that a real coil's inductance can never be affected by anything (e.g. core saturation in a real device) -- that further nuance is out of scope for this qualification. Its quantity symbol is L; its SI unit is the henry, symbol H.
 
 **Within-domain prerequisites:** (none)
 
@@ -477,7 +483,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note (internal audit pass):** Underlying inductance::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch.
+**Evidence readiness note (internal audit pass):** Underlying inductance::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch.
 
 **Learner outcome:** The learner will be able to state what inductive reactance is, its unit (ohms), and explain how it differs from inductance itself.
 
@@ -581,7 +587,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note (internal audit pass):** Underlying ohmmeter-measures-resistance evidence downgraded to PARTIAL (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed.
+**Evidence readiness note (internal audit pass):** Underlying ohmmeter-measures-resistance evidence downgraded to PARTIALLY_VERIFIED (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed.
 
 **Learner outcome:** The learner will be able to state that an ohmmeter (or a multimeter's resistance/ohms function) measures the resistance of a component or circuit.
 
@@ -614,7 +620,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note (internal audit pass):** Underlying ohmmeter safe-use evidence downgraded to PARTIAL because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected.
+**Evidence readiness note (internal audit pass):** Underlying ohmmeter safe-use evidence downgraded to PARTIALLY_VERIFIED because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected.
 
 **Learner outcome:** The learner will be able to state that a circuit or component must be de-energised (and any capacitor discharged) before measuring its resistance with an ohmmeter, and explain why.
 
@@ -679,7 +685,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
 
-**Evidence readiness note (internal audit pass):** Underlying energy-meter evidence downgraded to PARTIAL: the "integrates" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence.
+**Evidence readiness note (internal audit pass):** Underlying energy-meter evidence downgraded to PARTIALLY_VERIFIED: the "integrates" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence.
 
 **Learner outcome:** The learner will be able to state that an energy meter (watt-hour/kWh meter) measures accumulated electrical energy usage over time, as distinct from an instantaneous power reading.
 

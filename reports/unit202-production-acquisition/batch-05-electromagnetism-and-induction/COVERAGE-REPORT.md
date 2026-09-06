@@ -19,7 +19,7 @@ Work proceeded through three parallel research clusters:
 
 ## Evidence status totals
 
-**32 VERIFIED, 11 PARTIAL, 1 GAP.**
+**32 VERIFIED, 11 PARTIALLY_VERIFIED, 1 SOURCE_GAP.**
 
 > **The dominant reason for a non-VERIFIED status in this batch is AUTHORITY TIER, not content.** In seven of the
 > nine cases below, clear and genuinely authoritative material was retrieved and read, but its authority class is
@@ -29,20 +29,20 @@ Work proceeded through three parallel research clusters:
 
 | Requirement | Status | Why |
 |---|---|---|
-| `appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE` | PARTIAL | Downgraded VERIFIED -> PARTIAL during the internal audit pass, on BREADTH. |
-| `appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE` | PARTIAL | Downgraded VERIFIED -> PARTIAL during the internal audit pass, on CALCULATION_METHOD breadth. |
-| `coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIAL | No source within the requirement's permitted authority classes was obtained that shows a coil with an explicit figure callout reading 'coil', nor a standardised graphical symbol for a coil/winding. |
-| `dot-cross-page-convention::SYMBOL_OR_CONVENTION` | GAP | AUTHORITY-CLASS MISMATCH, not a content gap. |
-| `equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP` | PARTIAL | The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures. |
-| `fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE` | PARTIAL | No source within the permitted authority classes was found that states IN TEXT the finger-to-quantity assignment for the right hand (thumb = motion/velocity, first finger = field, second finger = induced current). |
-| `magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIAL | PARTIAL on BREADTH. |
-| `motional-induced-emf-causal-concept::RELATIONSHIP` | PARTIAL | Downgraded VERIFIED -> PARTIAL during the internal audit pass. |
-| `motor-effect::EXACT_FACT` | PARTIAL | The physical fact is fully evidenced, but no read source within the permitted authority classes uses the UK-syllabus TERM 'motor effect' itself; both sources title the phenomenon 'magnetic force on a current-carrying conductor/wire'. |
-| `right-hand-grip-rule::OPERATIONAL_USE_RULE` | PARTIAL | PARTIAL on AUTHORITY DEPTH and on the CORRECT_USE_CONDITIONS dimension. |
-| `rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE` | PARTIAL | No read source states the formula in the requirement's exact units (f in Hz, N in rev/s, P = pole pairs). |
-| `single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIAL | No source read within the permitted authority classes shows a diagram explicitly captioned as a SINGLE-LOOP (one-turn) alternator with every part labelled. |
+| `appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE` | PARTIALLY_VERIFIED | Downgraded VERIFIED -> PARTIALLY_VERIFIED during the internal audit pass, on BREADTH. |
+| `appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE` | PARTIALLY_VERIFIED | Downgraded VERIFIED -> PARTIALLY_VERIFIED during the internal audit pass, on CALCULATION_METHOD breadth. |
+| `coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIALLY_VERIFIED | No source within the requirement's permitted authority classes was obtained that shows a coil with an explicit figure callout reading 'coil', nor a standardised graphical symbol for a coil/winding. |
+| `dot-cross-page-convention::SYMBOL_OR_CONVENTION` | SOURCE_GAP | AUTHORITY-CLASS MISMATCH, not a content gap. |
+| `equivalent-rpm-relationship-f-n-rpm-x-p-60::RELATIONSHIP` | PARTIALLY_VERIFIED | The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures. |
+| `fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE` | PARTIALLY_VERIFIED | No source within the permitted authority classes was found that states IN TEXT the finger-to-quantity assignment for the right hand (thumb = motion/velocity, first finger = field, second finger = induced current). |
+| `magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIALLY_VERIFIED | PARTIALLY_VERIFIED on BREADTH. |
+| `motional-induced-emf-causal-concept::RELATIONSHIP` | PARTIALLY_VERIFIED | Downgraded VERIFIED -> PARTIALLY_VERIFIED during the internal audit pass. |
+| `motor-effect::EXACT_FACT` | PARTIALLY_VERIFIED | The physical fact is fully evidenced, but no read source within the permitted authority classes uses the UK-syllabus TERM 'motor effect' itself; both sources title the phenomenon 'magnetic force on a current-carrying conductor/wire'. |
+| `right-hand-grip-rule::OPERATIONAL_USE_RULE` | PARTIALLY_VERIFIED | PARTIALLY_VERIFIED on AUTHORITY DEPTH and on the CORRECT_USE_CONDITIONS dimension. |
+| `rotational-frequency-pole-pairs-relationship::FORMULA_OR_RULE` | PARTIALLY_VERIFIED | No read source states the formula in the requirement's exact units (f in Hz, N in rev/s, P = pole pairs). |
+| `single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIALLY_VERIFIED | No source read within the permitted authority classes shows a diagram explicitly captioned as a SINGLE-LOOP (one-turn) alternator with every part labelled. |
 
-### The one GAP
+### The one SOURCE_GAP
 
 `dot-cross-page-convention::SYMBOL_OR_CONVENTION` is a **pure authority-class gap**. MIT 8.02 states both
 directions verbatim ("points out the page and is represented with dots"; "points into the page, and is
@@ -98,7 +98,7 @@ tool and were downloaded and read as rendered page images; every figure cited fr
   power, so the distinguishing property is stated rather than the two being treated as synonyms.
 - **Recognition outcomes rest only on actually-retrieved figures** with exact identifiers and full provenance. No
   diagram was generated, drawn or described from memory. Where a labelled figure could not be obtained (the
-  `coil` requirement), that is recorded as PARTIAL rather than filled in from knowledge.
+  `coil` requirement), that is recorded as PARTIALLY_VERIFIED rather than filled in from knowledge.
 - **Excluded throughout:** Maxwell's equations, vector calculus, advanced phasors, detailed winding design,
   three-phase generation, and machine theory beyond the simple single-loop alternator.
 
@@ -110,25 +110,25 @@ tool and were downloaded and read as rendered page images; every figure cited fr
 
 Every requirement maps to exactly one learning point (proved by the validation script -- no requirement is
 unmapped, and none is double-counted across two learning points). Readiness is derived mechanically from the
-underlying evidence statuses, and the generator refuses to emit a learning point marked READY over PARTIAL or
-GAP evidence.
+underlying evidence statuses, and the generator refuses to emit a learning point marked READY over PARTIALLY_VERIFIED or
+SOURCE_GAP evidence.
 
 The held learning points are:
 
-- `EMI-LP-02` (Recognising magnetic field patterns) -- Underlying evidence is PARTIAL on BREADTH.
-- `EMI-LP-03` (The dot-and-cross page convention for field and current direction) -- Underlying evidence is a GAP on AUTHORITY CLASS, not on content.
-- `EMI-LP-05` (The right-hand grip rule for a current-carrying conductor) -- Underlying evidence is PARTIAL.
+- `EMI-LP-02` (Recognising magnetic field patterns) -- Underlying evidence is PARTIALLY_VERIFIED on BREADTH.
+- `EMI-LP-03` (The dot-and-cross page convention for field and current direction) -- Underlying evidence is a SOURCE_GAP on AUTHORITY CLASS, not on content.
+- `EMI-LP-05` (The right-hand grip rule for a current-carrying conductor) -- Underlying evidence is PARTIALLY_VERIFIED.
 - `EMI-LP-12` (The motor effect and the force on a current-carrying conductor) -- The F = BIl half of this learning point is fully VERIFIED, including its perpendicularity condition.
 - `EMI-LP-14` (Electromagnetic induction: motion, flux cutting, and when EMF is greatest or zero) -- Three of the four underlying requirements are fully VERIFIED.
-- `EMI-LP-16` (Fleming's right-hand (generator) rule) -- Underlying evidence is PARTIAL on the DIRECTIONAL_MAPPING dimension.
-- `EMI-LP-17` (The simple AC generator: parts and how they work together) -- Two of the four underlying requirements are PARTIAL.
-- `EMI-LP-21` (Carrying out sine-wave conversion calculations) -- Underlying evidence is PARTIAL on CALCULATION_METHOD breadth.
-- `EMI-LP-22` (Generated frequency, pole pairs and rotational speed) -- All three underlying requirements are now PARTIAL.
+- `EMI-LP-16` (Fleming's right-hand (generator) rule) -- Underlying evidence is PARTIALLY_VERIFIED on the DIRECTIONAL_MAPPING dimension.
+- `EMI-LP-17` (The simple AC generator: parts and how they work together) -- Two of the four underlying requirements are PARTIALLY_VERIFIED.
+- `EMI-LP-21` (Carrying out sine-wave conversion calculations) -- Underlying evidence is PARTIALLY_VERIFIED on CALCULATION_METHOD breadth.
+- `EMI-LP-22` (Generated frequency, pole pairs and rotational speed) -- All three underlying requirements are now PARTIALLY_VERIFIED.
 
 ## Matters flagged for the consolidated Product Architect review
 
 1. **No normative or governmental source anywhere in this batch** (IEC/Britannica/ScienceDirect all 403).
-2. **The `dot-cross-page-convention` GAP** is an authority-tier gap on content that is not in dispute -- decide
+2. **The `dot-cross-page-convention` SOURCE_GAP** is an authority-tier gap on content that is not in dispute -- decide
    whether to acquire an in-class source or revisit the frozen requirement's permitted classes.
 3. **`right-hand-grip-rule` rests on a single vendor source** for its directional mapping, with the clearest
    statements found sitting outside the permitted classes.

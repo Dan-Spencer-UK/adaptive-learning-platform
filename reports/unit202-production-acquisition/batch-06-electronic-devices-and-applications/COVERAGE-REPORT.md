@@ -20,26 +20,26 @@ Work proceeded through four parallel research clusters:
 
 ## Evidence status totals
 
-**27 VERIFIED, 12 PARTIAL, 1 GAP.**
+**27 VERIFIED, 12 PARTIALLY_VERIFIED, 1 SOURCE_GAP.**
 
 Unlike Batch 05, **this batch returned ZERO authority-class violations** -- every citation already sat within its
 own requirement's permitted classes.
 
 | Requirement | Status | Why |
 |---|---|---|
-| `dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT` | PARTIAL | What is missing is authoritative evidence identifying the specific dimmer circuit the qualification content refers to. |
-| `heating-exact-transistor-relay-topology::EXACT_FACT` | PARTIAL | What is missing is authoritative evidence of the exact transistor/relay arrangement in the specific heating circuit the qualification refers to: which transistor type and configuration (common-emitter low-side switch vs high-side vs Darlington), the exact base/bias resistor arrangement, whether the relay contacts switch the boiler/heating load directly or via a further contactor, and the exact protection components. |
-| `motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT` | PARTIAL | DISCLOSED COMPOUNDING: no single retrieved passage states the complete claim 'in a motor application, a bridge rectifier converts AC to DC'. |
-| `physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIAL | BREADTH GAP. |
-| `schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION` | PARTIAL | 13 of the 15 Unit 202 component families have a named, directly-read graphic symbol in the retrieved standard: resistor (2. |
-| `security-alarm-exact-nc-contact-bias-topology::EXACT_FACT` | GAP | No authoritative source was found and read that states an exact normally-closed contact / bias topology for any specific, identified security alarm circuit. |
-| `security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT` | PARTIAL | The LATCHING half of the requirement is fully and explicitly supported, including the holding-current condition and the fact that latching persists after the gate signal is removed. |
-| `security-alarm-transistor-switching::EXACT_FACT` | PARTIAL | The generic framing required by the guardrail - the transistor operating as a switch (saturated/off), NOT as a linear amplifier - is explicitly and verbatim supported, and the source itself makes the amplifier-vs-switch contrast. |
-| `telephone-capacitor-ringer::EXACT_FACT` | PARTIAL | What IS evidenced: the existence, value (1. |
-| `telephone-master-secondary-socket-details::EXACT_FACT` | PARTIAL | Status is PARTIAL because the full picture rests on a disclosed compounding of two separate Openreach documents (SIN 351 for the electrical/contact detail, the Copper handbook for the physical master-vs-extension arrangement). |
-| `telephone-resistor-line-testing::EXACT_FACT` | PARTIAL | The two halves of this requirement are each evidenced, but the CAUSAL LINK between them is not. |
-| `telephones-application-category-function::EXACT_FACT` | PARTIAL | PARTIAL because the answer rests on a disclosed compounding of two sources, AND because both define the SERVICE and the NETWORK rather than the DEVICE. |
-| `thermistor-basic-operating-principle::EXACT_FACT` | PARTIAL | COMPOUNDING DISCLOSED: no single read passage covers both NTC and PTC behaviour with their directions. |
+| `dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT` | PARTIALLY_VERIFIED | What is missing is authoritative evidence identifying the specific dimmer circuit the qualification content refers to. |
+| `heating-exact-transistor-relay-topology::EXACT_FACT` | PARTIALLY_VERIFIED | What is missing is authoritative evidence of the exact transistor/relay arrangement in the specific heating circuit the qualification refers to: which transistor type and configuration (common-emitter low-side switch vs high-side vs Darlington), the exact base/bias resistor arrangement, whether the relay contacts switch the boiler/heating load directly or via a further contactor, and the exact protection components. |
+| `motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT` | PARTIALLY_VERIFIED | DISCLOSED COMPOUNDING: no single retrieved passage states the complete claim 'in a motor application, a bridge rectifier converts AC to DC'. |
+| `physical-photo-appearance-recognition-of-each-component::SCHEMATIC_OR_DIAGRAM_RECOGNITION` | PARTIALLY_VERIFIED | Breadth gap: only some named components have photographic recognition evidence. |
+| `schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION` | PARTIALLY_VERIFIED | 13 of the 15 Unit 202 component families have a named, directly-read graphic symbol in the retrieved standard: resistor (2. |
+| `security-alarm-exact-nc-contact-bias-topology::EXACT_FACT` | SOURCE_GAP | No authoritative source was found and read that states an exact normally-closed contact / bias topology for any specific, identified security alarm circuit. |
+| `security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT` | PARTIALLY_VERIFIED | The LATCHING half of the requirement is fully and explicitly supported, including the holding-current condition and the fact that latching persists after the gate signal is removed. |
+| `security-alarm-transistor-switching::EXACT_FACT` | PARTIALLY_VERIFIED | The generic framing required by the guardrail - the transistor operating as a switch (saturated/off), NOT as a linear amplifier - is explicitly and verbatim supported, and the source itself makes the amplifier-vs-switch contrast. |
+| `telephone-capacitor-ringer::EXACT_FACT` | PARTIALLY_VERIFIED | What IS evidenced: the existence, value (1. |
+| `telephone-master-secondary-socket-details::EXACT_FACT` | PARTIALLY_VERIFIED | Status is PARTIALLY_VERIFIED because the full picture rests on a disclosed compounding of two separate Openreach documents (SIN 351 for the electrical/contact detail, the Copper handbook for the physical master-vs-extension arrangement). |
+| `telephone-resistor-line-testing::EXACT_FACT` | PARTIALLY_VERIFIED | The two halves of this requirement are each evidenced, but the CAUSAL LINK between them is not. |
+| `telephones-application-category-function::EXACT_FACT` | PARTIALLY_VERIFIED | PARTIALLY_VERIFIED because the answer rests on a disclosed compounding of two sources, AND because both define the SERVICE and the NETWORK rather than the DEVICE. |
+| `thermistor-basic-operating-principle::EXACT_FACT` | PARTIALLY_VERIFIED | COMPOUNDING DISCLOSED: no single read passage covers both NTC and PTC behaviour with their directions. |
 
 ## The dominant finding: a specification ambiguity in the frozen plan
 
@@ -49,7 +49,7 @@ checked, and no amount of further searching would resolve it:
 
 - `dimmer-exact-rc-timing-implementation-component-values`
 - `heating-exact-transistor-relay-topology`
-- `security-alarm-exact-nc-contact-bias-topology` (the one **GAP**)
+- `security-alarm-exact-nc-contact-bias-topology` (the one **SOURCE_GAP**)
 - and, by propagation, `security-alarm-scr-thyristor-latching-sounder-role` and
   `security-alarm-transistor-switching`, which presuppose the same unnamed alarm circuit
 
@@ -134,20 +134,20 @@ symbol table, figure and datasheet passage cited was actually viewed.
 
 Every requirement maps to exactly one learning point (proved by the validation script). Readiness is derived
 mechanically from the underlying evidence statuses, and the generator refuses to emit a learning point marked
-READY over PARTIAL or GAP evidence.
+READY over PARTIALLY_VERIFIED or SOURCE_GAP evidence.
 
 The held learning points are:
 
-- `EDA-LP-09` (Thermistor: basic operating principle, and the NTC/PTC distinction) -- Underlying evidence is PARTIAL on DISCLOSED COMPOUNDING.
-- `EDA-LP-16` (Recognising the schematic symbols for Unit 202 components) -- Underlying evidence is PARTIAL on BOTH BREADTH and STANDARD CURRENCY, and this learning point must not be published as-is without a Product Architect decision.
-- `EDA-LP-17` (Recognising components by their physical appearance) -- Underlying evidence is PARTIAL on BREADTH, and this learning point covers only part of the component set.
-- `EDA-LP-19` (Dimmer: exact RC timing implementation and component values) -- Underlying evidence is PARTIAL, and the root problem is a SPECIFICATION AMBIGUITY that only the Product Architect can resolve.
-- `EDA-LP-21` (Heating: exact transistor/relay switching topology) -- Underlying evidence is PARTIAL, with the same SPECIFICATION AMBIGUITY problem as EDA-LP-19: the frozen requirement names no figure, circuit or source document, so there is no determinate topology to verify.
-- `EDA-LP-23` (Motor drives: the bridge rectifier converting AC to DC) -- Underlying evidence is PARTIAL on DISCLOSED COMPOUNDING.
-- `EDA-LP-25` (Security alarm circuit: NC loop, transistor switching and SCR latching) -- One underlying requirement is a GAP and two are PARTIAL.
+- `EDA-LP-09` (Thermistor: basic operating principle, and the NTC/PTC distinction) -- Underlying evidence is PARTIALLY_VERIFIED on DISCLOSED COMPOUNDING.
+- `EDA-LP-16` (Recognising the schematic symbols for Unit 202 components) -- Underlying evidence is PARTIALLY_VERIFIED on BOTH BREADTH and STANDARD CURRENCY, and this learning point must not be published as-is without a Product Architect decision.
+- `EDA-LP-17` (Recognising components by their physical appearance) -- Underlying evidence is PARTIALLY_VERIFIED on BREADTH, and this learning point covers only part of the component set.
+- `EDA-LP-19` (Dimmer: exact RC timing implementation and component values) -- Underlying evidence is PARTIALLY_VERIFIED, and the root problem is a SPECIFICATION AMBIGUITY that only the Product Architect can resolve.
+- `EDA-LP-21` (Heating: exact transistor/relay switching topology) -- Underlying evidence is PARTIALLY_VERIFIED, with the same SPECIFICATION AMBIGUITY problem as EDA-LP-19: the frozen requirement names no figure, circuit or source document, so there is no determinate topology to verify.
+- `EDA-LP-23` (Motor drives: the bridge rectifier converting AC to DC) -- Underlying evidence is PARTIALLY_VERIFIED on DISCLOSED COMPOUNDING.
+- `EDA-LP-25` (Security alarm circuit: NC loop, transistor switching and SCR latching) -- One underlying requirement is a SOURCE_GAP and two are PARTIALLY_VERIFIED.
 - `EDA-LP-26` (The legacy UK analogue PSTN and what a telephone service is) -- The legacy-PSTN framing requirement is fully VERIFIED from Ofcom and Openreach sources.
-- `EDA-LP-27` (The UK master socket and extension sockets) -- Underlying evidence is PARTIAL on TERMINOLOGY and BREADTH.
-- `EDA-LP-28` (Inside the UK master socket: ringer capacitor, line-test resistor and surge protector) -- Two of the three underlying requirements are PARTIAL, and the shortfall is specifically about FUNCTION rather than presence.
+- `EDA-LP-27` (The UK master socket and extension sockets) -- Underlying evidence is PARTIALLY_VERIFIED on TERMINOLOGY and BREADTH.
+- `EDA-LP-28` (Inside the UK master socket: ringer capacitor, line-test resistor and surge protector) -- Two of the three underlying requirements are PARTIALLY_VERIFIED, and the shortfall is specifically about FUNCTION rather than presence.
 
 ## Matters flagged for the consolidated Product Architect review
 
