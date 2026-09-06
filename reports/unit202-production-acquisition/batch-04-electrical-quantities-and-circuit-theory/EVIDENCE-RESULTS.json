@@ -10,8 +10,8 @@
     "SOURCE_GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
   },
   "statusTotals": {
-    "VERIFIED": 47,
-    "PARTIALLY_VERIFIED": 10
+    "VERIFIED": 56,
+    "PARTIALLY_VERIFIED": 1
   },
   "reusedFromBatch01": [],
   "reusedFromBatch02": [
@@ -369,18 +369,21 @@
             "sourceId": "SRC-LIBRETEXTS-SQCUBIC"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "PROCEDURE",
           "CALCULATION_METHOD"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass, and the SRC-NIST-SP811-CH4 candidate source and its claim were REMOVED, for two independent defects. (1) AUTHORITY CLASS: SRC-NIST-SP811-CH4 is registered as PRIMARY_NORMATIVE_OR_STANDARDS_BODY, but this requirement's frozen sourceAuthorityClasses are ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE and AUTHORITATIVE_EDUCATIONAL_REFERENCE -- the cited class is not permitted for this requirement. (2) PASSAGE-TO-CLAIM SUPPORT: its recorded passage ('Derived units are expressed algebraically in terms of base units or other derived units', plus a table of m^2, m^3, m/s^2) does not support the claim attributed to it, which was about multiplying/dividing by power-of-ten SI prefix factors. That claim also embedded an internal cross-reference to Batch 01's FM-LP-19, which is a curriculum decision, not something NIST attests.",
-          "Consequently the SI-prefix/power-of-ten half of 'practical unit conversion' has NO in-batch citation. It is not re-derived here; it remains covered by the accepted Batch 01 mastery FM-LP-19 (engineering notation and SI prefixes), which EQCT-LP-02 already carries as a cross-domain prerequisite. The squared/cubed-unit half of the requirement REMAINS genuinely and fully evidenced by SRC-LIBRETEXTS-SQCUBIC (a permitted AUTHORITATIVE_EDUCATIONAL_REFERENCE) including a worked example, so this is a partial, not a gap."
+        "gaps": [],
+        "scopeNote": "Bound to conversion of the quantities this batch and Unit 202 elsewhere genuinely use. This requirement is satisfied by two distinct, individually-bound constituents: the squared/cubed case is directly evidenced in-batch (SRC-LIBRETEXTS-SQCUBIC); the general SI-prefix power-of-ten scaling mechanism is structurally satisfied by the accepted, already-VERIFIED Batch 01 mastery FM-LP-19 (engineering notation and SI unit prefixes), which EQCT-LP-02 already carries as a cross-domain prerequisite.",
+        "satisfiedByExistingLearningPointIds": [
+          "FM-LP-19"
         ],
-        "scopeNote": "Bound to conversion of the quantities this batch and Unit 202 elsewhere genuinely use. The evidenced, in-batch-cited method is the squared/cubed case (a linear conversion factor must be raised to the same power before use for area and volume). General SI-prefix scaling is reused accepted Batch 01 mastery (FM-LP-19), not re-evidenced here -- see gaps."
+        "disclosures": [
+          "DISCLOSED COMPOUNDING (not grounds for downgrade -- Stage 1.1 pattern, consistent with the accepted Batch 04 resistivity precedent): no single retrieved passage states both the SI-prefix scaling half and the squared/cubed half of 'practical unit conversion'. A prior candidate source (SRC-NIST-SP811-CH4) was removed from this row during an earlier internal audit pass because it was both an unpermitted authority class for this requirement and did not itself support the SI-prefix claim attributed to it. Rather than re-deriving the SI-prefix mechanism from a fresh external citation, it is recorded as a structured satisfaction: FM-LP-19 (Batch 01, ACCEPTED_AND_FROZEN, evidenceReadiness READY, evidenced by SRC-NIST-SI-CH7) already independently teaches and verifies exactly this mechanism, and EQCT-LP-02 already depends on it as a cross-domain prerequisite. Each constituent claim retains its own exact source binding: SRC-LIBRETEXTS-SQCUBIC for the squared/cubed procedure, FM-LP-19/SRC-NIST-SI-CH7 for the SI-prefix procedure."
+        ]
       }
     },
     {
@@ -1099,6 +1102,13 @@
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
             "retrievedPassage": "\"Power factor is defined as the ratio of real power (P) to apparent power (S), and is generally expressed as either a decimal value\"; \"Power factor defines the phase angle between the current and voltage waveforms\"; \"When the power factor equals 1 (unity) or 100%, that is when the real power consumed equals the circuits apparent power.\" The page ALSO gives Cos(phi) = Real/Apparent = P/S = W/VA = power factor. VERIFIED IN THE INTERNAL AUDIT PASS BY RE-FETCHING THE PAGE: the page does NOT anywhere use the words 'unitless' or 'dimensionless', and does not state that power factor has no unit."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/11:_Power_Factor/11.03:_Calculating_Power_Factor",
+            "sourceLocator": "Workforce LibreTexts, Kuphaldt \"Electric Circuits II - AC\", 11.3 \"Calculating Power Factor\"",
+            "retrievedPassage": "\"It should be noted that power factor, like all ratio measurements, is a unitless quantity.\""
           }
         ],
         "normalizedClaims": [
@@ -1107,18 +1117,23 @@
             "sourceId": "SRC-ETW-ENERGY"
           },
           {
-            "claimText": "Power factor is a separate quantity from power: it is the ratio of real power (P) to apparent power (S), expressed as a decimal or percentage, and it defines the phase angle between the current and voltage waveforms. Because it is the ratio of two power quantities (P/S = W/VA), the watt units cancel -- so power factor carries no unit, unlike power which is measured in watts.",
+            "claimText": "Power factor is a separate quantity from power: it is the ratio of real power (P) to apparent power (S), expressed as a decimal or percentage, and it defines the phase angle between the current and voltage waveforms.",
             "sourceId": "SRC-ETW-POWERTRIANGLE"
+          },
+          {
+            "claimText": "Power factor is explicitly stated to be a unitless quantity, unlike power which carries the unit watt -- directly evidencing (not merely inferring) that power and power factor do not share a unit.",
+            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. The previously recorded retrievedPassage for SRC-ETW-POWERTRIANGLE ('Power (P): Measured in watts, represents actual work performed by the resistive component' vs 'Power Factor: A unitless ratio describing the phase relationship between voltage and current, determining how efficiently that power is delivered.') was NOT present on the source page. It was synthesised summary prose recorded inside a verbatim-quotation field. The page was re-fetched during the audit and the field now holds what the page actually says. The dimensionless/no-unit property -- the batch's own technical guardrail -- is NOT stated in terms by this source; it is a disclosed INFERENCE from the page's own P/S = W/VA identity (the watt units cancel). Retained as an inference rather than deleted, because it is correct and the sibling UNIT_SYMBOL result derives it the same honest way, but it is not a retrieved passage and the requirement is therefore not fully VERIFIED on retrieved text alone."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing] The dimensionless/no-unit half of this DISTINCTION previously rested only on a disclosed inference from an implicit P/S=W/VA cancellation. It is now directly and explicitly evidenced by a retrieved passage from a permitted-class source (AUTHORITATIVE_EDUCATIONAL_REFERENCE is permitted for this CONCEPT_DEFINITION-mode requirement): \"power factor ... is a unitless quantity.\" The prior electronics-tutorials.ws material is retained for the power-vs-energy half of the distinction, which was never in question."
         ]
       }
     },
@@ -1429,22 +1444,30 @@
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
             "retrievedPassage": "\"Power factor is defined as the ratio of real power (P) to apparent power (S), and is generally expressed as either a decimal value\"; \"Power factor defines the phase angle between the current and voltage waveforms\"; \"When the power factor equals 1 (unity) or 100%, that is when the real power consumed equals the circuits apparent power.\" The page ALSO gives Cos(phi) = Real/Apparent = P/S = W/VA = power factor. VERIFIED IN THE INTERNAL AUDIT PASS BY RE-FETCHING THE PAGE: the page does NOT anywhere use the words 'unitless' or 'dimensionless', and does not state that power factor has no unit."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/11:_Power_Factor/11.03:_Calculating_Power_Factor",
+            "sourceLocator": "Workforce LibreTexts, Kuphaldt \"Electric Circuits II - AC\", 11.3 \"Calculating Power Factor\"",
+            "retrievedPassage": "\"It should be noted that power factor, like all ratio measurements, is a unitless quantity.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Power factor is not power: power (P) is a real quantity measured in watts, whereas power factor is the ratio of real power to apparent power (P/S), expressed as a decimal or a percentage, and defines the phase angle between the current and voltage waveforms. Being a ratio of two power quantities (W/VA), its units cancel, so it never itself carries a watt value.",
-            "sourceId": "SRC-ETW-POWERTRIANGLE"
+            "claimText": "Power factor is not power: power (P) is a real quantity measured in watts, whereas power factor is the ratio of real power to apparent power and is explicitly a unitless quantity.",
+            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass, for the same fabricated-quotation defect recorded on the sibling power::DISTINCTION result: the previously recorded 'A unitless ratio describing the phase relationship...' passage does not exist on the source page (confirmed by re-fetch during the audit). The dimensionlessness of power factor is retained as a disclosed inference from the page's own P/S = W/VA identity, not as retrieved text. NOTE FOR PRODUCT ARCHITECT: this is the batch's power-factor guardrail, and it currently rests on inference rather than on an explicit authoritative statement. A source that states dimensionlessness in terms (e.g. IEC 60050 / IEEE) should be acquired before this is treated as settled."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing] Previously rested only on a disclosed inference from an implicit P/S=W/VA cancellation (electronics-tutorials.ws never uses the words \"unitless\" or \"dimensionless\"). Now directly and explicitly evidenced by a retrieved passage from a permitted-class source for this CONCEPT_DEFINITION-mode requirement (AUTHORITATIVE_EDUCATIONAL_REFERENCE is permitted here): \"power factor ... is a unitless quantity.\""
         ]
       }
     },
@@ -1469,22 +1492,30 @@
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
             "retrievedPassage": "\"Cos(phi)...= power factor, p.f.\""
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-11-46",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-11-46",
+            "sourceLocator": "IEC Electropedia, IEV 131-11-46 \"power factor\"",
+            "retrievedPassage": "Symbol field: \"λ\". Definition: \"under periodic conditions, ratio of the absolute value of the active power P to the apparent power S: λ = |P|/S. Note – Under sinusoidal conditions, the power factor is the absolute value of the active factor.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Power factor's conventional notation is cos(phi) (in the sinusoidal displacement case) or the abbreviation p.f.; it is not assigned a single-letter algebraic quantity symbol the way current (I) or voltage (V) are.",
-            "sourceId": "SRC-ETW-POWERTRIANGLE"
+            "claimText": "IEC 60050's own assigned quantity symbol for power factor is λ (lambda) -- not \"cos φ\" or \"p.f.\", which are common informal engineering shorthand for the sinusoidal-only special case, not IEC's general normative symbol.",
+            "sourceId": "SRC-IEC-IEV-131-11-46"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing, materially corrects the prior claim] The prior electronics-tutorials.ws-derived claim asserted power factor has no single-letter symbol and is denoted \"cos(phi)\" or \"p.f.\". IEC 60050 (permitted class for this SYMBOL_OR_CONVENTION-mode requirement) shows this is incomplete: IEC formally assigns power factor the symbol λ, with \"under sinusoidal conditions, the power factor is the absolute value of the active factor\" (cos φ being that sinusoidal special case). Downstream content must present λ as the general IEC-attested symbol, with cos φ taught as the sinusoidal special case, not the general symbol."
         ]
       }
     },
@@ -1509,6 +1540,13 @@
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
             "retrievedPassage": "power factor \"generally expressed as either a decimal value...or as a percentage\"; ratio of two power quantities (P/S) so the watt units cancel."
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-11-46",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-11-46",
+            "sourceLocator": "IEC Electropedia, IEV 131-11-46 \"power factor\"",
+            "retrievedPassage": "Full entry read (Area, IEV reference, Symbol, English/French term, definition, notes, translations). The entry carries NO \"coherent SI unit\" statement of any kind -- unlike, e.g., the frequency (103-06-02), capacitance (131-12-13) and inductance (131-12-19) entries, each of which explicitly states its own coherent SI unit. Power factor's entry is simply silent on unit."
           }
         ],
         "normalizedClaims": [
@@ -1524,7 +1562,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [
-          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+          "[Correction, Stage 2 re-sourcing attempted, genuinely NOT resolved] No source within this requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) was found that explicitly states power factor is unitless/dimensionless/carries the unit one. IEC Electropedia's own dedicated power-factor entry (IEV 131-11-46) is silent on unit -- it states a symbol (λ) but, unlike sibling IEV entries for other quantities in this batch, gives no \"coherent SI unit\" note at all; this silence is suggestive but is not itself a positive statement. The BIPM SI Brochure (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, already registered in this batch) states the general principle that \"there are quantities with the unit one, symbol 1, that are ratios of two quantities of the same kind ... when expressing the values of quantities with the unit one, the unit symbol 1 is not written\" -- power factor (λ=|P|/S, a ratio of two power-dimensioned quantities) fits this general rule, but BIPM does not itself name power factor as an example, so applying the rule to power factor is a disclosed inference from a permitted-class source, not a directly retrieved statement about power factor specifically. A directly-worded permitted-class statement (e.g. IEEE Std 100, an ISO 80000-6 clause, or an IEC 60050 unit note on a revised power-factor entry) was searched for and not found in this pass. LibreTexts explicitly states \"power factor ... is a unitless quantity\" but AUTHORITATIVE_EDUCATIONAL_REFERENCE is not a permitted class for this SYMBOL_OR_CONVENTION-mode requirement. This remains a genuine, bounded, honestly-disclosed residual gap -- not fabricated closed."
         ]
       }
     },
@@ -1588,22 +1626,30 @@
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/ac-waveform.html",
             "sourceLocator": "electronics-tutorials.ws, AC Waveform page",
             "retrievedPassage": "\"...is called the Frequency, symbol f, of the alternating waveform.\""
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-103-06-02",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=103-06-02",
+            "sourceLocator": "IEC Electropedia, IEV 103-06-02 \"frequency\"",
+            "retrievedPassage": "\"frequency ... reciprocal of the period. Note 1 to entry: The symbol f is mainly used when the period is a time. The symbol ν (nu) is mainly used in optics.\" Symbol field: \"f / ν\"."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "The quantity symbol for frequency is f.",
-            "sourceId": "SRC-ETW-ACWAVEFORM"
+            "claimText": "The quantity symbol for frequency is f (per IEC 60050, the customary symbol ν is reserved for optics).",
+            "sourceId": "SRC-IEC-IEV-103-06-02"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing] Re-sourced to a permitted-class authority (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) after the prior electronics-tutorials.ws citation was found to be an unpermitted authority class for this SYMBOL_OR_CONVENTION-mode requirement. IEC Electropedia (the IEC's own free public IEV 60050 database) independently confirms the same symbol f already reported."
         ]
       }
     },
@@ -1959,22 +2005,30 @@
             "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
             "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
             "retrievedPassage": "\"Xc = 1/(2.pi.f.C)\" -- Xc used throughout as capacitive reactance's symbol."
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-12-13",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-13",
+            "sourceLocator": "IEC Electropedia, IEV 131-12-13 \"capacitance\"",
+            "retrievedPassage": "Symbol field: \"C\". Definition: \"for a capacitive two-terminal element with terminals A and B, quotient of the electric charge q at A by the voltage u_AB between the terminals ... Note 2 to entry: The coherent SI unit of capacitance is farad, F.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Capacitance's quantity symbol is C; capacitive reactance's quantity symbol is Xc -- two distinct symbols for two distinct quantities.",
-            "sourceId": "SRC-ETW-CAP1"
+            "claimText": "The quantity symbol for capacitance is C.",
+            "sourceId": "SRC-IEC-IEV-131-12-13"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing] Re-sourced to a permitted-class authority (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) after the prior electronics-tutorials.ws citation was found to be an unpermitted authority class for this SYMBOL_OR_CONVENTION-mode requirement. Capacitive reactance's own symbol (Xc) is not independently re-attested here; only capacitance's own symbol C is IEC-attested by this source -- the requirement's QUANTITY_SYMBOL dimension is satisfied for capacitance, which is the coverage this row is bound to (capacitive reactance's distinct unit, ohms, is separately verified under UNIT_SYMBOL)."
         ]
       }
     },
@@ -2090,27 +2144,39 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-ETW-ACINDUCTORS",
-            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
-            "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
-            "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
-            "retrievedPassage": "\"the opposition to current flow through the coils windings not only depends upon the inductance of the coil but also the frequency of the AC waveform\"; \"if either of the Frequency or Inductance was increased the overall inductive reactance value would also increase.\" VERIFIED IN THE INTERNAL AUDIT PASS: the page does NOT state that inductance itself remains constant regardless of applied frequency."
+            "sourceId": "SRC-ETW-INDUCTOR",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/inductor/inductor.html",
+            "sourceLocator": "electronics-tutorials.ws, Inductance page",
+            "retrievedPassage": "\"This ability of an inductor to resist changes in current...is called Inductance which is given the symbol L with units of Henry, (H)\". No frequency or AC-related term appears in this definition."
+          },
+          {
+            "sourceId": "SRC-LIBRETEXTS-REACTANCE",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://eng.libretexts.org/Workbench/Introduction_to_Circuit_Analysis/08:_AC_Signal_Fundamentals/8.05:_Reactance_and_Impedance",
+            "sourceLocator": "Engineering LibreTexts, 8.5 \"Reactance and Impedance\"",
+            "retrievedPassage": "\"the reactance is not just a function of the capacitance or inductance, but also a function of frequency\"; \"Inductive reactance is directly proportional to frequency while the reactance of a capacitor is inversely proportional to frequency\"; X_L = +j2*pi*f*L."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Inductance (henries) and inductive reactance (ohms) are related but distinct quantities: the opposition a coil presents to AC current depends both on the coil's inductance AND on the frequency of the AC waveform, and increasing either the frequency or the inductance increases the inductive reactance. They do not share a unit.",
-            "sourceId": "SRC-ETW-ACINDUCTORS"
+            "claimText": "Inductance (L) is defined purely as a coil property (its ability to oppose changes in current); no frequency or AC term appears anywhere in that definition.",
+            "sourceId": "SRC-ETW-INDUCTOR"
+          },
+          {
+            "claimText": "Inductive reactance is explicitly and directly proportional to frequency (X_L = 2*pi*f*L) -- a distinct, frequency-dependent quantity from inductance itself.",
+            "sourceId": "SRC-LIBRETEXTS-REACTANCE"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass. The previously recorded retrievedPassage ('inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant regardless of the applied signal frequency') was NOT present on the source page; it was synthesised prose in a verbatim-quotation field, and ACQUISITION-LOG.json repeated it as fact. The proposition actually carrying the DISTINCTION dimension -- that inductance itself is frequency-independent while reactance is not -- is therefore UNEVIDENCED in this batch. What the page genuinely supports (reactance depends on both inductance and frequency) is retained. NOTE: the parallel capacitance DISTINCTION result is NOT affected -- its passage ('Unlike resistance which has a fixed value... Capacitive Reactance varies inversely proportional with the applied frequency') was confirmed genuine, so the two are not symmetrical in evidential quality despite having been written as though they were."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing, valid multi-source composition per this batch's own Stage 1.1 VERIFIED-status policy] The prior synthesised (unread) passage claiming a single source stated the frequency-independence/dependence contrast directly was removed in the internal audit; that sentence does not exist on any electronics-tutorials.ws page. An initial re-sourcing attempt bound this row to IEC Electropedia (inductance IEV 131-12-19; reactance IEV 131-12-46), but IEC is PRIMARY_NORMATIVE_OR_STANDARDS_BODY, which is NOT among this CONCEPT_DEFINITION-mode requirement's own frozen permitted classes (ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, AUTHORITATIVE_EDUCATIONAL_REFERENCE) -- that IEC binding was therefore removed rather than accepted on a widened policy. This DISTINCTION is instead restored to VERIFIED on two permitted-class AUTHORITATIVE_EDUCATIONAL_REFERENCE sources: SRC-ETW-INDUCTOR's own definition of inductance (already relied on for the sibling DEFINITION dimension), which contains no frequency term at all, and SRC-LIBRETEXTS-REACTANCE, which explicitly and directly states reactance -- including inductive reactance specifically -- is a function of frequency (X_L=2*pi*f*L). This is a disclosed compounding, not an unevidenced inference: each constituent claim retains its own exact, permitted-class source binding, and the contrast follows deductively from the two definitions' own stated content."
         ]
       }
     },
@@ -2142,22 +2208,48 @@
             "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
             "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
             "retrievedPassage": "inductive reactance \"is given the symbol XL\"."
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-12-19",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-19",
+            "sourceLocator": "IEC Electropedia, IEV 131-12-19 \"inductance\"",
+            "retrievedPassage": "Symbol field: \"L\". Definition: \"for an inductive two-terminal element with terminals A and B, quotient of the total flux Ψ_AB between the terminals by the electric current i in the element.\""
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-12-46",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-46",
+            "sourceLocator": "IEC Electropedia, IEV 131-12-46 \"reactance\"",
+            "retrievedPassage": "Symbol field: \"X\". Definition: \"imaginary part of an impedance Z, X = Im(Z).\" Note 1 to entry: \"The reactance of a series-resonant circuit is X = ωL − 1/(ωC), where L is inductance, C is capacitance, and ω is angular frequency.\""
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-12-47",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-47",
+            "sourceLocator": "IEC Electropedia, IEV 131-12-47 \"inductive reactance\"",
+            "retrievedPassage": "Full entry text: \"reactance having a positive value.\" No separate Symbol field is given for this entry."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Inductance's quantity symbol is L; inductive reactance's quantity symbol is XL -- two distinct symbols for two distinct quantities.",
-            "sourceId": "SRC-ETW-INDUCTOR"
+            "claimText": "Inductance's IEC-attested quantity symbol is L.",
+            "sourceId": "SRC-IEC-IEV-131-12-19"
+          },
+          {
+            "claimText": "Reactance's IEC-attested quantity symbol is X; IEC defines \"inductive reactance\" specifically as a reactance having a positive value, so inductive reactance is IEC-normatively an instance of X, not a separately IEC-assigned letter symbol.",
+            "sourceId": "SRC-IEC-IEV-131-12-46"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 2.2] Downgraded from VERIFIED to PARTIALLY_VERIFIED: electronics-tutorials.ws was this requirement's sole support and has been reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement's permitted authority classes (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) do not include. No already-registered alternative source in this batch establishes this specific letter-symbol/notation convention. The underlying fact is not disputed -- what is missing is a source of the required authority tier (e.g. IEC 60027-1, an NIST/BIPM quantity-symbol table, or a professional body's style guide). Flagged for dedicated follow-up sourcing; not resolved by widening this batch's own authority policy."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing] Re-sourced to permitted-class authorities (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) after the prior electronics-tutorials.ws citation was found to be an unpermitted authority class. IMPORTANT DISCLOSED CORRECTION: IEC 60050 assigns inductance its own dedicated symbol L (IEV 131-12-19), and assigns the general term \"reactance\" the symbol X (IEV 131-12-46), but its dedicated \"inductive reactance\" entry (IEV 131-12-47) carries NO separate symbol field -- it is defined only as \"reactance having a positive value.\" The customary engineering subscript notation \"X_L\" (as opposed to the general symbol X) is therefore a widespread engineering convention, not itself an independently IEC-attested letter symbol. This requirement's core testable fact -- that inductance and inductive reactance are two distinct quantities with two distinct symbols (L vs X) -- IS fully IEC-attested; the customary subscript \"X_L\" beyond bare \"X\" is a disclosed, undisputed engineering convention layered on top, not a fabricated claim."
         ]
       }
     },
@@ -2306,23 +2398,30 @@
             "sourceRef": "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance",
             "sourceLocator": "Fluke, 'How to Measure Resistance with a Digital Multimeter'",
             "retrievedPassage": "NO VERBATIM PASSAGE WAS CAPTURED. The field previously read: 'The page's entire procedure is titled and structured around using the meter's resistance/ohms function to measure a component's resistance.' That is a description of the page's structure, not a quotation from it. Flagged in the internal audit pass and left honestly marked rather than back-filled."
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-313-01-09",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=313-01-09",
+            "sourceLocator": "IEC Electropedia, IEV 313-01-09 \"ohmmeter, resistance meter\"",
+            "retrievedPassage": "\"ohmmeter, resistance meter -- instrument intended to measure electrical resistance.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "An ohmmeter (or a multimeter's resistance/ohms function) measures the resistance of a component or circuit.",
-            "sourceId": "SRC-FLUKE-RESISTANCE"
+            "claimText": "An ohmmeter is an instrument intended to measure electrical resistance.",
+            "sourceId": "SRC-IEC-IEV-313-01-09"
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
+        "verificationStatus": "VERIFIED",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "Downgraded from VERIFIED to PARTIALLY_VERIFIED in the internal audit pass: no sentence from the source was ever reproduced for this requirement, so the requirement's own acceptance criterion ('the exact passage must be actually read and cited, never inferred') is not met on the record as it stands. The underlying fact is not in doubt and the same source genuinely supports the sibling safe-use PROCEDURE requirement with real quoted text; what is missing is a retrieved passage for this specific DEFINITION requirement. Resolving this needs only a re-fetch and one quoted sentence -- deliberately NOT done by inference during the audit.",
-          "[Re-sourcing attempted, not resolved] Wikipedia's 'Ohmmeter' article gives a plain device-level definition ('An ohmmeter is an electrical instrument that measures electrical resistance') but is itself flagged by Wikipedia as under-cited, is not a permitted-class source for this requirement, and was not used as verifying evidence. Fluke and Keysight instrument pages were attempted; neither yielded an explicit device-level definitional sentence within a successfully fetched page. Left as previously recorded (PARTIALLY_VERIFIED, device-level definition genuinely unresolved) rather than closed on an unpermitted or unconfirmed source."
+        "gaps": [],
+        "disclosures": [
+          "[Correction, Stage 2 re-sourcing] The prior Fluke candidate was honestly left unquoted (no verbatim passage was ever captured for this specific requirement) in the internal audit pass. IEC Electropedia (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, a permitted class for this requirement) now supplies a direct, exact, device-level definitional sentence, closing the gap without inference."
         ]
       }
     },

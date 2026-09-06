@@ -1,8 +1,8 @@
 {
   "batchId": "batch-04-electrical-quantities-and-circuit-theory",
-  "sourceCount": 28,
+  "sourceCount": 37,
   "reusedSourceCount": 4,
-  "newSourceCount": 24,
+  "newSourceCount": 33,
   "note": "22 sources were freshly acquired in this session via real web search and retrieval. 4 sources (SRC-NIST-MASS, SRC-NIST-SP811-B9, SRC-HP-RESIS, SRC-NIST-RESHALL) were registered in earlier accepted batches (Batch 02 and/or Batch 03) and are reused here; see reusedSourceIds below for the exact list. Each reused source was re-fetched and its exact passage freshly re-read in this session (not assumed from the prior normalized claim), per the task's cross-batch reuse discipline. Several sources are also reused ACROSS multiple Batch 04 requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
   "reusedSourceIds": [
     "SRC-NIST-MASS",
@@ -574,6 +574,171 @@
         "energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
       ],
       "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-103-06-02",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 103-06-02 \"frequency\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=103-06-02",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 103-06-02 \"frequency\"",
+      "supportsRequirementSuffixes": [
+        "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-131-12-13",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 131-12-13 \"capacitance\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-13",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 131-12-13 \"capacitance\"",
+      "supportsRequirementSuffixes": [
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-131-12-19",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 131-12-19 \"inductance\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-19",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 131-12-19 \"inductance\"",
+      "supportsRequirementSuffixes": [
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-131-12-46",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 131-12-46 \"reactance\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-46",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 131-12-46 \"reactance\"",
+      "supportsRequirementSuffixes": [
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-131-12-47",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 131-12-47 \"inductive reactance\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-47",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 131-12-47 \"inductive reactance\"",
+      "supportsRequirementSuffixes": [
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-131-11-46",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 131-11-46 \"power factor\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-11-46",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 131-11-46 \"power factor\"",
+      "supportsRequirementSuffixes": [
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-313-01-09",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 313-01-09 \"ohmmeter, resistance meter\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=313-01-09",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 313-01-09 \"ohmmeter, resistance meter\"",
+      "supportsRequirementSuffixes": [
+        "ohmmeter-measures-resistance::EXACT_FACT"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-PFUNITLESS",
+      "publisher": "LibreTexts (Workforce LibreTexts)",
+      "title": "Electric Circuits II - Alternating Current (Kuphaldt), 11.3 \"Calculating Power Factor\"",
+      "url": "https://workforce.libretexts.org/Bookshelves/Electronics_Technology/Electric_Circuits_II_-_Alternating_Current_(Kuphaldt)/11:_Power_Factor/11.03:_Calculating_Power_Factor",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "LibreTexts is this batch's already-accepted AUTHORITATIVE_EDUCATIONAL_REFERENCE tier (see SRC-LIBRETEXTS-SQCUBIC), permitted for CONCEPT_DEFINITION-mode requirements but not for SYMBOL_OR_CONVENTION-mode requirements.",
+      "locator": "Workforce LibreTexts, Kuphaldt \"Electric Circuits II - AC\", 11.3 \"Calculating Power Factor\"",
+      "supportsRequirementSuffixes": [
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION"
+      ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-LIBRETEXTS-REACTANCE",
+      "publisher": "Engineering LibreTexts",
+      "title": "8.5 Reactance and Impedance (Introduction to Circuit Analysis workbench)",
+      "url": "https://eng.libretexts.org/Workbench/Introduction_to_Circuit_Analysis/08:_AC_Signal_Fundamentals/8.05:_Reactance_and_Impedance",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "LibreTexts is this batch's already-accepted AUTHORITATIVE_EDUCATIONAL_REFERENCE tier (see SRC-LIBRETEXTS-SQCUBIC, SRC-LIBRETEXTS-PFUNITLESS), permitted for this CONCEPT_DEFINITION-mode requirement.",
+      "locator": "Engineering LibreTexts, 8.5 \"Reactance and Impedance\"",
+      "supportsRequirementSuffixes": [
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION"
+      ]
     }
   ],
   "correctionNote": "Corrected during the internal adversarial audit pass. Three supportsRequirementSuffixes entries were REMOVED as over-claims -- each asserted that a source supported a requirement on which it was not actually a candidate source (SRC-ETW-INDUCTOR on the inductance UNIT_SYMBOL requirement; SRC-EOLSS-ELECQUANT on the capacitance and inductance DEFINITION requirements). The register now matches the evidence results exactly.",

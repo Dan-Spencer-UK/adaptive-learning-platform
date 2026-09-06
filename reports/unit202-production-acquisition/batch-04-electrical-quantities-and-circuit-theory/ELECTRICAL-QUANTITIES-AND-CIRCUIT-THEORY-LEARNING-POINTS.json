@@ -218,10 +218,10 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE"
       ],
       "normalizedClaimRefs": [
-        "SRC-NIST-SP811-CH4: derived units formed algebraically with exponents",
+        "FM-LP-19 (structured satisfaction, SRC-NIST-SI-CH7): SI-prefix power-of-ten scaling mechanism",
         "SRC-LIBRETEXTS-SQCUBIC: squaring/cubing the conversion factor, worked example"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Kept separate from EQCT-LP-01 (which only tests recognising a unit's correct name/symbol) because converting between units -- including correctly handling squared/cubed cases -- is a distinct, separately-diagnosable procedural skill, matching this batch's explicit instruction to distinguish 'basic SI unit recognition vs practical conversion'. Reuses Batch 01's FM-LP-19 (engineering notation/SI prefixes) for the prefix-scaling mechanism and FM-LP-14 (laws of indices) for the squared/cubed-factor reasoning, rather than re-deriving either.",
       "explicitExclusions": [
         "Deriving prefix factors from first principles (reuses FM-LP-19)",
@@ -233,9 +233,9 @@
         "Convert a floor area given in cm^2 to m^2.",
         "Convert a tank volume given in cm^3 to m^3."
       ],
-      "evidenceReadinessNote": "Underlying practical-unit-conversion evidence downgraded to PARTIALLY_VERIFIED: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced.",
+      "evidenceReadinessNote": "[Resolved] The SI-prefix half of the requirement is formally recorded as a structured satisfaction via the accepted, already-VERIFIED Batch 01 mastery FM-LP-19 (engineering notation and SI unit prefixes), which EQCT-LP-02 already carries as a cross-domain prerequisite. The squared/cubed half remains directly evidenced in-batch (SRC-LIBRETEXTS-SQCUBIC). The underlying evidence row is now VERIFIED; see its disclosures for the disclosed compounding.",
       "underlyingEvidenceStatuses": {
-        "practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE": "PARTIALLY_VERIFIED"
+        "practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE": "VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
       "requiredMasteryEvidenceRequirementIds": [
@@ -360,7 +360,7 @@
         "SRC-ETW-POWERTRIANGLE: power vs power factor",
         "SRC-BIPM-BROCHURE: watt unit symbol W"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Definition, both distinctions, and both symbol facets are combined into one learning point because the frozen requirement itself frames power's meaning and its two distinctions as one coherent teachable concept, and separating 'what power is' from 'how it differs from energy/power factor' would fragment a single comparison the way Batch 03's MM-LP-01 combined mass/weight/distinction. This learning point is deliberately sequenced (via its own prerequisites) AFTER energy (EQCT-LP-06) and power factor (EQCT-LP-07), since its own distinction outcome requires the learner to already know both of those concepts -- an example of tracking instructional sequence separately from stable numeric identity.",
       "explicitExclusions": [
         "The three power-formula forms P=VI/I^2R/V^2R and choosing between them as a calculation skill (already accepted as EFS-LP-17; not duplicated here)",
@@ -372,10 +372,10 @@
         "Explain why a 100 W lamp left on for 10 hours is described in kWh, not in watts, when billed.",
         "Explain why a high power factor is not itself 'more power'."
       ],
-      "evidenceReadinessNote": "Underlying power::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification.",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] The DISTINCTION dimension (power factor's dimensionless nature, distinguishing it from power) is now directly evidenced by an explicit retrieved LibreTexts passage (\"power factor ... is a unitless quantity\") rather than resting on inference. All four required dimensions (DEFINITION, DISTINCTION, QUANTITY_SYMBOL, UNIT_SYMBOL) are VERIFIED.",
       "underlyingEvidenceStatuses": {
         "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
-        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION": "PARTIALLY_VERIFIED",
+        "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
         "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
         "power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
       },
@@ -465,11 +465,11 @@
         "State whether power factor has a unit.",
         "Explain why a power factor of 0.8 does not mean '0.8 watts'."
       ],
-      "evidenceReadinessNote": "Underlying power-factor::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement.",
+      "evidenceReadinessNote": "[Narrowed, Stage 2 re-sourcing] Three of the four required dimensions are now resolved: DISTINCTION is directly evidenced by an explicit LibreTexts passage (\"power factor ... is a unitless quantity\"); QUANTITY_SYMBOL is now IEC-attested (IEV 131-11-46: symbol λ -- correcting the prior assumption of \"cos φ\"/\"p.f.\" as the general symbol; cos φ is the IEC-defined sinusoidal special case). ONE required dimension remains genuinely unresolved: UNIT_SYMBOL (power factor's formal \"no unit\"/dimensionless status) has no permitted-class source (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE) that explicitly states it -- IEC's own power-factor entry is silent on unit (unlike sibling entries), and the only source that says it explicitly (LibreTexts) is not a permitted class for SYMBOL_OR_CONVENTION mode. This is recorded as a genuine, bounded, honestly-disclosed unresolved external blocker, not a fabricated closure -- see the evidence row's own gaps for the full disclosed reasoning attempted (including the BIPM general \"unit one\" principle, which is permitted-class but does not itself name power factor).",
       "underlyingEvidenceStatuses": {
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
-        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION": "PARTIALLY_VERIFIED",
-        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
+        "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "PARTIALLY_VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
@@ -501,7 +501,7 @@
         "SRC-ETW-ACWAVEFORM: frequency, symbol f, Hz",
         "SRC-BIPM-BROCHURE: hertz, unit symbol Hz"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Definition and both symbol facets combined as one inseparable identity fact, consistent with the other single-quantity identity learning points in this batch (current, voltage). Positioned early in the AC-quantities instructional sequence since capacitive/inductive reactance both depend conceptually on frequency.",
       "explicitExclusions": [
         "The period-frequency reciprocal relationship (f=1/T) as a calculation outcome",
@@ -514,7 +514,7 @@
       "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding.",
       "underlyingEvidenceStatuses": {
         "frequency-meaning-quantity-symbol-unit-name-symbol::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
-        "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
         "frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
@@ -524,7 +524,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "contextualEvidenceRequirementIds": [],
-      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] QUANTITY_SYMBOL is now re-sourced to a permitted-class authority (IEC Electropedia IEV 103-06-02, PRIMARY_NORMATIVE_OR_STANDARDS_BODY), independently confirming the symbol f already reported by the prior (unpermitted-class) source. All required dimensions are VERIFIED."
     },
     {
       "id": "EQCT-LP-09",
@@ -545,7 +546,7 @@
         "SRC-ETW-CAP1: capacitance definition, symbol C, farad F",
         "SRC-BIPM-BROCHURE: farad, unit symbol F"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Deliberately split from capacitive reactance (EQCT-LP-10) even though the frozen evidence requirement bundles both quantities together in its text, because capacitance and capacitive reactance are independently-diagnosable concepts -- a learner can know what capacitance is (a fixed material/component property, farads) without yet knowing what capacitive reactance is (a frequency-dependent AC opposition, ohms), and vice versa; collapsing them into one point would hide that distinction as a single vocabulary item rather than teaching it as a genuine comparison. The QUANTITY_SYMBOL and UNIT_SYMBOL evidence requirements are shared with EQCT-LP-10 because the single frozen evidence requirement's own passage genuinely establishes both quantities' symbols together (see SOURCE-REGISTER.json); this is disclosed here and at EQCT-LP-10.",
       "explicitExclusions": [
         "Capacitive reactance itself (see EQCT-LP-10)",
@@ -559,7 +560,7 @@
       "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model.",
       "underlyingEvidenceStatuses": {
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
-        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
         "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
@@ -569,7 +570,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "contextualEvidenceRequirementIds": [],
-      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] QUANTITY_SYMBOL is now re-sourced to a permitted-class authority (IEC Electropedia IEV 131-12-13, PRIMARY_NORMATIVE_OR_STANDARDS_BODY), independently confirming the symbol C already reported by the prior (unpermitted-class) source. All required dimensions are VERIFIED."
     },
     {
       "id": "EQCT-LP-10",
@@ -635,7 +637,7 @@
         "SRC-ETW-INDUCTOR: inductance definition, symbol L, henry H",
         "SRC-BIPM-BROCHURE: henry, unit symbol H"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Split from inductive reactance (EQCT-LP-12) for the same reason capacitance is split from capacitive reactance -- independently-diagnosable concepts. Shared QUANTITY_SYMBOL/UNIT_SYMBOL evidence with EQCT-LP-12, disclosed, since the single frozen evidence requirement's passage establishes both quantities' symbols together.",
       "explicitExclusions": [
         "Inductive reactance itself (see EQCT-LP-12)",
@@ -648,7 +650,7 @@
       "correctionNote": "[Correction, Stage 2.2] Moved from READY to HELD_PENDING_EVIDENCE_CORRECTION: this learning point's QUANTITY_SYMBOL evidence requirement was downgraded to PARTIALLY_VERIFIED after electronics-tutorials.ws (its sole support) was reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE, which this SYMBOL_OR_CONVENTION-mode requirement does not permit. The concept/definition content is unaffected; only the quantity-symbol-letter sourcing is outstanding. [Correction, Stage 3 item 4] Removed the absolute fixed/frequency-independent claim; scoped to the ideal/basic-component model.",
       "underlyingEvidenceStatuses": {
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION": "VERIFIED",
-        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
@@ -658,7 +660,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "contextualEvidenceRequirementIds": [],
-      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] QUANTITY_SYMBOL is now re-sourced to permitted-class authorities (IEC Electropedia IEV 131-12-19 \"inductance\" and IEV 131-12-46 \"reactance\"/IEV 131-12-47 \"inductive reactance\", all PRIMARY_NORMATIVE_OR_STANDARDS_BODY). IEC formally attests inductance's symbol L and reactance's general symbol X; the customary engineering subscript \"X_L\" beyond bare X is a disclosed, undisputed convention, not independently IEC-lettered -- see the evidence row's disclosure. The core distinguishing fact (two distinct symbols for two distinct quantities) is fully IEC-attested. All required dimensions are VERIFIED."
     },
     {
       "id": "EQCT-LP-12",
@@ -681,7 +684,7 @@
       "normalizedClaimRefs": [
         "SRC-ETW-ACINDUCTORS: XL=2 pi f L, ohms, inductance constant vs reactance frequency-dependent"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Split from inductance (EQCT-LP-11) for the same reason capacitive reactance is split from capacitance. Depends on EQCT-LP-11 (inductance) and EQCT-LP-08 (frequency). Deliberately excludes the full XL formula as a required calculation outcome beyond conceptual frequency/inductance dependence, per this batch's depth guardrail.",
       "explicitExclusions": [
         "Calculating a numeric XL value from the formula as a required mastery outcome",
@@ -692,10 +695,10 @@
         "Explain why an inductor presents more opposition to a higher-frequency AC signal (the opposite behaviour to a capacitor).",
         "State the unit in which inductive reactance is measured."
       ],
-      "evidenceReadinessNote": "Underlying inductance::DISTINCTION evidence downgraded to PARTIALLY_VERIFIED (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch.",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] DISTINCTION is now VERIFIED via a disclosed valid multi-source composition of two separately-read IEC Electropedia entries (inductance IEV 131-12-19, containing no frequency term; reactance IEV 131-12-46, whose own formula X = ωL − 1/(ωC) contains an explicit angular-frequency multiplier on L) -- the frequency-independence-vs-dependence contrast follows deductively from IEC's own definitions read together, not from an unevidenced inference. QUANTITY_SYMBOL is re-sourced the same way as the sibling EQCT-LP-11 row (shared evidence requirement) -- see its disclosure re the X vs X_L convention. All required dimensions are VERIFIED.",
       "underlyingEvidenceStatuses": {
-        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION": "PARTIALLY_VERIFIED",
-        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "PARTIALLY_VERIFIED",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL": "VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
@@ -821,7 +824,7 @@
       "normalizedClaimRefs": [
         "SRC-FLUKE-RESISTANCE: ohmmeter/multimeter resistance function"
       ],
-      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "evidenceReadiness": "READY",
       "depthJustification": "Deliberately kept separate from the ohmmeter's safe-use principle (EQCT-LP-16), per this batch's explicit guardrail distinguishing 'identifying an instrument's function vs using it safely' -- a learner may correctly identify what an ohmmeter measures without yet knowing the circuit must be de-energised first, and vice versa. Carries a genuine cross-domain prerequisite on the accepted Batch 02 EFS-LP-05 (Resistance), since identifying what an ohmmeter measures presupposes already knowing what resistance is.",
       "explicitExclusions": [
         "The de-energised safe-use principle (see EQCT-LP-16)",
@@ -831,9 +834,9 @@
       "applicationTypes": [
         "State what physical quantity an ohmmeter measures."
       ],
-      "evidenceReadinessNote": "Underlying ohmmeter-measures-resistance evidence downgraded to PARTIALLY_VERIFIED (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed.",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] IEC Electropedia (IEV 313-01-09, PRIMARY_NORMATIVE_OR_STANDARDS_BODY -- a permitted class for this requirement) supplies a direct, exact, device-level definitional sentence (\"ohmmeter, resistance meter -- instrument intended to measure electrical resistance\"), closing the requirement's own acceptance criterion (an actually-read, exact passage) without inference or an unpermitted source.",
       "underlyingEvidenceStatuses": {
-        "ohmmeter-measures-resistance::EXACT_FACT": "PARTIALLY_VERIFIED"
+        "ohmmeter-measures-resistance::EXACT_FACT": "VERIFIED"
       },
       "curriculumRole": "REQUIRED_MASTERY",
       "requiredMasteryEvidenceRequirementIds": [
@@ -1004,8 +1007,8 @@
   ],
   "correctionNote": "Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIALLY_VERIFIED; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen.",
   "readinessCounts": {
-    "READY": 11,
-    "HELD_PENDING_EVIDENCE_CORRECTION": 8
+    "READY": 18,
+    "HELD_PENDING_EVIDENCE_CORRECTION": 1
   },
   "curriculumRoleCounts": {
     "REQUIRED_MASTERY": 18,

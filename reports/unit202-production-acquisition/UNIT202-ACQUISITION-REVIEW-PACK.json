@@ -26,8 +26,8 @@
     "scopeNote": "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
     "wholeUnit202": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 187,
-        "PARTIALLY_VERIFIED": 21
+        "VERIFIED": 196,
+        "PARTIALLY_VERIFIED": 12
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -35,8 +35,8 @@
     },
     "batches0406Only": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 115,
-        "PARTIALLY_VERIFIED": 21
+        "VERIFIED": 124,
+        "PARTIALLY_VERIFIED": 12
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -63,8 +63,8 @@
       "requirementCount": 28
     },
     "batch-04": {
-      "VERIFIED": 47,
-      "PARTIALLY_VERIFIED": 10,
+      "VERIFIED": 56,
+      "PARTIALLY_VERIFIED": 1,
       "STRUCTURALLY_SATISFIED": 0,
       "RETIRED_OUT_OF_SCOPE": 0,
       "requirementCount": 57
@@ -89,16 +89,16 @@
     "wholeUnit202": {
       "total": 133,
       "readinessTotals": {
-        "READY": 115,
-        "HELD_PENDING_EVIDENCE_CORRECTION": 16,
+        "READY": 122,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 9,
         "RETIRED_OUT_OF_SCOPE": 2
       }
     },
     "batches0406Only": {
       "total": 70,
       "readinessTotals": {
-        "READY": 52,
-        "HELD_PENDING_EVIDENCE_CORRECTION": 16,
+        "READY": 59,
+        "HELD_PENDING_EVIDENCE_CORRECTION": 9,
         "RETIRED_OUT_OF_SCOPE": 2
       }
     },
@@ -143,8 +143,8 @@
       "batch-04": {
         "count": 19,
         "readiness": {
-          "READY": 11,
-          "HELD_PENDING_EVIDENCE_CORRECTION": 8
+          "READY": 18,
+          "HELD_PENDING_EVIDENCE_CORRECTION": 1
         },
         "curriculumRole": {
           "REQUIRED_MASTERY": 18,
@@ -192,6 +192,13 @@
     ]
   },
   "crossBatchSatisfaction": [
+    {
+      "batch": "batch-04",
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE",
+      "satisfiedByExistingLearningPointIds": [
+        "FM-LP-19"
+      ]
+    },
     {
       "batch": "batch-04",
       "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistivity::CONCEPT_DEFINITION::DEFINITION",
