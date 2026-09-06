@@ -2,7 +2,14 @@
   "ledgerId": "UNIT202-CORRECTION-AMENDMENT-LEDGER",
   "purpose": "Machine-readable trace of every original evidence requirement affected by this bounded correction pass, per correction category: dimension correction, source-authority correction, structural reuse, representative-exemplar transformation, retirement from canonical mastery, or requirement-ID change. The original 213-requirement set is fully traceable through this ledger even though the corrected production set has a different count.",
   "generatedBy": "Manual compilation by the correction pass itself (this is not a re-runnable generator output); cross-checked against the batch EVIDENCE-RESULTS.json/LEARNING-POINTS.json files and packages/technical-evidence-engine.",
-  "dispositionVocabulary": ["RETAINED", "CORRECTED_IN_PLACE", "STRUCTURALLY_SATISFIED", "TRANSFORMED_TO_EXEMPLAR", "RETIRED_OUT_OF_SCOPE"],
+  "dispositionVocabulary": [
+    "RETAINED",
+    "CORRECTED_IN_PLACE",
+    "STRUCTURALLY_SATISFIED",
+    "TRANSFORMED_TO_EXEMPLAR",
+    "RETIRED_OUT_OF_SCOPE",
+    "REQUIREMENT_ID_MIGRATED"
+  ],
   "entries": [
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE",
@@ -173,7 +180,9 @@
       "reason": "Stage 4 items 1 and 2."
     },
     {
-      "evidenceRequirementIdGroup": ["EMI-LP-17/EMI-LP-18 rotation-model wording (batch-05)"],
+      "evidenceRequirementIdGroup": [
+        "EMI-LP-17/EMI-LP-18 rotation-model wording (batch-05)"
+      ],
       "category": "INTERNAL_CONSISTENCY",
       "disposition": "CORRECTED_IN_PLACE",
       "before": "EMI-LP-17 taught a rotating loop/armature model; EMI-LP-18 described a 'rotating-magnet alternator' -- an internal inconsistency",
@@ -199,17 +208,294 @@
       "before": "electronics-tutorials.ws classified AUTHORITATIVE_TECHNICAL_REFERENCE, load-bearing",
       "after": "Reclassified AUTHORITATIVE_EDUCATIONAL_REFERENCE; 6 results rebound to SRC-EOLSS-ELECQUANT, 2 to SRC-BIPM-BROCHURE, 11 CONCEPT_DEFINITION-mode results unaffected, 5 SYMBOL_OR_CONVENTION-mode results honestly downgraded to PARTIALLY_VERIFIED with a disclosed remaining-gap note",
       "reason": "Stage 2.2."
+    },
+    {
+      "evidenceRequirementIdGroup": [
+        "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+        "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE"
+      ],
+      "batch": "batch-06",
+      "category": "REQUIREMENT_ID_MIGRATION",
+      "disposition": "REQUIREMENT_ID_MIGRATED",
+      "before": "ID/mode ER::...::<name>::EXACT_FACT, requiredCoverageDimensions=[DEFINITION], authority classes including PRIMARY_NORMATIVE_OR_STANDARDS_BODY and GOVERNMENT_OR_REGULATOR.",
+      "after": "ID/mode ER::...::<name>::OPERATING_PRINCIPLE, requiredCoverageDimensions=[OPERATING_PRINCIPLE], authority classes ACADEMIC_OR_RESEARCH_INSTITUTION / ORIGINAL_MANUFACTURER_OR_VENDOR / AUTHORITATIVE_TECHNICAL_REFERENCE. Of the fourteen, thirteen rebind cleanly (an already-cited candidate falls within the corrected permitted classes); one (inverter) had its sole prior candidate (US DOE, GOVERNMENT_OR_REGULATOR) fall outside the corrected classes and was re-sourced to an AUTHORITATIVE_TECHNICAL_REFERENCE engineering publication (Wevolver).",
+      "reason": "Regenerated the committed plan from the Unit-202 adapter (CC-24 Correction A), which had already adopted the fourteen AC6.2 OPERATING_PRINCIPLE targets at the source-code level but was never reconciled into the frozen plan Batches 04-06 were actually acquired against. See requirementIdMigrations for the full old-ID -> new-ID trace."
+    },
+    {
+      "evidenceRequirementIdGroup": [
+        "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION",
+        "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
+        "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION",
+        "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION",
+        "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
+        "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION"
+      ],
+      "batch": "batch-06",
+      "category": "REQUIREMENT_ID_MIGRATION",
+      "disposition": "REQUIREMENT_ID_MIGRATED",
+      "before": "ID/mode ER::...::<name>::EXACT_FACT, requiredCoverageDimensions=[DEFINITION].",
+      "after": "ID/mode ER::...::<name>::APPLICATION_FUNCTION, requiredCoverageDimensions=[APPLICATION_FUNCTION]. Of the six, four rebind cleanly; two (security-alarms, and telephones which was already PARTIALLY_VERIFIED before this pass and is unaffected in status) needed re-sourcing/re-adjudication because every previously-cited candidate (UK police handbook, Ofcom, BSI) was GOVERNMENT_OR_REGULATOR or PRIMARY_NORMATIVE_OR_STANDARDS_BODY, neither a permitted class for the corrected mode; security-alarms was re-sourced to two ORIGINAL_MANUFACTURER_OR_VENDOR sources (Bosch, Honeywell).",
+      "reason": "Regenerated the committed plan from the Unit-202 adapter (CC-24 Correction A), which had already adopted the six AC6.1 APPLICATION_FUNCTION targets at the source-code level but was never reconciled into the frozen plan. See requirementIdMigrations for the full old-ID -> new-ID trace."
+    },
+    {
+      "evidenceRequirementIdGroup": [
+        "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE",
+        "ER::provisional::unit202::electromagnetism-and-induction::fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE"
+      ],
+      "batch": "batch-05",
+      "category": "SOURCE_AUTHORITY_CORRECTION",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "sourceAuthorityClasses=[GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR] recorded in the batch result, stale relative to the adapter.",
+      "after": "sourceAuthorityClasses widened (additively) to include ACADEMIC_OR_RESEARCH_INSTITUTION and AUTHORITATIVE_EDUCATIONAL_REFERENCE, propagating the same risk-based directional-rule authority policy already applied to the right-hand grip rule and the dot-cross-page-convention. Purely additive: no existing candidate source is orphaned by this change.",
+      "reason": "Plan regeneration surfaced that the two Fleming rules never received the widened directional-rule authority policy despite it being adopted for their sibling grip-rule target; corrected for consistency."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "category": "SOURCE_PROVENANCE_CORRECTION",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "The holding-current turn-off condition was asserted as an established power-electronics fact \"independent of\" the cited HyperPhysics source, whose own wording (\"conducts until the applied AC voltage reaches zero\") was retained as the bound source for the surrounding claim.",
+      "after": "The holding-current claim is now bound to a real, directly-read passage in Littelfuse/Teccor AN1002 (\"Gating, Latching, and Holding of SCRs and Triacs\"), page 7 (\"the SCR remains on until it is turned off when anode-to-cathode current drops below holding current\") and page 9's \"Holding Current of SCRs and Triacs\" section and Figure AN1002.6 discussion (\"the device stays on for the remainder of the half cycle until the principal current falls below the holding current level\"). HyperPhysics's imprecise voltage-zero wording is retained only as a disclosed rejected formulation (result.rejectedFormulations), not as the bound source.",
+      "reason": "Product Architect instruction: do not assert a correction independent of any source; retrieve and bind the claim to a real, permitted-class passage that actually supports it."
+    },
+    {
+      "evidenceRequirementIdGroup": [
+        "motor-bridge-rectifier-converts-ac-to-dc::EXACT_FACT (batch-06)",
+        "thermistor-basic-operating-principle::EXACT_FACT (batch-06)",
+        "motional-induced-emf-causal-concept::RELATIONSHIP (batch-05)",
+        "motor-effect::EXACT_FACT (batch-05)",
+        "resistivity-meaning-...::SYMBOL_OR_CONVENTION::UNIT_SYMBOL (batch-04)"
+      ],
+      "category": "STATUS_VOCABULARY_CORRECTION",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "verificationStatus recorded as VERIFIED while the record's own gaps array simultaneously asserted the opposite in as many words (e.g. \"Status is therefore PARTIALLY_VERIFIED, not VERIFIED.\") -- an internal self-contradiction left behind by an earlier partial edit.",
+      "after": "VERIFIED retained (each is genuine multi-source or terminology-equivalence composition where every atomic constituent claim carries its own exact, separate source binding -- Stage 1.1/2.1 doctrine, disclosed synthesis is not by itself grounds for downgrade). The self-contradictory \"restored to VERIFIED\" / \"therefore PARTIALLY_VERIFIED\" gaps text is removed; the genuine, still-true disclosures (compounding, terminology equivalence, scope boundaries) are preserved under result.disclosures.",
+      "reason": "Product Architect instruction (Section 2): correct false-green/contradictory records by making status, gaps and disclosures agree, moving resolved historical audit narrative out of active gaps."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "batch": "batch-05",
+      "category": "HARD_REVERIFICATION",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "verificationStatus VERIFIED while result.gaps stated \"Status is therefore PARTIALLY_VERIFIED: the complete labelled single-loop alternator rests on a disclosed compounding of two figures from different sources.\"",
+      "after": "Genuinely re-adjudicated (not merely re-labelled) to PARTIALLY_VERIFIED. No source within the permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, PROFESSIONAL_BODY) shows one diagram both explicitly captioned single-loop AND fully labelled with slip rings/brushes: DOE HDBK-1011-3 shows the correct topology but a multi-turn winding; the academic Ellingson figure that IS captioned single-loop is out of permitted class and lacks slip rings/brushes. A downstream authored-and-validated diagram dependency is recorded against EMI-LP-17 rather than inventing a merged figure.",
+      "reason": "Product Architect instruction (Section 2, \"Simple single-loop generator\"): distinguish the elementary single-loop model from multi-turn/rotating-field arrangements; retain PARTIALLY_VERIFIED and represent a downstream authored-diagram dependency rather than falsely claim VERIFIED."
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE",
+      "batch": "batch-04",
+      "category": "DIMENSION_CORRECTION",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "The batch result still carried requiredCoverageDimensions=[PROCEDURE, CALCULATION_METHOD] with CALCULATION_METHOD recorded unresolved (status PARTIALLY_VERIFIED), even though the regenerated plan's ACQ-040 requirement has already been corrected to requiredCoverageDimensions=[SAFE_USE] only -- a plan/result mismatch, not a genuine evidence gap.",
+      "after": "requiredCoverageDimensions corrected to [SAFE_USE] in the result to match the plan; status corrected to VERIFIED (the de-energisation/charged-capacitor safety content was always fully evidenced by the Fluke source -- there was never a real CALCULATION_METHOD gap for a safe-use principle).",
+      "reason": "This ID was already listed as 'CORRECTED_IN_PLACE' in this ledger from the previous pass, but the fix was never actually propagated from the plan into the batch-04 EVIDENCE-RESULTS.json record itself. Completed in this pass."
+    },
+    {
+      "evidenceRequirementIdGroup": [
+        "inverter-basic-operating-principle::OPERATING_PRINCIPLE (batch-06)",
+        "security-alarms-application-category-function::APPLICATION_FUNCTION (batch-06)",
+        "energy-meter-measures-integrates-electrical-energy::EXACT_FACT (batch-04)"
+      ],
+      "category": "SOURCE_ACQUISITION",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "Genuine unresolved gaps: inverter and security-alarms lost their sole/only in-class candidates to the CC-24 authority-class narrowing (see requirementIdMigrations); the energy-meter's sole source (NISTIR 8248) stated only that watt-hour meters measure energy, with no statement of an integration/accumulation mechanism.",
+      "after": "Bounded re-sourcing pass closed all three: inverter -> Wevolver (AUTHORITATIVE_TECHNICAL_REFERENCE) DC-to-AC switching-conversion definition; security-alarms -> Bosch/Honeywell (ORIGINAL_MANUFACTURER_OR_VENDOR) basic detect-and-alert purpose; energy-meter -> Instrumentation Tools (AUTHORITATIVE_TECHNICAL_REFERENCE) power-integration-over-time passage, explicitly contrasted with a wattmeter's instantaneous reading.",
+      "reason": "Product Architect instruction (Section 3): perform a bounded, serious re-sourcing pass rather than either inventing a source or leaving a closeable gap."
+    },
+    {
+      "evidenceRequirementIdGroup": [
+        "power-factor-meaning-...::SYMBOL_OR_CONVENTION (batch-04, x2)",
+        "frequency-meaning-...::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL (batch-04)",
+        "capacitance-and-capacitive-reactance-meaning-...::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL (batch-04)",
+        "inductance-and-inductive-reactance-meaning-...::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL (batch-04)",
+        "ohmmeter-measures-resistance::EXACT_FACT (batch-04)",
+        "fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE finger-mapping text (batch-05)"
+      ],
+      "category": "SOURCE_ACQUISITION_ATTEMPTED_NOT_RESOLVED",
+      "disposition": "RETAINED",
+      "before": "PARTIALLY_VERIFIED / SOURCE_GAP, no source of the required permitted authority tier (PRIMARY_NORMATIVE_OR_STANDARDS_BODY / PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE for the symbol items; similar constraints for the other two) found.",
+      "after": "A genuine, serious re-sourcing attempt was made for each (see result.gaps for the specific sources tried and why each fell short -- e.g. Kuphaldt's \"Lessons in Electric Circuits\" is the same tutorial-textbook tier already excluded via electronics-tutorials.ws; Wikipedia is uncited and not itself a permitted-class source; the Hughes textbook citation for Fleming's right-hand rule could not be directly read). Status deliberately left unchanged rather than widening authority policy or accepting an unread citation merely to manufacture a green result.",
+      "reason": "Product Architect instruction (Section 3): \"Do not widen authority policy merely to manufacture a green result. A legitimate unresolved partial result is acceptable and more useful than false verification.\""
+    },
+    {
+      "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
+      "batch": "batch-06",
+      "category": "IEC_PREVIEW_VERIFICATION",
+      "disposition": "CORRECTED_IN_PLACE",
+      "before": "This pass's brief asserted that the IEC 60617 free preview 'publicly exposes current symbol identities and titles' for six specific numbered entries (S00641, S00652, S00659, S00684, S01919, S01920).",
+      "after": "Independently re-verified by direct fetch and by targeted web search/Wikipedia cross-check: the free preview's 'General description' page does explain the per-symbol data model (an identity number in the format \"Snnnnn\", Name, Alternative names, Status level, etc) and its 'Introduction' page states the database holds ~1900 symbols -- genuinely more than a bare welcome page. However, none of the six specific numbered entries named in the brief could be found actually visible anywhere on IEC's free pages; the six thumbnails on the preview page's own chrome are unlabelled, and the search/categorised-view functions are gated behind a password login. The result record now states precisely what was and was not independently confirmed, rather than the brief's more specific (and, on direct verification, unconfirmed) claim.",
+      "reason": "Product Architect instruction: 'Use only what is actually visible and read.' Independent verification did not confirm the specific symbol identities the brief anticipated; the correction reports the more limited, actually-verified finding rather than either silently complying with or silently contradicting the brief."
     }
   ],
   "notCorrectedInThisPass_flaggedForFollowUp": [
     {
-      "description": "CC-24 Correction A (six AC6.1 APPLICATION_FUNCTION + fourteen AC6.2 OPERATING_PRINCIPLE targets) and the directional-rule academic-authority widening were adopted in the Unit-202 adapter's source code at various past points but were never propagated into the committed frozen plan that Batches 04-06 were actually acquired against. Batch 06's ~20 affected results and the two Fleming-rule results in Batch 05 currently carry the OLDER, narrower authority-class lists and (for the ~20) an EXACT_FACT mode rather than the corrected APPLICATION_FUNCTION/OPERATING_PRINCIPLE modes.",
-      "whyNotCorrectedHere": "Correcting the canonical IDs/modes for the ~20 Batch 06 targets would silently orphan real, already-completed acquisition work and require re-verifying authority-class compliance under the corrected, more restrictive modes -- a genuine re-acquisition task, not a bounded correction. This was deliberately treated as a separately-flagged, out-of-scope discovery (see the review pack's remainingProductArchitectQuestions) rather than acted on unilaterally.",
-      "affectedRequirementIdPrefixes": ["capacitor-basic-operating-principle", "diac-basic-operating-principle", "dimmer-switches-application-category-function", "diode-basic-operating-principle", "heating-boiler-controls-application-category-function", "inverter-basic-operating-principle", "ldr-light-dependent-resistor-basic-operating-principle", "led-basic-operating-principle", "motor-control-application-category-function", "photodiode-basic-operating-principle", "rectifier-basic-operating-principle", "resistor-basic-operating-principle", "security-alarms-application-category-function", "telephones-application-category-function", "thermistor-basic-operating-principle", "thyristor-scr-basic-operating-principle", "transistor-basic-operating-principle", "triac-basic-operating-principle", "wireless-control-systems-application-category-function", "zener-diode-basic-operating-principle", "fleming-left-hand-rule", "fleming-right-hand-generator-rule"]
-    },
-    {
       "description": "Stage 5 depth-reduction items 11-17 (legacy PSTN framing, master/extension-socket trim, security-alarm application depth, dimmer/heating/motor-control conceptual-only framing) were reviewed at a high level; the telephone/master-socket-specific trims (items 15-16) were not individually re-edited in this pass.",
       "whyNotCorrectedHere": "Time-bounded prioritisation within this single correction pass; flagged for a short, narrowly-scoped follow-up rather than left silently unaddressed."
+    },
+    {
+      "description": "Stage 5 depth-reduction items 15-16 (telephone/master-socket-specific trims) were flagged in the previous pass as not individually re-edited.",
+      "status": "RESOLVED_IN_THIS_PASS",
+      "resolution": "EDA-LP-26, EDA-LP-27 and EDA-LP-28 have now been trimmed to early-stage depth: statutory legal definitions and provider-migration detail removed from EDA-LP-26; full contact/IDC tables and cable specification removed from EDA-LP-27; exact ringing/line-test figures removed from EDA-LP-28. See the corresponding CORRECTED_IN_PLACE-style entries in this ledger's notes above (recorded at the learning-point level rather than as individual evidence-requirement entries, since no evidence-requirement ID or status changed -- only taught depth)."
+    }
+  ],
+  "requirementIdMigrations": [
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::capacitor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::dimmer-switches-application-category-function::APPLICATION_FUNCTION",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.1 application-category/function target regenerated from the adapter as APPLICATION_FUNCTION mode (requiredCoverageDimensions=[APPLICATION_FUNCTION]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::heating-boiler-controls-application-category-function::APPLICATION_FUNCTION",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.1 application-category/function target regenerated from the adapter as APPLICATION_FUNCTION mode (requiredCoverageDimensions=[APPLICATION_FUNCTION]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::inverter-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::ldr-light-dependent-resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::led-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::motor-control-application-category-function::APPLICATION_FUNCTION",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.1 application-category/function target regenerated from the adapter as APPLICATION_FUNCTION mode (requiredCoverageDimensions=[APPLICATION_FUNCTION]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::photodiode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::rectifier-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::resistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarms-application-category-function::APPLICATION_FUNCTION",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.1 application-category/function target regenerated from the adapter as APPLICATION_FUNCTION mode (requiredCoverageDimensions=[APPLICATION_FUNCTION]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephones-application-category-function::APPLICATION_FUNCTION",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.1 application-category/function target regenerated from the adapter as APPLICATION_FUNCTION mode (requiredCoverageDimensions=[APPLICATION_FUNCTION]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thermistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::thyristor-scr-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::transistor-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::triac-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::wireless-control-systems-application-category-function::APPLICATION_FUNCTION",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.1 application-category/function target regenerated from the adapter as APPLICATION_FUNCTION mode (requiredCoverageDimensions=[APPLICATION_FUNCTION]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    },
+    {
+      "oldEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::EXACT_FACT",
+      "newEvidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::zener-diode-basic-operating-principle::OPERATING_PRINCIPLE",
+      "batch": "batch-06",
+      "reason": "CC-24 Correction A: AC6.2 operating-principle target regenerated from the adapter as OPERATING_PRINCIPLE mode (requiredCoverageDimensions=[OPERATING_PRINCIPLE]) in place of the stale plan's generic EXACT_FACT/[DEFINITION] treatment.",
+      "authorityClassChange": "Narrowed from [PRIMARY_NORMATIVE_OR_STANDARDS_BODY, GOVERNMENT_OR_REGULATOR, ACADEMIC_OR_RESEARCH_INSTITUTION, AUTHORITATIVE_TECHNICAL_REFERENCE] to [ACADEMIC_OR_RESEARCH_INSTITUTION, ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE] (order varies by target); every existing candidate source was rechecked against the new permitted set before being rebound."
+    }
+  ],
+  "processAuditNotes": [
+    {
+      "date": "2026-09-06",
+      "note": "A prior correction pass is recorded to have caused five formerly reported clean-room modifications to disappear from `git status` while using `git stash`. This pass did not use `git stash`, `git reset`, `git checkout --`, `git restore`, or `git clean` at any point, and did not attempt to recreate, guess at, or otherwise reconstruct the lost modifications -- per Product Architect instruction, this is recorded as a process-audit finding only."
     }
   ]
 }
