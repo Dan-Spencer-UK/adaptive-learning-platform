@@ -9,14 +9,25 @@
     "historicalOriginalCount": 213,
     "correctedFrozenPlanCount": 211,
     "note": "The original 213-requirement set (historicalOriginalCount) remains fully traceable: 2 requirements (both in batch-05, the AC-generation-calculations and sine-wave-conversion integration targets) were converted to structural satisfactions by the corrected generic planner and no longer appear as independent plan entries; every other original requirement retains its identity. See the amendment ledger for the full per-requirement disposition trace.",
-    "totalAccountedForAcrossBatches": 213
+    "totalAccountedForAcrossBatches": 213,
+    "requiredVsContext": {
+      "scopeNote": "Derived mechanically from the plan's own acquisitionPriority field (never hand-asserted). The two historical structural-satisfaction integration targets are counted as REQUIRED (see source comment). REQUIRED + OPTIONAL_CONTEXT always sums to the scope's own requirementCount.",
+      "wholeUnit202": {
+        "REQUIRED": 198,
+        "OPTIONAL_CONTEXT": 15
+      },
+      "batches0406Only": {
+        "REQUIRED": 127,
+        "OPTIONAL_CONTEXT": 14
+      }
+    }
   },
   "dispositionTotals": {
     "scopeNote": "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
     "wholeUnit202": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 188,
-        "PARTIALLY_VERIFIED": 20
+        "VERIFIED": 187,
+        "PARTIALLY_VERIFIED": 21
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -24,8 +35,8 @@
     },
     "batches0406Only": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 116,
-        "PARTIALLY_VERIFIED": 20
+        "VERIFIED": 115,
+        "PARTIALLY_VERIFIED": 21
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -66,15 +77,15 @@
       "requirementCount": 44
     },
     "batch-06": {
-      "VERIFIED": 30,
-      "PARTIALLY_VERIFIED": 7,
+      "VERIFIED": 29,
+      "PARTIALLY_VERIFIED": 8,
       "STRUCTURALLY_SATISFIED": 0,
       "RETIRED_OUT_OF_SCOPE": 3,
       "requirementCount": 40
     }
   },
   "learningPoints": {
-    "scopeNote": "wholeUnit202 sums all six batches; batches0406Only sums only the unfrozen batches. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
+    "scopeNote": "wholeUnit202 sums all six batches; batches0406Only sums only the unfrozen batches. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness, curriculum role or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
     "wholeUnit202": {
       "total": 133,
       "readinessTotals": {
@@ -91,12 +102,26 @@
         "RETIRED_OUT_OF_SCOPE": 2
       }
     },
+    "curriculumRoleNote": "REQUIRED_MASTERY / CONTEXTUAL_SUPPORT_ONLY / MIXED_REQUIRED_AND_CONTEXT, derived mechanically per learning point from the plan's acquisitionPriority partition of its own evidenceRequirementIds. Only recorded for Batches 04-06 (curriculumRole is a Stage-6 field not retrofitted onto the frozen Batches 01-03).",
+    "curriculumRoleTotals": {
+      "wholeUnit202": {
+        "REQUIRED_MASTERY": 59,
+        "CONTEXTUAL_SUPPORT_ONLY": 7,
+        "MIXED_REQUIRED_AND_CONTEXT": 4
+      },
+      "batches0406Only": {
+        "REQUIRED_MASTERY": 59,
+        "CONTEXTUAL_SUPPORT_ONLY": 7,
+        "MIXED_REQUIRED_AND_CONTEXT": 4
+      }
+    },
     "byBatch": {
       "batch-01": {
         "count": 25,
         "readiness": {
           "READY": 25
         },
+        "curriculumRole": {},
         "identityStatus": "ACCEPTED_AND_FROZEN"
       },
       "batch-02": {
@@ -104,6 +129,7 @@
         "readiness": {
           "READY": 20
         },
+        "curriculumRole": {},
         "identityStatus": "ACCEPTED_AND_FROZEN"
       },
       "batch-03": {
@@ -111,30 +137,44 @@
         "readiness": {
           "READY": 18
         },
+        "curriculumRole": {},
         "identityStatus": "ACCEPTED_AND_FROZEN"
       },
       "batch-04": {
         "count": 19,
         "readiness": {
-          "READY": 9,
-          "HELD_PENDING_EVIDENCE_CORRECTION": 10
+          "READY": 11,
+          "HELD_PENDING_EVIDENCE_CORRECTION": 8
+        },
+        "curriculumRole": {
+          "REQUIRED_MASTERY": 18,
+          "CONTEXTUAL_SUPPORT_ONLY": 1
         },
         "identityStatus": "PROPOSED_FOR_PA_REVIEW"
       },
       "batch-05": {
         "count": 22,
         "readiness": {
-          "READY": 21,
-          "HELD_PENDING_EVIDENCE_CORRECTION": 1
+          "READY": 20,
+          "HELD_PENDING_EVIDENCE_CORRECTION": 2
+        },
+        "curriculumRole": {
+          "REQUIRED_MASTERY": 20,
+          "CONTEXTUAL_SUPPORT_ONLY": 2
         },
         "identityStatus": "PROPOSED_FOR_PA_REVIEW"
       },
       "batch-06": {
         "count": 29,
         "readiness": {
-          "READY": 22,
-          "HELD_PENDING_EVIDENCE_CORRECTION": 5,
+          "READY": 21,
+          "HELD_PENDING_EVIDENCE_CORRECTION": 6,
           "RETIRED_OUT_OF_SCOPE": 2
+        },
+        "curriculumRole": {
+          "REQUIRED_MASTERY": 21,
+          "CONTEXTUAL_SUPPORT_ONLY": 4,
+          "MIXED_REQUIRED_AND_CONTEXT": 4
         },
         "identityStatus": "PROPOSED_FOR_PA_REVIEW"
       }
@@ -143,6 +183,7 @@
   "technicalEvidenceExemplarAndAssetDependenciesSeparated": {
     "explanation": "Stage 1.5: technical-evidence readiness (verificationStatus), learning-point identity readiness (evidenceReadiness), representative-exemplar readiness (exemplarObjectIdentity / RETIRED_OUT_OF_SCOPE / TRANSFORMED_TO_EXEMPLAR disposition), and learner-facing visual/recognition-asset readiness (outstandingProductionDependencies) are tracked as four separate concerns, never conflated.",
     "representativeExemplarDependencies": [
+      "batch-05::EMI-LP-17",
       "batch-06::EDA-LP-25"
     ],
     "knownAssetGaps": [
@@ -206,16 +247,24 @@
       "satisfiedByExistingLearningPointIds": [
         "EFS-LP-06"
       ]
+    },
+    {
+      "batch": "batch-05",
+      "evidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION",
+      "satisfiedByExistingLearningPointIds": [
+        "EMI-LP-06"
+      ]
     }
   ],
   "remainingGenuineGaps": {
-    "battery": "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail. Headline remaining items after the final correction pass: (1) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY / PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE) source despite a genuine re-sourcing attempt; the ohmmeter-measures-resistance device-level definition likewise remains genuinely unresolved (Wikipedia found but not itself a permitted-class source); (2) Batch 05 -- Fleming's right-hand (generator) rule's finger mapping remains unverified in directly-read text form (the strongest lead, Hughes' textbook p.145 cited by Wikipedia, could not be directly read); the single-loop-alternator-generator-parts diagram genuinely lacks one source both captioned single-loop and fully labelled with slip rings/brushes; (3) Batch 06 -- AC6.2 schematic-symbol currency against the current IEC 60617 database remains genuinely unresolved (independently re-verified: the free preview explains its own data model but exposes no specific numbered symbol entry without a paid login); no photographic component-recognition evidence exists; three exemplar circuits (dimmer RC values, heating relay/transistor topology, security-alarm exact topology) remain retired/transformed as documented, with the alarm circuit specifically needing a downstream authored-and-validated representative exemplar before final lesson production."
+    "battery": "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (Stage 8: every VERIFIED row now has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers: (1) Batch 06 -- the security-alarm SCR/sounder-role requirement (required facet of EDA-LP-25) remains PARTIALLY_VERIFIED and BLOCKED pending REPRESENTATIVE_EXEMPLAR_AUTHORING (no governed exemplar circuit exists); EMI-LP-17's single-loop generator diagram is similarly BLOCKED pending a REPRESENTATIVE_DIAGRAM_AUTHORING dependency (no permitted-class source shows one diagram both captioned single-loop and fully labelled with slip rings/brushes); the telephone application-function device-level definition (required facet of EDA-LP-26) and the telephone-capacitor-ringer function (required facet of EDA-LP-28) remain genuinely unresolved. (2) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class source despite a genuine re-sourcing attempt. OPTIONAL-CONTEXT-ONLY gaps (do not block core mastery): the ohmmeter-measures-resistance device-level definition; Fleming's right-hand-rule finger mapping in directly-read text form; AC6.2 schematic-symbol currency against the current IEC 60617 database (the official webstore free preview was directly opened and read, confirming six symbol identities/names -- S00641, S00652, S00659, S00684, S01919, S01920 -- but not the corresponding artwork/geometry or per-entry Standard/Obsolete status, both paid-login-gated); no photographic component-recognition evidence exists; the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority)."
   },
   "remainingProductArchitectQuestions": [
     "Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?",
-    "Does the security-alarm learning point's transformation (retained transferable roles as READY content, exact circuit as an explicit REPRESENTATIVE_EXEMPLAR_AUTHORING dependency) satisfy the intent of Stage 5 exemplar decision 3, or is a different disposition preferred?",
-    "Is the disclosed judgment call classifying Instrumentation Tools and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
-    "Are the 4 remaining Batch 04 quantity-symbol gaps (power factor, frequency, capacitance, inductance) and the Fleming right-hand-rule finger-mapping gap worth a further dedicated re-sourcing pass (e.g. paid access to IEC 60027-1/ISO 80000-6, or the Hughes textbook) before Batch 04/05 are frozen?"
+    "EDA-LP-25 is now HELD/BLOCKED (not READY): the security-alarm SCR/sounder-role required facet remains PARTIALLY_VERIFIED pending a representative exemplar, and the alarm-specific transistor-switching claim was found to be a false green (re-adjudicated to PARTIALLY_VERIFIED) and reclassified OPTIONAL_CONTEXT in the plan. Is this bounded, BLOCKED-not-READY disposition accepted, or is a different disposition preferred?",
+    "Is the disclosed judgment call classifying Instrumentation Tools, Microchip AN994, and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
+    "Are the 4 remaining Batch 04 quantity-symbol gaps (power factor, frequency, capacitance, inductance) and the Fleming right-hand-rule finger-mapping gap worth a further dedicated re-sourcing pass (e.g. paid access to IEC 60027-1/ISO 80000-6, or the Hughes textbook) before Batch 04/05 are frozen?",
+    "Is the Stage-6 required-vs-context curriculum-role partition (mechanically derived from the plan's acquisitionPriority field) an acceptable basis for scoping assessable content, including the BLOCKED/ASSESSABLE_WHEN_READY/CONTEXT_ONLY_NOT_ASSESSED assessmentEligibility classification?"
   ],
   "explicitNonClaims": [
     "This pack does not claim Batches 04-06 are accepted, complete for lesson production, or identity-frozen.",

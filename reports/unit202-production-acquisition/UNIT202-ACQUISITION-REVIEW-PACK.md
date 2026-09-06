@@ -14,16 +14,21 @@ Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the 
 - Corrected frozen-plan count: **211** (2 requirements converted to structural satisfactions by the corrected generic planner; see the amendment ledger for the full per-requirement disposition trace -- the original 213 remain fully traceable)
 - Total accounted for across all six batches: **213**
 
+## Required vs. optional-context requirements (Stage 6, derived from the plan's own acquisitionPriority)
+
+- Whole Unit 202: **198 REQUIRED**, **15 OPTIONAL_CONTEXT** (sums to 213 of 213 total rows)
+- Batches 04-06 only: **127 REQUIRED**, **14 OPTIONAL_CONTEXT** (sums to 141 of 141 total rows)
+
 ## Disposition totals -- WHOLE UNIT 202 (all six batches)
 
-- Evidence-status totals: {"VERIFIED":188,"PARTIALLY_VERIFIED":20}
+- Evidence-status totals: {"VERIFIED":187,"PARTIALLY_VERIFIED":21}
 - Requirement count: **213**
 - Structurally satisfied (integration targets, zero independent requirement): **2**
 - Retired out of scope (non-canonical exemplar detail): **3**
 
 ## Disposition totals -- BATCHES 04-06 ONLY (the batches this pass corrects; Batches 01-03 are frozen and excluded from this scope)
 
-- Evidence-status totals: {"VERIFIED":116,"PARTIALLY_VERIFIED":20}
+- Evidence-status totals: {"VERIFIED":115,"PARTIALLY_VERIFIED":21}
 - Requirement count: **141**
 - Structurally satisfied: **2**
 - Retired out of scope: **3**
@@ -35,30 +40,32 @@ Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the 
 - **batch-03 (mechanics-and-machines)** -- FROZEN: 28 requirements, status {"VERIFIED":28}, structurally satisfied 0, retired 0
 - **batch-04 (electrical-quantities-and-circuit-theory)** -- unfrozen, proposed: 57 requirements, status {"VERIFIED":47,"PARTIALLY_VERIFIED":10}, structurally satisfied 0, retired 0
 - **batch-05 (electromagnetism-and-induction)** -- unfrozen, proposed: 44 requirements, status {"VERIFIED":39,"PARTIALLY_VERIFIED":3}, structurally satisfied 2, retired 0
-- **batch-06 (electronic-devices-and-applications)** -- unfrozen, proposed: 40 requirements, status {"VERIFIED":30,"PARTIALLY_VERIFIED":7}, structurally satisfied 0, retired 3
+- **batch-06 (electronic-devices-and-applications)** -- unfrozen, proposed: 40 requirements, status {"VERIFIED":29,"PARTIALLY_VERIFIED":8}, structurally satisfied 0, retired 3
 
 ## Learning points -- WHOLE UNIT 202 (all six batches)
 
 - Total: **133**
 - Readiness totals: {"READY":115,"HELD_PENDING_EVIDENCE_CORRECTION":16,"RETIRED_OUT_OF_SCOPE":2}
+- Curriculum-role totals (Batches 04-06 only carry this Stage-6 field): {"REQUIRED_MASTERY":59,"CONTEXTUAL_SUPPORT_ONLY":7,"MIXED_REQUIRED_AND_CONTEXT":4}
 
 ## Learning points -- BATCHES 04-06 ONLY
 
 - Total: **70**
 - Readiness totals: {"READY":52,"HELD_PENDING_EVIDENCE_CORRECTION":16,"RETIRED_OUT_OF_SCOPE":2}
+- Curriculum-role totals: {"REQUIRED_MASTERY":59,"CONTEXTUAL_SUPPORT_ONLY":7,"MIXED_REQUIRED_AND_CONTEXT":4} -- i.e. required-only, mixed and context-only learning points are reported separately here rather than as one undifferentiated "held" total; a context-only or mixed-but-context-facet gap does not by itself block core course production.
 
-- **batch-01**: 25 learning points, readiness {"READY":25}, identity status ACCEPTED_AND_FROZEN
-- **batch-02**: 20 learning points, readiness {"READY":20}, identity status ACCEPTED_AND_FROZEN
-- **batch-03**: 18 learning points, readiness {"READY":18}, identity status ACCEPTED_AND_FROZEN
-- **batch-04**: 19 learning points, readiness {"READY":9,"HELD_PENDING_EVIDENCE_CORRECTION":10}, identity status PROPOSED_FOR_PA_REVIEW
-- **batch-05**: 22 learning points, readiness {"READY":21,"HELD_PENDING_EVIDENCE_CORRECTION":1}, identity status PROPOSED_FOR_PA_REVIEW
-- **batch-06**: 29 learning points, readiness {"READY":22,"HELD_PENDING_EVIDENCE_CORRECTION":5,"RETIRED_OUT_OF_SCOPE":2}, identity status PROPOSED_FOR_PA_REVIEW
+- **batch-01**: 25 learning points, readiness {"READY":25}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
+- **batch-02**: 20 learning points, readiness {"READY":20}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
+- **batch-03**: 18 learning points, readiness {"READY":18}, curriculum role {}, identity status ACCEPTED_AND_FROZEN
+- **batch-04**: 19 learning points, readiness {"READY":11,"HELD_PENDING_EVIDENCE_CORRECTION":8}, curriculum role {"REQUIRED_MASTERY":18,"CONTEXTUAL_SUPPORT_ONLY":1}, identity status PROPOSED_FOR_PA_REVIEW
+- **batch-05**: 22 learning points, readiness {"READY":20,"HELD_PENDING_EVIDENCE_CORRECTION":2}, curriculum role {"REQUIRED_MASTERY":20,"CONTEXTUAL_SUPPORT_ONLY":2}, identity status PROPOSED_FOR_PA_REVIEW
+- **batch-06**: 29 learning points, readiness {"READY":21,"HELD_PENDING_EVIDENCE_CORRECTION":6,"RETIRED_OUT_OF_SCOPE":2}, curriculum role {"REQUIRED_MASTERY":21,"CONTEXTUAL_SUPPORT_ONLY":4,"MIXED_REQUIRED_AND_CONTEXT":4}, identity status PROPOSED_FOR_PA_REVIEW
 
 ## Technical evidence vs. exemplar vs. asset dependencies (Stage 1.5 separation)
 
 Stage 1.5: technical-evidence readiness (verificationStatus), learning-point identity readiness (evidenceReadiness), representative-exemplar readiness (exemplarObjectIdentity / RETIRED_OUT_OF_SCOPE / TRANSFORMED_TO_EXEMPLAR disposition), and learner-facing visual/recognition-asset readiness (outstandingProductionDependencies) are tracked as four separate concerns, never conflated.
 
-Representative-exemplar production dependencies (learning points): batch-06::EDA-LP-25
+Representative-exemplar production dependencies (learning points): batch-05::EMI-LP-17, batch-06::EDA-LP-25
 
 Known asset gaps:
 - No photographic material for component physical-appearance recognition exists in Batch 06's evidence (component identity is accepted; photographs remain a LEARNER_FACING_VISUAL_ASSET production dependency, not a technical-evidence gap).
@@ -74,17 +81,19 @@ Known asset gaps:
 - `ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::CONCEPT_DEFINITION::DISTINCTION` (batch-04) satisfied by existing learning point(s): EFS-LP-06
 - `ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL` (batch-04) satisfied by existing learning point(s): EFS-LP-06
 - `ER::provisional::unit202::electrical-quantities-and-circuit-theory::resistivity-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL` (batch-04) satisfied by existing learning point(s): EFS-LP-06
+- `ER::provisional::unit202::electromagnetism-and-induction::magnetic-field-patterns::SCHEMATIC_OR_DIAGRAM_RECOGNITION` (batch-05) satisfied by existing learning point(s): EMI-LP-06
 
 ## Remaining genuine gaps
 
-See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail. Headline remaining items after the final correction pass: (1) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY / PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE) source despite a genuine re-sourcing attempt; the ohmmeter-measures-resistance device-level definition likewise remains genuinely unresolved (Wikipedia found but not itself a permitted-class source); (2) Batch 05 -- Fleming's right-hand (generator) rule's finger mapping remains unverified in directly-read text form (the strongest lead, Hughes' textbook p.145 cited by Wikipedia, could not be directly read); the single-loop-alternator-generator-parts diagram genuinely lacks one source both captioned single-loop and fully labelled with slip rings/brushes; (3) Batch 06 -- AC6.2 schematic-symbol currency against the current IEC 60617 database remains genuinely unresolved (independently re-verified: the free preview explains its own data model but exposes no specific numbered symbol entry without a paid login); no photographic component-recognition evidence exists; three exemplar circuits (dimmer RC values, heating relay/transistor topology, security-alarm exact topology) remain retired/transformed as documented, with the alarm circuit specifically needing a downstream authored-and-validated representative exemplar before final lesson production.
+See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (Stage 8: every VERIFIED row now has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers: (1) Batch 06 -- the security-alarm SCR/sounder-role requirement (required facet of EDA-LP-25) remains PARTIALLY_VERIFIED and BLOCKED pending REPRESENTATIVE_EXEMPLAR_AUTHORING (no governed exemplar circuit exists); EMI-LP-17's single-loop generator diagram is similarly BLOCKED pending a REPRESENTATIVE_DIAGRAM_AUTHORING dependency (no permitted-class source shows one diagram both captioned single-loop and fully labelled with slip rings/brushes); the telephone application-function device-level definition (required facet of EDA-LP-26) and the telephone-capacitor-ringer function (required facet of EDA-LP-28) remain genuinely unresolved. (2) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class source despite a genuine re-sourcing attempt. OPTIONAL-CONTEXT-ONLY gaps (do not block core mastery): the ohmmeter-measures-resistance device-level definition; Fleming's right-hand-rule finger mapping in directly-read text form; AC6.2 schematic-symbol currency against the current IEC 60617 database (the official webstore free preview was directly opened and read, confirming six symbol identities/names -- S00641, S00652, S00659, S00684, S01919, S01920 -- but not the corresponding artwork/geometry or per-entry Standard/Obsolete status, both paid-login-gated); no photographic component-recognition evidence exists; the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority).
 
 ## Remaining Product Architect questions
 
 1. Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?
-2. Does the security-alarm learning point's transformation (retained transferable roles as READY content, exact circuit as an explicit REPRESENTATIVE_EXEMPLAR_AUTHORING dependency) satisfy the intent of Stage 5 exemplar decision 3, or is a different disposition preferred?
-3. Is the disclosed judgment call classifying Instrumentation Tools and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?
+2. EDA-LP-25 is now HELD/BLOCKED (not READY): the security-alarm SCR/sounder-role required facet remains PARTIALLY_VERIFIED pending a representative exemplar, and the alarm-specific transistor-switching claim was found to be a false green (re-adjudicated to PARTIALLY_VERIFIED) and reclassified OPTIONAL_CONTEXT in the plan. Is this bounded, BLOCKED-not-READY disposition accepted, or is a different disposition preferred?
+3. Is the disclosed judgment call classifying Instrumentation Tools, Microchip AN994, and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?
 4. Are the 4 remaining Batch 04 quantity-symbol gaps (power factor, frequency, capacitance, inductance) and the Fleming right-hand-rule finger-mapping gap worth a further dedicated re-sourcing pass (e.g. paid access to IEC 60027-1/ISO 80000-6, or the Hughes textbook) before Batch 04/05 are frozen?
+5. Is the Stage-6 required-vs-context curriculum-role partition (mechanically derived from the plan's acquisitionPriority field) an acceptable basis for scoping assessable content, including the BLOCKED/ASSESSABLE_WHEN_READY/CONTEXT_ONLY_NOT_ASSESSED assessmentEligibility classification?
 
 ## Explicit non-claims
 

@@ -46,6 +46,7 @@ interface LearningPoint {
   readonly id: string;
   readonly evidenceReadiness: string;
   readonly outstandingProductionDependencies?: readonly string[];
+  readonly curriculumRole?: string;
 }
 interface LearningPointsFile {
   readonly status?: string;
@@ -53,12 +54,30 @@ interface LearningPointsFile {
   readonly identityFreezePolicy?: { readonly status?: string };
 }
 interface PlanFile {
-  readonly requirements: readonly { readonly canonicalRequirementKey: string; readonly decompositionStatus: string }[];
+  readonly requirements: readonly { readonly evidenceRequirementId: string; readonly canonicalRequirementKey: string; readonly decompositionStatus: string; readonly acquisitionPriority: string }[];
 }
 
 const plan = readJson<PlanFile>(PLAN_PATH);
 const originalRequirementCount = plan.requirements.length; // this IS the corrected count post-Stage-1; the historically-cited "213" is recorded separately below.
 const HISTORICAL_ORIGINAL_COUNT = 213;
+
+// Stage 6: required-vs-context partition, derived mechanically from the
+// plan's own acquisitionPriority field -- never hand-asserted. The two
+// historical structural-satisfaction integration targets (zero independent
+// plan requirement) are treated as REQUIRED, since they represent core
+// calculation-capability integration over already-REQUIRED constituent
+// knowledge, not optional context.
+const priorityById = new Map(plan.requirements.map((r) => [r.evidenceRequirementId, r.acquisitionPriority]));
+const STRUCTURAL_SATISFACTION_IDS_TREATED_AS_REQUIRED = new Set([
+  "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+  "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+]);
+function priorityOf(evidenceRequirementId: string): "REQUIRED" | "OPTIONAL_CONTEXT" {
+  const p = priorityById.get(evidenceRequirementId);
+  if (p === "REQUIRED" || p === "OPTIONAL_CONTEXT") return p;
+  if (STRUCTURAL_SATISFACTION_IDS_TREATED_AS_REQUIRED.has(evidenceRequirementId)) return "REQUIRED";
+  throw new Error(`priorityOf: no plan acquisitionPriority found for ${evidenceRequirementId}`);
+}
 
 interface BatchSummary {
   readonly id: string;
@@ -68,8 +87,11 @@ interface BatchSummary {
   readonly statusTotals: Record<string, number>;
   readonly structurallySatisfiedCount: number;
   readonly retiredOutOfScopeCount: number;
+  readonly requiredCount: number;
+  readonly optionalContextCount: number;
   readonly learningPointCount: number;
   readonly learningPointReadiness: Record<string, number>;
+  readonly learningPointCurriculumRole: Record<string, number>;
   readonly learningPointsWithOutstandingDependencies: readonly string[];
   readonly crossBatchSatisfactions: readonly { readonly evidenceRequirementId: string; readonly satisfiedByExistingLearningPointIds: readonly string[] }[];
   readonly identityStatus: string;
@@ -83,8 +105,11 @@ for (const b of BATCHES) {
   const statusTotals: Record<string, number> = {};
   let structSat = 0;
   let retired = 0;
+  let requiredCount = 0;
+  let optionalContextCount = 0;
   const crossBatchSatisfactions: { evidenceRequirementId: string; satisfiedByExistingLearningPointIds: readonly string[] }[] = [];
   for (const r of ev.results) {
+    if (priorityOf(r.evidenceRequirementId) === "REQUIRED") requiredCount++; else optionalContextCount++;
     if (r.disposition === "STRUCTURALLY_SATISFIED") { structSat++; continue; }
     if (r.disposition === "RETIRED_OUT_OF_SCOPE") { retired++; continue; }
     statusTotals[r.result.verificationStatus] = (statusTotals[r.result.verificationStatus] ?? 0) + 1;
@@ -94,9 +119,11 @@ for (const b of BATCHES) {
   }
 
   const lpReadiness: Record<string, number> = {};
+  const lpCurriculumRole: Record<string, number> = {};
   const lpWithDeps: string[] = [];
   for (const p of lp.learningPoints) {
     lpReadiness[p.evidenceReadiness] = (lpReadiness[p.evidenceReadiness] ?? 0) + 1;
+    if (p.curriculumRole) lpCurriculumRole[p.curriculumRole] = (lpCurriculumRole[p.curriculumRole] ?? 0) + 1;
     if (p.outstandingProductionDependencies && p.outstandingProductionDependencies.length > 0) lpWithDeps.push(p.id);
   }
 
@@ -108,8 +135,11 @@ for (const b of BATCHES) {
     statusTotals,
     structurallySatisfiedCount: structSat,
     retiredOutOfScopeCount: retired,
+    requiredCount,
+    optionalContextCount,
     learningPointCount: lp.learningPoints.length,
     learningPointReadiness: lpReadiness,
+    learningPointCurriculumRole: lpCurriculumRole,
     learningPointsWithOutstandingDependencies: lpWithDeps,
     crossBatchSatisfactions,
     identityStatus: b.frozen ? "ACCEPTED_AND_FROZEN" : (lp.status ?? "PROPOSED_FOR_PA_REVIEW"),
@@ -127,17 +157,23 @@ function aggregate(scope: readonly BatchSummary[]) {
   const statusTotals: Record<string, number> = {};
   let structSat = 0;
   let retired = 0;
+  let required = 0;
+  let optionalContext = 0;
   let learningPointCount = 0;
   const lpReadiness: Record<string, number> = {};
+  const lpCurriculumRole: Record<string, number> = {};
   for (const b of scope) {
     for (const [k, v] of Object.entries(b.statusTotals)) statusTotals[k] = (statusTotals[k] ?? 0) + v;
     structSat += b.structurallySatisfiedCount;
     retired += b.retiredOutOfScopeCount;
+    required += b.requiredCount;
+    optionalContext += b.optionalContextCount;
     learningPointCount += b.learningPointCount;
     for (const [k, v] of Object.entries(b.learningPointReadiness)) lpReadiness[k] = (lpReadiness[k] ?? 0) + v;
+    for (const [k, v] of Object.entries(b.learningPointCurriculumRole)) lpCurriculumRole[k] = (lpCurriculumRole[k] ?? 0) + v;
   }
   const requirementCount = scope.reduce((s, b) => s + b.requirementCount, 0);
-  return { requirementCount, statusTotals, structSat, retired, learningPointCount, lpReadiness };
+  return { requirementCount, statusTotals, structSat, retired, required, optionalContext, learningPointCount, lpReadiness, lpCurriculumRole };
 }
 
 const wholeUnit = aggregate(batchSummaries);
@@ -167,6 +203,11 @@ const pack = {
     correctedFrozenPlanCount: originalRequirementCount,
     note: "The original 213-requirement set (historicalOriginalCount) remains fully traceable: 2 requirements (both in batch-05, the AC-generation-calculations and sine-wave-conversion integration targets) were converted to structural satisfactions by the corrected generic planner and no longer appear as independent plan entries; every other original requirement retains its identity. See the amendment ledger for the full per-requirement disposition trace.",
     totalAccountedForAcrossBatches: totalAccountedFor,
+    requiredVsContext: {
+      scopeNote: "Derived mechanically from the plan's own acquisitionPriority field (never hand-asserted). The two historical structural-satisfaction integration targets are counted as REQUIRED (see source comment). REQUIRED + OPTIONAL_CONTEXT always sums to the scope's own requirementCount.",
+      wholeUnit202: { REQUIRED: wholeUnit.required, OPTIONAL_CONTEXT: wholeUnit.optionalContext },
+      batches0406Only: { REQUIRED: batches0406.required, OPTIONAL_CONTEXT: batches0406.optionalContext },
+    },
   },
   dispositionTotals: {
     scopeNote: "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
@@ -175,10 +216,12 @@ const pack = {
   },
   evidenceStatusTotalsByBatch: Object.fromEntries(batchSummaries.map((b) => [b.id, { ...b.statusTotals, STRUCTURALLY_SATISFIED: b.structurallySatisfiedCount, RETIRED_OUT_OF_SCOPE: b.retiredOutOfScopeCount, requirementCount: b.requirementCount }])),
   learningPoints: {
-    scopeNote: "wholeUnit202 sums all six batches; batches0406Only sums only the unfrozen batches. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
+    scopeNote: "wholeUnit202 sums all six batches; batches0406Only sums only the unfrozen batches. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness, curriculum role or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
     wholeUnit202: { total: wholeUnit.learningPointCount, readinessTotals: wholeUnit.lpReadiness },
     batches0406Only: { total: batches0406.learningPointCount, readinessTotals: batches0406.lpReadiness },
-    byBatch: Object.fromEntries(batchSummaries.map((b) => [b.id, { count: b.learningPointCount, readiness: b.learningPointReadiness, identityStatus: b.identityStatus }])),
+    curriculumRoleNote: "REQUIRED_MASTERY / CONTEXTUAL_SUPPORT_ONLY / MIXED_REQUIRED_AND_CONTEXT, derived mechanically per learning point from the plan's acquisitionPriority partition of its own evidenceRequirementIds. Only recorded for Batches 04-06 (curriculumRole is a Stage-6 field not retrofitted onto the frozen Batches 01-03).",
+    curriculumRoleTotals: { wholeUnit202: wholeUnit.lpCurriculumRole, batches0406Only: batches0406.lpCurriculumRole },
+    byBatch: Object.fromEntries(batchSummaries.map((b) => [b.id, { count: b.learningPointCount, readiness: b.learningPointReadiness, curriculumRole: b.learningPointCurriculumRole, identityStatus: b.identityStatus }])),
   },
   technicalEvidenceExemplarAndAssetDependenciesSeparated: {
     explanation: "Stage 1.5: technical-evidence readiness (verificationStatus), learning-point identity readiness (evidenceReadiness), representative-exemplar readiness (exemplarObjectIdentity / RETIRED_OUT_OF_SCOPE / TRANSFORMED_TO_EXEMPLAR disposition), and learner-facing visual/recognition-asset readiness (outstandingProductionDependencies) are tracked as four separate concerns, never conflated.",
@@ -187,13 +230,14 @@ const pack = {
   },
   crossBatchSatisfaction: allCrossBatchSatisfactions,
   remainingGenuineGaps: {
-    battery: "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail. Headline remaining items after the final correction pass: (1) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY / PROFESSIONAL_BODY / AUTHORITATIVE_TECHNICAL_REFERENCE) source despite a genuine re-sourcing attempt; the ohmmeter-measures-resistance device-level definition likewise remains genuinely unresolved (Wikipedia found but not itself a permitted-class source); (2) Batch 05 -- Fleming's right-hand (generator) rule's finger mapping remains unverified in directly-read text form (the strongest lead, Hughes' textbook p.145 cited by Wikipedia, could not be directly read); the single-loop-alternator-generator-parts diagram genuinely lacks one source both captioned single-loop and fully labelled with slip rings/brushes; (3) Batch 06 -- AC6.2 schematic-symbol currency against the current IEC 60617 database remains genuinely unresolved (independently re-verified: the free preview explains its own data model but exposes no specific numbered symbol entry without a paid login); no photographic component-recognition evidence exists; three exemplar circuits (dimmer RC values, heating relay/transistor topology, security-alarm exact topology) remain retired/transformed as documented, with the alarm circuit specifically needing a downstream authored-and-validated representative exemplar before final lesson production.",
+    battery: "See each batch's own EVIDENCE-RESULTS.json `gaps` fields for full detail (Stage 8: every VERIFIED row now has an empty `gaps` array -- resolved history lives in `disclosures`, genuine open items below). CORE (required-mastery) blockers: (1) Batch 06 -- the security-alarm SCR/sounder-role requirement (required facet of EDA-LP-25) remains PARTIALLY_VERIFIED and BLOCKED pending REPRESENTATIVE_EXEMPLAR_AUTHORING (no governed exemplar circuit exists); EMI-LP-17's single-loop generator diagram is similarly BLOCKED pending a REPRESENTATIVE_DIAGRAM_AUTHORING dependency (no permitted-class source shows one diagram both captioned single-loop and fully labelled with slip rings/brushes); the telephone application-function device-level definition (required facet of EDA-LP-26) and the telephone-capacitor-ringer function (required facet of EDA-LP-28) remain genuinely unresolved. (2) Batch 04 -- 4 SYMBOL_OR_CONVENTION quantity-symbol letters (power factor, frequency, capacitance, inductance) still have no in-permitted-class source despite a genuine re-sourcing attempt. OPTIONAL-CONTEXT-ONLY gaps (do not block core mastery): the ohmmeter-measures-resistance device-level definition; Fleming's right-hand-rule finger mapping in directly-read text form; AC6.2 schematic-symbol currency against the current IEC 60617 database (the official webstore free preview was directly opened and read, confirming six symbol identities/names -- S00641, S00652, S00659, S00684, S01919, S01920 -- but not the corresponding artwork/geometry or per-entry Standard/Obsolete status, both paid-login-gated); no photographic component-recognition evidence exists; the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority).",
   },
   remainingProductArchitectQuestions: [
     "Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?",
-    "Does the security-alarm learning point's transformation (retained transferable roles as READY content, exact circuit as an explicit REPRESENTATIVE_EXEMPLAR_AUTHORING dependency) satisfy the intent of Stage 5 exemplar decision 3, or is a different disposition preferred?",
-    "Is the disclosed judgment call classifying Instrumentation Tools and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
+    "EDA-LP-25 is now HELD/BLOCKED (not READY): the security-alarm SCR/sounder-role required facet remains PARTIALLY_VERIFIED pending a representative exemplar, and the alarm-specific transistor-switching claim was found to be a false green (re-adjudicated to PARTIALLY_VERIFIED) and reclassified OPTIONAL_CONTEXT in the plan. Is this bounded, BLOCKED-not-READY disposition accepted, or is a different disposition preferred?",
+    "Is the disclosed judgment call classifying Instrumentation Tools, Microchip AN994, and the DOE power-thyristor handbook host as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
     "Are the 4 remaining Batch 04 quantity-symbol gaps (power factor, frequency, capacitance, inductance) and the Fleming right-hand-rule finger-mapping gap worth a further dedicated re-sourcing pass (e.g. paid access to IEC 60027-1/ISO 80000-6, or the Hughes textbook) before Batch 04/05 are frozen?",
+    "Is the Stage-6 required-vs-context curriculum-role partition (mechanically derived from the plan's acquisitionPriority field) an acceptable basis for scoping assessable content, including the BLOCKED/ASSESSABLE_WHEN_READY/CONTEXT_ONLY_NOT_ASSESSED assessmentEligibility classification?",
   ],
   explicitNonClaims: [
     "This pack does not claim Batches 04-06 are accepted, complete for lesson production, or identity-frozen.",
@@ -222,6 +266,11 @@ ${pack.statusMeaning}
 - Corrected frozen-plan count: **${originalRequirementCount}** (2 requirements converted to structural satisfactions by the corrected generic planner; see the amendment ledger for the full per-requirement disposition trace -- the original 213 remain fully traceable)
 - Total accounted for across all six batches: **${totalAccountedFor}**
 
+## Required vs. optional-context requirements (Stage 6, derived from the plan's own acquisitionPriority)
+
+- Whole Unit 202: **${wholeUnit.required} REQUIRED**, **${wholeUnit.optionalContext} OPTIONAL_CONTEXT** (sums to ${wholeUnit.required + wholeUnit.optionalContext} of ${wholeUnit.requirementCount} total rows)
+- Batches 04-06 only: **${batches0406.required} REQUIRED**, **${batches0406.optionalContext} OPTIONAL_CONTEXT** (sums to ${batches0406.required + batches0406.optionalContext} of ${batches0406.requirementCount} total rows)
+
 ## Disposition totals -- WHOLE UNIT 202 (all six batches)
 
 - Evidence-status totals: ${JSON.stringify(wholeUnit.statusTotals)}
@@ -244,13 +293,15 @@ ${batchSummaries.map((b) => `- **${b.id} (${b.name})** -- ${b.frozen ? "FROZEN" 
 
 - Total: **${wholeUnit.learningPointCount}**
 - Readiness totals: ${JSON.stringify(wholeUnit.lpReadiness)}
+- Curriculum-role totals (Batches 04-06 only carry this Stage-6 field): ${JSON.stringify(wholeUnit.lpCurriculumRole)}
 
 ## Learning points -- BATCHES 04-06 ONLY
 
 - Total: **${batches0406.learningPointCount}**
 - Readiness totals: ${JSON.stringify(batches0406.lpReadiness)}
+- Curriculum-role totals: ${JSON.stringify(batches0406.lpCurriculumRole)} -- i.e. required-only, mixed and context-only learning points are reported separately here rather than as one undifferentiated "held" total; a context-only or mixed-but-context-facet gap does not by itself block core course production.
 
-${batchSummaries.map((b) => `- **${b.id}**: ${b.learningPointCount} learning points, readiness ${JSON.stringify(b.learningPointReadiness)}, identity status ${b.identityStatus}`).join("\n")}
+${batchSummaries.map((b) => `- **${b.id}**: ${b.learningPointCount} learning points, readiness ${JSON.stringify(b.learningPointReadiness)}, curriculum role ${JSON.stringify(b.learningPointCurriculumRole)}, identity status ${b.identityStatus}`).join("\n")}
 
 ## Technical evidence vs. exemplar vs. asset dependencies (Stage 1.5 separation)
 
