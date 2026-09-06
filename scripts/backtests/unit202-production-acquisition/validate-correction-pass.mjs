@@ -480,7 +480,14 @@ check(22, "VERIFIED rows have all dimensions satisfied, none unresolved, and no 
 // 23. READY LPs contain only verified/structurally-satisfied taught
 // claims, or explicitly partition verified from held/retired content.
 // =====================================================================
-check(23, "READY learning points are fully verified, or explicitly partition held/retired facets", () => {
+check(23, "READY learning points have every REQUIRED-mastery facet verified, or explicitly partition held/retired facets", () => {
+  // Stage 9 item 6: a READY LP may not depend on an unresolved
+  // REQUIRED-mastery facet. Where curriculumRole exists (Batches 04-06),
+  // only requiredMasteryEvidenceRequirementIds must be VERIFIED/
+  // STRUCTURALLY_SATISFIED -- a CONTEXTUAL facet may legitimately remain
+  // partial without blocking READY. Where curriculumRole does not exist
+  // (frozen Batches 01-03, pre-Stage-6 schema), fall back to checking
+  // every referenced facet, as before.
   const statusById = new Map(allRows.map((r) => [r.evidenceRequirementId, r]));
   let n = 0;
   const problems = [];
@@ -488,7 +495,8 @@ check(23, "READY learning points are fully verified, or explicitly partition hel
     for (const p of b.lpJson.learningPoints) {
       if (p.evidenceReadiness !== "READY") continue;
       n++;
-      const nonVerified = (p.evidenceRequirementIds ?? [])
+      const idsToCheck = p.curriculumRole ? (p.requiredMasteryEvidenceRequirementIds ?? []) : (p.evidenceRequirementIds ?? []);
+      const nonVerified = idsToCheck
         .map((id) => statusById.get(id))
         .filter((r) => r && r.result.verificationStatus !== "VERIFIED" && r.disposition !== "STRUCTURALLY_SATISFIED");
       if (nonVerified.length === 0) continue;
@@ -564,15 +572,50 @@ check(26, "No alarm NC/sounder claim is taught without evidence", () => {
 // =====================================================================
 // 27. The official IEC preview is represented accurately.
 // =====================================================================
-check(27, "The official IEC 60617 preview is represented accurately (no unconfirmed specific symbol numbers)", () => {
+check(27, "The official IEC 60617 preview is represented accurately: all six ID/name pairs positively confirmed, artwork/status explicitly disclosed as unconfirmed", () => {
+  // Directly and personally re-verified (Stage 1, this pass) by opening the
+  // official IEC webstore preview PDF page by page: the ID/Name catalogue
+  // table genuinely lists all six entries below. The record must POSITIVELY
+  // assert these six pairs (not merely avoid contradicting them), and must
+  // also carry the explicit artwork/status limitation -- so this check
+  // fails both if the pairs go missing again AND if the false "no specific
+  // numbered entries visible" claim ever reappears.
   const b6 = batches.find((b) => b.dir.includes("batch-06"));
   const r = b6.ev.results.find((x) => x.evidenceRequirementId.includes("schematic-symbol-recognition-for-each-named-ac6-2"));
+  if (!r) throw new Error("schematic-symbol-recognition-for-each-named-ac6-2 result not found");
   const text = JSON.stringify(r);
-  for (const code of ["S00641", "S00652", "S00659", "S00684", "S01919", "S01920"]) {
-    if (text.includes(code)) throw new Error(`unconfirmed specific IEC symbol number "${code}" appears in the result -- independent re-verification found these are not visible on IEC's free preview`);
+
+  const REQUIRED_PAIRS = [
+    ["S00641", "Semiconductor diode, general symbol"],
+    ["S00652", "Bidirectional diode thyristor"],
+    ["S00659", "Bidirectional triode thyristor"],
+    ["S00684", "Light dependent resistor"],
+    ["S01919", "Light emitting diode"],
+    ["S01920", "Photodiode"],
+  ];
+  const missing = REQUIRED_PAIRS.filter(([id, name]) => !text.includes(id) || !text.includes(name));
+  if (missing.length > 0) throw new Error(`missing positively-confirmed IEC ID/name pair(s): ${missing.map(([id]) => id).join(", ")}`);
+
+  // The historical false claim must never reappear as a LIVE assertion.
+  // Scoped to gaps/candidateSources/normalizedClaims only (the "live" claim
+  // surface) -- `disclosures` legitimately quotes the retracted wording for
+  // audit-trail purposes when explicitly framed as a past correction, and
+  // must not trip this check.
+  const liveText = JSON.stringify({ gaps: r.result.gaps, candidateSources: r.result.candidateSources, normalizedClaims: r.result.normalizedClaims });
+  if (/no specific numbered entries|exposes no specific|expose no specific/i.test(liveText)) {
+    throw new Error('the false "no specific numbered entries visible" claim has reappeared as a live assertion');
   }
-  if (!/General description.*Snnnnn|Symbol identity number/i.test(text.replace(/\\n/g, " "))) throw new Error("expected the independently-re-verified general-database-structure finding to be recorded");
-  return "no unconfirmed specific symbol number asserted; the actually-verified general-structure finding is recorded";
+
+  // The artwork/status limitation must be explicit -- identity confirmation
+  // is not shape or currency confirmation.
+  if (!/artwork|geometry/i.test(text)) throw new Error("missing explicit disclosure that symbol artwork/geometry was not confirmed");
+  if (!/status|obsolete/i.test(text)) throw new Error("missing explicit disclosure that per-entry Standard/Obsolete status was not confirmed");
+
+  // The overall requirement must not be upgraded to VERIFIED merely from
+  // the six confirmed identities (Stage 1 explicit instruction).
+  if (r.result.verificationStatus !== "PARTIALLY_VERIFIED") throw new Error(`expected PARTIALLY_VERIFIED (identity confirmation alone does not verify symbol shape), got ${r.result.verificationStatus}`);
+
+  return "all six ID/name pairs positively confirmed; artwork/geometry and status explicitly disclosed as unconfirmed; overall requirement correctly remains PARTIALLY_VERIFIED";
 });
 
 // =====================================================================
@@ -719,6 +762,252 @@ check(34, "No protected/unrelated file is staged or modified by this pass", () =
 check(35, "git diff --check passes", () => {
   execSync("git diff --check", { cwd: repoRoot });
   return "clean";
+});
+
+// =====================================================================
+// Stage 9 additions (this pass). Numbered 36+ rather than renumbering
+// 1-35, per instruction that accuracy matters more than preserving the
+// old headline count. Batches 04-06 only unless noted -- these all
+// depend on the Stage-6 curriculumRole/underlyingEvidenceStatuses schema
+// which is not retrofitted onto the frozen Batches 01-03 (covered by
+// check 2's byte-identity instead).
+// =====================================================================
+
+const priorityById2 = new Map(plan.requirements.map((r) => [r.evidenceRequirementId, r.acquisitionPriority]));
+const STRUCTURAL_SATISFACTION_IDS_TREATED_AS_REQUIRED = new Set([
+  "ER::provisional::unit202::electromagnetism-and-induction::appropriate-simple-ac-generation-calculations::PROCEDURE_COVERAGE",
+  "ER::provisional::unit202::electromagnetism-and-induction::appropriate-sine-wave-conversions-calculations::PROCEDURE_COVERAGE",
+]);
+function priorityOf2(id) {
+  const p = priorityById2.get(id);
+  if (p === "REQUIRED" || p === "OPTIONAL_CONTEXT") return p;
+  if (STRUCTURAL_SATISFACTION_IDS_TREATED_AS_REQUIRED.has(id)) return "REQUIRED";
+  return undefined;
+}
+const statusByIdFull = new Map(allRows.map((r) => [r.evidenceRequirementId, r]));
+function terminalStatusOf(id) {
+  const r = statusByIdFull.get(id);
+  if (!r) return undefined;
+  return r.disposition === "STRUCTURALLY_SATISFIED" || r.disposition === "RETIRED_OUT_OF_SCOPE" ? r.disposition : r.result.verificationStatus;
+}
+function suffixOfFull(id) {
+  return id.split("::").slice(4).join("::");
+}
+
+check(36, "Every Batches 04-06 LP's underlyingEvidenceStatuses has exact key/value equality with its referenced current results", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      const ids = p.evidenceRequirementIds ?? [];
+      const expected = {};
+      for (const id of ids) {
+        const status = terminalStatusOf(id);
+        if (status === undefined) { problems.push(`${b.dir} ${p.id}: evidenceRequirementId "${id}" does not resolve`); continue; }
+        expected[suffixOfFull(id)] = status;
+      }
+      const actual = p.underlyingEvidenceStatuses ?? {};
+      const expectedKeys = Object.keys(expected).sort();
+      const actualKeys = Object.keys(actual).sort();
+      const staleKeys = actualKeys.filter((k) => !(k in expected));
+      const missingKeys = expectedKeys.filter((k) => !(k in actual));
+      const valueMismatches = expectedKeys.filter((k) => k in actual && actual[k] !== expected[k]);
+      if (staleKeys.length || missingKeys.length || valueMismatches.length) {
+        problems.push(`${b.dir} ${p.id}: stale=[${staleKeys}] missing=[${missingKeys}] mismatched=[${valueMismatches.map((k) => `${k}:${actual[k]}!=${expected[k]}`)}]`);
+      }
+      n++;
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 8).join("; ") + (problems.length > 8 ? ` (+${problems.length - 8} more)` : ""));
+  return `${n} LPs checked, all underlyingEvidenceStatuses exactly match current results (no stale/missing/extra keys)`;
+});
+
+check(37, "Each batch's declared readinessCounts and curriculumRoleCounts equal recomputed counts", () => {
+  const report = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    const readiness = {};
+    const curriculumRole = {};
+    for (const p of b.lpJson.learningPoints) {
+      readiness[p.evidenceReadiness] = (readiness[p.evidenceReadiness] ?? 0) + 1;
+      if (p.curriculumRole) curriculumRole[p.curriculumRole] = (curriculumRole[p.curriculumRole] ?? 0) + 1;
+    }
+    const declaredReadiness = b.lpJson.readinessCounts ?? {};
+    const declaredRole = b.lpJson.curriculumRoleCounts ?? {};
+    for (const k of new Set([...Object.keys(readiness), ...Object.keys(declaredReadiness)])) {
+      if ((readiness[k] ?? 0) !== (declaredReadiness[k] ?? 0)) throw new Error(`${b.dir}: readinessCounts.${k} declared=${declaredReadiness[k] ?? 0} recomputed=${readiness[k] ?? 0}`);
+    }
+    for (const k of new Set([...Object.keys(curriculumRole), ...Object.keys(declaredRole)])) {
+      if ((curriculumRole[k] ?? 0) !== (declaredRole[k] ?? 0)) throw new Error(`${b.dir}: curriculumRoleCounts.${k} declared=${declaredRole[k] ?? 0} recomputed=${curriculumRole[k] ?? 0}`);
+    }
+    report.push(`${b.dir.split("/").pop()}: readiness=${JSON.stringify(readiness)} role=${JSON.stringify(curriculumRole)}`);
+  }
+  return report.join("; ");
+});
+
+check(38, "A HELD learning point with wholly verified/structurally-satisfied evidence has an explicit non-evidence blocker", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (p.evidenceReadiness !== "HELD_PENDING_EVIDENCE_CORRECTION") continue;
+      const ids = p.evidenceRequirementIds ?? [];
+      const allTerminalGood = ids.length > 0 && ids.every((id) => ["VERIFIED", "STRUCTURALLY_SATISFIED"].includes(terminalStatusOf(id)));
+      if (allTerminalGood) {
+        n++;
+        if (!p.outstandingProductionDependencies || p.outstandingProductionDependencies.length === 0) {
+          problems.push(`${b.dir} ${p.id}: HELD with all evidence VERIFIED/STRUCTURALLY_SATISFIED but no outstandingProductionDependencies blocker recorded`);
+        }
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} HELD LP(s) with fully-resolved evidence checked, each carries an explicit non-evidence blocker`;
+});
+
+check(39, "Context-only learning points expose no assessable application types", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (p.curriculumRole !== "CONTEXTUAL_SUPPORT_ONLY") continue;
+      n++;
+      if ((p.applicationTypes ?? []).length > 0) problems.push(`${b.dir} ${p.id}: CONTEXTUAL_SUPPORT_ONLY but applicationTypes is non-empty`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} context-only LPs checked, none expose an assessable application type`;
+});
+
+check(40, "Required/context evidence arrays exactly match the plan's acquisitionPriority partition", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (!p.curriculumRole) continue;
+      n++;
+      const ids = p.evidenceRequirementIds ?? [];
+      const expectedRequired = ids.filter((id) => priorityOf2(id) === "REQUIRED");
+      const expectedContextual = ids.filter((id) => priorityOf2(id) === "OPTIONAL_CONTEXT");
+      const unresolved = ids.filter((id) => priorityOf2(id) === undefined);
+      if (unresolved.length > 0) { problems.push(`${b.dir} ${p.id}: unresolved plan priority for ${unresolved.join(",")}`); continue; }
+      const actualRequired = [...(p.requiredMasteryEvidenceRequirementIds ?? [])].sort();
+      const actualContextual = [...(p.contextualEvidenceRequirementIds ?? [])].sort();
+      if (JSON.stringify(expectedRequired.sort()) !== JSON.stringify(actualRequired)) problems.push(`${b.dir} ${p.id}: requiredMasteryEvidenceRequirementIds mismatch`);
+      if (JSON.stringify(expectedContextual.sort()) !== JSON.stringify(actualContextual)) problems.push(`${b.dir} ${p.id}: contextualEvidenceRequirementIds mismatch`);
+      // No overlap between the two arrays.
+      const overlap = actualRequired.filter((id) => actualContextual.includes(id));
+      if (overlap.length > 0) problems.push(`${b.dir} ${p.id}: required/contextual arrays overlap on ${overlap.join(",")}`);
+      // curriculumRole must match the partition.
+      const expectedRole = expectedRequired.length > 0 && expectedContextual.length > 0 ? "MIXED_REQUIRED_AND_CONTEXT" : expectedRequired.length > 0 ? "REQUIRED_MASTERY" : "CONTEXTUAL_SUPPORT_ONLY";
+      if (p.curriculumRole !== expectedRole) problems.push(`${b.dir} ${p.id}: curriculumRole=${p.curriculumRole} but partition implies ${expectedRole}`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 8).join("; ") + (problems.length > 8 ? ` (+${problems.length - 8} more)` : ""));
+  return `${n} LPs' required/context partitions verified against the plan's own acquisitionPriority field`;
+});
+
+check(41, "Structured cross-requirement/cross-LP satisfaction claims resolve and their supporting evidence is sufficient", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const r of b.ev.results) {
+      const coverage = r.result.patternComponentCoverage;
+      if (!coverage) continue;
+      n++;
+      for (const c of coverage) {
+        if (c.coverageBasis === "DIRECT") {
+          const candIds = new Set((r.result.candidateSources ?? []).map((s) => s.sourceId));
+          for (const sid of c.supportingSourceIds ?? []) {
+            if (!candIds.has(sid)) problems.push(`${b.dir} ${r.evidenceRequirementId} component ${c.component}: supportingSourceId "${sid}" not in candidateSources`);
+          }
+        } else if (c.coverageBasis === "CROSS_REQUIREMENT_AND_LEARNING_POINT") {
+          const linkedStatus = terminalStatusOf(c.satisfiedByEvidenceRequirementId);
+          if (linkedStatus === undefined) problems.push(`${b.dir} ${r.evidenceRequirementId} component ${c.component}: satisfiedByEvidenceRequirementId does not resolve`);
+          else if (!["VERIFIED", "STRUCTURALLY_SATISFIED"].includes(linkedStatus)) problems.push(`${b.dir} ${r.evidenceRequirementId} component ${c.component}: linked requirement is ${linkedStatus}, not VERIFIED/STRUCTURALLY_SATISFIED`);
+          for (const lpId of c.satisfiedByExistingLearningPointIds ?? []) {
+            if (!allLpIds.has(lpId)) problems.push(`${b.dir} ${r.evidenceRequirementId} component ${c.component}: linked LP "${lpId}" does not resolve`);
+          }
+        } else {
+          problems.push(`${b.dir} ${r.evidenceRequirementId} component ${c.component}: unknown coverageBasis "${c.coverageBasis}"`);
+        }
+        if (c.status !== "VERIFIED") problems.push(`${b.dir} ${r.evidenceRequirementId} component ${c.component}: status is ${c.status}, not VERIFIED`);
+      }
+      if (r.result.verificationStatus === "VERIFIED" && coverage.some((c) => c.status !== "VERIFIED")) {
+        problems.push(`${b.dir} ${r.evidenceRequirementId}: overall VERIFIED but not every pattern component is VERIFIED`);
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} structured composite-coverage requirement(s) checked (patternComponentCoverage), all components resolve and are sufficient`;
+});
+
+check(42, "Every VERIFIED result has an empty active gaps array", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches) {
+    for (const r of b.ev.results) {
+      if (r.result.verificationStatus !== "VERIFIED") continue;
+      n++;
+      if ((r.result.gaps ?? []).length > 0) problems.push(`${b.dir} ${r.evidenceRequirementId}: VERIFIED but gaps has ${r.result.gaps.length} entr(y/ies)`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 8).join("; ") + (problems.length > 8 ? ` (+${problems.length - 8} more)` : ""));
+  return `${n} VERIFIED rows checked across all batches, all have empty gaps`;
+});
+
+check(43, "The alarm-transistor result is not verified from a source discussing only generic transistor switching", () => {
+  const b6 = batches.find((b) => b.dir.includes("batch-06"));
+  const r = b6.ev.results.find((x) => x.evidenceRequirementId.includes("security-alarm-transistor-switching"));
+  if (!r) throw new Error("security-alarm-transistor-switching result not found");
+  if (r.result.verificationStatus === "VERIFIED") {
+    const hasAlarmSpecificClaim = (r.result.normalizedClaims ?? []).some((c) => /alarm/i.test(c.claimText));
+    if (!hasAlarmSpecificClaim) throw new Error("VERIFIED but no normalizedClaim ties the transistor behaviour to a security-alarm circuit specifically -- false-green pattern");
+  }
+  return `security-alarm-transistor-switching is ${r.result.verificationStatus}, consistent with the general-switching-is-not-alarm-specific correction`;
+});
+
+check(44, "The magnetic-field-pattern result covers all three enumerated pattern components", () => {
+  const b5 = batches.find((b) => b.dir.includes("batch-05"));
+  const r = b5.ev.results.find((x) => x.evidenceRequirementId.includes("magnetic-field-patterns"));
+  if (!r) throw new Error("magnetic-field-patterns result not found");
+  const required = r.result.requiredPatternComponents ?? [];
+  const EXPECTED = ["bar-magnet", "straight-current-carrying-conductor", "solenoid-coil"];
+  if (JSON.stringify([...required].sort()) !== JSON.stringify([...EXPECTED].sort())) {
+    throw new Error(`requiredPatternComponents=${JSON.stringify(required)}, expected exactly ${JSON.stringify(EXPECTED)}`);
+  }
+  const coverage = r.result.patternComponentCoverage ?? [];
+  const coveredComponents = coverage.map((c) => c.component).sort();
+  if (JSON.stringify(coveredComponents) !== JSON.stringify([...EXPECTED].sort())) {
+    throw new Error(`patternComponentCoverage components=${JSON.stringify(coveredComponents)}, expected exactly ${JSON.stringify(EXPECTED)}`);
+  }
+  return "all three enumerated pattern components (bar magnet, straight conductor, solenoid/coil) are structurally covered";
+});
+
+check(45, "Review-pack required/context totals recompute independently from source records", () => {
+  function computeRequiredContext(scopeBatches) {
+    let required = 0;
+    let optionalContext = 0;
+    for (const b of scopeBatches) {
+      for (const r of b.ev.results) {
+        const p = priorityOf2(r.evidenceRequirementId);
+        if (p === "REQUIRED") required++;
+        else if (p === "OPTIONAL_CONTEXT") optionalContext++;
+        else throw new Error(`${b.dir} ${r.evidenceRequirementId}: no resolvable acquisitionPriority`);
+      }
+    }
+    return { required, optionalContext };
+  }
+  const wholeComputed = computeRequiredContext(batches);
+  const b0406Computed = computeRequiredContext(batches.filter((b) => !b.frozen));
+  const packWhole = pack.requirementCounts.requiredVsContext.wholeUnit202;
+  const packB0406 = pack.requirementCounts.requiredVsContext.batches0406Only;
+  if (wholeComputed.required !== packWhole.REQUIRED || wholeComputed.optionalContext !== packWhole.OPTIONAL_CONTEXT) {
+    throw new Error(`whole-unit required/context computed=${JSON.stringify(wholeComputed)} pack=${JSON.stringify(packWhole)}`);
+  }
+  if (b0406Computed.required !== packB0406.REQUIRED || b0406Computed.optionalContext !== packB0406.OPTIONAL_CONTEXT) {
+    throw new Error(`batches-04-06 required/context computed=${JSON.stringify(b0406Computed)} pack=${JSON.stringify(packB0406)}`);
+  }
+  return `whole-unit=${JSON.stringify(wholeComputed)} batches0406=${JSON.stringify(b0406Computed)}, both match the review pack`;
 });
 
 // --- Report ---
