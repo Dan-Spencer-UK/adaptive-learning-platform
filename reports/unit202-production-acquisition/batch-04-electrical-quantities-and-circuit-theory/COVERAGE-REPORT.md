@@ -10,13 +10,13 @@ merged or reinterpreted in this pass.
 
 Work proceeded through four internal research clusters, each validated before moving to the next:
 
-| Cluster | Requirements | Status |
+| Cluster | Requirements | Status (after the internal audit correction pass) |
 |---|---|---|
-| 1. SI quantities and practical unit conversion | 9 | Complete, all VERIFIED |
-| 2. Core electrical quantities (current, voltage, resistance, resistivity, power, energy, power factor) | 26 | Complete, all VERIFIED |
-| 3. AC quantities (frequency, impedance, capacitance/capacitive reactance, inductance/inductive reactance) | 15 | Complete, all VERIFIED |
-| 4. Measuring instruments | 7 | Complete, all VERIFIED |
-| **Total** | **57** | **Complete, all VERIFIED** |
+| 1. SI quantities and practical unit conversion | 9 | 8 VERIFIED, 1 PARTIAL |
+| 2. Core electrical quantities (current, voltage, resistance, resistivity, power, energy, power factor) | 26 | 23 VERIFIED, 3 PARTIAL |
+| 3. AC quantities (frequency, impedance, capacitance/capacitive reactance, inductance/inductive reactance) | 15 | 14 VERIFIED, 1 PARTIAL |
+| 4. Measuring instruments | 7 | 4 VERIFIED, 3 PARTIAL |
+| **Total** | **57** | **49 VERIFIED, 8 PARTIAL** |
 
 (Note: the task specification's own narrative described clusters 2 and 3 as "25" and "16" requirements
 respectively; the frozen plan's actual per-topic counts are 26 and 15 -- length/area/volume/mass/density/time/
@@ -29,9 +29,43 @@ frozen plan is, and it holds.)
 
 ## Evidence status totals
 
-All 57 requirements reached **VERIFIED** status (see `EVIDENCE-RESULTS.json`, `statusTotals`). No requirement
-was left PARTIAL or GAP in this pass. See `EVIDENCE-RESULTS.json`'s own `statusVocabulary` block for the exact
-definitions of VERIFIED / PARTIAL / GAP used throughout this batch.
+**49 VERIFIED, 8 PARTIAL, 0 GAP** (see `EVIDENCE-RESULTS.json`, `statusTotals`). See that file's own
+`statusVocabulary` block for the exact definitions used throughout this batch.
+
+> **This batch was originally recorded as 57/57 VERIFIED. That was not earned.** An internal adversarial audit
+> pass, run after the initial acquisition and before any Product Architect review, downgraded eight results and
+> corrected a number of claims. An internal audit is a progression gate, not acceptance — it confers no Product
+> Architect approval. The eight PARTIAL results are:
+>
+> | Requirement | Why it is PARTIAL |
+> |---|---|
+> | `power...::CONCEPT_DEFINITION::DISTINCTION` | The recorded `SRC-ETW-POWERTRIANGLE` passage **does not appear on the source page** (confirmed by re-fetch). Power factor's dimensionlessness is retained as a disclosed inference from the page's own `P/S = W/VA` identity, not as retrieved text. |
+> | `power-factor...::CONCEPT_DEFINITION::DISTINCTION` | Same fabricated passage. **This is the batch's power-factor guardrail, and it now rests on inference rather than an explicit authoritative statement.** |
+> | `inductance...::CONCEPT_DEFINITION::DISTINCTION` | The recorded `SRC-ETW-ACINDUCTORS` passage does not appear on the source page. The proposition carrying the DISTINCTION — that inductance is frequency-independent while reactance is not — is **unevidenced** in this batch. (The parallel capacitance DISTINCTION passage was confirmed genuine and is unaffected.) |
+> | `ohmmeter-measures-resistance::EXACT_FACT` | No verbatim passage was ever captured — the field held a description of the page's structure. |
+> | `ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE` | `CALCULATION_METHOD` had been marked satisfied although the evidence contains no calculation; now recorded unresolved. **The safety content itself (de-energisation *and* stored capacitor charge) is fully evidenced and unaffected.** |
+> | `energy-meter-measures-integrates-electrical-energy::EXACT_FACT` | The "integrates" half of the requirement is unevidenced by the single quoted NISTIR 8248 sentence. |
+> | `practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE` | `SRC-NIST-SP811-CH4` was cited under an authority class this requirement does not permit, with a passage that did not support its attributed claim; both were removed. The squared/cubed half remains fully evidenced. |
+> | `resistivity...::SYMBOL_OR_CONVENTION::UNIT_SYMBOL` | Rests on a disclosed compounding of two NIST passages — which is this batch's own definition of PARTIAL. |
+>
+> Additionally, one **factually wrong** taught claim was corrected: the temperature requirement and `EQCT-LP-01`
+> had asserted that "a temperature INTERVAL or an SI base-unit value uses K". That is incorrect and was
+> contradicted by the result's own quoted NIST passage ("One Celsius degree is an interval of 1 K") — a
+> temperature interval may be expressed in either °C or K with the same numerical value. Corrected in both places.
+> Claims were also corrected for misattribution, dropped operating conditions (`P=V.I` needs its steady-state
+> qualification), curriculum policy recorded as if a source asserted it, and a wattmeter claim that contradicted
+> the batch's own power-factor teaching.
+
+## Open matter for Product Architect judgment: source authority classification
+
+`electronics-tutorials.ws` (the ten `SRC-ETW-*` sources) is classified `AUTHORITATIVE_TECHNICAL_REFERENCE`, and
+that classification is **load-bearing, not cosmetic**. 22 of 57 results depend on an `SRC-ETW-*` source; 16 have
+no non-ETW candidate at all. `SYMBOL_OR_CONVENTION` requirements exclude `AUTHORITATIVE_EDUCATIONAL_REFERENCE`,
+so if the site were reclassified as educational — the class this same batch assigned to LibreTexts on comparable
+reasoning — roughly ten symbol-convention results would fail their authority gate simultaneously. The site is
+anonymous and commercial, with no named authors, editorial board, citations or errata process. **This was
+deliberately not resolved unilaterally** (resolving it means fresh acquisition, not correction) and is recorded
+in full in `SOURCE-REGISTER.json` under `openAuthorityClassificationMatterForProductArchitect`.
 
 ## Sources
 
@@ -110,14 +144,36 @@ outcomes explicitly presuppose knowing what resistance is.
 
 ## Proposed learning-point summary
 
-19 new learning points (`EQCT-LP-01` through `EQCT-LP-19`), all `evidenceReadiness: READY`, all
-`status: PROPOSED_FOR_PA_REVIEW` (none accepted or frozen). See
+19 new learning points (`EQCT-LP-01` through `EQCT-LP-19`), all `status: PROPOSED_FOR_PA_REVIEW` (none accepted
+or frozen). After the internal audit correction pass: **12 `READY`, 7 `HELD_PENDING_EVIDENCE_CORRECTION`**
+(`EQCT-LP-02`, `-05`, `-07`, `-12`, `-15`, `-16`, `-18` — each carries an `evidenceReadinessNote` naming the
+downgraded evidence beneath it). Three learning points also had their taught content corrected: `EQCT-LP-01`
+(the factually wrong temperature-interval statement), `EQCT-LP-15` (an ohmmeter test-current mechanism that no
+retrieved passage supports), and `EQCT-LP-17` (which taught that a wattmeter derives power as voltage × current,
+contradicting `EQCT-LP-07`'s own power-factor teaching). See
 `ELECTRICAL-QUANTITIES-AND-CIRCUIT-THEORY-LEARNING-POINTS.json` / `.md` for full detail, and their embedded
 57-requirement coverage matrix (every requirement maps either to a new `EQCT-LP-*` or, for the 8 reused
 resistance/resistivity requirements, to the existing accepted `EFS-LP-05`/`EFS-LP-06`).
 
 ## Validation
 
-See the Node.js validation script run for this batch (`validate-batch04.js`, run from the repository root before
-committing) and its console output, summarised in the final report to the orchestrating session. All 27 checks
-specified in the task were run; all passed.
+The batch's original validation run (`validate-batch04.js`) reported that all 27 checks specified in the
+acquisition task passed. **That claim was too narrow.** A subsequent deterministic integrity run in the internal
+audit pass — covering checks the original script did not perform — found four mechanical defects it had missed:
+
+1. `SRC-NIST-SP811-CH4` was cited on the practical-unit-conversion requirement under an **authority class that
+   requirement does not permit** (the original script never checked cited authority classes against each
+   requirement's own frozen `sourceAuthorityClasses`).
+2–4. Three `supportsRequirementSuffixes` **over-claims** in `SOURCE-REGISTER.json`, where a source asserted it
+   supported a requirement on which it was not actually a candidate source (`SRC-ETW-INDUCTOR` on the inductance
+   `UNIT_SYMBOL` requirement; `SRC-EOLSS-ELECQUANT` on the capacitance and inductance `DEFINITION` requirements).
+
+All four are corrected. The semantic defects (fabricated passages, false-green dimensions, the incorrect
+temperature claim, misattributions) were found by adversarial reading, not by any script, and are listed above.
+
+Current deterministic state: 57/57 requirement IDs match the frozen plan exactly, with no duplicates or
+omissions; all JSON parses; every cited source and normalized-claim reference resolves; every cited authority
+class is permitted by its own requirement; prerequisite references resolve and the graph is acyclic; and the
+Markdown and JSON learning-point inventories agree on all 19 points. One deliberate residual: `SRC-NIST-SP811-CH4`
+remains registered but is now cited by no result — retained for the audit trail, with a `registrationNote`
+explaining why, rather than deleted.

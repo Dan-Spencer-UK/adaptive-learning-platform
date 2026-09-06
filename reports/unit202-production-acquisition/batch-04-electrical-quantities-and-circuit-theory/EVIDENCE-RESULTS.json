@@ -10,7 +10,8 @@
     "GAP": "No adequately authoritative, genuinely-read source could be found within the bounded candidate-evaluation discipline; the gap is recorded honestly rather than papered over."
   },
   "statusTotals": {
-    "VERIFIED": 57
+    "VERIFIED": 49,
+    "PARTIAL": 8
   },
   "reusedFromBatch01": [],
   "reusedFromBatch02": [
@@ -323,7 +324,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "The SI unit of thermodynamic temperature is the kelvin, unit symbol K. Degree Celsius (deg C) is a related, permitted temperature scale (offset by 273.15 from kelvin) but is not itself the SI base unit; K and deg C are not interchangeable symbols -- deg C is only valid for Celsius temperature, and a bare temperature interval/SI-base value uses K.",
+            "claimText": "The SI unit of thermodynamic temperature is the kelvin, unit symbol K. The degree Celsius (deg C) is a related, permitted scale whose zero sits at 273.15 K. One Celsius degree is an interval of exactly 1 K, so a temperature DIFFERENCE or INTERVAL has the same numerical value whether expressed in deg C or in K; what differs between the two scales is the zero point, so an ABSOLUTE temperature value in deg C and in K is not the same number and the symbols are not interchangeable for absolute values.",
             "sourceId": "SRC-NIST-TEMPERATURE"
           }
         ],
@@ -333,7 +334,8 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "CORRECTED in the internal audit pass. The previous claim asserted that 'a bare temperature interval/SI-base value uses K'. That was incorrect and was contradicted by this result's own quoted NIST passage ('One Celsius degree is an interval of 1 K'): because the Celsius degree and the kelvin are the same size, a temperature interval may legitimately be expressed in either deg C or K with the same numerical value (BIPM SI Brochure, Celsius temperature). Only the ABSOLUTE value differs, by the 273.15 offset. The requirement itself asks only for temperature's correct SI unit and unit symbol, which the quoted passage fully and directly supports; the erroneous sentence was overreach beyond the requirement and has been removed rather than re-evidenced."
       }
     },
     {
@@ -359,34 +361,26 @@
             "sourceRef": "https://chem.libretexts.org/Courses/Heartland_Community_College/CHEM_120:_Fundamentals_of_Chemistry/01:_Measurement_and_Problem_Solving/1.12:_Squared_and_Cubic_Units",
             "sourceLocator": "Chemistry LibreTexts 1.12 'Squared and Cubic Units'",
             "retrievedPassage": "\"the conversion factor is effectively multiplied by itself to achieve the required unit cancelation...the entire conversion factor is being multiplied by itself...the numbers and the units must both be squared.\" Worked example: 18,900,000 cm^3 x (1 m/100 cm)^3 = 18.9 m^3."
-          },
-          {
-            "sourceId": "SRC-NIST-SP811-CH4",
-            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-            "sourceRef": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes",
-            "sourceLocator": "NIST Guide to the SI, Chapter 4",
-            "retrievedPassage": "\"Derived units are expressed algebraically in terms of base units or other derived units.\" Table 2 gives area=square metre (m^2), volume=cubic metre (m^3), acceleration=metre per second squared (m/s^2) as worked examples of exponentiated derived units."
           }
         ],
         "normalizedClaims": [
-          {
-            "claimText": "A usable method for practical unit conversion (e.g. mm to m, or between SI-prefixed multiples) is to multiply/divide by the appropriate power-of-ten prefix factor; this is the same substitution/rearrangement skill as Batch 01's FM-LP-19 (engineering notation and SI prefixes).",
-            "sourceId": "SRC-NIST-SP811-CH4"
-          },
           {
             "claimText": "When the quantity being converted is itself squared or cubed (area, m^2; volume, m^3), a plain linear conversion factor must NOT be applied once -- the linear factor itself must be raised to the same power (squared for area, cubed for volume) before use, since e.g. cm^3 means cm x cm x cm and each of the three factors must be converted.",
             "sourceId": "SRC-LIBRETEXTS-SQCUBIC"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
           "PROCEDURE",
           "CALCULATION_METHOD"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [],
-        "scopeNote": "Bound to conversion of the quantities this batch and Unit 202 elsewhere genuinely use (length/prefix conversion; area and volume as squared/cubed cases). Does not assume a length conversion factor automatically applies unmodified to an area or volume conversion -- the evidenced method explicitly requires squaring/cubing the factor first. General base conversion mechanics (prefix scaling) reuse the accepted Batch 01 FM-LP-19 mastery rather than re-deriving it."
+        "gaps": [
+          "Downgraded from VERIFIED to PARTIAL in the internal audit pass, and the SRC-NIST-SP811-CH4 candidate source and its claim were REMOVED, for two independent defects. (1) AUTHORITY CLASS: SRC-NIST-SP811-CH4 is registered as PRIMARY_NORMATIVE_OR_STANDARDS_BODY, but this requirement's frozen sourceAuthorityClasses are ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE and AUTHORITATIVE_EDUCATIONAL_REFERENCE -- the cited class is not permitted for this requirement. (2) PASSAGE-TO-CLAIM SUPPORT: its recorded passage ('Derived units are expressed algebraically in terms of base units or other derived units', plus a table of m^2, m^3, m/s^2) does not support the claim attributed to it, which was about multiplying/dividing by power-of-ten SI prefix factors. That claim also embedded an internal cross-reference to Batch 01's FM-LP-19, which is a curriculum decision, not something NIST attests.",
+          "Consequently the SI-prefix/power-of-ten half of 'practical unit conversion' has NO in-batch citation. It is not re-derived here; it remains covered by the accepted Batch 01 mastery FM-LP-19 (engineering notation and SI prefixes), which EQCT-LP-02 already carries as a cross-domain prerequisite. The squared/cubed-unit half of the requirement REMAINS genuinely and fully evidenced by SRC-LIBRETEXTS-SQCUBIC (a permitted AUTHORITATIVE_EDUCATIONAL_REFERENCE) including a worked example, so this is a partial, not a gap."
+        ],
+        "scopeNote": "Bound to conversion of the quantities this batch and Unit 202 elsewhere genuinely use. The evidenced, in-batch-cited method is the squared/cubed case (a linear conversion factor must be raised to the same power before use for area and volume). General SI-prefix scaling is reused accepted Batch 01 mastery (FM-LP-19), not re-evidenced here -- see gaps."
       }
     },
     {
@@ -431,7 +425,9 @@
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
-        "conflicts": [],
+        "conflicts": [
+          "NUMERICALLY FALSE FIGURE IN A QUOTED SOURCE PASSAGE, flagged in the internal audit pass and NOT relied upon. SRC-EOLSS-ELECQUANT's quoted passage states that a current of 1 ampere corresponds to 'approximately 1.602176487x10^19 electrons per second through a surface'. That is wrong by more than an order of magnitude: one ampere is approximately 6.24x10^18 electrons per second (1/e, where the elementary charge e = 1.602176634x10^-19 C). The quoted figure is transparently the elementary-charge mantissa with a corrupted exponent. Whether the error originates with EOLSS or with transcription during acquisition has not been re-established. No claim in this batch depends on this figure, and none should be built on it; this source is nonetheless cited across multiple requirement suffixes, so the defect is recorded here rather than left silent."
+        ],
         "gaps": []
       }
     },
@@ -596,8 +592,12 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Authoritative technical references genuinely differ on the exact letter used for voltage's quantity symbol: V is the most common (used throughout this qualification's own Ohm's law and voltage-drop formulae, V=IR, per the accepted Batch 02 inventory), with U and E also documented as recognised alternative conventions elsewhere (U is common in IEC/European practice; E is used specifically for electromotive force in some texts). This qualification teaches V as its working symbol and does not teach U/E as a second, conflicting formula system -- learners are told the alternative exists, not taught to switch between them.",
+            "claimText": "Voltage's quantity symbol is given as V or E.",
             "sourceId": "SRC-ETW-DC1"
+          },
+          {
+            "claimText": "Voltage's quantity symbol is given as V, or sometimes U (lower-case v or u where the voltage is a time-varying quantity).",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -605,8 +605,11 @@
           "QUANTITY_SYMBOL"
         ],
         "unresolvedDimensions": [],
-        "conflicts": [],
-        "gaps": []
+        "conflicts": [
+          "Authoritative technical references genuinely differ on the letter used for voltage's quantity symbol: SRC-ETW-DC1 gives 'V or E'; SRC-EOLSS-ELECQUANT gives 'V or sometimes U'. Reported rather than harmonised."
+        ],
+        "gaps": [],
+        "scopeNote": "CURRICULUM DECISION (not attributed to any source, and moved out of normalizedClaims in the internal audit pass): this qualification teaches V as its working quantity symbol, matching the accepted Batch 02 Ohm's-law and voltage-drop formulae (V=IR, Vdrop=IR). U and E are disclosed to learners as documented alternative conventions that exist, not taught as a second, conflicting formula system. The previous record placed this pedagogy inside a normalizedClaim attributed to SRC-ETW-DC1, and additionally asserted that 'U is common in IEC/European practice' -- a characterisation that appears in NO retrieved passage in this batch and has been removed. SRC-ETW-DC1's page does not mention U at all; the U convention comes solely from the EOLSS candidate, which is now cited for it directly."
       }
     },
     {
@@ -967,14 +970,16 @@
             "sourceId": "SRC-NIST-SP811-B9"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
           "UNIT_SYMBOL"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [],
-        "scopeNote": "Reused mastery -- see EFS-LP-06. Claim established honestly by combining two genuine NIST passages, consistent with Batch 02's identical disclosed compounding for this exact fact."
+        "gaps": [
+          "No single retrieved passage states both that the quantity in question is RESISTIVITY and that its SI unit symbol is the ohm-metre. The claim is established by compounding two genuine NIST passages: SRC-NIST-RESHALL supplies 'rho = sample resistivity (in ohm-cm)' (linking resistivity to an ohm-length unit) and SRC-NIST-SP811-B9's conversion table supplies the SI form 'ohm meter (Ohm-m)'. Downgraded from VERIFIED to PARTIAL in the internal audit pass to match this batch's own statusVocabulary, which defines PARTIAL as including a claim that 'rests on a disclosed compounding of more than one passage where no single passage states the full claim'. The compounding was already disclosed in the scopeNote; only the status was inconsistent with it."
+        ],
+        "scopeNote": "Reused mastery -- see EFS-LP-06. Claim established by a disclosed compounding of two genuine NIST passages; status corrected to PARTIAL in the internal audit pass to match this batch's own PARTIAL definition. The underlying fact (resistivity's SI unit is the ohm-metre) is not in doubt and is independently taught by the accepted Batch 02 EFS-LP-06; what is PARTIAL is this batch's single-passage support for it."
       }
     },
     {
@@ -1010,7 +1015,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Electrical power is the rate at which electrical energy is transferred/work is done, P=V.I (equivalently I^2R or V^2/R), unit watt.",
+            "claimText": "Electrical power is the rate at which electrical energy is transferred / work is done, and is measured in watts (W). For a circuit with a STEADY voltage V and current I -- the source's own stated condition -- power can be calculated as P = V.I = I^2.R = V^2/R.",
             "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
@@ -1020,7 +1025,8 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "CORRECTED in the internal audit pass: the previous claim stated P=V.I (and its I^2R / V^2/R forms) unconditionally, dropping the word 'steady' from the EOLSS passage's own operating condition ('the power P in a circuit with a steady voltage V and current I'). That single word is what makes the identity true: for a general AC load with a non-unity power factor, real power is P = V.I.cos(phi), not V.I -- as this batch's own EQCT-LP-07 teaches. The qualification is restored here and in EQCT-LP-05."
       }
     },
     {
@@ -1051,7 +1057,7 @@
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
-            "retrievedPassage": "\"Power (P): Measured in watts, represents actual work performed\" vs \"Power Factor: A unitless ratio describing the phase relationship between voltage and current.\""
+            "retrievedPassage": "\"Power factor is defined as the ratio of real power (P) to apparent power (S), and is generally expressed as either a decimal value\"; \"Power factor defines the phase angle between the current and voltage waveforms\"; \"When the power factor equals 1 (unity) or 100%, that is when the real power consumed equals the circuits apparent power.\" The page ALSO gives Cos(phi) = Real/Apparent = P/S = W/VA = power factor. VERIFIED IN THE INTERNAL AUDIT PASS BY RE-FETCHING THE PAGE: the page does NOT anywhere use the words 'unitless' or 'dimensionless', and does not state that power factor has no unit."
           }
         ],
         "normalizedClaims": [
@@ -1060,17 +1066,19 @@
             "sourceId": "SRC-ETW-ENERGY"
           },
           {
-            "claimText": "Power factor is a separate, dimensionless ratio (real power/apparent power) describing how effectively power is delivered in an AC circuit; it is not itself a power and carries no unit.",
+            "claimText": "Power factor is a separate quantity from power: it is the ratio of real power (P) to apparent power (S), expressed as a decimal or percentage, and it defines the phase angle between the current and voltage waveforms. Because it is the ratio of two power quantities (P/S = W/VA), the watt units cancel -- so power factor carries no unit, unlike power which is measured in watts.",
             "sourceId": "SRC-ETW-POWERTRIANGLE"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. The previously recorded retrievedPassage for SRC-ETW-POWERTRIANGLE ('Power (P): Measured in watts, represents actual work performed by the resistive component' vs 'Power Factor: A unitless ratio describing the phase relationship between voltage and current, determining how efficiently that power is delivered.') was NOT present on the source page. It was synthesised summary prose recorded inside a verbatim-quotation field. The page was re-fetched during the audit and the field now holds what the page actually says. The dimensionless/no-unit property -- the batch's own technical guardrail -- is NOT stated in terms by this source; it is a disclosed INFERENCE from the page's own P/S = W/VA identity (the watt units cancel). Retained as an inference rather than deleted, because it is correct and the sibling UNIT_SYMBOL result derives it the same honest way, but it is not a retrieved passage and the requirement is therefore not fully VERIFIED on retrieved text alone."
+        ]
       }
     },
     {
@@ -1266,7 +1274,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "The quantity symbol for (electrical) energy is E -- deliberately distinct from W, the UNIT symbol for power (the watt); this qualification does not use W as energy's quantity symbol, precisely to avoid conflating it with the watt.",
+            "claimText": "Electrical energy is denoted by the quantity symbol E, as used in the relationship p(t) = dE/dt expressing power as the rate of change of electrical energy with time.",
             "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
@@ -1276,7 +1284,8 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "CURRICULUM DECISION (moved out of normalizedClaims in the internal audit pass, where it had been attributed to SRC-EOLSS-ELECQUANT, whose passage is only 'p(t) = dE/dt'): this qualification does not use W as energy's quantity symbol, precisely to avoid conflating it with W the unit symbol for the watt. That is this qualification's choice, not something the source attests."
       }
     },
     {
@@ -1378,22 +1387,24 @@
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/accircuits/power-triangle.html",
             "sourceLocator": "electronics-tutorials.ws, Power Triangle page",
-            "retrievedPassage": "\"Power (P): Measured in watts, represents actual work performed by the resistive component\" vs \"Power Factor: A unitless ratio describing the phase relationship between voltage and current, determining how efficiently that power is delivered.\""
+            "retrievedPassage": "\"Power factor is defined as the ratio of real power (P) to apparent power (S), and is generally expressed as either a decimal value\"; \"Power factor defines the phase angle between the current and voltage waveforms\"; \"When the power factor equals 1 (unity) or 100%, that is when the real power consumed equals the circuits apparent power.\" The page ALSO gives Cos(phi) = Real/Apparent = P/S = W/VA = power factor. VERIFIED IN THE INTERNAL AUDIT PASS BY RE-FETCHING THE PAGE: the page does NOT anywhere use the words 'unitless' or 'dimensionless', and does not state that power factor has no unit."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Power factor is not power: power (P) is a real, wattage quantity; power factor is a dimensionless ratio (0 to 1, or a percentage) describing how much of the apparent power is actually real/useful power -- it never itself carries a watt value.",
+            "claimText": "Power factor is not power: power (P) is a real quantity measured in watts, whereas power factor is the ratio of real power to apparent power (P/S), expressed as a decimal or a percentage, and defines the phase angle between the current and voltage waveforms. Being a ratio of two power quantities (W/VA), its units cancel, so it never itself carries a watt value.",
             "sourceId": "SRC-ETW-POWERTRIANGLE"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "Downgraded from VERIFIED to PARTIAL in the internal audit pass, for the same fabricated-quotation defect recorded on the sibling power::DISTINCTION result: the previously recorded 'A unitless ratio describing the phase relationship...' passage does not exist on the source page (confirmed by re-fetch during the audit). The dimensionlessness of power factor is retained as a disclosed inference from the page's own P/S = W/VA identity, not as retrieved text. NOTE FOR PRODUCT ARCHITECT: this is the batch's power-factor guardrail, and it currently rests on inference rather than on an explicit authoritative statement. A source that states dimensionlessness in terms (e.g. IEC 60050 / IEEE) should be acquired before this is treated as settled."
+        ]
       }
     },
     {
@@ -1620,8 +1631,12 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Impedance is the total opposition an AC circuit presents to current flow, combining resistance and reactance; it is measured in ohms (the same unit as resistance) and, unlike plain resistance, is frequency-dependent.",
+            "claimText": "Impedance is the total opposition to the flow of alternating electrical current in an AC circuit and is expressed in ohms.",
             "sourceId": "SRC-ETW-IMPEDANCE"
+          },
+          {
+            "claimText": "Impedance is a function of frequency -- unlike plain resistance -- and combines the circuit's resistance and reactance.",
+            "sourceId": "SRC-EOLSS-ELECQUANT"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1630,7 +1645,8 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "CORRECTED in the internal audit pass: the frequency-dependence and resistance-plus-reactance elements of this claim had been attributed to SRC-ETW-IMPEDANCE, whose recorded passage says only 'Impedance is the total opposition to the flow of alternating electrical current in an AC circuit and is expressed in Ohms.' Those elements come from the SRC-EOLSS-ELECQUANT candidate ('Impedance is a function of frequency') and are now attributed to it."
       }
     },
     {
@@ -1666,7 +1682,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Impedance is NOT the simple arithmetic sum of resistance and reactance (R+X does not equal Z); resistance and reactance combine as a vector/complex quantity (their values are 90 degrees out of phase), so impedance's magnitude must be found by combining them geometrically, not by adding their ohm values directly. This qualification teaches this distinction conceptually only; it does not require learners to perform the complex-number/phasor calculation itself.",
+            "claimText": "Impedance is NOT the simple arithmetic sum of resistance and reactance (R+X does not equal Z); resistance and reactance combine as a vector/complex quantity (their values are 90 degrees out of phase), so impedance's magnitude must be found by combining them geometrically, not by adding their ohm values directly.",
             "sourceId": "SRC-ETW-IMPEDANCE"
           }
         ],
@@ -1676,7 +1692,8 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "scopeNote": "CURRICULUM DECISION (moved out of normalizedClaims in the internal audit pass, where it had been attributed to SRC-ETW-IMPEDANCE): this qualification teaches the resistance/reactance/impedance distinction conceptually only and does not require learners to perform complex-number or phasor calculations. That is this qualification's scoping choice, not something the source attests."
       }
     },
     {
@@ -2012,22 +2029,24 @@
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/inductor/ac-inductors.html",
             "sourceLocator": "electronics-tutorials.ws, Inductive Reactance page",
-            "retrievedPassage": "\"inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant regardless of the applied signal frequency\"; \"at DC an inductor has zero reactance (short-circuit), at high frequencies an inductor has infinite reactance (open-circuit).\""
+            "retrievedPassage": "\"the opposition to current flow through the coils windings not only depends upon the inductance of the coil but also the frequency of the AC waveform\"; \"if either of the Frequency or Inductance was increased the overall inductive reactance value would also increase.\" VERIFIED IN THE INTERNAL AUDIT PASS: the page does NOT state that inductance itself remains constant regardless of applied frequency."
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Inductance (henries) is a fixed physical property of a coil; inductive reactance (ohms) is that coil's frequency-dependent AC opposition, which rises as frequency rises -- the two are related but are not the same quantity and do not share a unit.",
+            "claimText": "Inductance (henries) and inductive reactance (ohms) are related but distinct quantities: the opposition a coil presents to AC current depends both on the coil's inductance AND on the frequency of the AC waveform, and increasing either the frequency or the inductance increases the inductive reactance. They do not share a unit.",
             "sourceId": "SRC-ETW-ACINDUCTORS"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
           "DISTINCTION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. The previously recorded retrievedPassage ('inductance is a fixed property of a coil...whereas inductive reactance depends on AC frequency...reactance is dynamic and frequency-dependent, whereas inductance itself remains constant regardless of the applied signal frequency') was NOT present on the source page; it was synthesised prose in a verbatim-quotation field, and ACQUISITION-LOG.json repeated it as fact. The proposition actually carrying the DISTINCTION dimension -- that inductance itself is frequency-independent while reactance is not -- is therefore UNEVIDENCED in this batch. What the page genuinely supports (reactance depends on both inductance and frequency) is retained. NOTE: the parallel capacitance DISTINCTION result is NOT affected -- its passage ('Unlike resistance which has a fixed value... Capacitive Reactance varies inversely proportional with the applied frequency') was confirmed genuine, so the two are not symmetrical in evidential quality despite having been written as though they were."
+        ]
       }
     },
     {
@@ -2219,7 +2238,7 @@
             "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
             "sourceRef": "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-resistance",
             "sourceLocator": "Fluke, 'How to Measure Resistance with a Digital Multimeter'",
-            "retrievedPassage": "The page's entire procedure is titled and structured around using the meter's resistance/ohms function to measure a component's resistance."
+            "retrievedPassage": "NO VERBATIM PASSAGE WAS CAPTURED. The field previously read: 'The page's entire procedure is titled and structured around using the meter's resistance/ohms function to measure a component's resistance.' That is a description of the page's structure, not a quotation from it. Flagged in the internal audit pass and left honestly marked rather than back-filled."
           }
         ],
         "normalizedClaims": [
@@ -2228,13 +2247,15 @@
             "sourceId": "SRC-FLUKE-RESISTANCE"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "Downgraded from VERIFIED to PARTIAL in the internal audit pass: no sentence from the source was ever reproduced for this requirement, so the requirement's own acceptance criterion ('the exact passage must be actually read and cited, never inferred') is not met on the record as it stands. The underlying fact is not in doubt and the same source genuinely supports the sibling safe-use PROCEDURE requirement with real quoted text; what is missing is a retrieved passage for this specific DEFINITION requirement. Resolving this needs only a re-fetch and one quoted sentence -- deliberately NOT done by inference during the audit."
+        ]
       }
     },
     {
@@ -2264,19 +2285,23 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before measuring, since an ohmmeter applies its own small internal test current/voltage and stored or externally-applied energy will produce an incorrect reading, damage the meter, or present a safety hazard.",
+            "claimText": "Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before taking a resistance reading.",
             "sourceId": "SRC-FLUKE-RESISTANCE"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
-          "PROCEDURE",
+          "PROCEDURE"
+        ],
+        "unresolvedDimensions": [
           "CALCULATION_METHOD"
         ],
-        "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [],
-        "scopeNote": "Bound to the de-energisation/safe-use principle itself, including the explicit stored-energy (charged-capacitor) case this source addresses. Does not extend to a general electrical safe-isolation procedure (lock-off/proving dead sequences) beyond what this source itself states."
+        "gaps": [
+          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. This requirement declares two coverage dimensions, PROCEDURE and CALCULATION_METHOD; the evidence ('Step 1. Turn Off Power to Circuit'; 'If a circuit includes a capacitor, discharge the capacitor before taking any resistance reading') delivers a genuine PROCEDURE but contains no calculation of any kind. CALCULATION_METHOD had been marked satisfied with an empty unresolvedDimensions list purely because the requirementMode is PROCEDURE_COVERAGE -- a false green. It is now recorded as unresolved. NOTE FOR PRODUCT ARCHITECT: this may instead be a plan-level artefact (a safe-use principle arguably has no calculation dimension to satisfy). That is a judgment about the frozen plan, which this pass has no authority to amend, so the honest unresolved marking is used instead.",
+          "The claim previously asserted a mechanism -- that an ohmmeter 'applies its own small internal test current/voltage' -- which appears in NO retrieved passage anywhere in this batch. It has been removed from the claim. The safety conclusion does not depend on it."
+        ],
+        "scopeNote": "Bound to the de-energisation/safe-use principle itself, including the explicit stored-energy (charged-capacitor) case this source addresses. Does not extend to a general electrical safe-isolation procedure (lock-off/proving-dead sequences) beyond what this source itself states. The safety content of this requirement (both de-energisation AND stored capacitor charge) is fully and genuinely evidenced; the PARTIAL status concerns only the unsatisfied CALCULATION_METHOD dimension."
       }
     },
     {
@@ -2305,7 +2330,7 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "A wattmeter measures electrical power using two sensing elements together: a low-impedance current coil connected in series with the load (like an ammeter) and a high-impedance voltage coil connected in parallel with the load (like a voltmeter); the combined series-current + parallel-voltage sensing arrangement is what allows it to derive power (V x I) directly.",
+            "claimText": "A wattmeter is the instrument used for measuring AVERAGE (real) power. It consists essentially of two coils used together: a current coil of very low impedance connected in SERIES with the load (like an ammeter), and a voltage coil of very high impedance connected in PARALLEL with the load (like a voltmeter). Sensing current and voltage together is what allows the instrument to register real power rather than either quantity alone.",
             "sourceId": "SRC-PHILADELPHIA-WATTMETER"
           }
         ],
@@ -2316,7 +2341,7 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": [],
-        "scopeNote": "Bound to single-phase wattmeter operation at this qualification's depth. Explicitly excludes three-phase wattmeter methods (e.g. the two-wattmeter method), instrument transformers, and detailed electrodynamometer/calibration engineering, none of which this source's single-phase slide addresses or which this qualification's depth requires."
+        "scopeNote": "Bound to single-phase wattmeter operation at this qualification's depth. Explicitly excludes three-phase wattmeter methods (e.g. the two-wattmeter method), instrument transformers, and detailed electrodynamometer/calibration engineering, none of which this source's single-phase slide addresses or which this qualification's depth requires. CORRECTED in the internal audit pass on two points. (1) The source's word 'average' had been dropped from the claim; it is restored, because a wattmeter reads average/real power. (2) The claim previously said the arrangement lets the wattmeter 'derive power (V x I) directly'. For any AC load with a power factor below unity -- which this batch's own EQCT-LP-07 teaches is the normal case -- real power is P = V.I.cos(phi), NOT V x I, so the batch was simultaneously teaching that real power is not the simple product of voltage and current (LP-07) and that a wattmeter derives power as voltage times current (LP-17). The V x I formulation has been removed. (3) The source's 'ideally zero' / 'ideally infinite' coil-impedance wording is an idealisation; EQCT-LP-19's explicit idealised-model caveat now applies to EQCT-LP-17 as well."
       }
     },
     {
@@ -2340,22 +2365,24 @@
             "authorityClass": "GOVERNMENT_OR_REGULATOR",
             "sourceRef": "https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8248.pdf",
             "sourceLocator": "NISTIR 8248, Section 1 Introduction",
-            "retrievedPassage": "\"Electrical energy usage is measured with watt-hour meters.\" (context: distinguishing this accumulated-usage measurement from the instantaneous power measurements discussed in the same paragraph)."
+            "retrievedPassage": "\"Electrical energy usage is measured with watt-hour meters.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "An energy meter (watt-hour/kWh meter) measures accumulated electrical energy usage over time -- i.e. it integrates the power delivered over the period of use to register a total energy quantity -- rather than reading out an instantaneous power value.",
+            "claimText": "Electrical energy usage is measured with watt-hour meters (energy meters), which register accumulated energy usage in watt-hours/kilowatt-hours.",
             "sourceId": "SRC-NISTIR-8248"
           }
         ],
-        "verificationStatus": "VERIFIED",
+        "verificationStatus": "PARTIAL",
         "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [
+          "Downgraded from VERIFIED to PARTIAL in the internal audit pass. The requirement is 'energy meter measures/INTEGRATES electrical energy', but the sole retrieved passage is the single sentence 'Electrical energy usage is measured with watt-hour meters.' NISTIR 8248 as quoted states nothing about an integration mechanism, and nothing about contrasting accumulated energy with instantaneous power. The integration half of the requirement is therefore UNEVIDENCED. The previous record also carried the acquirer's own gloss INSIDE the retrievedPassage field -- '(context: distinguishing this accumulated-usage measurement from the instantaneous power measurements discussed in the same paragraph)' -- which has been removed; retrievedPassage is a verbatim-quotation field. The accumulation/integration property remains derivable from the already-evidenced energy = power x time relationship (EQCT-LP-06), but that is an internal derivation, not this source's statement."
+        ]
       }
     },
     {
@@ -2397,5 +2424,6 @@
         "gaps": []
       }
     }
-  ]
+  ],
+  "correctionNote": "Corrected during the internal adversarial audit pass following the initial acquisition. The batch was originally recorded as 57/57 VERIFIED; that was not earned. Nine results were downgraded to PARTIAL and several claims were corrected for attribution, lost qualifications, or curriculum prose recorded as if it were a source's assertion. Two retrievedPassage fields were found to contain text that does NOT appear on the cited page (SRC-ETW-POWERTRIANGLE on the two power-factor/power DISTINCTION results, and SRC-ETW-ACINDUCTORS on the inductance DISTINCTION result); both were confirmed by re-fetching the pages during the audit and both now hold what the pages actually say. One taught claim (temperature intervals) was factually WRONG and contradicted its own quoted passage; it has been corrected. No status was raised, and no gap was papered over."
 }

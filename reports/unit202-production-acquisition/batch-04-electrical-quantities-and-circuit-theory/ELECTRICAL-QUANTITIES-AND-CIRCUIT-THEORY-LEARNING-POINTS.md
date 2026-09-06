@@ -87,9 +87,11 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Evidence readiness:** READY
 
+**Correction note (internal audit pass):** CORRECTED in the internal audit pass. This learning point previously taught that 'a temperature INTERVAL or an SI base-unit value uses K'. That was factually wrong and was contradicted by its own evidence result's quoted NIST passage ('One Celsius degree is an interval of 1 K'): intervals may be expressed in either deg C or K with the same numerical value. Only absolute values differ, by the 273.15 offset.
+
 **Learner outcome:** The learner will be able to state the correct SI unit name and unit symbol for length, area, volume, mass, density, time, velocity and temperature.
 
-**Knowledge / procedure:** Length: metre (m). Area: square metre (m^2). Volume: cubic metre (m^3). Mass: kilogram (kg). Density: kilogram per cubic metre (kg/m^3) -- a mass-per-volume compound unit, never a bare mass or bare volume unit. Time: second (s). Velocity: metre per second (m/s). Temperature: kelvin (K) is the SI base unit; degree Celsius (deg C) is a related, permitted everyday scale offset by 273.15 from kelvin, but K and deg C are not interchangeable symbols -- a temperature INTERVAL or an SI base-unit value uses K, while an everyday Celsius reading uses deg C.
+**Knowledge / procedure:** Length: metre (m). Area: square metre (m^2). Volume: cubic metre (m^3). Mass: kilogram (kg). Density: kilogram per cubic metre (kg/m^3) -- a mass-per-volume compound unit, never a bare mass or bare volume unit. Time: second (s). Velocity: metre per second (m/s). Temperature: kelvin (K) is the SI base unit; degree Celsius (deg C) is a related, permitted everyday scale offset by 273.15 from kelvin, but K and deg C are not interchangeable symbols -- because one Celsius degree is an interval of exactly 1 K, a temperature DIFFERENCE or INTERVAL has the same numerical value in deg C as in K; what differs is the zero point, so an ABSOLUTE temperature is not the same number on the two scales (0 deg C = 273.15 K).
 
 **Within-domain prerequisites:** (none)
 
@@ -121,11 +123,15 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 - Identify which of a list of candidate units (e.g. kg, kg/m^3, m^3) is the correct SI unit for density.
 - Explain why 20 degC and 20 K are not the same temperature.
 
+> **Internal audit correction pass.** Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIAL; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen.
+
 ---
 
 ### `EQCT-LP-02` -- Practical unit conversion, including squared and cubed quantities
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (internal audit pass):** Underlying practical-unit-conversion evidence downgraded to PARTIAL: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced.
 
 **Learner outcome:** The learner will be able to convert a measured value between SI-prefixed multiples/sub-multiples of a unit, and correctly convert values in a squared (area) or cubed (volume) unit by applying the appropriate power of the linear conversion factor.
 
@@ -225,7 +231,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-05` -- Power: meaning, quantity symbol, unit, and distinction from energy and power factor
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (internal audit pass):** Underlying power::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification.
 
 **Learner outcome:** The learner will be able to state what electrical power is, its quantity symbol (P) and SI unit (watt, W), and explain how power differs from both energy and power factor.
 
@@ -295,7 +303,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-07` -- Power factor: meaning, notation, dimensionless nature, and distinction from power
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (internal audit pass):** Underlying power-factor::DISTINCTION evidence downgraded to PARTIAL. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement.
 
 **Learner outcome:** The learner will be able to state what power factor is, its conventional notation (cos phi / p.f.), that it is dimensionless with no unit, and explain how it differs from power.
 
@@ -465,7 +475,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-12` -- Inductive reactance: meaning, unit, and distinction from inductance
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (internal audit pass):** Underlying inductance::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch.
 
 **Learner outcome:** The learner will be able to state what inductive reactance is, its unit (ohms), and explain how it differs from inductance itself.
 
@@ -567,11 +579,13 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-15` -- Ohmmeter: measures resistance
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (internal audit pass):** Underlying ohmmeter-measures-resistance evidence downgraded to PARTIAL (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed.
 
 **Learner outcome:** The learner will be able to state that an ohmmeter (or a multimeter's resistance/ohms function) measures the resistance of a component or circuit.
 
-**Knowledge / procedure:** An ohmmeter (or a multimeter set to its resistance/ohms function) measures the resistance of a component or circuit by applying its own small internal test current/voltage and reading the resulting resistance value.
+**Knowledge / procedure:** An ohmmeter (or a multimeter set to its resistance/ohms function) measures the resistance of a component or circuit.
 
 **Within-domain prerequisites:** (none)
 
@@ -598,7 +612,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-16` -- Ohmmeter safe use: the circuit must be de-energised
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (internal audit pass):** Underlying ohmmeter safe-use evidence downgraded to PARTIAL because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected.
 
 **Learner outcome:** The learner will be able to state that a circuit or component must be de-energised (and any capacitor discharged) before measuring its resistance with an ohmmeter, and explain why.
 
@@ -633,7 +649,7 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 **Learner outcome:** The learner will be able to state that a wattmeter measures electrical power, using a low-impedance current-sensing element in series with the load together with a high-impedance voltage-sensing element in parallel with the load.
 
-**Knowledge / procedure:** A wattmeter measures electrical power by combining two sensing elements: a low-impedance current coil connected in SERIES with the load (like an ammeter) and a high-impedance voltage coil connected in PARALLEL with the load (like a voltmeter). This combined series-current-sensing plus parallel-voltage-sensing arrangement is what allows the instrument to derive power (proportional to voltage x current) directly, rather than requiring current and voltage to be measured and multiplied separately.
+**Knowledge / procedure:** A wattmeter measures electrical power by combining two sensing elements: a low-impedance current coil connected in SERIES with the load (like an ammeter) and a high-impedance voltage coil connected in PARALLEL with the load (like a voltmeter). This combined series-current-sensing plus parallel-voltage-sensing arrangement is what allows the instrument to derive power (the average (real) power of the load) directly, rather than requiring current and voltage to be measured and multiplied separately. A wattmeter reads AVERAGE (real) power. For an AC load whose power factor is below unity, real power is NOT simply voltage multiplied by current (see EQCT-LP-07) -- sensing both quantities together is what lets the instrument register real power. The 'very low' and 'very high' coil impedances are design goals, described by the source as 'ideally zero' and 'ideally infinite'; as with EQCT-LP-19, those limiting values are an idealised model, not literal claims about a real instrument.
 
 **Within-domain prerequisites:** `EQCT-LP-05`, `EQCT-LP-14`
 
@@ -661,7 +677,9 @@ Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25
 
 ### `EQCT-LP-18` -- Energy meter: measures and integrates electrical energy over time
 
-**Evidence readiness:** READY
+**Evidence readiness:** HELD_PENDING_EVIDENCE_CORRECTION
+
+**Evidence readiness note (internal audit pass):** Underlying energy-meter evidence downgraded to PARTIAL: the "integrates" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence.
 
 **Learner outcome:** The learner will be able to state that an energy meter (watt-hour/kWh meter) measures accumulated electrical energy usage over time, as distinct from an instantaneous power reading.
 

@@ -131,7 +131,7 @@
       "id": "EQCT-LP-01",
       "title": "SI units for common physical quantities (length, area, volume, mass, density, time, velocity, temperature)",
       "learnerOutcome": "The learner will be able to state the correct SI unit name and unit symbol for length, area, volume, mass, density, time, velocity and temperature.",
-      "knowledgeOrProcedure": "Length: metre (m). Area: square metre (m^2). Volume: cubic metre (m^3). Mass: kilogram (kg). Density: kilogram per cubic metre (kg/m^3) -- a mass-per-volume compound unit, never a bare mass or bare volume unit. Time: second (s). Velocity: metre per second (m/s). Temperature: kelvin (K) is the SI base unit; degree Celsius (deg C) is a related, permitted everyday scale offset by 273.15 from kelvin, but K and deg C are not interchangeable symbols -- a temperature INTERVAL or an SI base-unit value uses K, while an everyday Celsius reading uses deg C.",
+      "knowledgeOrProcedure": "Length: metre (m). Area: square metre (m^2). Volume: cubic metre (m^3). Mass: kilogram (kg). Density: kilogram per cubic metre (kg/m^3) -- a mass-per-volume compound unit, never a bare mass or bare volume unit. Time: second (s). Velocity: metre per second (m/s). Temperature: kelvin (K) is the SI base unit; degree Celsius (deg C) is a related, permitted everyday scale offset by 273.15 from kelvin, but K and deg C are not interchangeable symbols -- because one Celsius degree is an interval of exactly 1 K, a temperature DIFFERENCE or INTERVAL has the same numerical value in deg C as in K; what differs is the zero point, so an ABSOLUTE temperature is not the same number on the two scales (0 deg C = 273.15 K).",
       "prerequisiteLearningPointIds": [],
       "crossDomainPrerequisiteIds": [],
       "knowledgeTargetIds": [
@@ -172,7 +172,8 @@
         "State the SI unit and symbol for volume.",
         "Identify which of a list of candidate units (e.g. kg, kg/m^3, m^3) is the correct SI unit for density.",
         "Explain why 20 degC and 20 K are not the same temperature."
-      ]
+      ],
+      "correctionNote": "CORRECTED in the internal audit pass. This learning point previously taught that 'a temperature INTERVAL or an SI base-unit value uses K'. That was factually wrong and was contradicted by its own evidence result's quoted NIST passage ('One Celsius degree is an interval of 1 K'): intervals may be expressed in either deg C or K with the same numerical value. Only absolute values differ, by the 273.15 offset."
     },
     {
       "id": "EQCT-LP-02",
@@ -197,7 +198,7 @@
         "SRC-NIST-SP811-CH4: derived units formed algebraically with exponents",
         "SRC-LIBRETEXTS-SQCUBIC: squaring/cubing the conversion factor, worked example"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Kept separate from EQCT-LP-01 (which only tests recognising a unit's correct name/symbol) because converting between units -- including correctly handling squared/cubed cases -- is a distinct, separately-diagnosable procedural skill, matching this batch's explicit instruction to distinguish 'basic SI unit recognition vs practical conversion'. Reuses Batch 01's FM-LP-19 (engineering notation/SI prefixes) for the prefix-scaling mechanism and FM-LP-14 (laws of indices) for the squared/cubed-factor reasoning, rather than re-deriving either.",
       "explicitExclusions": [
         "Deriving prefix factors from first principles (reuses FM-LP-19)",
@@ -208,7 +209,8 @@
         "Convert a cable length given in mm to m.",
         "Convert a floor area given in cm^2 to m^2.",
         "Convert a tank volume given in cm^3 to m^3."
-      ]
+      ],
+      "evidenceReadinessNote": "Underlying practical-unit-conversion evidence downgraded to PARTIAL: the SI-prefix half of the requirement has no in-batch citation (it relies on the accepted Batch 01 FM-LP-19, already carried as a cross-domain prerequisite). The squared/cubed half remains fully evidenced."
     },
     {
       "id": "EQCT-LP-03",
@@ -300,7 +302,7 @@
         "SRC-ETW-POWERTRIANGLE: power vs power factor",
         "SRC-BIPM-BROCHURE: watt unit symbol W"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Definition, both distinctions, and both symbol facets are combined into one learning point because the frozen requirement itself frames power's meaning and its two distinctions as one coherent teachable concept, and separating 'what power is' from 'how it differs from energy/power factor' would fragment a single comparison the way Batch 03's MM-LP-01 combined mass/weight/distinction. This learning point is deliberately sequenced (via its own prerequisites) AFTER energy (EQCT-LP-06) and power factor (EQCT-LP-07), since its own distinction outcome requires the learner to already know both of those concepts -- an example of tracking instructional sequence separately from stable numeric identity.",
       "explicitExclusions": [
         "The three power-formula forms P=VI/I^2R/V^2R and choosing between them as a calculation skill (already accepted as EFS-LP-17; not duplicated here)",
@@ -311,7 +313,8 @@
         "State the quantity symbol and unit for electrical power.",
         "Explain why a 100 W lamp left on for 10 hours is described in kWh, not in watts, when billed.",
         "Explain why a high power factor is not itself 'more power'."
-      ]
+      ],
+      "evidenceReadinessNote": "Underlying power::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-POWERTRIANGLE quotation). The P=V.I condition has also been corrected to carry its steady-voltage/current qualification."
     },
     {
       "id": "EQCT-LP-06",
@@ -363,7 +366,7 @@
       "normalizedClaimRefs": [
         "SRC-ETW-POWERTRIANGLE: cos(phi)=P/S=power factor, dimensionless, distinct from power"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Definition, distinction, and both symbol facets combined into one learning point (the same single-comparison rationale as power and energy above). Scoped explicitly and narrowly to the sinusoidal displacement-power-factor case (cos phi) that the evidence source actually demonstrates -- distortion/harmonic power-factor components are not addressed by the evidence and are excluded as mastery content, per the guardrail against over-generalising cos phi to all waveforms.",
       "explicitExclusions": [
         "Power factor under non-sinusoidal/distorted waveforms (distortion power factor) -- out of scope at this depth and unsupported by the evidence",
@@ -373,7 +376,8 @@
       "applicationTypes": [
         "State whether power factor has a unit.",
         "Explain why a power factor of 0.8 does not mean '0.8 watts'."
-      ]
+      ],
+      "evidenceReadinessNote": "Underlying power-factor::DISTINCTION evidence downgraded to PARTIAL. The dimensionlessness guardrail this learning point teaches currently rests on a disclosed inference from P/S = W/VA, not on an explicit authoritative statement."
     },
     {
       "id": "EQCT-LP-08",
@@ -521,7 +525,7 @@
       "normalizedClaimRefs": [
         "SRC-ETW-ACINDUCTORS: XL=2 pi f L, ohms, inductance constant vs reactance frequency-dependent"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Split from inductance (EQCT-LP-11) for the same reason capacitive reactance is split from capacitance. Depends on EQCT-LP-11 (inductance) and EQCT-LP-08 (frequency). Deliberately excludes the full XL formula as a required calculation outcome beyond conceptual frequency/inductance dependence, per this batch's depth guardrail.",
       "explicitExclusions": [
         "Calculating a numeric XL value from the formula as a required mastery outcome",
@@ -531,7 +535,8 @@
       "applicationTypes": [
         "Explain why an inductor presents more opposition to a higher-frequency AC signal (the opposite behaviour to a capacitor).",
         "State the unit in which inductive reactance is measured."
-      ]
+      ],
+      "evidenceReadinessNote": "Underlying inductance::DISTINCTION evidence downgraded to PARTIAL (fabricated SRC-ETW-ACINDUCTORS quotation). The specific proposition this learning point teaches -- that inductance is frequency-independent while reactance is not -- is currently UNEVIDENCED in this batch."
     },
     {
       "id": "EQCT-LP-13",
@@ -607,7 +612,7 @@
       "id": "EQCT-LP-15",
       "title": "Ohmmeter: measures resistance",
       "learnerOutcome": "The learner will be able to state that an ohmmeter (or a multimeter's resistance/ohms function) measures the resistance of a component or circuit.",
-      "knowledgeOrProcedure": "An ohmmeter (or a multimeter set to its resistance/ohms function) measures the resistance of a component or circuit by applying its own small internal test current/voltage and reading the resulting resistance value.",
+      "knowledgeOrProcedure": "An ohmmeter (or a multimeter set to its resistance/ohms function) measures the resistance of a component or circuit.",
       "prerequisiteLearningPointIds": [],
       "crossDomainPrerequisiteIds": [
         "EFS-LP-05"
@@ -621,7 +626,7 @@
       "normalizedClaimRefs": [
         "SRC-FLUKE-RESISTANCE: ohmmeter/multimeter resistance function"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Deliberately kept separate from the ohmmeter's safe-use principle (EQCT-LP-16), per this batch's explicit guardrail distinguishing 'identifying an instrument's function vs using it safely' -- a learner may correctly identify what an ohmmeter measures without yet knowing the circuit must be de-energised first, and vice versa. Carries a genuine cross-domain prerequisite on the accepted Batch 02 EFS-LP-05 (Resistance), since identifying what an ohmmeter measures presupposes already knowing what resistance is.",
       "explicitExclusions": [
         "The de-energised safe-use principle (see EQCT-LP-16)",
@@ -630,7 +635,8 @@
       ],
       "applicationTypes": [
         "State what physical quantity an ohmmeter measures."
-      ]
+      ],
+      "evidenceReadinessNote": "Underlying ohmmeter-measures-resistance evidence downgraded to PARTIAL (no verbatim passage was ever captured). This learning point also asserted a mechanism -- that an ohmmeter applies its own small internal test current/voltage -- that appears in no retrieved passage in this batch; that mechanism has been removed."
     },
     {
       "id": "EQCT-LP-16",
@@ -650,7 +656,7 @@
       "normalizedClaimRefs": [
         "SRC-FLUKE-RESISTANCE: turn off power, discharge capacitor before resistance reading"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Kept separate from EQCT-LP-15 as its own procedural/safety mastery point (see EQCT-LP-15's justification). Explicitly includes the stored-energy (charged capacitor) case named in the evidence and required by this batch's depth guardrail, since a de-energised MAIN supply alone does not address charge already stored in a component.",
       "explicitExclusions": [
         "General electrical safe-isolation procedure (lock-off/proving-dead sequences) beyond the specific ohmmeter case evidenced here",
@@ -659,13 +665,14 @@
       "applicationTypes": [
         "Explain why a technician must switch off the supply (and discharge any capacitor) before checking a component's resistance with an ohmmeter.",
         "Identify the safety/accuracy risk of measuring resistance on an energised circuit."
-      ]
+      ],
+      "evidenceReadinessNote": "Underlying ohmmeter safe-use evidence downgraded to PARTIAL because its CALCULATION_METHOD dimension is unresolved. NOTE: the safety CONTENT of this learning point (de-energisation AND discharging stored capacitor charge) is fully and genuinely evidenced and is unaffected."
     },
     {
       "id": "EQCT-LP-17",
       "title": "Wattmeter: measures power via combined current and voltage sensing",
       "learnerOutcome": "The learner will be able to state that a wattmeter measures electrical power, using a low-impedance current-sensing element in series with the load together with a high-impedance voltage-sensing element in parallel with the load.",
-      "knowledgeOrProcedure": "A wattmeter measures electrical power by combining two sensing elements: a low-impedance current coil connected in SERIES with the load (like an ammeter) and a high-impedance voltage coil connected in PARALLEL with the load (like a voltmeter). This combined series-current-sensing plus parallel-voltage-sensing arrangement is what allows the instrument to derive power (proportional to voltage x current) directly, rather than requiring current and voltage to be measured and multiplied separately.",
+      "knowledgeOrProcedure": "A wattmeter measures electrical power by combining two sensing elements: a low-impedance current coil connected in SERIES with the load (like an ammeter) and a high-impedance voltage coil connected in PARALLEL with the load (like a voltmeter). This combined series-current-sensing plus parallel-voltage-sensing arrangement is what allows the instrument to derive power (the average (real) power of the load) directly, rather than requiring current and voltage to be measured and multiplied separately. A wattmeter reads AVERAGE (real) power. For an AC load whose power factor is below unity, real power is NOT simply voltage multiplied by current (see EQCT-LP-07) -- sensing both quantities together is what lets the instrument register real power. The 'very low' and 'very high' coil impedances are design goals, described by the source as 'ideally zero' and 'ideally infinite'; as with EQCT-LP-19, those limiting values are an idealised model, not literal claims about a real instrument.",
       "prerequisiteLearningPointIds": [
         "EQCT-LP-05",
         "EQCT-LP-14"
@@ -710,7 +717,7 @@
       "normalizedClaimRefs": [
         "SRC-NISTIR-8248: 'electrical energy usage is measured with watt-hour meters'"
       ],
-      "evidenceReadiness": "READY",
+      "evidenceReadiness": "HELD_PENDING_EVIDENCE_CORRECTION",
       "depthJustification": "Depends on already knowing what energy is and how it differs from power (EQCT-LP-06), since an energy meter's function is explained precisely as measuring the accumulated (energy) quantity rather than the instantaneous (power) one.",
       "explicitExclusions": [
         "Electromechanical vs solid-state/smart-meter internal construction detail",
@@ -720,7 +727,8 @@
       "applicationTypes": [
         "State what physical quantity a domestic electricity (kWh) meter measures.",
         "Explain why an energy meter's reading keeps increasing even though the instantaneous power drawn varies."
-      ]
+      ],
+      "evidenceReadinessNote": "Underlying energy-meter evidence downgraded to PARTIAL: the \"integrates\" half of the requirement is unevidenced by the quoted NISTIR 8248 sentence."
     },
     {
       "id": "EQCT-LP-19",
@@ -751,5 +759,6 @@
         "Explain why treating a real voltmeter as having exactly infinite resistance is a simplification, not a literal fact."
       ]
     }
-  ]
+  ],
+  "correctionNote": "Corrected during the internal adversarial audit pass. Seven learning points (EQCT-LP-02, 05, 07, 12, 15, 16, 18) were moved from evidenceReadiness READY to HELD_PENDING_EVIDENCE_CORRECTION because the evidence beneath them was downgraded to PARTIAL; each carries an evidenceReadinessNote saying why. EQCT-LP-01's temperature-interval statement was factually wrong and has been corrected. EQCT-LP-15 asserted an ohmmeter mechanism that no retrieved passage supports; it has been removed. EQCT-LP-17 taught that a wattmeter derives power as voltage x current, which contradicted EQCT-LP-07's own power-factor teaching; corrected to average/real power, with the idealised-coil-impedance caveat now applied consistently with EQCT-LP-19. No learning point identity was added, removed or renumbered, and none is accepted or frozen."
 }

@@ -121,7 +121,8 @@
       "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
       "authorityRationale": "Same NIST SP811 guide as SRC-NIST-SP811-B9; classified identically as PRIMARY_NORMATIVE_OR_STANDARDS_BODY.",
       "locator": "NIST Guide to the SI, Chapter 4, Table 2 (derived units incl. area=square metre m^2, volume=cubic metre m^3, acceleration=m/s^2) and prefix discussion",
-      "supportsRequirementSuffixes": []
+      "supportsRequirementSuffixes": [],
+      "registrationNote": "RETAINED FOR AUDIT TRAIL, NO LONGER CITED. This source was removed as a candidate from the practical-unit-conversion requirement during the internal audit pass, for two independent defects: its registered authority class (PRIMARY_NORMATIVE_OR_STANDARDS_BODY) is not among that requirement's permitted classes, and its recorded passage did not support the SI-prefix-conversion claim attributed to it. It is left registered so the evaluation is not erased from the record, but it now supports no requirement."
     },
     {
       "accessDate": "2026-09-05",
@@ -323,8 +324,7 @@
       "locator": "electronics-tutorials.ws, Inductance page: 'This ability of an inductor to resist changes in current...is called Inductance which is given the symbol L with units of Henry, (H)'",
       "supportsRequirementSuffixes": [
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
-        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
-        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL"
       ]
     },
     {
@@ -407,9 +407,7 @@
         "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::CONCEPT_DEFINITION::DEFINITION",
         "energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
         "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DEFINITION",
-        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION",
-        "capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION",
-        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DEFINITION"
+        "impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::CONCEPT_DEFINITION::DISTINCTION"
       ]
     },
     {
@@ -528,5 +526,14 @@
         "energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
       ]
     }
-  ]
+  ],
+  "correctionNote": "Corrected during the internal adversarial audit pass. Three supportsRequirementSuffixes entries were REMOVED as over-claims -- each asserted that a source supported a requirement on which it was not actually a candidate source (SRC-ETW-INDUCTOR on the inductance UNIT_SYMBOL requirement; SRC-EOLSS-ELECQUANT on the capacitance and inductance DEFINITION requirements). The register now matches the evidence results exactly.",
+  "openAuthorityClassificationMatterForProductArchitect": {
+    "concern": "electronics-tutorials.ws (the ten SRC-ETW-* sources) is classified AUTHORITATIVE_TECHNICAL_REFERENCE, and that classification is load-bearing rather than cosmetic.",
+    "scale": "22 of this batch's 57 results depend on an SRC-ETW-* source. 16 results have NO non-ETW candidate source at all (resistance UNIT_SYMBOL; power DISTINCTION; energy DISTINCTION; all four power-factor facets; frequency DEFINITION and QUANTITY_SYMBOL; impedance UNIT_SYMBOL; capacitance DEFINITION, DISTINCTION and QUANTITY_SYMBOL; inductance DEFINITION, DISTINCTION and QUANTITY_SYMBOL). A further 6 list a non-ETW candidate but attribute every normalized claim to ETW.",
+    "whyItMatters": "SYMBOL_OR_CONVENTION requirements in the frozen plan permit only PRIMARY_NORMATIVE_OR_STANDARDS_BODY, PROFESSIONAL_BODY and AUTHORITATIVE_TECHNICAL_REFERENCE -- AUTHORITATIVE_EDUCATIONAL_REFERENCE is excluded. If electronics-tutorials.ws were reclassified as an educational reference (which is the class this same batch assigned to LibreTexts on comparable reasoning), then roughly ten symbol-convention results would fail their permitted-authority gate simultaneously.",
+    "counterConsideration": "The site is an anonymous commercial tutorial website: no named authors, no editorial board, no citations, no revision history and no errata process. The registered rationale describes it as 'long-established, widely used in technical/vocational electrical education', which is an assertion made by the acquisition rather than an evidenced fact.",
+    "sharpestInstance": "resistance's UNIT_SYMBOL (the ohm) rests solely on SRC-ETW-DC1, while SRC-BIPM-BROCHURE -- a PRIMARY_NORMATIVE source already registered and already read, whose own registered locator explicitly lists 'electric resistance-ohm' in Table 2 -- was used for the ampere, volt, watt, joule, hertz, farad and henry but not the ohm.",
+    "dispositionInThisPass": "NOT resolved unilaterally. Reclassifying the site would cascade into roughly ten simultaneous authority-gate failures, and re-sourcing those results is fresh acquisition rather than correction. This is recorded as an explicit matter for Product Architect judgment at the consolidated review, and is NOT counted as a defect corrected."
+  }
 }
