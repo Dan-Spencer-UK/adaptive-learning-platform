@@ -306,8 +306,7 @@
       "learnerOutcome": "The learner will be able to apply the right-hand grip rule to determine the direction of the magnetic field around a straight current-carrying conductor.",
       "knowledgeOrProcedure": "Point the RIGHT hand's THUMB along the direction of the current -- meaning CONVENTIONAL current, the direction in which positive charge flows -- and curl the fingers as if wrapping around the wire. The curled FINGERS then give the direction of the magnetic field encircling the conductor. The rule is tied to the conventional-current convention: it is the conventional-current direction that goes with the right hand.",
       "prerequisiteLearningPointIds": [
-        "EMI-LP-04",
-        "EMI-LP-03"
+        "EMI-LP-04"
       ],
       "crossDomainPrerequisiteIds": [
         "EFS-LP-03"
@@ -337,7 +336,7 @@
       "underlyingEvidenceStatuses": {
         "right-hand-grip-rule::OPERATIONAL_USE_RULE": "VERIFIED"
       },
-      "correctionNote": "[Correction, Stage 2.1/4.4] Previously held as an authority-tier gap. Corrected sourceAuthorityClasses to this qualification's own widened directional-rule policy (already adopted for the Fleming rules); academic sources (MIT, LibreTexts, HyperPhysics) promoted to genuine evidence. Now VERIFIED on all three dimensions.",
+      "correctionNote": "[Correction, Stage 2.1/4.4] Previously held as an authority-tier gap. Corrected sourceAuthorityClasses to this qualification's own widened directional-rule policy (already adopted for the Fleming rules); academic sources (MIT, LibreTexts, HyperPhysics) promoted to genuine evidence. Now VERIFIED on all three dimensions. [Stage C prerequisite-structure correction, narrow correction pass] Removed EMI-LP-03 (dot-cross-page-convention) as a formal prerequisiteLearningPointIds gate: EMI-LP-03 is OPTIONAL_CONTEXT per the frozen plan's own acquisitionPriority (CONTEXTUAL_SUPPORT_ONLY / DEFERRED_CONTEXT_ONLY), and a REQUIRED_MASTERY learning point must never have its readiness formally gated on an optional-context sibling's evidence. The brief dot/cross notation this LP's diagram depends on is simple enough to be introduced inline as background context within this lesson, not as a hard-gated prerequisite mastery.",
       "curriculumRole": "REQUIRED_MASTERY",
       "requiredMasteryEvidenceRequirementIds": [
         "ER::provisional::unit202::electromagnetism-and-induction::right-hand-grip-rule::OPERATIONAL_USE_RULE"
@@ -675,8 +674,7 @@
       "learnerOutcome": "The learner will be able to apply Fleming's left-hand rule to determine the direction of the force produced on a current-carrying conductor in a magnetic field.",
       "knowledgeOrProcedure": "Fleming's LEFT-hand rule is the MOTOR (force) rule. Using the LEFT hand, hold the thumb, first finger and second finger mutually at right angles. The mapping runs \"F, B, I\" from the thumb: THUMB = Force (the direction of the force or motion produced on the conductor); FIRST/fore FINGER = B (the magnetic field); SECOND/middle FINGER = I (the current). CONDITIONS OF USE: the rule applies to a current-carrying conductor placed across a magnetic field, and gives the direction of the force generated on that conductor when current passes through it. The magnitude of that force is given separately by F = BIl (EMI-LP-12). Fleming's LEFT hand is for the MOTOR case; the RIGHT hand is the generator rule (EMI-LP-16) and the two must never be interchanged.",
       "prerequisiteLearningPointIds": [
-        "EMI-LP-12",
-        "EMI-LP-03"
+        "EMI-LP-12"
       ],
       "crossDomainPrerequisiteIds": [
         "EFS-LP-03"
@@ -713,7 +711,8 @@
         "ER::provisional::unit202::electromagnetism-and-induction::fleming-left-hand-rule::OPERATIONAL_USE_RULE"
       ],
       "contextualEvidenceRequirementIds": [],
-      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "correctionNote": " [Stage C prerequisite-structure correction, narrow correction pass] Removed EMI-LP-03 (dot-cross-page-convention) as a formal prerequisiteLearningPointIds gate: EMI-LP-03 is OPTIONAL_CONTEXT per the frozen plan's own acquisitionPriority (CONTEXTUAL_SUPPORT_ONLY / DEFERRED_CONTEXT_ONLY), and a REQUIRED_MASTERY learning point must never have its readiness formally gated on an optional-context sibling's evidence. The brief dot/cross notation this LP's diagram depends on is simple enough to be introduced inline as background context within this lesson, not as a hard-gated prerequisite mastery."
     },
     {
       "id": "EMI-LP-14",
