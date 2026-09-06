@@ -663,17 +663,18 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 1.2 + Stage 2.1/4.3 PA authority adjudication] (1) DIMENSION: this requirement's coverage dimension is corrected from the generic planner's prior default QUANTITY_SYMBOL to SCHEMATIC_SYMBOL -- the dot/cross convention is a page-direction/pictorial convention for showing a vector into/out of the page in a diagram, never a physical-quantity letter symbol, so it was never trying to meet a quantity-symbol acceptance bar. (2) AUTHORITY: per the qualification's risk-based source-authority policy (normative sources required where a current standard is itself material; academic/authoritative-educational sources accepted for low-risk teaching conventions and directional rules), this is exactly the same class of low-risk, non-safety, non-regulated directional/pictorial teaching convention as the right-hand grip rule and Fleming's rules, for which this qualification already accepts ACADEMIC_OR_RESEARCH_INSTITUTION evidence. A one-off, disclosed PA authority adjudication (id CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001, mirroring Batch 01's own CC-BATCH01-PA-AUTHORITY-ADJUDICATION-001 precedent) accepts the three already-genuinely-read academic sources below for this ONE requirement binding only -- it does not modify the generic planner's SYMBOL_OR_CONVENTION authority-class policy, and does not extend to any schematic circuit symbol or any other requirement.",
-          "No source read in this session gave the complementary 'arrow fletching/tail' rationale for the cross symbol as a verbatim sentence (only the dot's arrow-head rationale, OpenStax Figure 20.20, was found in those terms); the cross = into-page mapping itself is independently and verbatim stated by two MIT sources, so this omission does not weaken the mapping itself."
-        ],
+        "gaps": [],
         "evaluatedButOutOfPermittedAuthorityClass": [],
         "paAuthorityPolicyAdjudication": {
           "id": "CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001",
           "scope": "dot-cross-page-convention::SYMBOL_OR_CONVENTION only",
           "decision": "ACADEMIC_OR_RESEARCH_INSTITUTION accepted as permitted authority for this one directional/pictorial-convention requirement binding, per the qualification's risk-based source-authority policy for low-risk, non-safety directional conventions.",
           "doesNotModify": "The generic planner's SYMBOL_OR_CONVENTION authority-class policy; any other requirement in this or any other batch."
-        }
+        },
+        "disclosures": [
+          "[Correction, Stage 1.2 + Stage 2.1/4.3 PA authority adjudication] (1) DIMENSION: this requirement's coverage dimension is corrected from the generic planner's prior default QUANTITY_SYMBOL to SCHEMATIC_SYMBOL -- the dot/cross convention is a page-direction/pictorial convention for showing a vector into/out of the page in a diagram, never a physical-quantity letter symbol, so it was never trying to meet a quantity-symbol acceptance bar. (2) AUTHORITY: per the qualification's risk-based source-authority policy (normative sources required where a current standard is itself material; academic/authoritative-educational sources accepted for low-risk teaching conventions and directional rules), this is exactly the same class of low-risk, non-safety, non-regulated directional/pictorial teaching convention as the right-hand grip rule and Fleming's rules, for which this qualification already accepts ACADEMIC_OR_RESEARCH_INSTITUTION evidence. A one-off, disclosed PA authority adjudication (id CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001, mirroring Batch 01's own CC-BATCH01-PA-AUTHORITY-ADJUDICATION-001 precedent) accepts the three already-genuinely-read academic sources below for this ONE requirement binding only -- it does not modify the generic planner's SYMBOL_OR_CONVENTION authority-class policy, and does not extend to any schematic circuit symbol or any other requirement.",
+          "No source read in this session gave the complementary 'arrow fletching/tail' rationale for the cross symbol as a verbatim sentence (only the dot's arrow-head rationale, OpenStax Figure 20.20, was found in those terms); the cross = into-page mapping itself is independently and verbatim stated by two MIT sources, so this omission does not weaken the mapping itself."
+        ]
       }
     },
     {
@@ -773,11 +774,7 @@
         "conflicts": [
           "POLE-PAIRS vs TOTAL-POLES CONVENTION CONFLICT. The requirement states f = n_rpm × P / 60 with P = number of POLE PAIRS. Both sources actually read state the relationship with P = TOTAL number of poles and a divisor of 120 (Flinn: f = PN/120; SIU: n_s = 120f/P). These are mathematically equivalent only under the substitution P_total = 2 × P_pole-pairs. This convention difference is recorded rather than silently converted, as instructed. No source stating the /60 pole-pair form was successfully opened and read within the source-count bound."
         ],
-        "gaps": [
-          "[Correction, Stage 4 item 11] Restored to VERIFIED via disclosed derivation rather than left PARTIALLY_VERIFIED for want of a source stating this exact rpm form: this is the already-verified pole-pairs relationship (rotational-frequency-pole-pairs-relationship, above) with the rev/s-to-rpm unit conversion (N = n_rpm / 60) substituted in -- ordinary algebra, the same foundational rearrangement/substitution capability already accepted for this qualification's other formula targets (Batch 01's formula-transposition mastery), not a second technical-domain source requirement. The total-poles form found in several sources (f = P_total x N / 120) is recorded as an equivalent alternative once P_total = 2 x P_pairs is applied -- not a technical conflict, per the Product Architect's pole-pair-convention decision -- and remains excluded as a distinct-quantity form, not merged into this claim.",
-          "The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures.",
-          "1 normalized claim(s) were REMOVED because their only support came from a source outside this requirement's permitted authority classes: SRC-LIBRETEXTS-FLINN-3-05 (AUTHORITATIVE_EDUCATIONAL_REFERENCE). The removed claim text(s): \"For an alternator, output frequency in hertz equals (number of poles / 2) multiplied by (rotational speed in rev/min divided by 60), i.e. f = PN/120 with P the TOTAL number of poles and N in RPM. Sinc\". The passages remain under evaluatedButOutOfPermittedAuthorityClass."
-        ],
+        "gaps": [],
         "evaluatedButOutOfPermittedAuthorityClass": [
           {
             "sourceId": "SRC-LIBRETEXTS-FLINN-3-05",
@@ -787,6 +784,11 @@
             "retrievedPassage": "\"Knowing that rotation speed is directly proportional to frequency and that the number of poles is directly proportional to frequency, we can use a formula.\" f = P/2 × N/60, combined as f = PN/120, where \"f = frequency in hertz,\" \"P = number of poles,\" \"N = rotational speed in RPM\". The text divides by 2 because \"there will always be a set of two poles.\" ... \"all we have to do is to divide the RPM by 60 to convert it to RPS\".",
             "exclusionReason": "Genuinely retrieved and read, but its authority class AUTHORITATIVE_EDUCATIONAL_REFERENCE is NOT among this requirement's frozen permitted classes (ACADEMIC_OR_RESEARCH_INSTITUTION, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
           }
+        ],
+        "disclosures": [
+          "[Correction, Stage 4 item 11] Restored to VERIFIED via disclosed derivation rather than left PARTIALLY_VERIFIED for want of a source stating this exact rpm form: this is the already-verified pole-pairs relationship (rotational-frequency-pole-pairs-relationship, above) with the rev/s-to-rpm unit conversion (N = n_rpm / 60) substituted in -- ordinary algebra, the same foundational rearrangement/substitution capability already accepted for this qualification's other formula targets (Batch 01's formula-transposition mastery), not a second technical-domain source requirement. The total-poles form found in several sources (f = P_total x N / 120) is recorded as an equivalent alternative once P_total = 2 x P_pairs is applied -- not a technical conflict, per the Product Architect's pole-pair-convention decision -- and remains excluded as a distinct-quantity form, not merged into this claim.",
+          "The n_rpm-with-pole-pairs form (f = n_rpm × P_pole-pairs / 60) was not directly evidenced by any read passage; four further candidates (IEC Electropedia, Britannica, ScienceDirect topic pages, University of Tennessee ECE 522 notes) were all inaccessible - see accessFailures.",
+          "1 normalized claim(s) were REMOVED because their only support came from a source outside this requirement's permitted authority classes: SRC-LIBRETEXTS-FLINN-3-05 (AUTHORITATIVE_EDUCATIONAL_REFERENCE). The removed claim text(s): \"For an alternator, output frequency in hertz equals (number of poles / 2) multiplied by (rotational speed in rev/min divided by 60), i.e. f = PN/120 with P the TOTAL number of poles and N in RPM. Sinc\". The passages remain under evaluatedButOutOfPermittedAuthorityClass."
         ]
       }
     },
@@ -1134,11 +1136,7 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": [
-          "[Correction, Stage 4 item 1] The intended pattern set is now explicitly defined as exactly three: the bar magnet, the straight current-carrying conductor, and the solenoid/coil (resolving the frozen requirement's previously open-ended \"patterns\" plural). This requirement's own DIAGRAM-RECOGNITION evidence genuinely covers the first two; the solenoid/coil pattern is separately and adequately taught, with its own genuine VERIFIED evidence and application types, under the sibling learning point EMI-LP-06 (which combines solenoid field-shape recognition with polarity determination as one practical skill). This requirement is therefore VERIFIED against its now-explicit two-pattern scope, not partially verified against an unenumerated open scope.",
-          "All normalized claims previously on this result were attributed to out-of-permitted-class MIT sources and were removed; the claims now recorded are rebuilt from the surviving in-class figures. Out-of-class candidates retained for the audit trail: SRC-MIT802-CH8-MAGFIELDS, SRC-MIT802-CH9-SOURCES (both ACADEMIC_OR_RESEARCH_INSTITUTION).",
-          "PROVENANCE NOTE: as with the magnetic-poles requirement, the in-class figures are historical handbook illustrations (Hawkins 1917, Atkinson 1903) reproduced by the University of South Florida's ClipArt ETC."
-        ],
+        "gaps": [],
         "evaluatedButOutOfPermittedAuthorityClass": [
           {
             "sourceId": "SRC-MIT802-CH8-MAGFIELDS",
@@ -1156,6 +1154,46 @@
             "retrievedPassage": "Figure 9.1.4 caption: \"Magnetic field lines due to an infinite wire carrying current I.\" — rendered figure shows a straight conductor with current arrow I and three circular field loops encircling it. Figure 9.4.1 caption: \"Magnetic field lines of a solenoid\" — rendered figure is a two-panel image: left panel shows the field lines threading and looping around a four-turn helical coil; right panel shows the same pattern in cross-section with the left-hand end labelled 'S' and the right-hand end labelled 'N'.",
             "exclusionReason": "Genuinely retrieved and read, but its authority class ACADEMIC_OR_RESEARCH_INSTITUTION is NOT among this requirement's frozen permitted classes (ORIGINAL_MANUFACTURER_OR_VENDOR, AUTHORITATIVE_TECHNICAL_REFERENCE, PROFESSIONAL_BODY). Retained for the audit trail and as corroboration of the underlying facts; NOT counted as verifying evidence, and no normalized claim rests on it."
           }
+        ],
+        "requiredPatternComponents": [
+          "bar-magnet",
+          "straight-current-carrying-conductor",
+          "solenoid-coil"
+        ],
+        "patternComponentCoverage": [
+          {
+            "component": "bar-magnet",
+            "coverageBasis": "DIRECT",
+            "supportingSourceIds": [
+              "SRC-USF-ETC-MAGFIELD-POLES-35728"
+            ],
+            "status": "VERIFIED"
+          },
+          {
+            "component": "straight-current-carrying-conductor",
+            "coverageBasis": "DIRECT",
+            "supportingSourceIds": [
+              "SRC-USF-ETC-CONDUCTORFIELD-35665"
+            ],
+            "status": "VERIFIED"
+          },
+          {
+            "component": "solenoid-coil",
+            "coverageBasis": "CROSS_REQUIREMENT_AND_LEARNING_POINT",
+            "satisfiedByEvidenceRequirementId": "ER::provisional::unit202::electromagnetism-and-induction::solenoid-magnetic-field::EXACT_FACT",
+            "satisfiedByExistingLearningPointIds": [
+              "EMI-LP-06"
+            ],
+            "status": "VERIFIED"
+          }
+        ],
+        "satisfiedByExistingLearningPointIds": [
+          "EMI-LP-06"
+        ],
+        "disclosures": [
+          "The intended pattern set is explicitly defined as exactly three: bar magnet, straight current-carrying conductor, and solenoid/coil (requiredPatternComponents). This requirement's own directly-read, in-class sources cover the first two (patternComponentCoverage[0..1]); the third is satisfied through a machine-readable cross-reference to the solenoid-magnetic-field requirement (which is independently VERIFIED) and its teaching learning point EMI-LP-06 (patternComponentCoverage[2], satisfiedByEvidenceRequirementId + satisfiedByExistingLearningPointIds) -- not a prose-only reference. All three components resolve to VERIFIED evidence, so this requirement's own RECOGNITION dimension is genuinely, structurally satisfied rather than verified against a silently narrowed two-pattern scope.",
+          "All normalized claims previously attributed to out-of-permitted-class MIT sources were removed; the claims recorded here are rebuilt from the surviving in-class figures. Out-of-class candidates retained for the audit trail only: SRC-MIT802-CH8-MAGFIELDS, SRC-MIT802-CH9-SOURCES (both ACADEMIC_OR_RESEARCH_INSTITUTION).",
+          "PROVENANCE NOTE: the in-class figures for the two directly-covered patterns are historical handbook illustrations (Hawkins 1917, Atkinson 1903) reproduced by the University of South Florida's ClipArt ETC."
         ]
       }
     },
@@ -1776,12 +1814,13 @@
             "detail": "(a) The GRIP rule for a straight conductor: thumb = conventional current, curled fingers = magnetic field (MIT §9.1; LibreTexts 12.3; HyperPhysics). (b) The COIL/SOLENOID rule: curled fingers = current in the windings, extended thumb = north pole (Hawkins 1917 p.117 via ClipArt ETC 35671; Arbor Scientific 'Rule #3 – The Solenoid Rule'). The hand roles are swapped between the two. Additionally, Hawkins (1917) p.114 illustration 35667 is a right-hand PALM rule, a third distinct variant, not the grip rule — it was read and is recorded here only so it is not mistaken for the grip rule."
           }
         ],
-        "gaps": [
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [],
+        "disclosures": [
           "[Correction, Stage 2.1/4.4 PA authority adjudication] This requirement's recorded sourceAuthorityClasses was the generic OPERATIONAL_USE_RULE default (GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR), never updated to reflect this qualification's own widened directional-rule policy (already adopted for this exact target's peers, the two Fleming rules, but not propagated into this specific acquired result). Corrected to include ACADEMIC_OR_RESEARCH_INSTITUTION and AUTHORITATIVE_EDUCATIONAL_REFERENCE, per the risk-based policy that academic sources are acceptable for low-risk, non-safety directional physics rules. The three previously-excluded academic sources (MIT 8.02, LibreTexts, HyperPhysics) are promoted to genuine evidence.",
           "The clearest and best-corroborated statements of this rule -- including the explicit warning that an ELECTRON-flow convention requires the LEFT hand instead -- came from LibreTexts 12.3, MIT 8.02 §9.1 and HyperPhysics, ALL of which are outside this requirement's permitted authority classes (ACADEMIC_OR_RESEARCH_INSTITUTION / AUTHORITATIVE_EDUCATIONAL_REFERENCE are not among GOVERNMENT_OR_REGULATOR, PROFESSIONAL_BODY, AUTHORITATIVE_TECHNICAL_REFERENCE, ORIGINAL_MANUFACTURER_OR_VENDOR). Their passages are retained under evaluatedButOutOfPermittedAuthorityClass. This is an authority-tier gap, not a content gap.",
           "CAUTION FOR CONTENT AUTHORS: the second in-class figure cited here, SRC-USF-ETC-RHR-CONDUCTOR-35667 (Hawkins 1917, p. 114), depicts the right-hand PALM rule, which is a DIFFERENT rule from the grip rule. It is retained as a candidate because it is genuine in-class retrieved material about determining field direction around a conductor, but NO grip-rule mapping claim rests on it and it must not be conflated with the grip rule."
-        ],
-        "evaluatedButOutOfPermittedAuthorityClass": []
+        ]
       }
     },
     {
@@ -1964,7 +2003,8 @@
         "conflicts": [
           "POLE-PAIRS vs TOTAL-POLES CONVENTION CONFLICT (the principal guardrail tension in this cluster). MIT 6.685 Class Notes 8 explicitly defines p as 'the number of pole-pairs' and states that pω_m is the electrical rotation speed - the pole-pair convention the requirement asks for. Flinn (LibreTexts) and SIU ET 332b both use the TOTAL-poles convention (f = PN/120; n_s = 120f/P) with an explicit divisor of 2. The two families are equivalent only under P_total = 2 × p. Recorded, not silently harmonised."
         ],
-        "gaps": [
+        "gaps": [],
+        "disclosures": [
           "[Correction, Stage 1.1] Restored to VERIFIED: multiple-source (here, multiple-PASSAGE) composition is valid and must never be downgraded merely because no single passage states the whole compound account, provided every constituent claim retains its own exact source binding. MIT 6.685's angular-form relation (electrical rotation speed = pole pairs x mechanical rotation speed) and its own pole-pairs definition are two genuinely-read passages of the same authoritative source; the omega = 2*pi*f identity connecting angular and ordinary frequency is elementary, undisputed mathematics, not itself a claim requiring external sourcing. No material conflict remains."
         ]
       }

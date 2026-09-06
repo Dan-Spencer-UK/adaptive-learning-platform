@@ -1,8 +1,8 @@
 {
   "batchId": "batch-04-electrical-quantities-and-circuit-theory",
-  "sourceCount": 27,
+  "sourceCount": 28,
   "reusedSourceCount": 4,
-  "newSourceCount": 23,
+  "newSourceCount": 24,
   "note": "22 sources were freshly acquired in this session via real web search and retrieval. 4 sources (SRC-NIST-MASS, SRC-NIST-SP811-B9, SRC-HP-RESIS, SRC-NIST-RESHALL) were registered in earlier accepted batches (Batch 02 and/or Batch 03) and are reused here; see reusedSourceIds below for the exact list. Each reused source was re-fetched and its exact passage freshly re-read in this session (not assumed from the prior normalized claim), per the task's cross-batch reuse discipline. Several sources are also reused ACROSS multiple Batch 04 requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
   "reusedSourceIds": [
     "SRC-NIST-MASS",
@@ -550,6 +550,26 @@
       "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
       "authorityRationale": "Industry instrumentation-engineering technical reference (not a general hobbyist tutorial); used only for the power-integration/accumulation mechanism distinguishing an energy meter from a wattmeter. Classification is a disclosed judgment call.",
       "locator": "Article body, power-vs-energy integration passage",
+      "supportsRequirementSuffixes": [
+        "energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true,
+      "citedAsVerifyingEvidenceNote": "[Correction, Stage 5] Retained as disclosed corroboration only. VERIFIED for this requirement no longer depends on this source -- see SRC-MICROCHIP-AN994-ENERGY-METER, an original-manufacturer source stating the accumulation principle directly."
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered page images were captured via the PDF-reading tool, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session is recorded.",
+      "sourceId": "SRC-MICROCHIP-AN994-ENERGY-METER",
+      "publisher": "Microchip Technology Inc.",
+      "title": "AN994: IEC Compliant Active-Energy Meter Design Using The MCP3905A/06A",
+      "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/00994b.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "An original-manufacturer engineering application note for energy-metering ICs, opened and read directly page by page. Classified AUTHORITATIVE_TECHNICAL_REFERENCE on the basis of its issued engineering-application-note content stating a general metrological principle (energy = accumulated power over time), consistent with how other manufacturer application notes are classified elsewhere in this corpus (e.g. the DOE engineering handbook), not merely on the publisher's institutional category.",
+      "locator": "Page 4, section \"Required Accuracy - ADC\"",
       "supportsRequirementSuffixes": [
         "energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
       ],

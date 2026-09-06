@@ -2439,16 +2439,23 @@
             "sourceRef": "https://instrumentationtools.com/difference-between-wattmeter-and-energy-meter/",
             "sourceLocator": "Instrumentation Tools, 'Difference Between Wattmeter and Energy Meter'",
             "retrievedPassage": "\"Energy = Integral of power with respect to the derivative of time.\" An energy meter measures power first and then it is integrated over a period of time (accumulating consumption into kWh), whereas \"Wattmeter will just show the total power present in the circuit\" (instantaneous)."
+          },
+          {
+            "sourceId": "SRC-MICROCHIP-AN994-ENERGY-METER",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/00994b.pdf",
+            "sourceLocator": "Microchip AN994 \"IEC Compliant Active-Energy Meter Design Using The MCP3905A/06A\", page 4, section \"Required Accuracy - ADC\" -- opened and read directly.",
+            "retrievedPassage": "\"Based on the fact that you are measuring energy (i.e., accumulating power over time), there is time in your budget to use averaging to increase the output resolution.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Electrical energy usage is measured with watt-hour meters (energy meters), which register accumulated energy usage in watt-hours/kilowatt-hours.",
-            "sourceId": "SRC-NISTIR-8248"
+            "claimText": "A manufacturer of energy-metering ICs (Microchip, application note AN994) states directly that measuring energy IS accumulating power over time (\"you are measuring energy (i.e., accumulating power over time)\") -- an original-manufacturer statement of the accumulation/integration principle itself, not merely a claim about what a watt-hour meter displays.",
+            "sourceId": "SRC-MICROCHIP-AN994-ENERGY-METER"
           },
           {
-            "claimText": "An energy meter measures energy by integrating (accumulating) instantaneous power over time into a running total (e.g. kWh), unlike a wattmeter, which displays only the instantaneous power present in the circuit at that moment.",
-            "sourceId": "SRC-INSTRUMENTATIONTOOLS-WATTMETER-VS-ENERGYMETER"
+            "claimText": "Electrical energy usage is measured with watt-hour meters (energy meters), which register accumulated energy usage in watt-hours/kilowatt-hours.",
+            "sourceId": "SRC-NISTIR-8248"
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2459,7 +2466,11 @@
         "conflicts": [],
         "gaps": [],
         "disclosures": [
-          "[Re-sourced] The integration/accumulation half of this claim (previously unevidenced -- NISTIR 8248 stated only that watt-hour meters measure electrical energy usage, with no statement of an integration mechanism or a contrast with instantaneous power) is now sourced to an instrumentation-engineering technical reference (Instrumentation Tools) explicitly stating that an energy meter integrates power over time and contrasting this with a wattmeter's instantaneous reading. Classifying this site as AUTHORITATIVE_TECHNICAL_REFERENCE (an industry instrumentation-engineering reference, not a hobbyist tutorial) is a disclosed judgment call."
+          "[Re-sourced, Stage 5 correction] The integration/accumulation half of this claim is now bound to a directly-read original-manufacturer passage (Microchip AN994, an energy-metering-IC application note) stating the accumulation principle explicitly, rather than resting on Instrumentation Tools alone. Instrumentation Tools (\"Energy = Integral of power with respect to the derivative of time\", contrasted with a wattmeter's instantaneous reading) is RETAINED below as disclosed corroboration only -- it is not needed to justify VERIFIED."
+        ],
+        "evaluatedButOutOfPermittedAuthorityClass": [],
+        "corroboratingOnlySourceIds": [
+          "SRC-INSTRUMENTATIONTOOLS-WATTMETER-VS-ENERGYMETER"
         ]
       }
     },

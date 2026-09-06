@@ -1,8 +1,8 @@
 {
   "batchId": "batch-06",
-  "sourceCount": 49,
+  "sourceCount": 50,
   "reusedSourceCount": 0,
-  "newSourceCount": 49,
+  "newSourceCount": 50,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -971,6 +971,26 @@
         "security-alarms-application-category-function::APPLICATION_FUNCTION"
       ],
       "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered page images were captured via the PDF-reading tool, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-60617-WEBSTORE-PREVIEW",
+      "publisher": "International Electrotechnical Commission (IEC)",
+      "title": "IEC 60617 - Graphical Symbols for Diagrams (webstore free preview)",
+      "url": "https://webstore.iec.ch/en/iec_catalog/product/preview/?id=L3B1Yi9wZGYvcHJldmlldy9pbmZvX2llYzYwNjE3e2VkMS4wfWIucGRm",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "The IEC is the primary international standards body for this symbol standard, and this is IEC's own official webstore preview of its current IEC 60617 database (not a third-party mirror). The preview's ID/Name catalogue table was opened and read directly, page by page, by this pass's assistant -- not delegated, not inferred from search-engine snippets.",
+      "locator": "ID/Name catalogue table (English/French), preview pages 25-26 and 53 of 53",
+      "supportsRequirementSuffixes": [
+        "schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION"
+      ],
+      "citedAsVerifyingEvidence": true,
+      "scopeLimitation": "Confirms symbol IDENTITY/NAME only for the six entries actually read (S00641, S00652, S00659, S00684, S01919, S01920). Does NOT confirm graphical artwork/geometry (behind a password-gated login) or per-entry Standard-vs-Obsolete status (a recorded database field not shown in this table view)."
     }
   ]
 }

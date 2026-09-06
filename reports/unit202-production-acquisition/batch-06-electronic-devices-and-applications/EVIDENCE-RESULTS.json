@@ -11,8 +11,8 @@
   },
   "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
   "statusTotals": {
-    "VERIFIED": 30,
-    "PARTIALLY_VERIFIED": 7
+    "VERIFIED": 29,
+    "PARTIALLY_VERIFIED": 8
   },
   "results": [
     {
@@ -1445,6 +1445,13 @@
             "sourceRef": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
             "sourceLocator": "AN1001, Figure AN1001.1 'SCR Block Construction' (page 1, right half labelled 'Schematic Symbol'); Figure AN1001.4 'Triac Block Construction' (page 2, right half labelled 'Schematic Symbol'); Figure AN1001.9 'DIAC Block Construction' (page 3, right half labelled 'Schematic Symbol'). Page images read directly.",
             "retrievedPassage": "[Figure AN1001.1, panel captioned] \"Schematic Symbol\" [drawn as a triangle against a bar, terminal 'Anode' at top, 'Cathode' at bottom, and a 'Gate' lead entering from the left at the cathode bar] ... [Figure AN1001.4, panel captioned] \"Schematic Symbol\" [drawn as two opposed/anti-parallel triangles, terminal 'MT2' at top, 'MT1' at bottom, and a 'Gate' lead entering from the left] ... [Figure AN1001.9, panel captioned] \"Schematic Symbol\" [drawn as two opposed triangles between terminals 'MT1' and 'MT2', with NO gate lead]"
+          },
+          {
+            "sourceId": "SRC-IEC-60617-WEBSTORE-PREVIEW",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://webstore.iec.ch/en/iec_catalog/product/preview/?id=L3B1Yi9wZGYvcHJldmlldy9pbmZvX2llYzYwNjE3e2VkMS4wfWIucGRm",
+            "sourceLocator": "Official IEC 60617 webstore free preview PDF, ID/Name catalogue table (English/French), pages 25-26 and 53 of the 53-page preview document -- opened and read directly, page by page, not delegated and not inferred from search snippets.",
+            "retrievedPassage": "\"S00641  Semiconductor diode, general symbol\" (preview p.25); \"S00652  Bidirectional diode thyristor; Diac\" and \"S00659  Bidirectional triode thyristor; Triac\" and \"S00684  Light dependent resistor (LDR); Photo resistor\" (preview p.26); \"S01919  Light emitting diode (LED), general symbol\" and \"S01920  Photodiode\" (preview p.53, the final page of the ID/Name table). The table's only columns throughout are ID, Name (English) and Name (French); no graphical artwork and no per-row Status level are shown anywhere in this ID/Name table view. The database's own \"General description\" page (preview p.5-6) states that a Status level field (Standard / Obsolete - for information only / Proposed / Draft / Rejected) is recorded per symbol, and that graphical representations exist in GIF/DWG/EPS formats -- but neither is exposed by this free ID/Name listing; both require the password-gated \"ENTER\" login shown on the welcome page (preview p.1)."
           }
         ],
         "normalizedClaims": [
@@ -1475,6 +1482,10 @@
           {
             "claimText": "Manufacturer corroboration for the three thyristor-family symbols specifically: Littelfuse AN1001 Figure AN1001.1 shows the SCR schematic symbol as a triangle-and-bar with terminals labelled Anode and Cathode and a Gate lead entering at the cathode bar; Figure AN1001.4 shows the TRIAC schematic symbol as two anti-parallel triangles with terminals labelled MT2 and MT1 and a single Gate lead; Figure AN1001.9 shows the DIAC schematic symbol as two opposed triangles between terminals MT1 and MT2 with NO gate lead. These agree with IEEE Std 315-1975 items 8.6.12/8.6.13, 8.6.15 and 8.5.9/8.5.6.4 respectively.",
             "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
+          },
+          {
+            "claimText": "The official IEC 60617 webstore free preview directly confirms six current symbol identity numbers and their English names, all genuinely read on the pages actually opened: S00641 (Semiconductor diode, general symbol), S00652 (Bidirectional diode thyristor; Diac), S00659 (Bidirectional triode thyristor; Triac), S00684 (Light dependent resistor (LDR); Photo resistor), S01919 (Light emitting diode (LED), general symbol) and S01920 (Photodiode). This CONFIRMS the identity/name pairing for these six AC6.2-relevant entries in the CURRENT IEC 60617 database (as distinct from the 1975 ANSI/IEEE standard used elsewhere in this cluster). It does NOT confirm: (a) the graphical symbol artwork/geometry for any of the six -- the ID/Name table carries no image, and the detail page showing the actual drawn symbol requires the password-gated login; (b) each entry's current Standard-versus-Obsolete status level -- the database's own data model records a Status level field, but it is not shown in this table view. The overall SCHEMATIC_SYMBOL requirement therefore remains PARTIALLY_VERIFIED: identity/name confirmation for six families is not the same as confirming learner-facing symbol shape or current-standard status.",
+            "sourceId": "SRC-IEC-60617-WEBSTORE-PREVIEW"
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -1487,13 +1498,14 @@
           "ALTERNATIVE-FORM AMBIGUITY (reported, not resolved): IEEE Std 315-1975 item 2.1.1 gives TWO alternative resistor symbols, the zigzag and the plain rectangle, both flagged IEC, with no single preferred form stated; and item 2.2.1 gives two capacitor styles, noting Style 1 (two parallel straight lines) as 'IEC preferred'. UK/BS EN 60617 practice generally uses the rectangle for the resistor, but that preference was NOT confirmed from a retrieved source in this session."
         ],
         "gaps": [
-          "[Correction, Stage 2.3 -- independently re-verified] The current IEC 60617 online database (webstore.iec.ch / std.iec.ch) free preview was re-checked directly. It is more than a bare welcome page: its 'General description' page explains the per-symbol data model used throughout the database (each entry carries a Symbol identity number in the format \"Snnnnn\", Name, Alternative names, Status level, Released-on/Obsolete-from dates, Application notes, Keywords, etc), and its 'Introduction' page states the database holds approximately 1900 symbols in GIF/DWG/EPS formats. However, the free preview does NOT expose a searchable list or any specific numbered entry -- the search function and all categorised views (by identity number, keyword, application, function, shape, status) are gated behind a password-protected login. No specific symbol (e.g. a reference number for the diode, LED, TRIAC, DIAC, LDR or photodiode symbol) could be verified from what is actually visible without that access, and the six small sample thumbnails shown on the preview page's own chrome are unlabelled (no reference numbers or titles). Honestly recorded as a genuine, currently-unresolved symbol-currency dependency: the database's general structure is confirmed, but no specific current IEC symbol identity or artwork is confirmed. The 1975 ANSI Y32.2/IEEE 315 standard remains the best currently-verified evidence for 13 of 15 families.",
+          "The IEC 60617 webstore free preview confirms six identity/name pairs relevant to this cluster (S00641, S00652, S00659, S00684, S01919, S01920 -- see SRC-IEC-60617-WEBSTORE-PREVIEW and disclosures). It does not expose the corresponding graphical artwork/geometry (visible only behind the password-gated detail-page login) or each entry's Standard-versus-Obsolete status level (recorded by the database per its own data model, but not shown in this ID/Name table view). Learner-facing symbol SHAPE and current-standard status therefore remain genuinely unconfirmed for these six identities, and this requirement remains PARTIALLY_VERIFIED -- identity confirmation alone does not verify a schematic-symbol-recognition requirement.",
           "13 of the 15 Unit 202 component families have a named, directly-read graphic symbol in the retrieved standard: resistor (2.1.1), capacitor (2.2.1 / 2.2.2), diode (8.5.1), Zener/breakdown diode (8.5.6 / 8.5.6.1), photodiode (8.5.4 / 8.5.4.1), LDR (2.1.13, via 8.7.2), thermistor (2.1.12), transistor (8.6.1 / 8.6.2), thyristor SCR (8.6.12 / 8.6.13, and 8.5.8), TRIAC (8.6.15), DIAC (8.5.6.4 and 8.5.9), rectifier including bridge rectifier (16.3, 16.3.1, 16.3.3), relay (4.30, 4.30.1, 4.30.2).",
           "2 of the 15 families are NOT covered by a dedicated, named graphic symbol in the retrieved standard: LED (present only as the letter code 'LED' applied to the general lamp symbol 11.1.1 per NOTE 11.1.1B, with the nearest graphic being item 8.5.4.2 'Photoemissive type'), and INVERTER (present only as the letter combination 'ST-INV  Static inverter' placed inside the general circuit-element rectangle of item 16.1.1). Because the requirement is explicitly a breadth requirement over 'each named AC6.2 component/device family', this is recorded as PARTIALLY_VERIFIED rather than VERIFIED.",
           "The normative IEC 60617 / BS EN 60617 symbol table itself was NOT reached (see accessFailures); no symbol in this cluster is verified against the current IEC/BS text."
         ],
         "disclosures": [
-          "[Correction] requiredCoverageDimensions corrected from the stale [QUANTITY_SYMBOL] to [SCHEMATIC_SYMBOL] (ACQ-184) to match the regenerated plan -- the amendment ledger already recorded this fix in the previous pass but it was never actually propagated into this record. No change to the underlying evidence or verification status, which already correctly concerned symbol recognition, not a quantity-symbol letter."
+          "[Correction] requiredCoverageDimensions corrected from the stale [QUANTITY_SYMBOL] to [SCHEMATIC_SYMBOL] (ACQ-184) to match the regenerated plan -- the amendment ledger already recorded this fix in the previous pass but it was never actually propagated into this record. No change to the underlying evidence or verification status, which already correctly concerned symbol recognition, not a quantity-symbol letter.",
+          "[Retraction] A previous version of this record stated that the IEC 60617 webstore free preview exposes 'no specific numbered entries' and that 'no specific symbol...could be verified from what is actually visible'. That claim was incorrect. This pass's assistant personally opened and read the preview PDF page by page (not delegated to a subagent, not inferred from search-engine snippets) and found a genuine, specific ID/Name catalogue table spanning the whole preview; see SRC-IEC-60617-WEBSTORE-PREVIEW for the six entries directly confirmed. The bounded, corrected conclusion -- identities and English names confirmed; artwork/geometry and per-entry Standard/Obsolete status not confirmed -- is now recorded in gaps/normalizedClaims above instead."
         ]
       }
     },
@@ -1643,19 +1655,21 @@
             "sourceId": "SRC-OSU-ECE322-BJT"
           }
         ],
-        "verificationStatus": "VERIFIED",
-        "coverageDimensionsSatisfied": [
+        "verificationStatus": "PARTIALLY_VERIFIED",
+        "coverageDimensionsSatisfied": [],
+        "unresolvedDimensions": [
           "DEFINITION"
         ],
-        "unresolvedDimensions": [],
         "conflicts": [
           "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: the security alarm circuit in which the transistor is said to switch is not identified."
         ],
         "gaps": [
-          "[Correction, Stage 5 exemplar decision 3] Restored to VERIFIED: the transistor cutoff/saturation switching behaviour is fully and genuinely evidenced as general device behaviour (SRC-OSU-ECE322-BJT), which is exactly what this learning point teaches -- a transferable role, not a claim about any specific alarm circuit's topology.",
-          "The generic framing required by the guardrail - the transistor operating as a switch (saturated/off), NOT as a linear amplifier - is explicitly and verbatim supported, and the source itself makes the amplifier-vs-switch contrast.",
-          "The security-alarm-specific role of the transistor is NOT supported by any read source. No claim tying the transistor to an alarm circuit has been recorded.",
-          "The V_CE,sat value of approximately 200 mV is a teaching approximation from this specific course, not a device specification; it should not be presented as a general constant."
+          "[Re-adjudicated, false-green correction] Previously recorded VERIFIED on the strength of general BJT switching behaviour alone. That was a false green: this requirement's own text (\"Security alarm: transistor switching\") asks for the transistor's role WITHIN A SECURITY-ALARM circuit specifically, and no read source ties the transistor's cutoff/saturation switching behaviour to any security-alarm application -- SRC-OSU-ECE322-BJT is generic BJT teaching material with no alarm-circuit reference of any kind. Genuinely corrected to PARTIALLY_VERIFIED: the DEFINITION dimension (the alarm-specific application) remains unresolved. The general transistor-switching principle itself is not in question and remains separately VERIFIED under EDA-LP-10; only the alarm-specific application claim is unresolved here.",
+          "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: no security alarm circuit is identified by the frozen requirement, so there is no determinate circuit against which an alarm-specific transistor role could even be tested."
+        ],
+        "disclosures": [
+          "General BJT cutoff/saturation switching behaviour (the transistor operating as a non-linear switch, not a linear amplifier) is fully and genuinely evidenced by SRC-OSU-ECE322-BJT and is retained here for corroboration -- but that general principle is independently verified and taught under EDA-LP-10 (transistor switching, as a reusable prerequisite), not by this requirement. This requirement specifically asks about the transistor's role WITHIN A SECURITY ALARM circuit, which the general source does not address.",
+          "The V_CE,sat value of approximately 200 mV is a teaching approximation from the cited course, not a device specification, and is not relied upon by any taught claim."
         ]
       }
     },
