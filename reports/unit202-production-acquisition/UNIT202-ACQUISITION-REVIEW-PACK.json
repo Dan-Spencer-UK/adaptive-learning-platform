@@ -26,8 +26,8 @@
     "scopeNote": "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
     "wholeUnit202": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 196,
-        "PARTIALLY_VERIFIED": 12
+        "VERIFIED": 197,
+        "PARTIALLY_VERIFIED": 11
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -35,8 +35,8 @@
     },
     "batches0406Only": {
       "verifiedOrPartiallyVerifiedOrGap": {
-        "VERIFIED": 124,
-        "PARTIALLY_VERIFIED": 12
+        "VERIFIED": 125,
+        "PARTIALLY_VERIFIED": 11
       },
       "structurallySatisfied": 2,
       "retiredOutOfScope": 3,
@@ -70,8 +70,8 @@
       "requirementCount": 57
     },
     "batch-05": {
-      "VERIFIED": 39,
-      "PARTIALLY_VERIFIED": 3,
+      "VERIFIED": 40,
+      "PARTIALLY_VERIFIED": 2,
       "STRUCTURALLY_SATISFIED": 2,
       "RETIRED_OUT_OF_SCOPE": 0,
       "requirementCount": 44

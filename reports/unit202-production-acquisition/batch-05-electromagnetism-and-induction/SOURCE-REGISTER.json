@@ -1,8 +1,8 @@
 {
   "batchId": "batch-05",
-  "sourceCount": 49,
+  "sourceCount": 50,
   "reusedSourceCount": 0,
-  "newSourceCount": 49,
+  "newSourceCount": 50,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -983,6 +983,25 @@
       "locator": "Article body, generic inductor symbol description",
       "supportsRequirementSuffixes": [
         "coil::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "The PDF was downloaded by the fetch tool and its pages were then rendered and read as page images; raw source bytes were not hashed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-DOE-HDBK-1011-3-ES07",
+      "publisher": "U.S. Department of Energy (DOE-HDBK-1011/3-92, June 1992)",
+      "title": "DOE Fundamentals Handbook -- Electrical Science, Volume 3 of 4, Module 7 \"Basic AC Theory\"",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL3.pdf",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same DOE Fundamentals Handbook family and same dual GOVERNMENT_OR_REGULATOR/AUTHORITATIVE_TECHNICAL_REFERENCE status already disclosed and accepted for SRC-DOE-HDBK-1011-3-ES10 in this batch; classed as AUTHORITATIVE_TECHNICAL_REFERENCE so it fits this requirement's own permitted classes, consistent with that precedent.",
+      "locator": "Module ES-07 \"Basic AC Theory\", section \"AC GENERATION\", Figure 1 \"Simple AC Generator\" and \"AC Generation Summary\" box (Page 1 and Page 3)",
+      "supportsRequirementSuffixes": [
+        "single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
       ],
       "citedAsVerifyingEvidence": true
     }
