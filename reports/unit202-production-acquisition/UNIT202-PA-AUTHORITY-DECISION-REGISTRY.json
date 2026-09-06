@@ -1,0 +1,21 @@
+{
+  "registryId": "UNIT202-PA-AUTHORITY-DECISION-REGISTRY",
+  "purpose": "The exhaustive list of Unit 202 evidence-authority-policy decisions that are genuinely, externally recorded as real Product Architect decisions (not self-declared by an acquisition/correction pass). Any `paAuthorityPolicyAdjudication` object embedded in a Batches 04-06 EVIDENCE-RESULTS.json row must have an `id` present in this registry's `decisions` array, or it is treated as an ungoverned, ad hoc field and must be removed or reclassified. This registry itself must never be edited to retroactively legitimise a field found during validation -- a new entry may only be added when a genuine, externally-recorded Product Architect decision actually exists (e.g. a PROJECT-STATUS.md entry, a DECISION-LOG.md entry, or equivalent).",
+  "decisions": [
+    {
+      "id": "CC-BATCH01-PA-AUTHORITY-ADJUDICATION-001",
+      "scope": "Batch 01 foundational-mathematics engineering-notation/scientific-notation SYMBOL_OR_CONVENTION requirement only",
+      "externalRecord": "PROJECT-STATUS.md, CC-24/Batch-01 entry: \"The Product Architect explicitly approved AUTHORITATIVE_EDUCATIONAL_REFERENCE as permitted authority for this ONE requirement binding only.\"",
+      "note": "Batch 01 is accepted and identity-frozen; this decision is preserved as historical record only and is not re-validated by the Batches 04-06 correction pass."
+    }
+  ],
+  "structuralPolicyNote": "Unit 202's genuine, code-enforced widening of the OPERATIONAL_USE_RULE mode (UNIT202_SOURCE_AUTHORITY_POLICY in scripts/backtests/unit202-evidence-acquisition-preflight/unit202-adapter.ts) is NOT modelled as a per-row paAuthorityPolicyAdjudication object at all -- it is baked directly into the frozen evidence-requirement plan's own sourceAuthorityClasses field for exactly Unit 202's three OPERATIONAL_USE_RULE targets (the right-hand grip rule and the two Fleming rules), enforced by a fail-closed invariant (assertUnit202DirectionalRuleInvariant) that refuses planning if the premise (exactly 3 targets, exactly the same dimension set) ever breaks. Because it is structural and plan-level, it is already covered by the existing plan/result field-equality check and needs no separate registry entry.",
+  "removedAdHocFields": [
+    {
+      "formerId": "CC-BATCH05-PA-AUTHORITY-ADJUDICATION-001",
+      "formerScope": "Batch 05 dot-cross-page-convention::SYMBOL_OR_CONVENTION",
+      "removedInPass": "2026-09-06 narrow evidence/curriculum-modelling/validation correction",
+      "reasonRemoved": "No genuine external Product Architect record exists for this specific decision (PROJECT-STATUS.md's own batch-05 entry explicitly states no frozen authority class was widened in that pass); it applied to a mode (SYMBOL_OR_CONVENTION) the genuine, code-enforced UNIT202_SOURCE_AUTHORITY_POLICY widening does not cover; and it had no fail-closed structural backing. Reverted to a genuine SOURCE_GAP; see UNIT202-CORRECTION-AMENDMENT-LEDGER.json for the full disposition."
+    }
+  ]
+}

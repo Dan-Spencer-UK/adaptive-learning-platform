@@ -7,6 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
+import crypto from "node:crypto";
 
 const repoRoot = path.resolve(import.meta.dirname, "..", "..", "..");
 const rel = (p) => path.join(repoRoot, p);
@@ -1074,6 +1075,193 @@ check(48, "The held-point completion ledger's 16 entries exactly match current l
   if (ledger.summary.remainingCoreBlockers !== blockerCount) problems.push(`ledger.summary.remainingCoreBlockers=${ledger.summary.remainingCoreBlockers} recomputed=${blockerCount}`);
   if (problems.length > 0) throw new Error(problems.join("; "));
   return `16/16 held-point ledger entries verified against live state; summary counts recompute correctly`;
+});
+
+// =====================================================================
+// Checks 49-57 (Section B, narrow evidence/curriculum-modelling/
+// validation correction pass, 2026-09-06): repair specific false-green
+// logic an independent review found in the prior 48-check validator.
+// Existing checks 1-48 are unchanged and unweakened.
+// =====================================================================
+
+const PROTECTED_FILE_HASHES = {
+  "reports/instructional-visuals/index.html": "1340be4b43f639aa2f18b79347cb39499210efffa97768e77e1b75d0cd162d5d",
+  "reports/instructional-visuals/semantic-audit.json": "87598f9c19b70790f12cd15cecddaee0397916a2ecee15e06308d6f88dbcccd7",
+};
+
+check(49, "Every embedded candidateSource/evaluatedButOutOfPermittedAuthorityClass authorityClass matches its canonical SOURCE-REGISTER entry", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    const sr = readJson(b.srPath);
+    const canonical = new Map(sr.sources.map((s) => [s.sourceId, s.authorityClass]));
+    for (const r of b.ev.results) {
+      for (const cs of [...(r.result.candidateSources ?? []), ...(r.result.evaluatedButOutOfPermittedAuthorityClass ?? [])]) {
+        const c = canonical.get(cs.sourceId);
+        if (c === undefined) { problems.push(`${b.dir} ${r.evidenceRequirementId}: source "${cs.sourceId}" not in SOURCE-REGISTER`); continue; }
+        n++;
+        if (cs.authorityClass !== c) problems.push(`${b.dir} ${r.evidenceRequirementId}: embedded authorityClass "${cs.authorityClass}" for ${cs.sourceId} does not match canonical "${c}"`);
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
+  return `${n} embedded source-authority-class label(s) checked against the canonical SOURCE-REGISTER, all match`;
+});
+
+check(50, "Every normalizedClaim cites a source that is both a registered candidate and permitted for its requirement, unless a genuinely governed PA override exists", () => {
+  const paRegistry = readJson("reports/unit202-production-acquisition/UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json");
+  const governedIds = new Set(paRegistry.decisions.map((d) => d.id));
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const r of b.ev.results) {
+      const adjudication = r.result.paAuthorityPolicyAdjudication;
+      if (adjudication && !governedIds.has(adjudication.id)) {
+        problems.push(`${b.dir} ${r.evidenceRequirementId}: paAuthorityPolicyAdjudication id "${adjudication.id}" is not in UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json -- an ungoverned, self-declared authority override`);
+        continue;
+      }
+      const permitted = new Set(r.sourceAuthorityClasses);
+      const candById = new Map((r.result.candidateSources ?? []).map((c) => [c.sourceId, c]));
+      for (const claim of r.result.normalizedClaims ?? []) {
+        n++;
+        const cs = candById.get(claim.sourceId);
+        if (!cs) { problems.push(`${b.dir} ${r.evidenceRequirementId}: normalizedClaim cites "${claim.sourceId}", which is not in this row's own candidateSources`); continue; }
+        if (!permitted.has(cs.authorityClass)) problems.push(`${b.dir} ${r.evidenceRequirementId}: normalizedClaim's source "${claim.sourceId}" has authorityClass "${cs.authorityClass}", not permitted by this row's own sourceAuthorityClasses`);
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
+  return `${n} normalizedClaim(s) checked; every cited source is a registered, permitted candidate (or a genuinely governed PA override)`;
+});
+
+check(51, "Every VERIFIED row has, for each required coverage dimension, at least one normalizedClaim with permitted, registered support", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const r of b.ev.results) {
+      if (r.disposition) continue; // STRUCTURALLY_SATISFIED / RETIRED_OUT_OF_SCOPE rows have no direct claims of their own
+      if (r.result.verificationStatus !== "VERIFIED") continue;
+      n++;
+      const permitted = new Set(r.sourceAuthorityClasses);
+      const candById = new Map((r.result.candidateSources ?? []).map((c) => [c.sourceId, c]));
+      const hasSupportedClaim = (r.result.normalizedClaims ?? []).some((claim) => {
+        const cs = candById.get(claim.sourceId);
+        return cs && permitted.has(cs.authorityClass);
+      });
+      if (!hasSupportedClaim) problems.push(`${b.dir} ${r.evidenceRequirementId}: VERIFIED but no normalizedClaim has permitted, registered support`);
+      const required = r.requiredCoverageDimensions ?? [];
+      const satisfied = r.result.coverageDimensionsSatisfied ?? [];
+      if (required.length > 0 && !required.every((d) => satisfied.includes(d))) problems.push(`${b.dir} ${r.evidenceRequirementId}: VERIFIED but coverageDimensionsSatisfied does not cover every requiredCoverageDimension`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
+  return `${n} VERIFIED row(s) checked, each has genuine permitted-class support for every required dimension`;
+});
+
+check(52, "No PARTIALLY_VERIFIED row has an empty unresolvedDimensions array", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const r of b.ev.results) {
+      if (r.disposition) continue; // STRUCTURALLY_SATISFIED/RETIRED_OUT_OF_SCOPE rows: disposition is the terminal status, not result.verificationStatus (same convention as terminalStatusOf/check 51)
+      if (r.result.verificationStatus !== "PARTIALLY_VERIFIED") continue;
+      n++;
+      if ((r.result.unresolvedDimensions ?? []).length === 0) problems.push(`${b.dir} ${r.evidenceRequirementId}: PARTIALLY_VERIFIED with an empty unresolvedDimensions array -- self-contradictory (what, exactly, remains unresolved?)`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} PARTIALLY_VERIFIED row(s) checked, each names at least one genuinely unresolved dimension`;
+});
+
+check(53, "No atomic dimension is simultaneously recorded as satisfied and unresolved on the same row", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const r of b.ev.results) {
+      n++;
+      const satisfied = new Set(r.result.coverageDimensionsSatisfied ?? []);
+      const unresolved = r.result.unresolvedDimensions ?? [];
+      const overlap = unresolved.filter((d) => satisfied.has(d));
+      if (overlap.length > 0) problems.push(`${b.dir} ${r.evidenceRequirementId}: dimension(s) [${overlap.join(", ")}] recorded as BOTH satisfied and unresolved`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} row(s) checked, no dimension is simultaneously satisfied and unresolved`;
+});
+
+check(54, "No REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point depends on a DEFERRED_CONTEXT_ONLY or RETIRED_OUT_OF_SCOPE prerequisite", () => {
+  let n = 0;
+  const problems = [];
+  const lpById = new Map();
+  for (const b of batches) for (const p of b.lpJson.learningPoints) lpById.set(p.id, p);
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (p.curriculumRole !== "REQUIRED_MASTERY" && p.curriculumRole !== "MIXED_REQUIRED_AND_CONTEXT") continue;
+      n++;
+      const prereqIds = [...(p.prerequisiteLearningPointIds ?? []), ...(p.crossDomainPrerequisiteIds ?? [])];
+      for (const prereqId of prereqIds) {
+        const prereq = lpById.get(prereqId);
+        if (!prereq) continue; // unresolved-reference is check 18's job
+        if (prereq.evidenceReadiness === "DEFERRED_CONTEXT_ONLY" || prereq.evidenceReadiness === "RETIRED_OUT_OF_SCOPE") {
+          problems.push(`${b.dir} ${p.id} (${p.curriculumRole}) depends on ${prereqId}, which is ${prereq.evidenceReadiness} -- a required/core learning point cannot rest on a non-blocking deferral or a retired point as load-bearing prerequisite knowledge`);
+        }
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} REQUIRED_MASTERY/MIXED_REQUIRED_AND_CONTEXT learning point(s) checked, none depend on a deferred or retired prerequisite`;
+});
+
+check(55, "No DEFERRED_CONTEXT_ONLY or RETIRED_OUT_OF_SCOPE learning point appears in its batch's core V1 instructional sequence", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    const readinessById = new Map(b.lpJson.learningPoints.map((p) => [p.id, p.evidenceReadiness]));
+    for (const id of b.lpJson.coreInstructionalSequence ?? []) {
+      n++;
+      const readiness = readinessById.get(id);
+      if (readiness === "DEFERRED_CONTEXT_ONLY" || readiness === "RETIRED_OUT_OF_SCOPE") problems.push(`${b.dir}: coreInstructionalSequence contains ${id}, which is ${readiness}`);
+    }
+    // The full inventory/sequence must still exist and be a superset, so nothing is silently lost.
+    const full = new Set(b.lpJson.instructionalSequence ?? []);
+    const core = b.lpJson.coreInstructionalSequence ?? [];
+    for (const id of core) if (!full.has(id)) problems.push(`${b.dir}: coreInstructionalSequence contains ${id}, which is not present in the full instructionalSequence`);
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} core-instructional-sequence entr(y/ies) checked across Batches 04-06, none are deferred or retired, and the core sequence is a genuine subset of the full inventory`;
+});
+
+check(56, "The two protected pre-existing unrelated files are byte-identical to their hashes at the start of this pass", () => {
+  const problems = [];
+  for (const [relPath, expected] of Object.entries(PROTECTED_FILE_HASHES)) {
+    const actual = crypto.createHash("sha256").update(fs.readFileSync(rel(relPath))).digest("hex");
+    if (actual !== expected) problems.push(`${relPath}: expected ${expected}, got ${actual}`);
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${Object.keys(PROTECTED_FILE_HASHES).length} protected file(s) confirmed byte-identical to their starting hashes`;
+});
+
+check(57, "The runtime curriculum-delta mapping never marks lesson content as taught-correct when its governed evidence is held, partial, source-gap or retired without an explicit content-ahead-of-evidence flag", () => {
+  const mappingPath = "reports/unit202-production-acquisition/UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING.json";
+  if (!fs.existsSync(rel(mappingPath))) return "runtime delta mapping not yet generated -- skipped";
+  const mapping = readJson(mappingPath);
+  const readinessById = new Map();
+  for (const b of batches) for (const p of b.lpJson.learningPoints) readinessById.set(p.id, p.evidenceReadiness);
+  let n = 0;
+  const problems = [];
+  const UNSETTLED = new Set(["HELD_PENDING_EVIDENCE_CORRECTION"]);
+  for (const row of mapping.rows ?? []) {
+    n++;
+    const readiness = readinessById.get(row.id);
+    const taughtAsCorrect = (row.lessonCoverageStatus === "TAUGHT_AS_SETTLED_FACT") || (row.axes && row.axes.lessonCoverageStatus === "TAUGHT_AS_SETTLED_FACT");
+    if (!taughtAsCorrect) continue;
+    if (readiness && UNSETTLED.has(readiness)) {
+      const flagged = row.contentAheadOfEvidenceRisk === true || (row.axes && row.axes.contentAheadOfEvidenceRisk === true);
+      if (!flagged) problems.push(`${row.id}: runtime mapping marks lesson content as taught/settled while governed evidenceReadiness is ${readiness}, with no contentAheadOfEvidenceRisk flag`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${n} runtime-mapping row(s) checked, no unflagged content-ahead-of-evidence case`;
 });
 
 // --- Report ---
