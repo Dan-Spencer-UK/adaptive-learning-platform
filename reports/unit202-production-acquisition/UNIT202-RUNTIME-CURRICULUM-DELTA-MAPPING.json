@@ -1,991 +1,2358 @@
 {
   "reportId": "UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING",
-  "purpose": "Stage 8 deliverable (2026-09-06 continuation pass): a diagnostic, read-only mapping of all 133 governed Unit 202 learning points against the existing, older learner-facing runtime corpus (scripts/content/data assertions and lessons, apps/mobile diagram components, instructional visual assets). The governed 133-point curriculum is the source of truth; the runtime corpus is evaluated against it, not the reverse. This mapping does NOT re-author any lesson, storyboard, assertion, or question -- it scopes the remaining production delta only.",
+  "schemaVersion": 2,
+  "purpose": "Stage 8/E deliverable (narrow evidence/curriculum-modelling/validation correction pass, 2026-09-06): a diagnostic, read-only, MULTI-AXIS mapping of all 133 governed Unit 202 learning points against the pre-existing, independently-authored learner-facing runtime corpus. Schema v2 replaces the prior single-category-per-LP model (v1, superseded) with independent axes, since an LP can have multiple simultaneous deficits a single category collapses. The governed curriculum is the source of truth throughout; the runtime corpus is evaluated against it, never the reverse. No lesson, storyboard, assertion, or question was re-authored in producing this mapping.",
   "method": "Six independent research agents, one per batch, each read every learning point in that batch's LEARNING-POINTS.json in full and searched the live runtime corpus (scripts/content/data/*.ts, apps/mobile/src/lib/proving-content, apps/mobile/src/components/diagrams, reports/instructional-visuals/semantic-audit.json and premium-artwork/proof/) for matching, missing, wrong-depth, obsolete, or unvisualised content.",
-  "categoryDefinitions": {
-    "MAPPED_CORRECT": "A runtime lesson/assertion/question genuinely and correctly teaches/tests this LP at the right depth.",
-    "MAPPED_WRONG_DEPTH": "Runtime content addresses the topic but at the wrong depth (too shallow, too deep/scope-creep, or an explicitly-excluded elaboration).",
-    "MISSING_FROM_LESSONS": "No runtime lesson content addresses this LP at all (a knowledge-graph assertion may exist as an unused prerequisite node).",
-    "MISSING_ASSESSMENT_COVERAGE": "Lesson content exists but no question/assertion tests this LP's required application type.",
-    "MISSING_OR_UNSUITABLE_VISUAL": "A diagram/visual this LP depends on does not exist, or an existing one is technically wrong per the governed evidence.",
-    "OBSOLETE_SHOULD_REMOVE": "The runtime corpus teaches something this LP's topic area that the governed curriculum has explicitly retired, corrected, or found unsupported.",
-    "CONTEXTUAL_DEFERRED": "This LP is DEFERRED_CONTEXT_ONLY/CONTEXTUAL_SUPPORT_ONLY in the governed curriculum; runtime correctly treats it as non-assessable/absent.",
-    "RETIRED": "This LP is RETIRED_OUT_OF_SCOPE; runtime correctly omits it."
-  },
-  "categoryTotals": {
-    "MISSING_FROM_LESSONS": 43,
-    "MAPPED_WRONG_DEPTH": 29,
-    "MAPPED_CORRECT": 52,
-    "MISSING_ASSESSMENT_COVERAGE": 4,
-    "CONTEXTUAL_DEFERRED": 1,
-    "RETIRED": 2,
-    "OBSOLETE_SHOULD_REMOVE": 2
+  "axisDefinitions": {
+    "lessonCoverageStatus": "NOT_TAUGHT | TAUGHT_PARTIAL | TAUGHT_CORRECT | TAUGHT_AS_SETTLED_FACT (taught with more confidence/finality than the governed evidence itself currently supports) | UNKNOWN",
+    "depthStatus": "N/A | TOO_SHALLOW | CORRECT_DEPTH | TOO_DEEP_SCOPE_CREEP (teaches/assesses beyond what the governed LP requires or explicitly excludes)",
+    "assessmentCoverageStatus": "NOT_ASSESSED | PARTIALLY_ASSESSED | FULLY_ASSESSED | CORRECTLY_NOT_ASSESSED (context-only/retired, correctly unassessed) | UNKNOWN",
+    "visualCoverageStatus": "NOT_APPLICABLE | MISSING | PRODUCED_NOT_WIRED (asset exists in production-proof storage but not in the shipped app) | PRESENT_UNVERIFIED (asset exists but drawn with more confidence than governed evidence supports) | PRESENT_VERIFIED (passes semantic-audit contract)",
+    "obsoleteContentFlag": "true if the runtime teaches/assesses something the governed curriculum has explicitly retired, corrected, or found unsupported",
+    "curriculumDispositionState": "the governed LP's CURRENT LIVE evidenceReadiness (READY | HELD_PENDING_EVIDENCE_CORRECTION | DEFERRED_CONTEXT_ONLY | RETIRED_OUT_OF_SCOPE), refreshed as of this pass's final state -- not a frozen snapshot",
+    "contentAheadOfEvidenceRisk": "true if the runtime teaches/assesses this LP's content as settled fact while its governed evidenceReadiness is HELD_PENDING_EVIDENCE_CORRECTION (validator check 57 enforces this is never left unflagged)",
+    "urgencySafetyImpact": "NONE | LOW | MEDIUM | HIGH -- HIGH is reserved for live, actively-assessed, obsolete/retired-claim content (a learner could be certified on a specific claim the qualification's own evidence review rejected)"
   },
   "totalLearningPoints": 133,
-  "safetyFindingsCount": 5,
-  "safetyFindings": [
+  "axisTotals": {
+    "lessonCoverageStatus": {
+      "NOT_TAUGHT": 46,
+      "TAUGHT_PARTIAL": 29,
+      "TAUGHT_CORRECT": 55,
+      "TAUGHT_AS_SETTLED_FACT": 3
+    },
+    "depthStatus": {
+      "N/A": 48,
+      "TOO_SHALLOW": 27,
+      "CORRECT_DEPTH": 56,
+      "TOO_DEEP_SCOPE_CREEP": 2
+    },
+    "assessmentCoverageStatus": {
+      "NOT_ASSESSED": 74,
+      "PARTIALLY_ASSESSED": 49,
+      "FULLY_ASSESSED": 7,
+      "CORRECTLY_NOT_ASSESSED": 3
+    },
+    "visualCoverageStatus": {
+      "NOT_APPLICABLE": 119,
+      "PRESENT_VERIFIED": 11,
+      "MISSING": 2,
+      "PRODUCED_NOT_WIRED": 1
+    },
+    "curriculumDispositionState": {
+      "READY": 125,
+      "DEFERRED_CONTEXT_ONLY": 3,
+      "HELD_PENDING_EVIDENCE_CORRECTION": 3,
+      "RETIRED_OUT_OF_SCOPE": 2
+    },
+    "urgencySafetyImpact": {
+      "NONE": 124,
+      "LOW": 3,
+      "MEDIUM": 5,
+      "HIGH": 1
+    }
+  },
+  "obsoleteContentCount": 5,
+  "obsoleteContentRows": [
     {
-      "id": "EQCT-LP-07",
-      "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "note": "SAFETY-CHECKED: power factor is taught as ratio/cos(phase angle) but the runtime never asserts it is dimensionless/unitless -- the still-HELD claim is NOT taught ahead of its evidence. Notation (cos phi/p.f./lambda) is under-taught relative to even the VERIFIED dimensions."
+      "id": "MM-LP-14",
+      "urgencySafetyImpact": "LOW",
+      "description": "Runtime teaches and tests the full KE = 1/2 m v^2 formula/calculation (FP-REL-KINETIC-ENERGY-001, FP-CALC-KINETIC-ENERGY-001), which the governed MM-LP-14 explicitly excludes as a required-mastery/calculation outcome for this batch (kinetic energy is required as a qualitative concept only)."
     },
     {
-      "id": "EMI-LP-16",
-      "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "note": "SAFETY FLAG: the exact thumb=motion/first-finger=field/second-finger=current mapping the governed evidence pipeline could NOT verify from any permitted-class source is taught in the runtime corpus as a directly-supported fact (sourced to a general encyclopedia article, not a permitted-class technical/professional-body/standards source). Content is ahead of its evidence here. No dedicated visual exists for this specific rule."
+      "id": "EQCT-LP-13",
+      "urgencySafetyImpact": "LOW",
+      "description": "Runtime teaches and assesses the full Z=sqrt(R^2+X^2) phasor-style calculation (EL-REL-IMPEDANCE-001 plus a \"select the correct impedance formula\" capability), which the governed EQCT-LP-13 explicitly excludes -- it requires the R/X/Z distinction conceptually only, never the calculation."
     },
     {
-      "id": "EMI-LP-17",
-      "batch": "batch-05",
-      "category": "MISSING_FROM_LESSONS",
-      "note": "SAFETY-RELEVANT GAP: the governed LP is held only on the coil's schematic-symbol geometry (slip rings/brushes/single-loop framing are independently VERIFIED) -- but the runtime corpus's actual gap is broader: no 'slip ring' or 'brush' text exists anywhere, and the generator diagram component never depicts or names a brush. Even the governed-VERIFIED parts of this LP are not yet taught."
+      "id": "EMI-LP-14",
+      "urgencySafetyImpact": "LOW",
+      "description": "SCOPE-CREEP NOTE (not a factual error): the runtime teaches Faraday's law quantitatively as an assessed calculation (formula.flux_change_emf, e=N.dPhi/dt), which EMI-LP-14's own explicitData explicitExclusions rule out as not required at this level. Should be reconciled (confirmed as belonging to a different/later governed unit) rather than left as an undocumented mismatch."
     },
     {
       "id": "EDA-LP-25",
-      "batch": "batch-06",
-      "category": "OBSOLETE_SHOULD_REMOVE",
-      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states an SCR keeps a sounder energised after a normally-closed loop is broken -- exactly the topology/sounder-role claim the governed evidence review retired and marked unevidenced, sourced from a hobbyist tutorial site outside any permitted authority class. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11."
+      "urgencySafetyImpact": "HIGH",
+      "description": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop/SCR-sounder-latching claim the governed evidence review retired/could not evidence. Sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class."
     },
     {
       "id": "EDA-LP-28",
-      "batch": "batch-06",
-      "category": "OBSOLETE_SHOULD_REMOVE",
-      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states the master-socket capacitor blocks DC/passes AC ringing current and the resistor provides a line-test load -- exactly the functional claims the governed evidence review found no authoritative source confirms and excluded from taught content, sourced to Wikipedia. It also claims extension sockets contain none of these components, which has no evidentiary basis at all."
+      "urgencySafetyImpact": "MEDIUM",
+      "description": "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 (cc04-unit202-electrical-science.ts) teaches and assesses the capacitor DC-block/AC-pass ringer function and the resistor line-test function as REQUIRED_FOR fact, sourced to Wikipedia. NOTE: the capacitor-function claim is now independently confirmed by this pass's own governed evidence acquisition (SIN 351 + IXYS/Littelfuse AN-144), so it is no longer content-ahead-of-evidence for that specific facet as of this pass's correction -- but the runtime's own citation (Wikipedia) remains an unpermitted-class source, and the resistor line-test claim and the \"extension sockets contain none of these components\" claim both remain genuinely unevidenced and should still be corrected/re-sourced or removed at the runtime-content level."
+    }
+  ],
+  "contentAheadOfEvidenceCount": 2,
+  "contentAheadOfEvidenceRows": [
+    {
+      "id": "EMI-LP-16",
+      "note": "EL-CONCEPT-FLEMING-RIGHT-HAND-001 (cc04) teaches the exact thumb=motion/first-finger=field/second-finger=current mapping as directly-supported fact (source: Wikipedia, citing Hughes 12th ed. p.145) -- the same mapping the governed evidence pipeline could not itself verify from any permitted-class source after ten independent access attempts. The mapping is almost certainly correct; the runtime's confidence in it currently exceeds the governed evidence's own standard."
+    },
+    {
+      "id": "EDA-LP-25",
+      "note": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop/SCR-sounder-latching claim the governed evidence review retired/could not evidence. Sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class."
     }
   ],
   "rows": [
     {
       "id": "FM-LP-01",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No equivalence/simplify assertion anywhere in the runtime corpus."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No equivalence/simplify assertion anywhere in the runtime corpus.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-02",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "FM-ARITH-FRACTION-OPS-001 exists as a knowledge-graph node but is untaught/untested by any lesson."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "FM-ARITH-FRACTION-OPS-001 exists as a knowledge-graph node but is untaught/untested by any lesson.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-03",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No decimal place-value/powers-of-ten assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No decimal place-value/powers-of-ten assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-04",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No decimal-arithmetic assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No decimal-arithmetic assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-05",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No fraction/decimal/percentage conversion assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No fraction/decimal/percentage conversion assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-06",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "medium",
-      "note": "FM-ARITH-PERCENTAGE-001 used only as an electrical-efficiency prerequisite, never taught as a standalone skill."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "FM-ARITH-PERCENTAGE-001 used only as an electrical-efficiency prerequisite, never taught as a standalone skill.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-07",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "medium",
-      "note": "Same percentage assertion; never generalised or tested as a foundational skill."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Same percentage assertion; never generalised or tested as a foundational skill.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-08",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No ratio-notation/simplify assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No ratio-notation/simplify assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-09",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No sharing-in-a-ratio assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No sharing-in-a-ratio assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-10",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "FM-ALG-PROPORTION-DIRECT-001 used only as a prerequisite for resistivity/series-voltage; not taught in any lesson."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "FM-ALG-PROPORTION-DIRECT-001 used only as a prerequisite for resistivity/series-voltage; not taught in any lesson.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-11",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No variable/notation-convention assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No variable/notation-convention assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-12",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No bracket-expansion/like-terms assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No bracket-expansion/like-terms assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-13",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "FM-ALG-SUBSTITUTION-001 is prerequisite-only; BODMAS/order-of-operations never taught."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "FM-ALG-SUBSTITUTION-001 is prerequisite-only; BODMAS/order-of-operations never taught.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-14",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "FM-NUM-INDICES-LAWS-001 untaught; also conflates positive-index laws with fractional-index/root, which this LP excludes."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "FM-NUM-INDICES-LAWS-001 untaught; also conflates positive-index laws with fractional-index/root, which this LP excludes.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-15",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No negative-index assertion found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No negative-index assertion found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-16",
       "batch": "batch-01",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "high",
-      "note": "Formula-rearrangement lesson teaches only single-step isolation; the required chained two-operation case (v=u+at -> t) is never modelled."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Formula-rearrangement lesson teaches only single-step isolation; the required chained two-operation case (v=u+at -> t) is never modelled.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-17",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No general squared/square-root transposition technique found."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No general squared/square-root transposition technique found.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-18",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "FM-NUM-STANDARD-FORM-001 untaught; the SI-units lesson covers unit identification only, not notation."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "FM-NUM-STANDARD-FORM-001 untaught; the SI-units lesson covers unit identification only, not notation.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-19",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "SI-prefix assertions untaught; closest touch is a misconception-diagnostic that tests confusion but never teaches the convention."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "SI-prefix assertions untaught; closest touch is a misconception-diagnostic that tests confusion but never teaches the convention.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-20",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Pythagoras assertions exist as knowledge-graph nodes, untaught."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Pythagoras assertions exist as knowledge-graph nodes, untaught.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-21",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Trig-ratio assertions untaught; one assertion's wording also conflicts with this LP's explicit exclusion of finding an unknown angle."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Trig-ratio assertions untaught; one assertion's wording also conflicts with this LP's explicit exclusion of finding an unknown angle.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-22",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Mean assertion untaught, no question blueprint."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Mean assertion untaught, no question blueprint.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-23",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Median assertion untaught."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Median assertion untaught.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-24",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Mode assertion untaught."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Mode assertion untaught.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "FM-LP-25",
       "batch": "batch-01",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Range assertion untaught."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Range assertion untaught.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-01",
       "batch": "batch-02",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Free-electron flow taught; the atom-structure half (nucleus/protons/neutrons/electrons) is never a teaches-target in any wired lesson."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Free-electron flow taught; the atom-structure half (nucleus/protons/neutrons/electrons) is never a teaches-target in any wired lesson.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-02",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "I=Q/t correctly taught, avoiding the electron-flow false-green risk the LP flags."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "I=Q/t correctly taught, avoiding the electron-flow false-green risk the LP flags.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-03",
       "batch": "batch-02",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Only exists as a misconception-diagnostic target; conventional current's own definition and the battery-labelling application type are never taught."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Only exists as a misconception-diagnostic target; conventional current's own definition and the battery-labelling application type are never taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-04",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Conductor/insulator concepts and comparative wording match the governed correction."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Conductor/insulator concepts and comparative wording match the governed correction.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-05",
       "batch": "batch-02",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Resistance taught qualitatively (\"opposition to current flow\"), not as the ratio definition R=V/I this LP requires."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Resistance taught qualitatively (\"opposition to current flow\"), not as the ratio definition R=V/I this LP requires.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-06",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Resistivity concept, unit and symbol all correctly taught -- important since Batch 04 reuses this LP."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Resistivity concept, unit and symbol all correctly taught -- important since Batch 04 reuses this LP.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-07",
       "batch": "batch-02",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium-high",
-      "note": "Formula and length/area reasoning taught with a passing visual, but no scientific-notation/SI-prefix handling anywhere -- worked example uses plain integers."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Formula and length/area reasoning taught with a passing visual, but no scientific-notation/SI-prefix handling anywhere -- worked example uses plain integers.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-08",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Ohm's law and all rearrangements fully covered."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Ohm's law and all rearrangements fully covered.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-09",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "medium",
-      "note": "Voltage-drop concept correct but never a standalone teaches-target -- only delivered embedded inside series-circuit content."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Voltage-drop concept correct but never a standalone teaches-target -- only delivered embedded inside series-circuit content.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-10",
       "batch": "batch-02",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No mV/A/m cable-run calculation or BS 7671 Table 4Ab content anywhere; also no assessment coverage."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No mV/A/m cable-run calculation or BS 7671 Table 4Ab content anywhere; also no assessment coverage.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-11",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Series current correctly taught with a passing visual."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Series current correctly taught with a passing visual.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-12",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Series resistance correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Series resistance correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-13",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Series voltage correctly taught (with a bonus Kirchhoff's-voltage-law framing)."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Series voltage correctly taught (with a bonus Kirchhoff's-voltage-law framing).",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-14",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Parallel voltage correctly taught with a passing visual."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Parallel voltage correctly taught with a passing visual.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-15",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Parallel current correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Parallel current correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-16",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Parallel resistance correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Parallel resistance correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-17",
       "batch": "batch-02",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "All three power formulas (P=VI, I^2R, V^2/R) correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "All three power formulas (P=VI, I^2R, V^2/R) correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-18",
       "batch": "batch-02",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "medium-high",
-      "note": "Only pure-series-vs-pure-parallel comparison exists; no lesson reduces a genuinely mixed network to one equivalent resistance and applies a power formula."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Only pure-series-vs-pure-parallel comparison exists; no lesson reduces a genuinely mixed network to one equivalent resistance and applies a power formula.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-19",
       "batch": "batch-02",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Thermal effect taught only qualitatively; the required I^2 rate-proportionality (\"doubling current quadruples heating power\") is never stated."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Thermal effect taught only qualitatively; the required I^2 rate-proportionality (\"doubling current quadruples heating power\") is never stated.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EFS-LP-20",
       "batch": "batch-02",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "high",
-      "note": "Chemical effect stated only as \"causes chemical changes\" -- no anode/cathode, oxidation/reduction, or electrolysis example; no assessment coverage either."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Chemical effect stated only as \"causes chemical changes\" -- no anode/cathode, oxidation/reduction, or electrolysis example; no assessment coverage either.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-01",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Mass vs weight correctly taught and tested."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Mass vs weight correctly taught and tested.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "FULLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-02",
       "batch": "batch-03",
-      "category": "MISSING_ASSESSMENT_COVERAGE",
-      "confidence": "high",
-      "note": "Weight-force calculation assertion is deliberately documented as non-required; lesson never reaches a calculate step."
+      "primaryDisposition": "MISSING_ASSESSMENT_COVERAGE",
+      "primaryNote": "Weight-force calculation assertion is deliberately documented as non-required; lesson never reaches a calculate step.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-03",
       "batch": "batch-03",
-      "category": "MISSING_ASSESSMENT_COVERAGE",
-      "confidence": "medium",
-      "note": "Fulcrum/effort/load only appear inside a broader concept step; no question isolates bare part-labelling as the governed LP requires."
+      "primaryDisposition": "MISSING_ASSESSMENT_COVERAGE",
+      "primaryNote": "Fulcrum/effort/load only appear inside a broader concept step; no question isolates bare part-labelling as the governed LP requires.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-04",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Lever classes correctly taught and tested with passing visuals."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Lever classes correctly taught and tested with passing visuals.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-05",
       "batch": "batch-03",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Force-balance calculation covered, but the distance/arm-length ratio explanation the LP requires is absent."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Force-balance calculation covered, but the distance/arm-length ratio explanation the LP requires is absent.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-06",
       "batch": "batch-03",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "high",
-      "note": "Driver/driven gear concept taught; rotation-direction reversal and idler-gear content are documented as non-required and untaught."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Driver/driven gear concept taught; rotation-direction reversal and idler-gear content are documented as non-required and untaught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-07",
       "batch": "batch-03",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "high",
-      "note": "Torque/speed trade-off correctly stated (no \"twice the power\" contamination found), but gears carry only a recognise capability -- no numeric gear-ratio calculation taught or tested."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Torque/speed trade-off correctly stated (no \"twice the power\" contamination found), but gears carry only a recognise capability -- no numeric gear-ratio calculation taught or tested.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-08",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Fixed vs movable pulleys correctly taught and tested with passing visuals."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Fixed vs movable pulleys correctly taught and tested with passing visuals.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-09",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "medium",
-      "note": "Mechanical advantage taught and tested, though as a recognise-style question rather than governed's numeric rope-counting application type."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Mechanical advantage taught and tested, though as a recognise-style question rather than governed's numeric rope-counting application type.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-10",
       "batch": "batch-03",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No general ideal-machine work-in=work-out or input-power=output-power statement found anywhere."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No general ideal-machine work-in=work-out or input-power=output-power statement found anywhere.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-11",
       "batch": "batch-03",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No assertion states real machines lose useful output to friction/heat."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No assertion states real machines lose useful output to friction/heat.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-12",
       "batch": "batch-03",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Push/pull force concept well covered; no assertion gives the newton's SI definition on its own."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Push/pull force concept well covered; no assertion gives the newton's SI definition on its own.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-13",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Work correctly taught and tested."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Work correctly taught and tested.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "FULLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-14",
       "batch": "batch-03",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "high",
-      "note": "SCOPE CREEP: runtime teaches and tests the full KE=1/2 m v^2 formula/calculation, which the governed LP explicitly excludes as a required-mastery outcome for this batch."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "SCOPE CREEP: runtime teaches and tests the full KE=1/2 m v^2 formula/calculation, which the governed LP explicitly excludes as a required-mastery outcome for this batch.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_DEEP_SCOPE_CREEP",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": true,
+        "obsoleteContentDescription": "Runtime teaches and tests the full KE = 1/2 m v^2 formula/calculation (FP-REL-KINETIC-ENERGY-001, FP-CALC-KINETIC-ENERGY-001), which the governed MM-LP-14 explicitly excludes as a required-mastery/calculation outcome for this batch (kinetic energy is required as a qualitative concept only).",
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "LOW"
+      }
     },
     {
       "id": "MM-LP-15",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Potential energy correctly taught and tested."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Potential energy correctly taught and tested.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "FULLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-16",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Power correctly taught and tested."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Power correctly taught and tested.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "FULLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-17",
       "batch": "batch-03",
-      "category": "MAPPED_CORRECT",
-      "confidence": "medium",
-      "note": "Efficiency correctly taught and tested; minor depth nuance (never-mix-units caveat) not explicit."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Efficiency correctly taught and tested; minor depth nuance (never-mix-units caveat) not explicit.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "MM-LP-18",
       "batch": "batch-03",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No lesson chains weight-force -> work -> power; the five calculation forms are taught only in isolation."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No lesson chains weight-force -> work -> power; the five calculation forms are taught only in isolation.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-01",
       "batch": "batch-04",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No runtime content covers general-physics SI units (length/area/volume/mass/density/time/velocity/temperature) or the K-vs-degC interval distinction."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No runtime content covers general-physics SI units (length/area/volume/mass/density/time/velocity/temperature) or the K-vs-degC interval distinction.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-02",
       "batch": "batch-04",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No lesson or assertion teaches linear-vs-squared/cubed unit conversion."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No lesson or assertion teaches linear-vs-squared/cubed unit conversion.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-03",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Current concept and unit taught; no explicit quantity-symbol-vs-unit-symbol identity drill."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Current concept and unit taught; no explicit quantity-symbol-vs-unit-symbol identity drill.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-04",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Voltage concept and unit taught; same missing symbol-identity drill and no U-vs-V convention disclosure."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Voltage concept and unit taught; same missing symbol-identity drill and no U-vs-V convention disclosure.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-05",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Power concept/distinction-from-energy assertion exists but is not itself a teaches-target of any wired lesson; no distinction from power factor anywhere."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Power concept/distinction-from-energy assertion exists but is not itself a teaches-target of any wired lesson; no distinction from power factor anywhere.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-06",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Energy concept assertion exists but is likewise not a teaches-target of any wired lesson."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Energy concept assertion exists but is likewise not a teaches-target of any wired lesson.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-07",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "SAFETY-CHECKED: power factor is taught as ratio/cos(phase angle) but the runtime never asserts it is dimensionless/unitless -- the still-HELD claim is NOT taught ahead of its evidence. Notation (cos phi/p.f./lambda) is under-taught relative to even the VERIFIED dimensions."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "SAFETY-CHECKED: power factor is taught as ratio/cos(phase angle) but the runtime never asserts it is dimensionless/unitless -- the still-HELD claim is NOT taught ahead of its evidence. Notation (cos phi/p.f./lambda) is under-taught relative to even the VERIFIED dimensions.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "MEDIUM"
+      }
     },
     {
       "id": "EQCT-LP-08",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Frequency concept/unit only reachable inside the AC-waveform lesson context, not as a standalone identity fact."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Frequency concept/unit only reachable inside the AC-waveform lesson context, not as a standalone identity fact.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-09",
       "batch": "batch-04",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Capacitance correctly taught with qualified (non-absolute) wording matching the governed correction."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Capacitance correctly taught with qualified (non-absolute) wording matching the governed correction.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-10",
       "batch": "batch-04",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Capacitive reactance correctly taught and distinguished from capacitance."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Capacitive reactance correctly taught and distinguished from capacitance.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-11",
       "batch": "batch-04",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Inductance correctly taught with qualified wording, no absolute \"frequency-independent\" overclaim."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Inductance correctly taught with qualified wording, no absolute \"frequency-independent\" overclaim.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-12",
       "batch": "batch-04",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Inductive reactance correctly taught and distinguished from inductance."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Inductive reactance correctly taught and distinguished from inductance.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-13",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "high",
-      "note": "SCOPE CREEP: full Z=sqrt(R^2+X^2) phasor-style calculation is taught and assessed; the governed LP requires the R/X/Z distinction conceptually only, explicitly excluding this calculation."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "SCOPE CREEP: full Z=sqrt(R^2+X^2) phasor-style calculation is taught and assessed; the governed LP requires the R/X/Z distinction conceptually only, explicitly excluding this calculation.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_DEEP_SCOPE_CREEP",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": true,
+        "obsoleteContentDescription": "Runtime teaches and assesses the full Z=sqrt(R^2+X^2) phasor-style calculation (EL-REL-IMPEDANCE-001 plus a \"select the correct impedance formula\" capability), which the governed EQCT-LP-13 explicitly excludes -- it requires the R/X/Z distinction conceptually only, never the calculation.",
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "LOW"
+      }
     },
     {
       "id": "EQCT-LP-14",
       "batch": "batch-04",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Ammeter/voltmeter function and connection correctly taught and tested with passing visuals."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Ammeter/voltmeter function and connection correctly taught and tested with passing visuals.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-15",
       "batch": "batch-04",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Ohmmeter correctly taught with a passing visual."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Ohmmeter correctly taught with a passing visual.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-16",
       "batch": "batch-04",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "De-energised-circuit principle taught; the capacitor-discharge safety caveat this LP's own correction added is not present."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "De-energised-circuit principle taught; the capacitor-discharge safety caveat this LP's own correction added is not present.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "MEDIUM"
+      }
     },
     {
       "id": "EQCT-LP-17",
       "batch": "batch-04",
-      "category": "MISSING_ASSESSMENT_COVERAGE",
-      "confidence": "high",
-      "note": "Wattmeter is taught but explicitly excluded from the only relevant assessment step's test list."
+      "primaryDisposition": "MISSING_ASSESSMENT_COVERAGE",
+      "primaryNote": "Wattmeter is taught but explicitly excluded from the only relevant assessment step's test list.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-18",
       "batch": "batch-04",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Energy-meter assertion exists in the knowledge graph but is not included in the instrumentation lesson's target list -- untaught and untested."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Energy-meter assertion exists in the knowledge graph but is not included in the instrumentation lesson's target list -- untaught and untested.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EQCT-LP-19",
       "batch": "batch-04",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Ammeter/voltmeter internal-resistance property correctly taught and tested, matching the governed idealised-limit framing."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Ammeter/voltmeter internal-resistance property correctly taught and tested, matching the governed idealised-limit framing.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-01",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Pole interaction correctly taught with a passing visual."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Pole interaction correctly taught with a passing visual.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-02",
       "batch": "batch-05",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Bar-magnet field pattern shown, but the straight-conductor field shape is never taught independently of the direction rule; a related hybrid image pair has no semantic-audit contract entry."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Bar-magnet field pattern shown, but the straight-conductor field shape is never taught independently of the direction rule; a related hybrid image pair has no semantic-audit contract entry.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-03",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Dot/cross page-direction notation correctly taught as context."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Dot/cross page-direction notation correctly taught as context.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "DEFERRED_CONTEXT_ONLY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-04",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "medium",
-      "note": "Field-around-a-conductor existence stated; circular shape only implied via the grip-rule wording, minor conflation with EMI-LP-05."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Field-around-a-conductor existence stated; circular shape only implied via the grip-rule wording, minor conflation with EMI-LP-05.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-05",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Right-hand grip rule correctly taught with a passing visual."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Right-hand grip rule correctly taught with a passing visual.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-06",
       "batch": "batch-05",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Zero occurrences of \"solenoid\" anywhere in the runtime corpus; no visual asset or diagram component exists either."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Zero occurrences of \"solenoid\" anywhere in the runtime corpus; no visual asset or diagram component exists either.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "MISSING",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-07",
       "batch": "batch-05",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Electromagnet-vs-permanent-magnet comparison exists, but the required reasoning (coiling concentrates the field; switch-off de-energises it; hence relay/contactor use) is never taught."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Electromagnet-vs-permanent-magnet comparison exists, but the required reasoning (coiling concentrates the field; switch-off de-energises it; hence relay/contactor use) is never taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-08",
       "batch": "batch-05",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No relay/contactor operating-principle content anywhere; \"relay\" appears only as an unrelated distractor."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No relay/contactor operating-principle content anywhere; \"relay\" appears only as an unrelated distractor.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-09",
       "batch": "batch-05",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Flux meaning/unit taught; the quantity symbol (Phi) is never explicitly asserted as a recall fact."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Flux meaning/unit taught; the quantity symbol (Phi) is never explicitly asserted as a recall fact.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-10",
       "batch": "batch-05",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Flux density meaning/unit/contrast-with-flux taught; same missing symbol-recall gap for B."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Flux density meaning/unit/contrast-with-flux taught; same missing symbol-recall gap for B.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-11",
       "batch": "batch-05",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No B=Phi/A formula or rearrangement calculation anywhere."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No B=Phi/A formula or rearrangement calculation anywhere.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-12",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "F=BIL correctly taught with a passing visual."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "F=BIL correctly taught with a passing visual.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-13",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Fleming's left-hand (motor) rule correctly taught with the exact finger mapping."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Fleming's left-hand (motor) rule correctly taught with the exact finger mapping.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-14",
       "batch": "batch-05",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium-high",
-      "note": "Causal concept (motion -> flux cutting -> EMF) exists, but the specific max/zero-EMF-position analysis and the max-flux-vs-max-EMF misconception trap are never taught."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Causal concept (motion -> flux cutting -> EMF) exists, but the specific max/zero-EMF-position analysis and the max-flux-vs-max-EMF misconception trap are never taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": true,
+        "obsoleteContentDescription": "SCOPE-CREEP NOTE (not a factual error): the runtime teaches Faraday's law quantitatively as an assessed calculation (formula.flux_change_emf, e=N.dPhi/dt), which EMI-LP-14's own explicitData explicitExclusions rule out as not required at this level. Should be reconciled (confirmed as belonging to a different/later governed unit) rather than left as an undocumented mismatch.",
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "LOW"
+      }
     },
     {
       "id": "EMI-LP-15",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "e=BLv correctly taught with a passing visual built specifically to show the perpendicularity condition."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "e=BLv correctly taught with a passing visual built specifically to show the perpendicularity condition.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "PRESENT_VERIFIED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-16",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "SAFETY FLAG: the exact thumb=motion/first-finger=field/second-finger=current mapping the governed evidence pipeline could NOT verify from any permitted-class source is taught in the runtime corpus as a directly-supported fact (sourced to a general encyclopedia article, not a permitted-class technical/professional-body/standards source). Content is ahead of its evidence here. No dedicated visual exists for this specific rule."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "SAFETY FLAG: the exact thumb=motion/first-finger=field/second-finger=current mapping the governed evidence pipeline could NOT verify from any permitted-class source is taught in the runtime corpus as a directly-supported fact (sourced to a general encyclopedia article, not a permitted-class technical/professional-body/standards source). Content is ahead of its evidence here. No dedicated visual exists for this specific rule.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_AS_SETTLED_FACT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "FULLY_ASSESSED",
+        "visualCoverageStatus": "MISSING",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "HELD_PENDING_EVIDENCE_CORRECTION",
+        "contentAheadOfEvidenceRisk": true,
+        "urgencySafetyImpact": "MEDIUM",
+        "contentAheadOfEvidenceNote": "EL-CONCEPT-FLEMING-RIGHT-HAND-001 (cc04) teaches the exact thumb=motion/first-finger=field/second-finger=current mapping as directly-supported fact (source: Wikipedia, citing Hughes 12th ed. p.145) -- the same mapping the governed evidence pipeline could not itself verify from any permitted-class source after ten independent access attempts. The mapping is almost certainly correct; the runtime's confidence in it currently exceeds the governed evidence's own standard."
+      }
     },
     {
       "id": "EMI-LP-17",
       "batch": "batch-05",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "SAFETY-RELEVANT GAP: the governed LP is held only on the coil's schematic-symbol geometry (slip rings/brushes/single-loop framing are independently VERIFIED) -- but the runtime corpus's actual gap is broader: no 'slip ring' or 'brush' text exists anywhere, and the generator diagram component never depicts or names a brush. Even the governed-VERIFIED parts of this LP are not yet taught."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "SAFETY-RELEVANT GAP: the governed LP is held only on the coil's schematic-symbol geometry (slip rings/brushes/single-loop framing are independently VERIFIED) -- but the runtime corpus's actual gap is broader: no 'slip ring' or 'brush' text exists anywhere, and the generator diagram component never depicts or names a brush. Even the governed-VERIFIED parts of this LP are not yet taught.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "MEDIUM"
+      }
     },
     {
       "id": "EMI-LP-18",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Rotating-loop/armature model correctly and consistently used, matching the corrected consistency requirement."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Rotating-loop/armature model correctly and consistently used, matching the corrected consistency requirement.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-19",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Amplitude and peak-to-peak correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Amplitude and peak-to-peak correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-20",
       "batch": "batch-05",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "RMS and average value, including the half-cycle-average-vs-signed-zero-average distinction, correctly taught almost verbatim to the governed wording."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "RMS and average value, including the half-cycle-average-vs-signed-zero-average distinction, correctly taught almost verbatim to the governed wording.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-21",
       "batch": "batch-05",
-      "category": "MISSING_ASSESSMENT_COVERAGE",
-      "confidence": "medium",
-      "note": "Only RMS<->peak and frequency<->period conversions are exercised; no blueprint chains peak-to-peak<->RMS or exercises selecting the correct conversion across all three."
+      "primaryDisposition": "MISSING_ASSESSMENT_COVERAGE",
+      "primaryNote": "Only RMS<->peak and frequency<->period conversions are exercised; no blueprint chains peak-to-peak<->RMS or exercises selecting the correct conversion across all three.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EMI-LP-22",
       "batch": "batch-05",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "Zero occurrences of pole-pairs or a rotational-frequency (f=N*P) relationship anywhere, confirming a prior diagnostic finding."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "Zero occurrences of pole-pairs or a rotational-frequency (f=N*P) relationship anywhere, confirming a prior diagnostic finding.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-01",
       "batch": "batch-06",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Resistor principle omits the heat-dissipation/Ohm's-law framing and adds a voltage-divider claim the governed LP explicitly scopes out."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Resistor principle omits the heat-dissipation/Ohm's-law framing and adds a voltage-divider claim the governed LP explicitly scopes out.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-02",
       "batch": "batch-06",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No 4-band resistor colour-code content, assertion, or question blueprint anywhere."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No 4-band resistor colour-code content, assertion, or question blueprint anywhere.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-03",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Capacitor principle correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Capacitor principle correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-04",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Diode principle correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Diode principle correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-05",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "LED principle correctly taught, no invented numeric forward-voltage value."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "LED principle correctly taught, no invented numeric forward-voltage value.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-06",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Zener diode correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Zener diode correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-07",
       "batch": "batch-06",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Photodiode taught with one unqualified behaviour, missing the zero-bias-vs-reverse-biased mode qualification the governed LP requires."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Photodiode taught with one unqualified behaviour, missing the zero-bias-vs-reverse-biased mode qualification the governed LP requires.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-08",
       "batch": "batch-06",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "LDR content confirmed absent from the runtime corpus, consistent with a prior diagnostic finding."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "LDR content confirmed absent from the runtime corpus, consistent with a prior diagnostic finding.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-09",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "NTC/PTC thermistor direction correctly taught both ways, but the PTC-specific Curie-point qualification the governed LP requires (resistance is flat/slightly falling below the Curie point, only rising sharply above it) is missing -- a real, explicitly-flagged overclaim reproduced in the runtime."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "NTC/PTC thermistor direction correctly taught both ways, but the PTC-specific Curie-point qualification the governed LP requires (resistance is flat/slightly falling below the Curie point, only rising sharply above it) is missing -- a real, explicitly-flagged overclaim reproduced in the runtime.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-10",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Transistor principle correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Transistor principle correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-11",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "SCR latching, including the holding-current turn-off condition, correctly taught -- confirmed clean of the previously-corrected \"conducts until AC voltage reaches zero\" error."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "SCR latching, including the holding-current turn-off condition, correctly taught -- confirmed clean of the previously-corrected \"conducts until AC voltage reaches zero\" error.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-12",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "TRIAC principle correctly taught, confirmed clean of the holding-current error."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "TRIAC principle correctly taught, confirmed clean of the holding-current error.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-13",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "DIAC principle correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "DIAC principle correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-14",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Rectifier (half/full-wave) correctly taught, correctly states pulsating not smooth DC."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Rectifier (half/full-wave) correctly taught, correctly states pulsating not smooth DC.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-15",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Inverter principle correctly taught as DC-to-AC switching."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Inverter principle correctly taught as DC-to-AC switching.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-16",
       "batch": "batch-06",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "high",
-      "note": "A deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat, though the governed LP explicitly holds both as unverified against the current standard; no LDR symbol exists at all."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "A deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat, though the governed LP explicitly holds both as unverified against the current standard; no LDR symbol exists at all.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "HELD_PENDING_EVIDENCE_CORRECTION",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-17",
       "batch": "batch-06",
-      "category": "CONTEXTUAL_DEFERRED",
-      "confidence": "high",
-      "note": "Correctly not assessed. 11 physical-appearance photo assets exist in production-proof storage for 11 of 15 families but are not yet wired into the shipped app."
+      "primaryDisposition": "CONTEXTUAL_DEFERRED",
+      "primaryNote": "Correctly not assessed. 11 physical-appearance photo assets exist in production-proof storage for 11 of 15 families but are not yet wired into the shipped app.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "CORRECTLY_NOT_ASSESSED",
+        "visualCoverageStatus": "PRODUCED_NOT_WIRED",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "DEFERRED_CONTEXT_ONLY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-18",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Dimmer function correctly taught conceptually only, no exact RC values or wiring instruction -- confirmed clean."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Dimmer function correctly taught conceptually only, no exact RC values or wiring instruction -- confirmed clean.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-19",
       "batch": "batch-06",
-      "category": "RETIRED",
-      "confidence": "high",
-      "note": "Correctly absent -- no exact dimmer RC values found anywhere; retirement respected."
+      "primaryDisposition": "RETIRED",
+      "primaryNote": "Correctly absent -- no exact dimmer RC values found anywhere; retirement respected.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "CORRECTLY_NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "RETIRED_OUT_OF_SCOPE",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-20",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "high",
-      "note": "Heating/thermistor application correctly taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Heating/thermistor application correctly taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-21",
       "batch": "batch-06",
-      "category": "RETIRED",
-      "confidence": "high",
-      "note": "Correctly absent -- no exact heating relay topology found anywhere; retirement respected."
+      "primaryDisposition": "RETIRED",
+      "primaryNote": "Correctly absent -- no exact heating relay topology found anywhere; retirement respected.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "CORRECTLY_NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "RETIRED_OUT_OF_SCOPE",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-22",
       "batch": "batch-06",
-      "category": "MAPPED_WRONG_DEPTH",
-      "confidence": "medium",
-      "note": "Motor control states only that SCRs are used; omits the required TRIAC (full-wave) vs SCR (half-wave) contrast and phase-delay-controls-speed mechanism."
+      "primaryDisposition": "MAPPED_WRONG_DEPTH",
+      "primaryNote": "Motor control states only that SCRs are used; omits the required TRIAC (full-wave) vs SCR (half-wave) contrast and phase-delay-controls-speed mechanism.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_PARTIAL",
+        "depthStatus": "TOO_SHALLOW",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-23",
       "batch": "batch-06",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No permanent-magnet DC motor / bridge-rectifier-feeds-motor content anywhere."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No permanent-magnet DC motor / bridge-rectifier-feeds-motor content anywhere.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-24",
       "batch": "batch-06",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "medium",
-      "note": "No standalone security-alarm application-category assertion; the corpus jumps straight to the problematic specific-circuit content."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No standalone security-alarm application-category assertion; the corpus jumps straight to the problematic specific-circuit content.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-25",
       "batch": "batch-06",
-      "category": "OBSOLETE_SHOULD_REMOVE",
-      "confidence": "high",
-      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states an SCR keeps a sounder energised after a normally-closed loop is broken -- exactly the topology/sounder-role claim the governed evidence review retired and marked unevidenced, sourced from a hobbyist tutorial site outside any permitted authority class. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11."
+      "primaryDisposition": "OBSOLETE_SHOULD_REMOVE",
+      "primaryNote": "SAFETY FINDING: a live, actively-assessed runtime assertion states an SCR keeps a sounder energised after a normally-closed loop is broken -- exactly the topology/sounder-role claim the governed evidence review retired and marked unevidenced, sourced from a hobbyist tutorial site outside any permitted authority class. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_AS_SETTLED_FACT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "FULLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": true,
+        "obsoleteContentDescription": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop/SCR-sounder-latching claim the governed evidence review retired/could not evidence. Sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class.",
+        "curriculumDispositionState": "HELD_PENDING_EVIDENCE_CORRECTION",
+        "contentAheadOfEvidenceRisk": true,
+        "urgencySafetyImpact": "HIGH"
+      }
     },
     {
       "id": "EDA-LP-26",
       "batch": "batch-06",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "high",
-      "note": "No PSTN/Ofcom/legacy-network-retirement content anywhere; only downstream master-socket component detail exists."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No PSTN/Ofcom/legacy-network-retirement content anywhere; only downstream master-socket component detail exists.",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-27",
       "batch": "batch-06",
-      "category": "MISSING_FROM_LESSONS",
-      "confidence": "medium",
-      "note": "No content teaches the Openreach-ownership/customer-responsibility boundary or the contact-vs-IDC numbering hazard (this LP's now-deferred scope)."
+      "primaryDisposition": "MISSING_FROM_LESSONS",
+      "primaryNote": "No content teaches the Openreach-ownership/customer-responsibility boundary or the contact-vs-IDC numbering hazard (this LP's now-deferred scope).",
+      "axes": {
+        "lessonCoverageStatus": "NOT_TAUGHT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "NOT_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "DEFERRED_CONTEXT_ONLY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     },
     {
       "id": "EDA-LP-28",
       "batch": "batch-06",
-      "category": "OBSOLETE_SHOULD_REMOVE",
-      "confidence": "high",
-      "note": "SAFETY FINDING: a live, actively-assessed runtime assertion states the master-socket capacitor blocks DC/passes AC ringing current and the resistor provides a line-test load -- exactly the functional claims the governed evidence review found no authoritative source confirms and excluded from taught content, sourced to Wikipedia. It also claims extension sockets contain none of these components, which has no evidentiary basis at all."
+      "primaryDisposition": "OBSOLETE_SHOULD_REMOVE",
+      "primaryNote": "SAFETY FINDING: a live, actively-assessed runtime assertion states the master-socket capacitor blocks DC/passes AC ringing current and the resistor provides a line-test load -- exactly the functional claims the governed evidence review found no authoritative source confirms and excluded from taught content, sourced to Wikipedia. It also claims extension sockets contain none of these components, which has no evidentiary basis at all.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_AS_SETTLED_FACT",
+        "depthStatus": "N/A",
+        "assessmentCoverageStatus": "FULLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": true,
+        "obsoleteContentDescription": "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 (cc04-unit202-electrical-science.ts) teaches and assesses the capacitor DC-block/AC-pass ringer function and the resistor line-test function as REQUIRED_FOR fact, sourced to Wikipedia. NOTE: the capacitor-function claim is now independently confirmed by this pass's own governed evidence acquisition (SIN 351 + IXYS/Littelfuse AN-144), so it is no longer content-ahead-of-evidence for that specific facet as of this pass's correction -- but the runtime's own citation (Wikipedia) remains an unpermitted-class source, and the resistor line-test claim and the \"extension sockets contain none of these components\" claim both remain genuinely unevidenced and should still be corrected/re-sourced or removed at the runtime-content level.",
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "MEDIUM"
+      }
     },
     {
       "id": "EDA-LP-29",
       "batch": "batch-06",
-      "category": "MAPPED_CORRECT",
-      "confidence": "medium-high",
-      "note": "Wireless control application correctly taught at a narrower depth; practical-advantages facet not separately taught."
+      "primaryDisposition": "MAPPED_CORRECT",
+      "primaryNote": "Wireless control application correctly taught at a narrower depth; practical-advantages facet not separately taught.",
+      "axes": {
+        "lessonCoverageStatus": "TAUGHT_CORRECT",
+        "depthStatus": "CORRECT_DEPTH",
+        "assessmentCoverageStatus": "PARTIALLY_ASSESSED",
+        "visualCoverageStatus": "NOT_APPLICABLE",
+        "obsoleteContentFlag": false,
+        "obsoleteContentDescription": null,
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE"
+      }
     }
   ],
   "productionDeltaSummary": {
