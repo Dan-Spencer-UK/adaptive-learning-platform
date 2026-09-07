@@ -13,9 +13,9 @@
   "generatedOn": "DETERMINISTIC -- see git commit for the generation point; hand-assembled from the same EVIDENCE-RESULTS.json/LEARNING-POINTS.json artifacts the validator and review-pack generator read, cross-checked against both before writing.",
   "summary": {
     "totalHeldAtStart": 16,
-    "resolvedToReady": 11,
+    "resolvedToReady": 13,
     "reclassifiedDeferredContextOnly": 2,
-    "remainingCoreBlockers": 3,
+    "remainingCoreBlockers": 1,
     "coreBlockerCountBefore": 14
   },
   "entries": [
@@ -170,13 +170,15 @@
       "curriculumRole": "REQUIRED_MASTERY",
       "assessmentEligibility": "ASSESSABLE_WHEN_READY",
       "before": "HELD_PENDING_EVIDENCE_CORRECTION",
-      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
       "coreBlockerBefore": true,
-      "coreBlockerAfter": true,
-      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
-      "whyHeld": "No permitted-class source was found and read in text form stating the exact thumb=motion/first-finger=field/second-finger=current mapping specifically for the RIGHT-hand GENERATOR rule (not the left-hand motor rule, not the unrelated grip rule).",
-      "resolution": "Two further dedicated re-sourcing attempts (one via a background research agent, one independently by the primary session) confirmed a genuine citation trail (Wikipedia -> Hughes, \"Electrical & Electronic Technology\", 12th ed., p.145) but could not render/read that textbook page through any available tool. Sources found and explicitly rejected as confusable-but-different rules (motor rule, grip rule) were correctly excluded rather than misused. Remains a genuine, bounded, honestly-disclosed gap.",
-      "sourcesUsed": []
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
+      "whyHeld": "No permitted-class source was found and read in text form stating the exact thumb=motion/first-finger=field/second-finger=current mapping specifically for the RIGHT-hand GENERATOR rule (not the left-hand motor rule, not the unrelated grip rule). Two prior dedicated re-sourcing attempts confirmed a genuine citation trail (Wikipedia -> Hughes, \"Electrical & Electronic Technology\", 12th ed., p.145) but could not render/read that edition's page through any available tool.",
+      "resolution": "[Section E, third narrow correction pass] Located and directly read the equivalent passage in a different, earlier edition of the same published textbook: Edward Hughes (revised by Hiley, Brown and McKenzie Smith), \"Hughes Electrical and Electronic Technology\", 10th edition, Pearson Education Limited, 2008, ISBN 978-0-13-206011-0, Chapter 6, section 6.9(a) \"Fleming's right-hand rule\", printed page 141 -- accessed via a FlipHTML5-hosted page-image scan (disclosed only as the retrieval route), and confirmed genuine by its own header, page number and section sequence. The passage states in text: \"If the first finger of the right hand is pointed in the direction of the magnetic flux ... and if the thumb is pointed in the direction of motion of the conductor relative to the magnetic field, then the second finger, held at right angles to both the thumb and the first finger, represents the direction of the e.m.f.\"",
+      "sourcesUsed": [
+        "SRC-HUGHES-EET-10E-P141"
+      ]
     },
     {
       "id": "EMI-LP-17",
@@ -207,7 +209,7 @@
       "coreBlockerAfter": true,
       "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
       "whyHeld": "This is a breadth requirement over all 15 AC6.2 component families. 13 of 15 already have real, directly-read symbol geometry from IEEE Std 315-1975/ANSI Y32.2-1975 (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, disclosed foreword-claimed IEC-117/predecessor compatibility). 2 of 15 (LED, inverter) have no dedicated named symbol in that 1975 standard -- only a general symbol plus an inserted letter code, which is genuinely how that standard represents them, not a sourcing failure. Separately, the CURRENT IEC 60617 database's own free preview confirms 6 relevant ID/name pairs (including LED as S01919) but not their artwork/geometry or Standard/Obsolete status, both of which sit behind a paid login not accessed in this pass.",
-      "resolution": "No further external acquisition was attempted this pass beyond confirming the existing record; the paid IEC 60617 login is a genuine, disclosed access barrier, and the 1975 standard's own lack of dedicated LED/inverter symbols is a fact about the standard, not an unresolved search. Remains an honestly bounded partial.",
+      "resolution": "No further external acquisition was attempted this pass beyond confirming the existing record; the paid IEC 60617 login is a genuine, disclosed access barrier, and the 1975 standard's own lack of dedicated LED/inverter symbols is a fact about the standard, not an unresolved search. Remains an honestly bounded partial. [Section G, third narrow correction pass -- RE-ATTEMPTED, STILL BLOCKED] Freshly re-checked the official current IEC 60617 database via both webstore.iec.ch and library.iec.ch, and searched for a products.iec.ch individual-record route for S00684 (LDR)/S00896 (inverter)/S01919 (LED): all confirm the same subscription-gated picture, no free geometry or per-entry status access exists. One genuine correction surfaced: BS EN 60617 is WITHDRAWN, so IEC 60617 itself (not a separate BS EN edition) is the current standard -- the prior note's framing was updated accordingly. Genuinely remains the sole core release blocker.",
       "sourcesUsed": []
     },
     {
@@ -232,13 +234,16 @@
       "curriculumRole": "MIXED_REQUIRED_AND_CONTEXT",
       "assessmentEligibility": "BLOCKED",
       "before": "HELD_PENDING_EVIDENCE_CORRECTION",
-      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
       "coreBlockerBefore": true,
-      "coreBlockerAfter": true,
-      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
       "whyHeld": "The sole required facet (an SCR specifically keeping an alarm sounder energised) has no permitted-class source. The NC-contact/bias-topology facet is correctly RETIRED_OUT_OF_SCOPE (no identified circuit exists in the frozen requirement); the transistor-switching alarm-specific facet is correctly demoted to context (a real but PROFESSIONAL_BODY-tier alarm-specific source was found -- IEEE PuneCon 2024 -- but that class is not permitted for this requirement).",
-      "resolution": "Already correctly restructured in a prior pass: required facet isolated, non-required facets separated, outstandingProductionDependencies (REPRESENTATIVE_EXEMPLAR_AUTHORING) tracked. This pass re-attempted external acquisition for the SCR-sounder claim (Littelfuse, onsemi, STMicro, IEEE Xplore search) and found nothing permitted-class and on point. Genuinely, honestly held -- not demoted, not fabricated closed.",
-      "sourcesUsed": []
+      "resolution": "[Section F, third narrow correction pass] Resolved via a genuine, narrowly-scoped Product Architect decision (PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001, see UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json), authorizing Ray Marston's authored Nuts & Volts articles (\"SCR Principles and Circuits\", Jan 2002; \"Security Electronics Systems and Circuits\" Part 4, 1998 -- authorship independently confirmed via Marston's own contributor page) as AUTHORITATIVE_TECHNICAL_REFERENCE for the sole, narrow purpose of evidencing the SCR-latches-and-keeps-a-sounder-energised relationship. Bounded strictly to that relationship: the retired exact NC-loop/bias topology is NOT restored, and no specific circuit's component values are taught. The required facet is now VERIFIED; EDA-LP-25 is READY.",
+      "sourcesUsed": [
+        "SRC-NUTSVOLTS-MARSTON-SCR-PRINCIPLES",
+        "SRC-NUTSVOLTS-MARSTON-SECURITY-PART4"
+      ]
     },
     {
       "id": "EDA-LP-26",
