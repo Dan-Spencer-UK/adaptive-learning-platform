@@ -1134,28 +1134,53 @@ check(50, "Every normalizedClaim cites a source that is both a registered candid
   return `${n} normalizedClaim(s) checked; every cited source is a registered, permitted candidate (or a genuinely governed PA override)`;
 });
 
-check(51, "Every VERIFIED row has, for each required coverage dimension, at least one normalizedClaim with permitted, registered support", () => {
+check(51, "Every VERIFIED row has structured, atomic per-dimension claim coverage (not merely 'at least one permitted claim exists')", () => {
+  // Narrow scope disclosure: this check mechanically verifies STRUCTURAL claim-
+  // dimension coverage (every required dimension has >=1 permitted, registered,
+  // correctly-tagged claim; every claim's declared dimension(s) are a real subset
+  // of the row's own requiredCoverageDimensions). It does NOT and cannot verify
+  // that a compound claim's cited passage genuinely supports every clause the
+  // claim text asserts -- that is a reading-comprehension judgment, made by hand
+  // during this pass's own review (see UNIT202-NARROW-CORRECTION-REPORT-2.md
+  // Section D), not something this code checks. Do not read a PASS here as a
+  // semantic-correctness guarantee beyond structural coverage.
   let n = 0;
+  let claimsChecked = 0;
   const problems = [];
   for (const b of batches.filter((x) => !x.frozen)) {
     for (const r of b.ev.results) {
       if (r.disposition) continue; // STRUCTURALLY_SATISFIED / RETIRED_OUT_OF_SCOPE rows have no direct claims of their own
-      if (r.result.verificationStatus !== "VERIFIED") continue;
-      n++;
+      const required = r.requiredCoverageDimensions ?? [];
       const permitted = new Set(r.sourceAuthorityClasses);
       const candById = new Map((r.result.candidateSources ?? []).map((c) => [c.sourceId, c]));
-      const hasSupportedClaim = (r.result.normalizedClaims ?? []).some((claim) => {
-        const cs = candById.get(claim.sourceId);
-        return cs && permitted.has(cs.authorityClass);
-      });
-      if (!hasSupportedClaim) problems.push(`${b.dir} ${r.evidenceRequirementId}: VERIFIED but no normalizedClaim has permitted, registered support`);
-      const required = r.requiredCoverageDimensions ?? [];
+      const claims = r.result.normalizedClaims ?? [];
+
+      // Every claim's own declared dimension(s) must be a real subset of this row's requiredCoverageDimensions.
+      for (const claim of claims) {
+        claimsChecked++;
+        const dims = claim.dimension ?? [];
+        if (dims.length === 0) { problems.push(`${b.dir} ${r.evidenceRequirementId}: normalizedClaim (source ${claim.sourceId}) has no dimension tag`); continue; }
+        for (const d of dims) {
+          if (!required.includes(d)) problems.push(`${b.dir} ${r.evidenceRequirementId}: claim (source ${claim.sourceId}) tags dimension "${d}", which is not in this row's own requiredCoverageDimensions [${required.join(", ")}]`);
+        }
+      }
+
+      if (r.result.verificationStatus !== "VERIFIED") continue;
+      n++;
+      // Every required dimension must have at least one permitted, registered, correctly-tagged claim.
+      for (const dim of required) {
+        const covered = claims.some((claim) => {
+          const cs = candById.get(claim.sourceId);
+          return cs && permitted.has(cs.authorityClass) && (claim.dimension ?? []).includes(dim);
+        });
+        if (!covered) problems.push(`${b.dir} ${r.evidenceRequirementId}: VERIFIED but required dimension "${dim}" has no permitted, registered, correctly-tagged claim`);
+      }
       const satisfied = r.result.coverageDimensionsSatisfied ?? [];
       if (required.length > 0 && !required.every((d) => satisfied.includes(d))) problems.push(`${b.dir} ${r.evidenceRequirementId}: VERIFIED but coverageDimensionsSatisfied does not cover every requiredCoverageDimension`);
     }
   }
   if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
-  return `${n} VERIFIED row(s) checked, each has genuine permitted-class support for every required dimension`;
+  return `${n} VERIFIED row(s) / ${claimsChecked} claim(s) checked: every required dimension has a permitted, registered, correctly-tagged atomic claim, and no claim over-claims a dimension outside its row's own requiredCoverageDimensions`;
 });
 
 check(52, "No PARTIALLY_VERIFIED row has an empty unresolvedDimensions array", () => {
@@ -1262,6 +1287,130 @@ check(57, "The runtime curriculum-delta mapping never marks lesson content as ta
   }
   if (problems.length > 0) throw new Error(problems.join("; "));
   return `${n} runtime-mapping row(s) checked, no unflagged content-ahead-of-evidence case`;
+});
+
+// =====================================================================
+// Checks 58-60 (second narrow correction pass, 2026-09-07)
+// =====================================================================
+
+function claimRefLine(c) {
+  const t = c.claimText.length > 140 ? c.claimText.slice(0, 139) + '…' : c.claimText;
+  return `${c.sourceId}: ${t}`;
+}
+
+check(58, "Every Batches 04-06 LP's normalizedClaimRefs is an exact, exhaustive, current mechanical cache of its referenced evidence rows' normalizedClaims", () => {
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    const rowById = new Map(b.ev.results.map((r) => [r.evidenceRequirementId, r]));
+    for (const p of b.lpJson.learningPoints) {
+      const ids = p.evidenceRequirementIds ?? [];
+      if (ids.length === 0) continue;
+      n++;
+      const expected = [];
+      for (const id of ids) {
+        const row = rowById.get(id);
+        if (!row) continue; // unresolved reference is check 16's job
+        for (const c of row.result.normalizedClaims ?? []) expected.push(claimRefLine(c));
+      }
+      const actual = p.normalizedClaimRefs ?? [];
+      if (JSON.stringify(expected) !== JSON.stringify(actual)) {
+        problems.push(`${b.dir} ${p.id}: normalizedClaimRefs stale -- expected ${expected.length} entries, has ${actual.length}`);
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
+  return `${n} LP(s) checked; normalizedClaimRefs is the exhaustive, current, mechanically-derived cache model for this field (defined once, applied uniformly)`;
+});
+
+check(59, "No READY (or READY-facet) learning point's required-facing fields contain stale unresolved-state language, and no explicitExclusion contradicts currently-taught content", () => {
+  const BANNED = [/currently unresolved/i, /pending resolution/i, /required mastery unresolved/i, /not authoritatively evidenced/i, /must not be taught/i];
+  const CONTEXTUAL_MARKERS = /context only|not required (recall|core mastery)|contextual|CONTEXT ONLY|line-test|line testing|widely repeated but/i;
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (p.evidenceReadiness !== "READY") continue;
+      n++;
+      // learnerOutcome and applicationTypes are strictly required-facing: no banned phrase is ever acceptable there.
+      for (const field of ["learnerOutcome"]) {
+        const text = p[field] ?? "";
+        for (const pat of BANNED) if (pat.test(text)) problems.push(`${b.dir} ${p.id}.${field}: stale phrase ${pat} on a READY learning point`);
+      }
+      for (const at of p.applicationTypes ?? []) {
+        for (const pat of BANNED) if (pat.test(at)) problems.push(`${b.dir} ${p.id}.applicationTypes: stale phrase ${pat} ("${at.slice(0, 80)}")`);
+      }
+      // knowledgeOrProcedure may legitimately narrate an unresolved CONTEXTUAL facet;
+      // a banned phrase there is only acceptable within ~200 chars of a contextual marker.
+      const kp = p.knowledgeOrProcedure ?? "";
+      for (const pat of BANNED) {
+        let m;
+        const re = new RegExp(pat.source, pat.flags.includes("g") ? pat.flags : pat.flags + "g");
+        while ((m = re.exec(kp)) !== null) {
+          const windowStart = Math.max(0, m.index - 200);
+          const window = kp.slice(windowStart, m.index + 200);
+          if (!CONTEXTUAL_MARKERS.test(window)) problems.push(`${b.dir} ${p.id}.knowledgeOrProcedure: stale phrase "${m[0]}" not near a contextual-facet marker`);
+        }
+      }
+      // Heuristic exclusion-contradiction check: an explicitExclusion naming a REQUIRED
+      // (not contextual) requirement's own topic words as "NOT evidenced" contradicts a
+      // requirement this LP's own requiredMasteryEvidenceRequirementIds shows is VERIFIED.
+      const requiredIds = p.requiredMasteryEvidenceRequirementIds ?? [];
+      const requiredTopicWords = new Set();
+      for (const id of requiredIds) {
+        const suffix = id.split("::").slice(4).join("::");
+        for (const w of suffix.split(/[-:]+/)) if (w.length > 4) requiredTopicWords.add(w.toLowerCase());
+      }
+      // Words that recur across >1 of this LP's OWN exclusion entries are generic
+      // category language for the LP as a whole (e.g. "heating"/"control"/"motor"
+      // repeated across several unrelated exclusions), not a claim-specific overlap
+      // -- exclude them mechanically rather than via a hand-curated stoplist.
+      const allExclusions = p.explicitExclusions ?? [];
+      const exclusionWordCounts = new Map();
+      for (const ex of allExclusions) {
+        const seenInThisExclusion = new Set(ex.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 4));
+        for (const w of seenInThisExclusion) exclusionWordCounts.set(w, (exclusionWordCounts.get(w) ?? 0) + 1);
+      }
+      for (const ex of allExclusions) {
+        if (!/not (authoritatively )?evidenced|must not be taught/i.test(ex)) continue;
+        const exWords = ex.toLowerCase();
+        const overlap = [...requiredTopicWords].filter((w) => exWords.includes(w) && (exclusionWordCounts.get(w) ?? 0) === 1);
+        if (overlap.length >= 2) problems.push(`${b.dir} ${p.id}.explicitExclusions: "${ex.slice(0, 100)}" overlaps required-mastery topic words [${overlap.join(", ")}] but this LP's required facet(s) are READY -- likely a stale exclusion contradicting current content`);
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
+  return `${n} READY learning point(s) checked across Batches 04-06 for stale unresolved-state language and exclusion/content contradictions`;
+});
+
+check(60, "Runtime-mapping rows with facet-level governed evidence references correctly reflect each facet's own live status and citation-class", () => {
+  const mappingPath = "reports/unit202-production-acquisition/UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING.json";
+  if (!fs.existsSync(rel(mappingPath))) return "runtime delta mapping not yet generated -- skipped";
+  const mapping = readJson(mappingPath);
+  const rowById = new Map();
+  for (const b of batches.filter((x) => !x.frozen)) for (const r of b.ev.results) rowById.set(r.evidenceRequirementId, r);
+  let n = 0;
+  const problems = [];
+  const UNSETTLED_STATUSES = new Set(["PARTIALLY_VERIFIED", "SOURCE_GAP", "CONFLICTED", "NOT_ATTEMPTED"]);
+  for (const row of mapping.rows ?? []) {
+    const facets = row.axes?.governedFacetReferences ?? [];
+    for (const f of facets) {
+      n++;
+      const evRow = rowById.get(f.requirementSuffix ? undefined : f.evidenceRequirementId) ?? [...rowById.values()].find((r) => r.evidenceRequirementId.endsWith(f.requirementSuffix ?? " "));
+      let liveStatus;
+      if (evRow) {
+        liveStatus = evRow.disposition === "RETIRED_OUT_OF_SCOPE" ? "RETIRED_OUT_OF_SCOPE" : evRow.disposition === "STRUCTURALLY_SATISFIED" ? "STRUCTURALLY_SATISFIED" : evRow.result.verificationStatus;
+      } else {
+        liveStatus = "RETIRED_OUT_OF_SCOPE"; // requirement no longer exists in the live plan/result set
+      }
+      if (f.status !== liveStatus) problems.push(`${row.id}: facet "${f.requirementSuffix}" recorded status=${f.status} but live status is ${liveStatus}`);
+      if (f.citedAsSettledInRuntime === true && (UNSETTLED_STATUSES.has(liveStatus) || liveStatus === "RETIRED_OUT_OF_SCOPE") && f.flaggedAsUnsupported !== true) {
+        problems.push(`${row.id}: facet "${f.requirementSuffix}" is cited as settled in the runtime corpus while its live governed status is ${liveStatus}, but is not flagged flaggedAsUnsupported`);
+      }
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
+  return `${n} facet-level governed-evidence reference(s) checked across the runtime mapping's opt-in richer rows; each correctly reflects its own live status and unsupported-citation flag`;
 });
 
 // --- Report ---
