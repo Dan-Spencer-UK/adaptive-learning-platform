@@ -1393,7 +1393,39 @@ check(59, "No READY (or READY-facet) learning point's required-facing fields con
   return `${n} READY learning point(s) checked across Batches 04-06 for stale unresolved-state language and exclusion/content contradictions`;
 });
 
-check(60, "Runtime-mapping rows with facet-level governed evidence references correctly reflect each facet's own live status and citation-class", () => {
+function verifyRuntimeEvidence(rowId, f, problems) {
+  const items = f.runtimeEvidence;
+  if (!Array.isArray(items) || items.length === 0) {
+    problems.push(`${rowId}: facet "${f.evidenceRequirementId}" is citedAsSettledInRuntime=true but carries no runtimeEvidence`);
+    return;
+  }
+  items.forEach((ev, i) => {
+    const label = `${rowId} facet "${f.evidenceRequirementId}" runtimeEvidence[${i}]`;
+    if (typeof ev.sourcePath !== "string" || ev.sourcePath.length === 0) {
+      problems.push(`${label}: missing/empty sourcePath`);
+      return;
+    }
+    const resolved = path.resolve(repoRoot, ev.sourcePath);
+    if (resolved !== repoRoot && !resolved.startsWith(repoRoot + path.sep)) {
+      problems.push(`${label}: sourcePath "${ev.sourcePath}" resolves outside the repository`);
+      return;
+    }
+    if (!fs.existsSync(resolved) || !fs.statSync(resolved).isFile()) {
+      problems.push(`${label}: sourcePath "${ev.sourcePath}" does not exist as a file`);
+      return;
+    }
+    if (typeof ev.exactTextNeedle !== "string" || ev.exactTextNeedle.length === 0) {
+      problems.push(`${label}: missing/empty exactTextNeedle`);
+      return;
+    }
+    const content = fs.readFileSync(resolved, "utf-8");
+    if (!content.includes(ev.exactTextNeedle)) {
+      problems.push(`${label}: exactTextNeedle does not occur verbatim in "${ev.sourcePath}"`);
+    }
+  });
+}
+
+check(60, "Runtime-mapping rows with facet-level governed evidence references correctly reflect each facet's own live status and citation-class, and every facet cited as settled carries machine-verified runtimeEvidence", () => {
   const mappingPath = "reports/unit202-production-acquisition/UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING.json";
   if (!fs.existsSync(rel(mappingPath))) throw new Error("runtime delta mapping not generated -- governedFacetReferences coverage cannot be checked");
   const mapping = readJson(mappingPath);
@@ -1403,6 +1435,7 @@ check(60, "Runtime-mapping rows with facet-level governed evidence references co
   const rowsById = new Map((mapping.rows ?? []).map((r) => [r.id, r]));
   const seenEvidenceRequirementIds = new Set();
   let n = 0;
+  let evidenceChecked = 0;
   const problems = [];
   const UNSETTLED_STATUSES = new Set(["PARTIALLY_VERIFIED", "SOURCE_GAP", "CONFLICTED", "NOT_ATTEMPTED"]);
   for (const row of mapping.rows ?? []) {
@@ -1428,6 +1461,10 @@ check(60, "Runtime-mapping rows with facet-level governed evidence references co
       if (f.citedAsSettledInRuntime === true && (UNSETTLED_STATUSES.has(liveStatus) || liveStatus === "RETIRED_OUT_OF_SCOPE") && f.flaggedAsUnsupported !== true) {
         problems.push(`${row.id}: facet "${f.evidenceRequirementId}" is cited as settled in the runtime corpus while its live governed status is ${liveStatus}, but is not flagged flaggedAsUnsupported`);
       }
+      if (f.citedAsSettledInRuntime === true) {
+        evidenceChecked++;
+        verifyRuntimeEvidence(row.id, f, problems);
+      }
     }
   }
   for (const id of REQUIRED_FACET_ROW_IDS) {
@@ -1438,7 +1475,82 @@ check(60, "Runtime-mapping rows with facet-level governed evidence references co
   }
   if (n === 0) throw new Error("0 facet-level governed-evidence references examined -- vacuous PASS is not acceptable; the required status-sensitive rows (EDA-LP-16, EDA-LP-25, EDA-LP-28) must carry structured governedFacetReferences data");
   if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
-  return `${n} facet-level governed-evidence reference(s) checked across the runtime mapping's opt-in richer rows (including all ${REQUIRED_FACET_ROW_IDS.length} required status-sensitive rows: ${REQUIRED_FACET_ROW_IDS.join(", ")}); each resolves its complete evidenceRequirementId exactly, correctly reflects its own live status, and is never cited as settled on an unsettled/retired facet without flaggedAsUnsupported`;
+  return `${n} facet-level governed-evidence reference(s) checked across the runtime mapping's opt-in richer rows (including all ${REQUIRED_FACET_ROW_IDS.length} required status-sensitive rows: ${REQUIRED_FACET_ROW_IDS.join(", ")}); each resolves its complete evidenceRequirementId exactly, correctly reflects its own live status, and is never cited as settled on an unsettled/retired facet without flaggedAsUnsupported; ${evidenceChecked} citedAsSettledInRuntime=true facet(s) each carry runtimeEvidence that machine-verifiably resolves to a real, in-repository source file and exact text`;
+});
+
+// =====================================================================
+// Checks 61-63 (final bounded recovery pass)
+// =====================================================================
+
+check(61, "contentAheadOfEvidenceRisk is derived exactly from governedFacetReferences (citedAsSettledInRuntime && flaggedAsUnsupported), and the top-level count/rows exactly match the derived set", () => {
+  const mappingPath = "reports/unit202-production-acquisition/UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING.json";
+  if (!fs.existsSync(rel(mappingPath))) throw new Error("runtime delta mapping not generated");
+  const mapping = readJson(mappingPath);
+  const problems = [];
+  const derivedRisky = new Set();
+  for (const row of mapping.rows ?? []) {
+    const facets = row.axes?.governedFacetReferences ?? [];
+    const shouldBeRisky = facets.some((f) => f.citedAsSettledInRuntime === true && f.flaggedAsUnsupported === true);
+    const actualRisky = row.axes?.contentAheadOfEvidenceRisk === true;
+    if (shouldBeRisky !== actualRisky) {
+      problems.push(`${row.id}: contentAheadOfEvidenceRisk=${actualRisky} but the derived-from-facets value is ${shouldBeRisky} -- a READY learning point cannot suppress an unsupported facet-level runtime finding, and this must never be proxied via curriculumDispositionState`);
+    }
+    if (shouldBeRisky) derivedRisky.add(row.id);
+  }
+  const topLevelIds = new Set((mapping.contentAheadOfEvidenceRows ?? []).map((r) => r.id));
+  const missing = [...derivedRisky].filter((id) => !topLevelIds.has(id));
+  const extra = [...topLevelIds].filter((id) => !derivedRisky.has(id));
+  if (missing.length > 0) problems.push(`contentAheadOfEvidenceRows is missing derived risky row(s): ${missing.join(", ")}`);
+  if (extra.length > 0) problems.push(`contentAheadOfEvidenceRows lists row(s) not derived as risky: ${extra.join(", ")}`);
+  if (mapping.contentAheadOfEvidenceCount !== topLevelIds.size) problems.push(`contentAheadOfEvidenceCount (${mapping.contentAheadOfEvidenceCount}) does not match contentAheadOfEvidenceRows.length (${topLevelIds.size})`);
+  if (topLevelIds.size !== derivedRisky.size) problems.push(`contentAheadOfEvidenceRows.length (${topLevelIds.size}) does not match the derived risky-row set size (${derivedRisky.size})`);
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${derivedRisky.size} content-ahead-of-evidence row(s) derived exactly from facet-level flags and matched exactly at the top level: ${[...derivedRisky].sort().join(", ") || "(none)"}`;
+});
+
+check(62, "READY-state consistency also covers evidenceReadinessNote, depthJustification and assessmentEligibility: no stale unresolved-state language, and assessmentEligibility is never contradictorily BLOCKED", () => {
+  const BANNED = [/currently unresolved/i, /pending resolution/i, /required mastery unresolved/i, /not authoritatively evidenced/i, /must not be taught/i];
+  const CONTEXTUAL_MARKERS = /context only|not required (recall|core mastery)|contextual|CONTEXT ONLY|line-test|line testing|widely repeated but/i;
+  let n = 0;
+  const problems = [];
+  for (const b of batches.filter((x) => !x.frozen)) {
+    for (const p of b.lpJson.learningPoints) {
+      if (p.evidenceReadiness !== "READY") continue;
+      n++;
+      for (const field of ["evidenceReadinessNote", "depthJustification"]) {
+        const text = p[field] ?? "";
+        for (const pat of BANNED) {
+          const re = new RegExp(pat.source, "gi");
+          let m;
+          while ((m = re.exec(text)) !== null) {
+            const windowStart = Math.max(0, m.index - 200);
+            const window = text.slice(windowStart, m.index + 200);
+            if (!CONTEXTUAL_MARKERS.test(window)) problems.push(`${b.dir} ${p.id}.${field}: stale phrase "${m[0]}" not near a contextual-facet marker`);
+          }
+        }
+      }
+      if (p.assessmentEligibility === "BLOCKED") problems.push(`${b.dir} ${p.id}: evidenceReadiness=READY but assessmentEligibility=BLOCKED -- contradictory pair`);
+    }
+  }
+  if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
+  return `${n} READY learning point(s) checked for stale language in evidenceReadinessNote/depthJustification and for a contradictory BLOCKED assessmentEligibility`;
+});
+
+check(63, "The consolidated review pack's core-blocker summary is genuinely empty when the computed count is zero, and never hand-lists a resolved learning point as a current blocker", () => {
+  if (!fs.existsSync(rel(PACK_JSON_PATH))) return "review pack not yet generated -- skipped";
+  const pack = readJson(PACK_JSON_PATH);
+  const count = pack.coreReleaseBlockerCount;
+  const ids = pack.coreReleaseBlockerLearningPointIds ?? [];
+  if (count !== ids.length) throw new Error(`coreReleaseBlockerCount (${count}) does not match coreReleaseBlockerLearningPointIds.length (${ids.length})`);
+  const battery = pack.remainingGenuineGaps?.battery ?? "";
+  const m = battery.match(/CORE \(required-mastery\) blockers remaining after this pass's re-sourcing \((\d+) total, mechanically derived from coreReleaseBlockerLearningPointIds -- never hand-listed\): (.*?)\. RESOLVED/);
+  if (!m) throw new Error("remainingGenuineGaps.battery does not carry the expected mechanically-derived core-blocker clause -- has the generator's template drifted from what this check expects?");
+  const [, batteryCountStr, batteryList] = m;
+  if (Number(batteryCountStr) !== count) throw new Error(`battery text's stated core-blocker count (${batteryCountStr}) does not match pack.coreReleaseBlockerCount (${count})`);
+  const expectedList = count > 0 ? ids.join(", ") : "(none)";
+  if (batteryList !== expectedList) throw new Error(`battery text's core-blocker list ("${batteryList}") does not match the mechanically-expected list ("${expectedList}")`);
+  if (count === 0 && pack.productArchitectFreezeReadiness?.coreAcquisitionAndCurriculumInputFreezeReady !== true) throw new Error("coreReleaseBlockerCount is 0 but productArchitectFreezeReadiness.coreAcquisitionAndCurriculumInputFreezeReady is not true");
+  return `review pack's core-blocker summary is mechanically consistent (count=${count}, list="${batteryList}")`;
 });
 
 // --- Report ---
