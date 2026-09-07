@@ -1,5 +1,7 @@
 # Unit 202 Narrow Evidence, Curriculum-Modelling and Validation Correction
 
+**Superseded in part:** a further, third narrow correction pass followed this one -- see `UNIT202-NARROW-CORRECTION-REPORT-2.md` for EMI-LP-16's and EDA-LP-25's resolutions, EDA-LP-16's updated (still-held) final disposition, Batch 04's claim-atomicity corrections, the exhaustive `normalizedClaimRefs` cache, and validator checks 58-60. This report remains an accurate historical record of the pass it documents (Final HEAD `691a39a5c639b4a97fd24718b4a44868a68c1b1e`) and is not itself edited to reflect later work.
+
 **Starting HEAD:** `f12d968b37a204a2f608bd1afcc64ef2a74adbcb`
 **Final HEAD:** `691a39a5c639b4a97fd24718b4a44868a68c1b1e`
 **Scope:** narrow correction only -- no architecture redesign, no authority-policy widening, no learner-facing lesson authoring, no gap forced green. Batches 01-03 identities and evidence preserved (confirmed byte-identical to baseline `8127768` throughout). The two pre-existing unrelated dirty files were never staged, edited, formatted or regenerated; their SHA-256 hashes are identical before and after this pass (see `PROTECTED-FILE-HASH-PROOF.txt`).
