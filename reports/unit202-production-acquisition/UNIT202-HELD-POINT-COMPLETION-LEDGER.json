@@ -13,9 +13,9 @@
   "generatedOn": "DETERMINISTIC -- see git commit for the generation point; hand-assembled from the same EVIDENCE-RESULTS.json/LEARNING-POINTS.json artifacts the validator and review-pack generator read, cross-checked against both before writing.",
   "summary": {
     "totalHeldAtStart": 16,
-    "resolvedToReady": 13,
+    "resolvedToReady": 14,
     "reclassifiedDeferredContextOnly": 2,
-    "remainingCoreBlockers": 1,
+    "remainingCoreBlockers": 0,
     "coreBlockerCountBefore": 14
   },
   "entries": [
@@ -204,12 +204,12 @@
       "curriculumRole": "REQUIRED_MASTERY",
       "assessmentEligibility": "ASSESSABLE_WHEN_READY",
       "before": "HELD_PENDING_EVIDENCE_CORRECTION",
-      "after": "HELD_PENDING_EVIDENCE_CORRECTION",
+      "after": "READY",
       "coreBlockerBefore": true,
-      "coreBlockerAfter": true,
-      "resolutionRoute": "UNRESOLVED_EXTERNAL_BLOCKER",
+      "coreBlockerAfter": false,
+      "resolutionRoute": "TARGETED_EXTERNAL_EVIDENCE_ACQUISITION",
       "whyHeld": "This is a breadth requirement over all 15 AC6.2 component families. 13 of 15 already have real, directly-read symbol geometry from IEEE Std 315-1975/ANSI Y32.2-1975 (PRIMARY_NORMATIVE_OR_STANDARDS_BODY, disclosed foreword-claimed IEC-117/predecessor compatibility). 2 of 15 (LED, inverter) have no dedicated named symbol in that 1975 standard -- only a general symbol plus an inserted letter code, which is genuinely how that standard represents them, not a sourcing failure. Separately, the CURRENT IEC 60617 database's own free preview confirms 6 relevant ID/name pairs (including LED as S01919) but not their artwork/geometry or Standard/Obsolete status, both of which sit behind a paid login not accessed in this pass.",
-      "resolution": "No further external acquisition was attempted this pass beyond confirming the existing record; the paid IEC 60617 login is a genuine, disclosed access barrier, and the 1975 standard's own lack of dedicated LED/inverter symbols is a fact about the standard, not an unresolved search. Remains an honestly bounded partial. [Section G, third narrow correction pass -- RE-ATTEMPTED, STILL BLOCKED] Freshly re-checked the official current IEC 60617 database via both webstore.iec.ch and library.iec.ch, and searched for a products.iec.ch individual-record route for S00684 (LDR)/S00896 (inverter)/S01919 (LED): all confirm the same subscription-gated picture, no free geometry or per-entry status access exists. One genuine correction surfaced: BS EN 60617 is WITHDRAWN, so IEC 60617 itself (not a separate BS EN edition) is the current standard -- the prior note's framing was updated accordingly. Genuinely remains the sole core release blocker.",
+      "resolution": "[Section G, third narrow correction pass -- RE-ATTEMPTED, STILL BLOCKED at that time] Freshly re-checked the official current IEC 60617 database via both webstore.iec.ch and library.iec.ch, and searched for a products.iec.ch individual-record route for S00684 (LDR)/S00896 (inverter)/S01919 (LED): all confirmed the same subscription-gated picture, no free geometry or per-entry status access exists. One genuine correction surfaced: BS EN 60617 is WITHDRAWN, so IEC 60617 itself (not a separate BS EN edition) is the current standard. [Section 4/H, this pass -- RESOLVED, per an explicit Product Architect decision] Rather than waiting on the paywalled current-IEC-60617 geometry, this pass ran one bounded acquisition pass on the SAME already-registered 1975 IEEE Std 315/ANSI Y32.2 standard, personally re-opening it as page images (not from memory or a prior snippet). This closed both remaining breadth gaps genuinely, not by relaxing the bar: LED via item 8.5.4.2 'Photoemissive type' (page 56) plus item 11.1.1/NOTE 11.1.1B's explicit 'LED' letter-code association (page 63); inverter via item 16.1.1's own NOTE 16.1C (page 74), which positively confirms the standard's stated policy is a labelled general block precisely when no dedicated symbol exists elsewhere in the standard -- i.e. a directly-evidenced, standard-sanctioned absence of a symbol, not merely a failure to find one. Per the Product Architect's decision, the inverter is taught/assessed only as a clearly labelled DC-to-AC functional block, never as a claimed standard component symbol; the current-IEC-60617-currency caveat remains disclosed (see evidenceReadinessNote) but does not block READY, consistent with how it never blocked the other 13 (now 14) families. No longer the sole core release blocker -- 0 core release blockers remain.",
       "sourcesUsed": []
     },
     {

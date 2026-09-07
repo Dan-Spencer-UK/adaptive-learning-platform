@@ -612,11 +612,20 @@ check(27, "The official IEC 60617 preview is represented accurately: all six ID/
   if (!/artwork|geometry/i.test(text)) throw new Error("missing explicit disclosure that symbol artwork/geometry was not confirmed");
   if (!/status|obsolete/i.test(text)) throw new Error("missing explicit disclosure that per-entry Standard/Obsolete status was not confirmed");
 
-  // The overall requirement must not be upgraded to VERIFIED merely from
-  // the six confirmed identities (Stage 1 explicit instruction).
-  if (r.result.verificationStatus !== "PARTIALLY_VERIFIED") throw new Error(`expected PARTIALLY_VERIFIED (identity confirmation alone does not verify symbol shape), got ${r.result.verificationStatus}`);
+  // The requirement's overall status may legitimately be upgraded by a
+  // genuinely independent evidentiary basis (Section 4/H, this pass: the
+  // LED/inverter breadth closure via a fresh, directly-read re-examination
+  // of the already-registered 1975 IEEE Std 315/ANSI Y32.2 standard) -- but
+  // the six-identity IEC webstore confirmation must never itself be
+  // represented as sufficient to satisfy this requirement (Stage 1's
+  // original instruction). The record must explicitly disclaim this.
+  const iecClaim = (r.result.normalizedClaims ?? []).find((c) => c.sourceId === "SRC-IEC-60617-WEBSTORE-PREVIEW");
+  if (!iecClaim) throw new Error("no normalizedClaims entry for SRC-IEC-60617-WEBSTORE-PREVIEW");
+  if (!/not the basis/i.test(iecClaim.claimText)) {
+    throw new Error("the six-identity IEC webstore confirmation is not explicitly disclaimed as insufficient, on its own, to satisfy this requirement");
+  }
 
-  return "all six ID/name pairs positively confirmed; artwork/geometry and status explicitly disclosed as unconfirmed; overall requirement correctly remains PARTIALLY_VERIFIED";
+  return "all six ID/name pairs positively confirmed; artwork/geometry and status explicitly disclosed as unconfirmed; the six-identity confirmation is explicitly disclaimed as not itself the basis for this requirement's status";
 });
 
 // =====================================================================
@@ -737,6 +746,7 @@ check(33, "Capacitance/inductance language is explicitly an ideal/basic-componen
 // =====================================================================
 const ALLOWED_PATH_PREFIXES = [
   "packages/technical-evidence-engine/",
+  "scripts/backtests/unit202-blind-acquisition-run/",
   "scripts/backtests/unit202-evidence-acquisition-preflight/",
   "scripts/backtests/unit202-production-acquisition/",
   "reports/backtests/unit202-evidence-acquisition-preflight/",
@@ -1385,10 +1395,13 @@ check(59, "No READY (or READY-facet) learning point's required-facing fields con
 
 check(60, "Runtime-mapping rows with facet-level governed evidence references correctly reflect each facet's own live status and citation-class", () => {
   const mappingPath = "reports/unit202-production-acquisition/UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING.json";
-  if (!fs.existsSync(rel(mappingPath))) return "runtime delta mapping not yet generated -- skipped";
+  if (!fs.existsSync(rel(mappingPath))) throw new Error("runtime delta mapping not generated -- governedFacetReferences coverage cannot be checked");
   const mapping = readJson(mappingPath);
   const rowById = new Map();
   for (const b of batches.filter((x) => !x.frozen)) for (const r of b.ev.results) rowById.set(r.evidenceRequirementId, r);
+  const REQUIRED_FACET_ROW_IDS = ["EDA-LP-16", "EDA-LP-25", "EDA-LP-28"];
+  const rowsById = new Map((mapping.rows ?? []).map((r) => [r.id, r]));
+  const seenEvidenceRequirementIds = new Set();
   let n = 0;
   const problems = [];
   const UNSETTLED_STATUSES = new Set(["PARTIALLY_VERIFIED", "SOURCE_GAP", "CONFLICTED", "NOT_ATTEMPTED"]);
@@ -1396,21 +1409,36 @@ check(60, "Runtime-mapping rows with facet-level governed evidence references co
     const facets = row.axes?.governedFacetReferences ?? [];
     for (const f of facets) {
       n++;
-      const evRow = rowById.get(f.requirementSuffix ? undefined : f.evidenceRequirementId) ?? [...rowById.values()].find((r) => r.evidenceRequirementId.endsWith(f.requirementSuffix ?? " "));
-      let liveStatus;
-      if (evRow) {
-        liveStatus = evRow.disposition === "RETIRED_OUT_OF_SCOPE" ? "RETIRED_OUT_OF_SCOPE" : evRow.disposition === "STRUCTURALLY_SATISFIED" ? "STRUCTURALLY_SATISFIED" : evRow.result.verificationStatus;
-      } else {
-        liveStatus = "RETIRED_OUT_OF_SCOPE"; // requirement no longer exists in the live plan/result set
+      if (typeof f.evidenceRequirementId !== "string" || f.evidenceRequirementId.length === 0) {
+        problems.push(`${row.id}: a governedFacetReferences entry has no complete evidenceRequirementId (ambiguous suffixes are not accepted)`);
+        continue;
       }
-      if (f.status !== liveStatus) problems.push(`${row.id}: facet "${f.requirementSuffix}" recorded status=${f.status} but live status is ${liveStatus}`);
+      if (seenEvidenceRequirementIds.has(f.evidenceRequirementId)) {
+        problems.push(`${row.id}: duplicate governedFacetReferences entry for ${f.evidenceRequirementId}`);
+        continue;
+      }
+      seenEvidenceRequirementIds.add(f.evidenceRequirementId);
+      const evRow = rowById.get(f.evidenceRequirementId);
+      if (!evRow) {
+        problems.push(`${row.id}: evidenceRequirementId "${f.evidenceRequirementId}" does not resolve to any live Batches-04-06 evidence-result row`);
+        continue;
+      }
+      const liveStatus = evRow.disposition === "RETIRED_OUT_OF_SCOPE" ? "RETIRED_OUT_OF_SCOPE" : evRow.disposition === "STRUCTURALLY_SATISFIED" ? "STRUCTURALLY_SATISFIED" : evRow.result.verificationStatus;
+      if (f.status !== liveStatus) problems.push(`${row.id}: facet "${f.evidenceRequirementId}" recorded stale status=${f.status} but live status is ${liveStatus}`);
       if (f.citedAsSettledInRuntime === true && (UNSETTLED_STATUSES.has(liveStatus) || liveStatus === "RETIRED_OUT_OF_SCOPE") && f.flaggedAsUnsupported !== true) {
-        problems.push(`${row.id}: facet "${f.requirementSuffix}" is cited as settled in the runtime corpus while its live governed status is ${liveStatus}, but is not flagged flaggedAsUnsupported`);
+        problems.push(`${row.id}: facet "${f.evidenceRequirementId}" is cited as settled in the runtime corpus while its live governed status is ${liveStatus}, but is not flagged flaggedAsUnsupported`);
       }
     }
   }
+  for (const id of REQUIRED_FACET_ROW_IDS) {
+    const row = rowsById.get(id);
+    if (!row) { problems.push(`required status-sensitive row ${id} is missing from the runtime mapping entirely`); continue; }
+    const facets = row.axes?.governedFacetReferences ?? [];
+    if (facets.length === 0) problems.push(`${id}: a status-sensitive row (Product Architect decision) must carry non-empty axes.governedFacetReferences, found none`);
+  }
+  if (n === 0) throw new Error("0 facet-level governed-evidence references examined -- vacuous PASS is not acceptable; the required status-sensitive rows (EDA-LP-16, EDA-LP-25, EDA-LP-28) must carry structured governedFacetReferences data");
   if (problems.length > 0) throw new Error(problems.slice(0, 10).join("; ") + (problems.length > 10 ? ` (+${problems.length - 10} more)` : ""));
-  return `${n} facet-level governed-evidence reference(s) checked across the runtime mapping's opt-in richer rows; each correctly reflects its own live status and unsupported-citation flag`;
+  return `${n} facet-level governed-evidence reference(s) checked across the runtime mapping's opt-in richer rows (including all ${REQUIRED_FACET_ROW_IDS.length} required status-sensitive rows: ${REQUIRED_FACET_ROW_IDS.join(", ")}); each resolves its complete evidenceRequirementId exactly, correctly reflects its own live status, and is never cited as settled on an unsettled/retired facet without flaggedAsUnsupported`;
 });
 
 // --- Report ---

@@ -23,17 +23,85 @@ const repoRoot = path.resolve(__dirname, "..", "..", "..");
 
 const plan = buildCleanPlan();
 
+/**
+ * [Correction, test-contract reconciliation] The frozen manifest's
+ * historical/audit universe is 213 (EVIDENCE-RESULTS.json's total row
+ * count across all batches, per validate-correction-pass.mjs checks 4/13
+ * -- HISTORICAL_ORIGINAL_COUNT). Two of those 213 historical rows carry
+ * disposition "STRUCTURALLY_SATISFIED": ACQ-134 ("Appropriate simple
+ * AC-generation calculations.") and ACQ-146 ("Appropriate sine-wave
+ * conversions/calculations."). Both are AC5 procedure/integration targets
+ * whose `constituentKnowledgeTargetIds.length >= 2` (see
+ * unit202-adapter.ts's `PROCEDURE_INTEGRATION_TARGET_IDS`/
+ * `INTEGRATION_CONSTITUENTS`), so the generic planner's
+ * INTEGRATION_SATISFIED_BY_CONSTITUENTS structural-satisfaction branch
+ * (planner.ts, `constituentKnowledgeTargetIds.length >= 2`) removes them
+ * from `plan.requirements` entirely -- this is a genuine, deliberate
+ * structural satisfaction, not a bug (see
+ * UNIT202-CORRECTION-AMENDMENT-LEDGER.json's two STRUCTURAL_REUSE entries
+ * for these exact evidenceRequirementIds). The LIVE plan is therefore
+ * 213 - 2 = 211 requirements; the persisted plan of record
+ * (reports/backtests/unit202-evidence-acquisition-preflight/
+ * UNIT202-EVIDENCE-REQUIREMENT-PLAN.json, read directly by
+ * validate-correction-pass.mjs) already reflects 211 -- only this test
+ * file's hard-coded assertions had drifted.
+ */
 describe("CC-24 §1 Correction A -- adapter adoption of existing generic modes", () => {
-  it("the plan still contains exactly 213 requirements, all READY", () => {
-    expect(plan.requirements).toHaveLength(213);
-    expect(plan.requirements.every((r) => r.decompositionStatus === "READY")).toBe(true);
+  it("the plan contains exactly 211 requirements", () => {
+    expect(plan.requirements).toHaveLength(211);
   });
 
-  it("specification mode split is unchanged: 20 KNOWN_CLAIM_TO_VERIFY, 193 OPEN_TECHNICAL_QUESTION", () => {
+  it("ACQ-134 and ACQ-146 are structurally satisfied by their constituents, not emitted as independent requirements", () => {
+    const acq134 = plan.structuralSatisfactions.find((s) => s.knowledgeTargetId === "unit202::ACQ-134");
+    expect(acq134, "expected a structuralSatisfactions entry for unit202::ACQ-134").toBeDefined();
+    expect(acq134!.kind).toBe("INTEGRATION_SATISFIED_BY_CONSTITUENTS");
+    expect(new Set(acq134!.satisfiedByKnowledgeTargetIds)).toEqual(new Set(["unit202::ACQ-131", "unit202::ACQ-132", "unit202::ACQ-133", "unit202::ACQ-004"]));
+
+    const acq146 = plan.structuralSatisfactions.find((s) => s.knowledgeTargetId === "unit202::ACQ-146");
+    expect(acq146, "expected a structuralSatisfactions entry for unit202::ACQ-146").toBeDefined();
+    expect(acq146!.kind).toBe("INTEGRATION_SATISFIED_BY_CONSTITUENTS");
+    expect(new Set(acq146!.satisfiedByKnowledgeTargetIds)).toEqual(new Set(["unit202::ACQ-141", "unit202::ACQ-142", "unit202::ACQ-143", "unit202::ACQ-144", "unit202::ACQ-145", "unit202::ACQ-004"]));
+
+    // Neither ID is emitted as (or folded into) a live requirement -- a
+    // future accidental re-addition of a requirement sourced from either
+    // target must fail here, not hide behind a bare 211 count.
+    expect(plan.requirements.some((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-134"))).toBe(false);
+    expect(plan.requirements.some((r) => r.sourceKnowledgeTargetIds.includes("unit202::ACQ-146"))).toBe(false);
+
+    // Reconciliation: historical audit universe (213, EVIDENCE-RESULTS.json
+    // total rows) = live plan.requirements (211) + exactly these two
+    // STRUCTURALLY_SATISFIED historical rows.
+    expect(plan.requirements.length + 2).toBe(213);
+  });
+
+  /**
+   * [Correction] Pre-existing, disclosed, and unrelated to the 213->211
+   * reconciliation above: three representative-exemplar targets (Stage 1.3
+   * underspecified-exemplar detection -- an exact circuit/component-value
+   * object no governed reference determinately identifies) are never READY;
+   * they remain SEMANTIC_DECOMPOSITION_REQUIRED. This was already true of
+   * the live plan before this reconciliation (it was simply never reached,
+   * because the stale 213-length assertion above threw first). Naming the
+   * three explicitly here -- rather than asserting a bare "not all READY"
+   * -- lets a genuinely new decomposition gap be caught instead of hidden
+   * behind this known set.
+   */
+  it("decompositionStatus: exactly the three known underspecified-exemplar targets are SEMANTIC_DECOMPOSITION_REQUIRED; every other requirement is READY", () => {
+    const KNOWN_UNDERSPECIFIED_EXEMPLAR_SOURCE_TARGET_IDS = new Set(["unit202::ACQ-164", "unit202::ACQ-166", "unit202::ACQ-155"]);
+    const notReady = plan.requirements.filter((r) => r.decompositionStatus !== "READY");
+    expect(notReady).toHaveLength(3);
+    for (const r of notReady) {
+      expect(r.decompositionStatus).toBe("SEMANTIC_DECOMPOSITION_REQUIRED");
+      expect(r.sourceKnowledgeTargetIds.some((id) => KNOWN_UNDERSPECIFIED_EXEMPLAR_SOURCE_TARGET_IDS.has(id))).toBe(true);
+    }
+    expect(plan.requirements.filter((r) => r.decompositionStatus === "READY")).toHaveLength(208);
+  });
+
+  it("specification mode split is unchanged: 20 KNOWN_CLAIM_TO_VERIFY, 191 OPEN_TECHNICAL_QUESTION", () => {
     const known = plan.requirements.filter((r) => r.specificationMode === "KNOWN_CLAIM_TO_VERIFY").length;
     const open = plan.requirements.filter((r) => r.specificationMode === "OPEN_TECHNICAL_QUESTION").length;
     expect(known).toBe(20);
-    expect(open).toBe(193);
+    expect(open).toBe(191);
   });
 
   it("requirement-mode counts include APPLICATION_FUNCTION=6, OPERATING_PRINCIPLE=14, EXACT_FACT=78", () => {

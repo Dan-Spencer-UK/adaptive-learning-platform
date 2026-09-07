@@ -41,9 +41,9 @@
       "PRODUCED_NOT_WIRED": 1
     },
     "curriculumDispositionState": {
-      "READY": 127,
+      "READY": 128,
       "DEFERRED_CONTEXT_ONLY": 3,
-      "HELD_PENDING_EVIDENCE_CORRECTION": 1,
+      "HELD_PENDING_EVIDENCE_CORRECTION": 0,
       "RETIRED_OUT_OF_SCOPE": 2
     }
   },
@@ -75,12 +75,8 @@
       "description": "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 (cc04-unit202-electrical-science.ts) teaches and assesses the capacitor DC-block/AC-pass ringer function and the resistor line-test function as REQUIRED_FOR fact, sourced to Wikipedia. NOTE: the capacitor-function claim is now independently confirmed by this pass's own governed evidence acquisition (SIN 351 + IXYS/Littelfuse AN-144), so it is no longer content-ahead-of-evidence for that specific facet as of this pass's correction -- but the runtime's own citation (Wikipedia) remains an unpermitted-class source, and the resistor line-test claim and the \"extension sockets contain none of these components\" claim both remain genuinely unevidenced and should still be corrected/re-sourced or removed at the runtime-content level."
     }
   ],
-  "contentAheadOfEvidenceCount": 2,
+  "contentAheadOfEvidenceCount": 1,
   "contentAheadOfEvidenceRows": [
-    {
-      "id": "EDA-LP-16",
-      "note": "[Section H, third narrow correction pass] The deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat to the learner, though the governed EDA-LP-16 explicitly holds both symbols' geometry as unverified against the current IEC 60617 standard (see its own evidenceReadinessNote/gaps). This is a genuine content-ahead-of-evidence case, not merely a missing-visual gap -- correcting the prior mis-classification as visualCoverageStatus=NOT_APPLICABLE and contentAheadOfEvidenceRisk=false, which incorrectly implied no visual exists and no risk arises, when in fact a visual exists and asserts more certainty than the governed evidence supports."
-    },
     {
       "id": "EDA-LP-25",
       "note": "SAFETY FINDING (narrowed, not resolved): a live, actively-assessed runtime assertion states an SCR keeps a sounder energised specifically \"even if the loop is reclosed\" -- a normally-closed-loop-reclose-survival behaviour tied to the retired, unevidenced NC-loop/bias topology, sourced from a hobbyist tutorial site outside any permitted authority class. [Section F, third narrow correction pass] The governed EDA-LP-25 required facet (the general relationship: a triggered, latched SCR can keep current flowing through a bell/buzzer/sounder until current falls below holding current, via supply interruption or reset) is now VERIFIED via a genuine PA decision (PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001, Ray Marston/Nuts & Volts). This does NOT cover the runtime's more specific \"survives loop reclose\" claim, which remains tied to the still-retired NC-loop topology -- the runtime content should be corrected to teach the general, now-evidenced relationship rather than the specific, still-unevidenced loop-reclose behaviour. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11."
@@ -2115,7 +2111,7 @@
       "id": "EDA-LP-16",
       "batch": "batch-06",
       "primaryDisposition": "MAPPED_WRONG_DEPTH",
-      "primaryNote": "A deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat, though the governed LP explicitly holds both as unverified against the current standard; no LDR symbol exists at all. [Section H, third narrow correction pass] Reclassified visualCoverageStatus from the incorrect NOT_APPLICABLE (implying no visual asset exists) to PRESENT_UNVERIFIED (a visual asset exists and draws with more confidence than the governed evidence supports); contentAheadOfEvidenceRisk corrected from false to true for the same reason.",
+      "primaryNote": "A deterministic component-symbols renderer draws 13 of the 15 governed families (no LDR or relay symbol exists at all -- a coverage gap, not a confidence-mismatch). [Section 4/H, this pass, per an explicit Product Architect decision] The LED symbol (a diode with two outgoing light arrows) and the inverter representation (a clearly labelled DC-to-AC functional block, never claimed as a standard component symbol) are now correctly evidenced: the governed EDA-LP-16 closed both breadth gaps this pass via a directly-read re-examination of the same already-registered 1975 IEEE Std 315/ANSI Y32.2 standard, and the runtime's own captions already independently match this framing (LED captioned as two outgoing arrows; inverter captioned as a functional block, not a symbol) without needing any runtime edit. curriculumDispositionState corrected from HELD_PENDING_EVIDENCE_CORRECTION to READY and contentAheadOfEvidenceRisk from true to false to match; visualCoverageStatus is conservatively left at PRESENT_UNVERIFIED since this pass did not re-run the semantic-audit contract check. See axes.governedFacetReferences for the disclosed residual currency caveat (evidenced against the 1975 standard, not a confirmed read of current IEC 60617).",
       "axes": {
         "lessonCoverageStatus": "TAUGHT_PARTIAL",
         "depthStatus": "TOO_SHALLOW",
@@ -2123,10 +2119,20 @@
         "visualCoverageStatus": "PRESENT_UNVERIFIED",
         "obsoleteContentFlag": false,
         "obsoleteContentDescription": null,
-        "curriculumDispositionState": "HELD_PENDING_EVIDENCE_CORRECTION",
-        "contentAheadOfEvidenceRisk": true,
-        "urgencySafetyImpact": "LOW",
-        "contentAheadOfEvidenceNote": "[Section H, third narrow correction pass] The deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat to the learner, though the governed EDA-LP-16 explicitly holds both symbols' geometry as unverified against the current IEC 60617 standard (see its own evidenceReadinessNote/gaps). This is a genuine content-ahead-of-evidence case, not merely a missing-visual gap -- correcting the prior mis-classification as visualCoverageStatus=NOT_APPLICABLE and contentAheadOfEvidenceRisk=false, which incorrectly implied no visual exists and no risk arises, when in fact a visual exists and asserts more certainty than the governed evidence supports."
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE",
+        "contentAheadOfEvidenceNote": "[Section 4/H, this pass -- RESOLVED, per an explicit Product Architect decision] The LED symbol (diode with two outgoing light arrows) and inverter representation (labelled DC-to-AC functional block, not a claimed standard symbol) are now genuinely evidenced -- see EDA-LP-16's own evidenceReadinessNote for the exact passages read (IEEE Std 315-1975 items 8.5.4.2, 11.1.1/NOTE 11.1.1B, 16.1.1/NOTE 16.1C/16.1.1.2). This is no longer a content-ahead-of-evidence case at the row level; the axes.governedFacetReferences entry below discloses the one residual, narrower nuance the row-level boolean does not capture: the evidentiary basis is the 1975 IEEE/ANSI standard, not a confirmed read of the current IEC 60617 database (which remains paywalled and was not reached in this or any prior pass).",
+        "governedFacetReferences": [
+          {
+            "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::schematic-symbol-recognition-for-each-named-ac6-2-component-device-family-at-qualification-depth::SYMBOL_OR_CONVENTION",
+            "status": "VERIFIED",
+            "citedAsSettledInRuntime": true,
+            "flaggedAsUnsupported": true,
+            "runtimeLocator": "apps/mobile/src/components/diagrams/ComponentSymbols.tsx (file header + LedSymbol/InverterBlock); ComponentSymbolCard.tsx SYMBOL_LIBRARY entries for led/inverter/resistor",
+            "runtimeClaim": "The renderer's file-level header and several individual symbolDescription strings (e.g. the resistor's, 'a plain rectangle symbol (BS EN 60617 / IEC 60617)') assert the symbol set is drawn to the CURRENT BS EN 60617 / IEC 60617 standard. The LED and inverter entries specifically do not make this current-IEC-60617 claim in their own learner-facing text (LED: 'two small arrows pointing away from it'; inverter: 'a functional block, not a single schematic symbol') and are consistent with the governed evidence. flaggedAsUnsupported=true records the broader, still-live nuance: the governed evidence for the whole 15-family requirement (including LED/inverter) is drawn from the 1975 IEEE Std 315/ANSI Y32.2 standard, explicitly NOT verified against the current IEC 60617 database (paywalled, unreached) -- so the file-level and resistor-level 'BS EN 60617 / IEC 60617' framing asserts more current-standard certainty than the governed evidence itself claims, even though the requirement's own governed status is VERIFIED at the 1975-standard evidentiary tier. This is a currency-disclosure gap, not an unresolved breadth gap."
+          }
+        ]
       }
     },
     {
@@ -2279,7 +2285,33 @@
         "obsoleteContentDescription": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop-reclose-survival claim, sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class. [Section F, third narrow correction pass] The general SCR-latches-and-keeps-a-sounder-energised relationship is now independently VERIFIED via PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 (Ray Marston/Nuts & Volts) -- but the runtime's specific \"survives loop reclose\" behaviour is a different, more specific claim tied to the still-retired NC-loop topology, and remains unevidenced. The runtime question should be revised to test the general (now-evidenced) relationship, not the loop-reclose-specific detail.",
         "curriculumDispositionState": "READY",
         "contentAheadOfEvidenceRisk": true,
-        "urgencySafetyImpact": "MEDIUM"
+        "urgencySafetyImpact": "MEDIUM",
+        "governedFacetReferences": [
+          {
+            "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-exact-nc-contact-bias-topology::EXACT_FACT",
+            "status": "RETIRED_OUT_OF_SCOPE",
+            "citedAsSettledInRuntime": true,
+            "flaggedAsUnsupported": true,
+            "runtimeLocator": "cc04-unit202-electrical-science.ts EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (curriculum type REQUIRED_FOR); tested via lesson-electronic-components-switching-control.ts's assessment step (tests: EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001, questionBlueprintId electronics.identify_application)",
+            "runtimeClaim": "\"...the transistor then triggers a thyristor, which latches on and continues to power a sounder even if the loop is reclosed, until the circuit is deliberately reset.\" The exact normally-closed-loop-reclose-survival behaviour is taught and actively assessed as settled fact, tied to the specific NC-loop/bias topology this evidence requirement covers -- which is RETIRED_OUT_OF_SCOPE (no specification exists to evidence it, not merely unresolved)."
+          },
+          {
+            "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT",
+            "status": "VERIFIED",
+            "citedAsSettledInRuntime": true,
+            "flaggedAsUnsupported": false,
+            "runtimeLocator": "cc04-unit202-electrical-science.ts EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (curriculum type REQUIRED_FOR)",
+            "runtimeClaim": "\"...a thyristor, which latches on and continues to power a sounder... until the circuit is deliberately reset.\" The general, non-topology-specific SCR-latches-and-keeps-a-sounder-energised relationship is taught as settled fact. This general relationship is now genuinely VERIFIED (PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001, Ray Marston/Nuts & Volts) -- not flagged unsupported, since the runtime's general claim (independent of the NC-loop-reclose detail flagged above) matches the governed evidence."
+          },
+          {
+            "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
+            "status": "PARTIALLY_VERIFIED",
+            "citedAsSettledInRuntime": true,
+            "flaggedAsUnsupported": true,
+            "runtimeLocator": "cc04-unit202-electrical-science.ts EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (curriculum type REQUIRED_FOR)",
+            "runtimeClaim": "\"A simple electronic security-alarm circuit uses a transistor to detect a break in a normally-closed sensor loop...\" The transistor's role is taught as settled fact specifically within the security-alarm application. Only generic BJT cutoff/saturation switching behaviour is evidenced (OSU-ECE322-BJT); no permitted-class source ties that generic behaviour to a role within any specific alarm circuit, so this facet remains PARTIALLY_VERIFIED and contextual under the governed EDA-LP-25 -- the generic principle itself is separately, correctly taught and assessed under EDA-LP-10."
+          }
+        ]
       }
     },
     {
@@ -2330,7 +2362,33 @@
         "obsoleteContentDescription": "EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 (cc04-unit202-electrical-science.ts) teaches and assesses the capacitor DC-block/AC-pass ringer function and the resistor line-test function as REQUIRED_FOR fact, sourced to Wikipedia. NOTE: the capacitor-function claim is now independently confirmed by this pass's own governed evidence acquisition (SIN 351 + IXYS/Littelfuse AN-144), so it is no longer content-ahead-of-evidence for that specific facet as of this pass's correction -- but the runtime's own citation (Wikipedia) remains an unpermitted-class source, and the resistor line-test claim and the \"extension sockets contain none of these components\" claim both remain genuinely unevidenced and should still be corrected/re-sourced or removed at the runtime-content level.",
         "curriculumDispositionState": "READY",
         "contentAheadOfEvidenceRisk": false,
-        "urgencySafetyImpact": "MEDIUM"
+        "urgencySafetyImpact": "MEDIUM",
+        "governedFacetReferences": [
+          {
+            "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-capacitor-ringer::EXACT_FACT",
+            "status": "VERIFIED",
+            "citedAsSettledInRuntime": true,
+            "flaggedAsUnsupported": false,
+            "runtimeLocator": "cc04-unit202-electrical-science.ts EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 (curriculum type REQUIRED_FOR)",
+            "runtimeClaim": "\"...a capacitor that couples the AC ringing signal to the line while blocking the line's DC...\" Taught as settled fact. This facet is now genuinely VERIFIED (Openreach SIN 351 + IXYS/Littelfuse AN-144) -- not flagged unsupported, though the runtime's own citation (Wikipedia) remains outside any permitted authority class and should still be re-sourced to a permitted-class citation at the runtime-content level."
+          },
+          {
+            "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-resistor-line-testing::EXACT_FACT",
+            "status": "PARTIALLY_VERIFIED",
+            "citedAsSettledInRuntime": true,
+            "flaggedAsUnsupported": true,
+            "runtimeLocator": "cc04-unit202-electrical-science.ts EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 (curriculum type REQUIRED_FOR)",
+            "runtimeClaim": "\"...a resistor that provides a defined test load for line testing when no telephone is connected...\" The resistor's causal line-testing function is taught and assessed as settled fact. No authoritative source confirms this specific causal attribution (Openreach's own SIN 351 documents the resistor's presence/connection and, separately, that Openreach performs automatic line testing, but does not itself state that this resistor is what enables that testing) -- the governed EDA-LP-28 explicitly excludes this function from required/taught content for exactly this reason."
+          },
+          {
+            "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::telephone-surge-protector::EXACT_FACT",
+            "status": "VERIFIED",
+            "citedAsSettledInRuntime": true,
+            "flaggedAsUnsupported": false,
+            "runtimeLocator": "cc04-unit202-electrical-science.ts EL-APPLICATION-TELEPHONE-MASTER-SOCKET-001 (curriculum type REQUIRED_FOR)",
+            "runtimeClaim": "\"...older master sockets also included a surge protector to suppress transient overvoltages on the line.\" Taught as settled fact; this facet is genuinely VERIFIED (the analogue line's exposure to noise/induced voltages/surges, and the presence of an over-voltage protection device guarding against it, are both Openreach-documented) -- not flagged unsupported."
+          }
+        ]
       }
     },
     {
@@ -2356,8 +2414,8 @@
     "depthCorrectionNeeded": "29 learning points have some runtime content but at the wrong depth -- both under-depth (missing a required nuance, e.g. EDA-LP-09's PTC Curie-point qualification, EQCT-LP-16's capacitor-discharge caveat) and over-depth/scope-creep (MM-LP-14 teaches the excluded KE=1/2 m v^2 calculation; EQCT-LP-13 teaches the excluded Z=sqrt(R^2+X^2) phasor calculation; EMI-LP-14 corpus separately teaches Faraday's law quantitatively beyond this batch's scope).",
     "newAssessmentItemsNeeded": "4 learning points (MM-LP-02, MM-LP-03, EQCT-LP-17, EMI-LP-21) are taught correctly, at the correct depth, but have NOT_ASSESSED assessmentCoverageStatus -- i.e. teaching content is otherwise complete and reaches no assessment at all. (This is narrower than the raw NOT_ASSESSED axis total of 74, most of which is explained by content that is also NOT_TAUGHT or under-depth and therefore counted under newLessonContentNeeded/depthCorrectionNeeded instead.)",
     "obsoleteContentToRemoveOrCorrect": "2 learning points (both in Batch 06: EDA-LP-25, EDA-LP-28) have runtime content that is LIVE, ACTIVELY ASSESSED, and directly contradicts the governed evidence review's explicit retirement/exclusion of the same claim -- see safetyFindings. This is the single most safety-relevant finding of this mapping and should be prioritised over any other production-delta item.",
-    "visualsAssessment": "Visual coverage is generally strong where lesson content already exists (series/parallel topology, instrument connections, lever/gear/pulley diagrams, motional-EMF geometry all pass semantic-audit contracts) and is not the primary bottleneck. Known exceptions: EDA-LP-16's deterministic component-symbols renderer draws LED/inverter/LDR symbols with more confidence than the governed evidence currently supports (visualCoverageStatus=PRESENT_UNVERIFIED, and -- corrected this pass -- flagged contentAheadOfEvidenceRisk=true, not false); EDA-LP-17's 11 physical-appearance photo assets are produced but not wired into the shipped app (PRODUCED_NOT_WIRED); EMI-LP-02's straight-conductor field-pattern hybrid image has no semantic-audit contract entry (visualCoverageStatus=PRESENT_UNVERIFIED, corrected this pass from the prior NOT_APPLICABLE, though its underlying governed evidence is unaffected -- READY); EMI-LP-06 (solenoid) has no visual asset of any kind (MISSING).",
-    "contentAheadOfEvidence": "EDA-LP-16 (component symbols) and EDA-LP-25 (SCR/sounder alarm application) -- see contentAheadOfEvidenceRows for detail on each. [Section E, third narrow correction pass] EMI-LP-16 (Fleming's right-hand rule) is RESOLVED and no longer content-ahead-of-evidence: the exact finger mapping the runtime already taught is now independently VERIFIED by a directly-read passage from the published Hughes textbook (10th ed., 2008, Chapter 6 section 6.9(a), p.141), so the runtime's confidence no longer exceeds the governed evidence's own standard for this LP.",
+    "visualsAssessment": "Visual coverage is generally strong where lesson content already exists (series/parallel topology, instrument connections, lever/gear/pulley diagrams, motional-EMF geometry all pass semantic-audit contracts) and is not the primary bottleneck. Known exceptions: EDA-LP-16's deterministic component-symbols renderer omits an LDR symbol and a relay symbol entirely (2 of the 15 governed families have no rendered visual asset at all -- a coverage gap, distinct from a confidence-mismatch); the LED and inverter renderings, previously flagged as asserting more certainty than the governed evidence supported, are now correctly evidenced ([Section 4/H, this pass] EDA-LP-16 moved to READY/VERIFIED -- see contentAheadOfEvidence below), though visualCoverageStatus is conservatively left at PRESENT_UNVERIFIED pending a semantic-audit-contract check this pass did not run; EDA-LP-17's 11 physical-appearance photo assets are produced but not wired into the shipped app (PRODUCED_NOT_WIRED); EMI-LP-02's straight-conductor field-pattern hybrid image has no semantic-audit contract entry (visualCoverageStatus=PRESENT_UNVERIFIED, corrected this pass from the prior NOT_APPLICABLE, though its underlying governed evidence is unaffected -- READY); EMI-LP-06 (solenoid) has no visual asset of any kind (MISSING).",
+    "contentAheadOfEvidence": "EDA-LP-25 (SCR/sounder alarm application) remains content-ahead-of-evidence -- see contentAheadOfEvidenceRows for detail. [Section 4/H, this pass, per an explicit Product Architect decision] EDA-LP-16 (component symbols) is RESOLVED and no longer content-ahead-of-evidence: the LED and inverter breadth gaps that previously justified this flag are now closed by a genuine, directly-read re-examination of the same already-registered 1975 IEEE Std 315/ANSI Y32.2 standard, so the runtime's LED symbol (a diode with two outgoing light arrows) and its inverter functional-block representation (explicitly captioned as a functional block, never as a standard component symbol) no longer assert more certainty than the governed evidence supports. The residual currency caveat -- this evidence traces to the 1975 standard, not a confirmed read of the current IEC 60617 database, which remains paywalled -- is disclosed at the facet level (see this row's axes.governedFacetReferences) rather than driving the row-level flag, per the contentAheadOfEvidenceRisk axis's own definition (tied to HELD_PENDING_EVIDENCE_CORRECTION, not to a residual currency caveat on an otherwise-VERIFIED facet). [Section E, third narrow correction pass] EMI-LP-16 (Fleming's right-hand rule) is RESOLVED and no longer content-ahead-of-evidence: the exact finger mapping the runtime already taught is now independently VERIFIED by a directly-read passage from the published Hughes textbook (10th ed., 2008, Chapter 6 section 6.9(a), p.141), so the runtime's confidence no longer exceeds the governed evidence's own standard for this LP.",
     "overallFraming": "This mapping confirms the user's own framing exactly: the governed 133-point curriculum-definition input finishing (this pass's work) is a distinct and substantially smaller achievement than the learner-facing Unit 202 course/app being finished. The old runtime corpus (24 lessons historically reported) was authored before, and independently of, this governed evidence-acquisition pipeline, and only partially and unevenly overlaps with it."
   }
 }
