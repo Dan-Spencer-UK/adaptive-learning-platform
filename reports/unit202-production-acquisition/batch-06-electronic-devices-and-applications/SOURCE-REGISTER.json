@@ -1,8 +1,8 @@
 {
   "batchId": "batch-06",
-  "sourceCount": 54,
+  "sourceCount": 56,
   "reusedSourceCount": 0,
-  "newSourceCount": 54,
+  "newSourceCount": 56,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -1062,6 +1062,44 @@
       "supportsRequirementSuffixes": [
         "telephone-capacitor-ringer::EXACT_FACT"
       ]
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by a read-proxy fetch was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-NUTSVOLTS-MARSTON-SCR-PRINCIPLES",
+      "publisher": "Nuts & Volts Magazine (T & L Publications)",
+      "title": "\"SCR Principles and Circuits\" by Ray Marston, Nuts & Volts Magazine, January 2002",
+      "url": "https://www.nutsvolts.com/magazine/article/scr_principles_and_circuits",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "NOT this project's default treatment of hobbyist/enthusiast electronics-magazine sources, which are normally excluded via prose disclosure only and never given a formal register entry. This is a narrow, disclosed, genuinely PA-governed exception: see UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json decision PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001, authorizing Ray Marston's authored (bylined, confirmed via his own contributor page https://www.nutsvolts.com/magazine/contributor/ray_marston) Nuts & Volts technical articles as AUTHORITATIVE_TECHNICAL_REFERENCE for the sole, narrow purpose of evidencing EDA-LP-25's representative SCR-and-bell/buzzer alarm application relationship. Authorship independently confirmed: this exact article title and date appear on Marston's own contributor page.",
+      "locator": "\"Figure 5\" (basic self-interrupting-load alarm circuit) and \"Figure 7\" (self-latching panic-alarm circuit with reset switch S4)",
+      "supportsRequirementSuffixes": [
+        "security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Rendered passage only, already partially inspected in the prior (second) correction pass; not re-hashed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously.",
+      "sourceId": "SRC-NUTSVOLTS-MARSTON-SECURITY-PART4",
+      "publisher": "Nuts & Volts Magazine (T & L Publications)",
+      "title": "\"Security Electronics Systems and Circuits -- Part 4\" by Ray Marston, Nuts & Volts Magazine, 1998",
+      "url": "https://www.nutsvolts.com/magazine/article/security_electronics_systems_and_circuits_part_4",
+      "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+      "authorityRationale": "Same PA-governed exception as SRC-NUTSVOLTS-MARSTON-SCR-PRINCIPLES -- see UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json decision PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001. Authorship independently confirmed via Marston's own contributor page, which lists \"Security Electronics Systems And Circuits -- Part 1\" through \"Part 10\" (Feb-Nov 1998).",
+      "locator": "Passage describing the SCR latching to hold an alarm bell energised via a bias resistor (R4) shunting the bell, with manual reset switch S1",
+      "supportsRequirementSuffixes": [
+        "security-alarm-scr-thyristor-latching-sounder-role::EXACT_FACT"
+      ],
+      "citedAsVerifyingEvidence": true
     }
   ]
 }

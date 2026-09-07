@@ -155,11 +155,14 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::temperature-correct-si-unit-and-unit-symbol::EXACT_FACT"
       ],
       "normalizedClaimRefs": [
-        "SRC-NIST-LENGTH: metre/m",
-        "SRC-NIST-SP811-B9: square metre/m^2, cubic metre/m^3, metre per second/m/s, kilogram per cubic metre/kg/m^3",
-        "SRC-NIST-MASS: kilogram/kg",
-        "SRC-NIST-TIME: second/s",
-        "SRC-NIST-TEMPERATURE: kelvin/K, Celsius offset"
+        "SRC-NIST-LENGTH: The SI unit of length is the metre, unit symbol m.",
+        "SRC-NIST-SP811-B9: The SI unit of area is the square metre, unit symbol m^2 (the square of the metre, the SI unit of length).",
+        "SRC-NIST-SP811-B9: The SI unit of volume is the cubic metre, unit symbol m^3 (the cube of the metre).",
+        "SRC-NIST-MASS: The SI unit of mass is the kilogram, unit symbol kg.",
+        "SRC-NIST-SP811-B9: The SI unit of (mass) density is the kilogram per cubic metre, unit symbol kg/m^3 -- a valid mass-per-volume compound unit, not a bare mass…",
+        "SRC-NIST-TIME: The SI unit of time is the second, unit symbol s.",
+        "SRC-NIST-SP811-B9: The SI unit of velocity is the metre per second, unit symbol m/s (a compound length-per-time unit).",
+        "SRC-NIST-TEMPERATURE: The SI unit of thermodynamic temperature is the kelvin, unit symbol K. The degree Celsius (deg C) is a related, permitted scale whose zero …"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "These eight EXACT_FACT, single-dimension (DEFINITION-only) requirements are combined into one learning point because they are taught and assessed as one homogeneous recall skill in practice -- correctly stating 'the SI unit and symbol' for a named physical quantity from a shared reference table -- rather than as eight conceptually distinct masteries the way, for example, resistance-vs-resistivity is. Preserving the exponents (m^2, m^3) and the correct compound form for density (kg/m^3, not kg or m^3 alone) is retained explicitly as knowledge content, per this batch's depth guardrail. The K-vs-degC distinction is included because the guardrail explicitly requires establishing what is actually needed at this depth, not treating them as interchangeable symbols.",
@@ -218,8 +221,7 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::practical-unit-conversion-needed-elsewhere-in-unit-202::PROCEDURE_COVERAGE"
       ],
       "normalizedClaimRefs": [
-        "FM-LP-19 (structured satisfaction, SRC-NIST-SI-CH7): SI-prefix power-of-ten scaling mechanism",
-        "SRC-LIBRETEXTS-SQCUBIC: squaring/cubing the conversion factor, worked example"
+        "SRC-LIBRETEXTS-SQCUBIC: When the quantity being converted is itself squared or cubed (area, m^2; volume, m^3), a plain linear conversion factor must NOT be applied…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Kept separate from EQCT-LP-01 (which only tests recognising a unit's correct name/symbol) because converting between units -- including correctly handling squared/cubed cases -- is a distinct, separately-diagnosable procedural skill, matching this batch's explicit instruction to distinguish 'basic SI unit recognition vs practical conversion'. Reuses Batch 01's FM-LP-19 (engineering notation/SI prefixes) for the prefix-scaling mechanism and FM-LP-14 (laws of indices) for the squared/cubed-factor reasoning, rather than re-deriving either.",
@@ -260,9 +262,10 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::current-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-DC1: current definition and symbol I",
-        "SRC-EOLSS-ELECQUANT: symbol I/i confirming",
-        "SRC-BIPM-BROCHURE: ampere, unit symbol A"
+        "SRC-ETW-DC1: Electric current is the movement/flow of electric charge (carried by electrons in a conductor) past a point.",
+        "SRC-EOLSS-ELECQUANT: Electric current is the movement of elementary electric charges carried by electrons; a constant flow of approximately 1.602176487×10^19 el…",
+        "SRC-EOLSS-ELECQUANT: The quantity symbol for electric current is I (lower-case i for an instantaneous/time-varying value).",
+        "SRC-BIPM-BROCHURE: The unit symbol for the ampere (current's SI unit) is A -- distinct from the quantity symbol I used for the quantity itself."
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "The definition, quantity symbol and unit symbol are combined into one learning point because they form a single inseparable teachable identity fact at this level -- a learner is not meaningfully diagnosed as knowing current's meaning independently of knowing it is called I and measured in amperes. This is purely vocabulary/identity mastery, distinct from EFS-LP-02 (Batch 02, accepted), which teaches the RELATIONSHIP I=Q/t as its own calculation outcome -- that relationship is not re-taught here.",
@@ -304,10 +307,10 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltage-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-HP-ELEVOL: voltage as potential energy per charge",
-        "SRC-EOLSS-ELECQUANT: voltage definition, symbol V or U",
-        "SRC-ETW-DC1: symbol V or E",
-        "SRC-BIPM-BROCHURE: volt, unit symbol V"
+        "SRC-EOLSS-ELECQUANT: Voltage (potential difference) is the electric potential energy per unit charge between two points -- the ability to move charge and do wor…",
+        "SRC-EOLSS-ELECQUANT: Voltage's quantity symbol is given as V, or sometimes U (lower-case v or u where the voltage is a time-varying quantity).",
+        "SRC-EOLSS-ELECQUANT: The quantity symbol for voltage is V (or sometimes U); a lower-case v or u is used for a time-varying instantaneous value.",
+        "SRC-BIPM-BROCHURE: The unit symbol for the volt (voltage's SI unit) is V -- note this is the same letter V commonly also used as voltage's quantity symbol, so…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Combined for the same reason as EQCT-LP-03 (current): definition, quantity symbol and unit symbol are one inseparable identity fact at this level. The genuine U-vs-V (and E) variation across authoritative sources is disclosed honestly rather than hidden, per this batch's explicit guardrail, while still committing to one working convention (V) consistent with this qualification's own existing formulae.",
@@ -354,11 +357,12 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-meaning-quantity-symbol-unit-name-symbol-distinction-from-energy-and-from-power-factor::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-DC3: P=V.I, watt W",
-        "SRC-EOLSS-ELECQUANT: P symbol, P=V.I=I^2R=V^2/R",
-        "SRC-ETW-ENERGY: power as rate vs energy as cumulative",
-        "SRC-ETW-POWERTRIANGLE: power vs power factor",
-        "SRC-BIPM-BROCHURE: watt unit symbol W"
+        "SRC-EOLSS-ELECQUANT: Electrical power is the rate at which electrical energy is transferred / work is done, and is measured in watts (W). For a circuit with a S…",
+        "SRC-ETW-ENERGY: Power is a rate (instantaneous/time-independent quantity, watts); energy is the cumulative amount transferred over a time interval (Energy …",
+        "SRC-ETW-POWERTRIANGLE: Power factor is a separate quantity from power: it is the ratio of real power (P) to apparent power (S), expressed as a decimal or percenta…",
+        "SRC-LIBRETEXTS-PFUNITLESS: Power factor is explicitly stated to be a unitless quantity, unlike power which carries the unit watt -- directly evidencing (not merely in…",
+        "SRC-EOLSS-ELECQUANT: The quantity symbol for (electrical) power is P.",
+        "SRC-BIPM-BROCHURE: The unit symbol for the watt (power's SI unit) is W -- distinct from the quantity symbol P for power itself, and distinct from any quantity…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Definition, both distinctions, and both symbol facets are combined into one learning point because the frozen requirement itself frames power's meaning and its two distinctions as one coherent teachable concept, and separating 'what power is' from 'how it differs from energy/power factor' would fragment a single comparison the way Batch 03's MM-LP-01 combined mass/weight/distinction. This learning point is deliberately sequenced (via its own prerequisites) AFTER energy (EQCT-LP-06) and power factor (EQCT-LP-07), since its own distinction outcome requires the learner to already know both of those concepts -- an example of tracking instructional sequence separately from stable numeric identity.",
@@ -406,8 +410,10 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meaning-quantity-symbol-unit-name-symbol-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-ENERGY: energy definition, joule, kWh=3.6MJ, distinction from power",
-        "SRC-EOLSS-ELECQUANT: energy symbol E, p(t)=dE/dt"
+        "SRC-EOLSS-ELECQUANT: Electrical energy is the (accumulated/transferred) capacity of electricity to do work; its SI unit is the joule (J), though kWh is the prac…",
+        "SRC-ETW-ENERGY: Energy is accumulated over time (Energy = Power x Time); power is the instantaneous rate. The kilowatt-hour (kWh) is consequently a unit of…",
+        "SRC-EOLSS-ELECQUANT: Electrical energy is denoted by the quantity symbol E, as used in the relationship p(t) = dE/dt expressing power as the rate of change of e…",
+        "SRC-BIPM-BROCHURE: The unit symbol for the joule (energy's SI unit) is J. The kilowatt-hour (kWh), a practically-used non-SI multiple of energy, is not itself…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Definition, distinction, and both symbol facets combined into one learning point for the same reason as power (a single coherent comparison). Deliberately taught with no formal prerequisite on the power learning point (EQCT-LP-05), so the two can be sequenced either way without circularity; EQCT-LP-05 in turn depends on this one, since 'distinguishing power from energy' is a strictly harder synthesis than defining energy alone.",
@@ -452,7 +458,10 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-POWERTRIANGLE: cos(phi)=P/S=power factor, dimensionless, distinct from power"
+        "SRC-ETW-POWERTRIANGLE: Power factor is the ratio of real (true) power to apparent power in an AC circuit; for a sinusoidal supply with a purely displacement (phas…",
+        "SRC-LIBRETEXTS-PFUNITLESS: Power factor is not power: power (P) is a real quantity measured in watts, whereas power factor is the ratio of real power to apparent powe…",
+        "SRC-IEC-IEV-131-11-46: IEC 60050's own assigned quantity symbol for power factor is λ (lambda) -- not \"cos φ\" or \"p.f.\", which are common informal engineering sho…",
+        "SRC-IEC-IEV-112-03-04: IEC 60050 explicitly and by name classifies power factor as \"a quantity of dimension one\" (IEC's formal term for dimensionless) -- power fa…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Definition, distinction, and both symbol facets combined into one learning point (the same single-comparison rationale as power and energy above). Scoped explicitly and narrowly to the sinusoidal displacement-power-factor case (cos phi) that the evidence source actually demonstrates -- distortion/harmonic power-factor components are not addressed by the evidence and are excluded as mastery content, per the guardrail against over-generalising cos phi to all waveforms.",
@@ -498,8 +507,9 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::frequency-meaning-quantity-symbol-unit-name-symbol::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-ACWAVEFORM: frequency, symbol f, Hz",
-        "SRC-BIPM-BROCHURE: hertz, unit symbol Hz"
+        "SRC-ETW-ACWAVEFORM: Frequency is the number of complete cycles of a periodic (e.g. AC) waveform occurring per second.",
+        "SRC-IEC-IEV-103-06-02: The quantity symbol for frequency is f (per IEC 60050, the customary symbol ν is reserved for optics).",
+        "SRC-BIPM-BROCHURE: The unit symbol for the hertz (frequency's SI unit) is Hz."
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Definition and both symbol facets combined as one inseparable identity fact, consistent with the other single-quantity identity learning points in this batch (current, voltage). Positioned early in the AC-quantities instructional sequence since capacitive/inductive reactance both depend conceptually on frequency.",
@@ -543,8 +553,11 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-CAP1: capacitance definition, symbol C, farad F",
-        "SRC-BIPM-BROCHURE: farad, unit symbol F"
+        "SRC-ETW-CAP1: Capacitance is a capacitor's ability to store electrical charge, unit farad (F). The bound passage does not use the word \"fixed\"; no claim …",
+        "SRC-ETW-FILTER1: Capacitive reactance is the frequency-dependent opposition a capacitor presents to alternating current (ohms), given by Xc=1/(2*pi*f*C).",
+        "SRC-IEC-IEV-131-12-13: The quantity symbol for capacitance is C.",
+        "SRC-BIPM-BROCHURE: Capacitance's SI unit symbol is F (farad).",
+        "SRC-IEC-IEV-131-12-43: IEC 60050 states impedance Z = R + jX (R = resistance, X = reactance) and that impedance's coherent SI unit is the ohm; since R and X share…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Deliberately split from capacitive reactance (EQCT-LP-10) even though the frozen evidence requirement bundles both quantities together in its text, because capacitance and capacitive reactance are independently-diagnosable concepts -- a learner can know what capacitance is (a fixed material/component property, farads) without yet knowing what capacitive reactance is (a frequency-dependent AC opposition, ohms), and vice versa; collapsing them into one point would hide that distinction as a single vocabulary item rather than teaching it as a genuine comparison. The QUANTITY_SYMBOL and UNIT_SYMBOL evidence requirements are shared with EQCT-LP-10 because the single frozen evidence requirement's own passage genuinely establishes both quantities' symbols together (see SOURCE-REGISTER.json); this is disclosed here and at EQCT-LP-10.",
@@ -571,7 +584,7 @@
       ],
       "contextualEvidenceRequirementIds": [],
       "assessmentEligibility": "ASSESSABLE_WHEN_READY",
-      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] QUANTITY_SYMBOL is now re-sourced to a permitted-class authority (IEC Electropedia IEV 131-12-13, PRIMARY_NORMATIVE_OR_STANDARDS_BODY), independently confirming the symbol C already reported by the prior (unpermitted-class) source. All required dimensions are VERIFIED."
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] QUANTITY_SYMBOL is now re-sourced to a permitted-class authority (IEC Electropedia IEV 131-12-13, PRIMARY_NORMATIVE_OR_STANDARDS_BODY), independently confirming the symbol C already reported by the prior (unpermitted-class) source. All required dimensions are VERIFIED. [Section A, third narrow correction pass, identical defect pattern to EQCT-LP-11/12 inductance] DEFINITION's normalizedClaim previously asserted capacitance is a \"fixed\" ability, a word never used in the actual retrievedPassage (SRC-ETW-CAP1 only says \"the measure of a capacitor's ability to store an electrical charge\"). Corrected to remove the unsupported word; no evidence-status change."
     },
     {
       "id": "EQCT-LP-10",
@@ -591,7 +604,10 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-FILTER1: Xc=1/(2 pi f C), ohms, inverse frequency dependence, distinct from fixed capacitance"
+        "SRC-ETW-CAP1: Capacitance's own definition carries no frequency term -- it is treated at this level as a basic property of the component (SRC-ETW-CAP1: c…",
+        "SRC-ETW-FILTER1: Capacitive reactance is explicitly contrasted with a fixed-value quantity (resistance) and explicitly varies inversely with applied frequen…",
+        "SRC-BIPM-BROCHURE: Capacitance's SI unit symbol is F (farad).",
+        "SRC-IEC-IEV-131-12-43: IEC 60050 states impedance Z = R + jX (R = resistance, X = reactance) and that impedance's coherent SI unit is the ohm; since R and X share…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Split from capacitance (EQCT-LP-09) per the guardrail explicitly asking whether capacitance vs capacitive reactance need distinct mastery points -- they do, since a learner can apply Xc's frequency-dependent behaviour conceptually without yet fully grasping capacitance itself, and vice versa. Depends on both EQCT-LP-09 (capacitance, since Xc is defined in terms of C) and EQCT-LP-08 (frequency, since Xc's defining behaviour is its frequency dependence). Deliberately excludes teaching the full Xc formula as a REQUIRED calculation outcome beyond conceptual frequency/capacitance dependence, per this batch's explicit depth guardrail.",
@@ -616,7 +632,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "contextualEvidenceRequirementIds": [],
-      "assessmentEligibility": "ASSESSABLE_WHEN_READY"
+      "assessmentEligibility": "ASSESSABLE_WHEN_READY",
+      "evidenceReadinessNote": "[Section A, third narrow correction pass] DISTINCTION's retrievedPassage previously carried a fabricated parenthetical annotation (\"capacitance itself (farads) is a fixed physical property of the capacitor (per SRC-ETW-CAP1)\") that was not actual page text from the cited filter_1.html page -- an editorial cross-reference wrongly embedded inside a quoted-passage field. Removed. SRC-ETW-CAP1 is now genuinely registered as its own candidate source and the DISTINCTION claim is rebuilt as two atomic, independently-sourced claims (capacitance's own no-frequency-term definition; capacitive reactance's explicit frequency-dependence, contrasted with resistance's fixed value) -- the same pattern used for the sibling inductance/inductive-reactance DISTINCTION row (EQCT-LP-12). All required dimensions remain VERIFIED."
     },
     {
       "id": "EQCT-LP-11",
@@ -634,8 +651,12 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-INDUCTOR: inductance definition, symbol L, henry H",
-        "SRC-BIPM-BROCHURE: henry, unit symbol H"
+        "SRC-ETW-INDUCTOR: Inductance is an inductor's ability to oppose (resist) changes in current, symbol L, unit henry (H). The bound passage does not use the wor…",
+        "SRC-ETW-ACINDUCTORS: Inductive reactance is the frequency-dependent opposition an inductor presents to alternating current (ohms), given by XL=2*pi*f*L.",
+        "SRC-IEC-IEV-131-12-19: Inductance's IEC-attested quantity symbol is L.",
+        "SRC-IEC-IEV-131-12-46: Reactance's IEC-attested quantity symbol is X; IEC defines \"inductive reactance\" specifically as a reactance having a positive value, so in…",
+        "SRC-BIPM-BROCHURE: Inductance's SI unit symbol is H (henry).",
+        "SRC-IEC-IEV-131-12-43: IEC 60050 states impedance Z = R + jX (R = resistance, X = reactance) and that impedance's coherent SI unit is the ohm; since R and X are a…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Split from inductive reactance (EQCT-LP-12) for the same reason capacitance is split from capacitive reactance -- independently-diagnosable concepts. Shared QUANTITY_SYMBOL/UNIT_SYMBOL evidence with EQCT-LP-12, disclosed, since the single frozen evidence requirement's passage establishes both quantities' symbols together.",
@@ -661,7 +682,7 @@
       ],
       "contextualEvidenceRequirementIds": [],
       "assessmentEligibility": "ASSESSABLE_WHEN_READY",
-      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] QUANTITY_SYMBOL is now re-sourced to permitted-class authorities (IEC Electropedia IEV 131-12-19 \"inductance\" and IEV 131-12-46 \"reactance\"/IEV 131-12-47 \"inductive reactance\", all PRIMARY_NORMATIVE_OR_STANDARDS_BODY). IEC formally attests inductance's symbol L and reactance's general symbol X; the customary engineering subscript \"X_L\" beyond bare X is a disclosed, undisputed convention, not independently IEC-lettered -- see the evidence row's disclosure. The core distinguishing fact (two distinct symbols for two distinct quantities) is fully IEC-attested. All required dimensions are VERIFIED."
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] QUANTITY_SYMBOL is now re-sourced to permitted-class authorities (IEC Electropedia IEV 131-12-19 \"inductance\" and IEV 131-12-46 \"reactance\"/IEV 131-12-47 \"inductive reactance\", all PRIMARY_NORMATIVE_OR_STANDARDS_BODY). IEC formally attests inductance's symbol L and reactance's general symbol X; the customary engineering subscript \"X_L\" beyond bare X is a disclosed, undisputed convention, not independently IEC-lettered -- see the evidence row's disclosure. The core distinguishing fact (two distinct symbols for two distinct quantities) is fully IEC-attested. All required dimensions are VERIFIED. [Section A, third narrow correction pass] This LP shares its UNIT_SYMBOL requirement with EQCT-LP-12; that row's bundled-claim defect (an unsupported 'ohms' clause riding on a henry-only citation) and its correction (split into a henry claim and a separately-sourced ohm claim, IEC IEV 131-12-43) are recorded on EQCT-LP-12 and apply identically here -- see its evidenceReadinessNote for the full account."
     },
     {
       "id": "EQCT-LP-12",
@@ -682,7 +703,12 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-ETW-ACINDUCTORS: XL=2 pi f L, ohms, inductance constant vs reactance frequency-dependent"
+        "SRC-ETW-INDUCTOR: Inductance (L) is defined purely as a coil property (its ability to oppose changes in current); no frequency or AC term appears anywhere in…",
+        "SRC-LIBRETEXTS-REACTANCE: Inductive reactance is explicitly and directly proportional to frequency (X_L = 2*pi*f*L) -- a distinct, frequency-dependent quantity from …",
+        "SRC-IEC-IEV-131-12-19: Inductance's IEC-attested quantity symbol is L.",
+        "SRC-IEC-IEV-131-12-46: Reactance's IEC-attested quantity symbol is X; IEC defines \"inductive reactance\" specifically as a reactance having a positive value, so in…",
+        "SRC-BIPM-BROCHURE: Inductance's SI unit symbol is H (henry).",
+        "SRC-IEC-IEV-131-12-43: IEC 60050 states impedance Z = R + jX (R = resistance, X = reactance) and that impedance's coherent SI unit is the ohm; since R and X are a…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Split from inductance (EQCT-LP-11) for the same reason capacitive reactance is split from capacitance. Depends on EQCT-LP-11 (inductance) and EQCT-LP-08 (frequency). Deliberately excludes the full XL formula as a required calculation outcome beyond conceptual frequency/inductance dependence, per this batch's depth guardrail.",
@@ -695,7 +721,8 @@
         "Explain why an inductor presents more opposition to a higher-frequency AC signal (the opposite behaviour to a capacitor).",
         "State the unit in which inductive reactance is measured."
       ],
-      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] DISTINCTION is now VERIFIED via a disclosed valid multi-source composition of two separately-read IEC Electropedia entries (inductance IEV 131-12-19, containing no frequency term; reactance IEV 131-12-46, whose own formula X = ωL − 1/(ωC) contains an explicit angular-frequency multiplier on L) -- the frequency-independence-vs-dependence contrast follows deductively from IEC's own definitions read together, not from an unevidenced inference. QUANTITY_SYMBOL is re-sourced the same way as the sibling EQCT-LP-11 row (shared evidence requirement) -- see its disclosure re the X vs X_L convention. All required dimensions are VERIFIED. [Stage C wording-precision correction, narrow correction pass] Corrected 'a fixed coil property' to the same precise, ideal/basic-component-model qualification already used for the sibling EQCT-LP-11 (inductance itself), removing any implication that inductance is universally fixed for a real component under all conditions -- the genuinely evidenced claim is only that inductance's own IEC definition carries no frequency term, not that real inductance is frequency-independent under all real-world conditions (core saturation etc., explicitly out of scope).",
+      "evidenceReadinessNote": "[Resolved, Stage 2 re-sourcing] DISTINCTION is now VERIFIED via a disclosed valid multi-source composition of two separately-read IEC Electropedia entries (inductance IEV 131-12-19, containing no frequency term; reactance IEV 131-12-46, whose own formula X = ωL − 1/(ωC) contains an explicit angular-frequency multiplier on L) -- the frequency-independence-vs-dependence contrast follows deductively from IEC's own definitions read together, not from an unevidenced inference. QUANTITY_SYMBOL is re-sourced the same way as the sibling EQCT-LP-11 row (shared evidence requirement) -- see its disclosure re the X vs X_L convention. All required dimensions are VERIFIED. [Stage C wording-precision correction, narrow correction pass] Corrected 'a fixed coil property' to the same precise, ideal/basic-component-model qualification already used for the sibling EQCT-LP-11 (inductance itself), removing any implication that inductance is universally fixed for a real component under all conditions -- the genuinely evidenced claim is only that inductance's own IEC definition carries no frequency term, not that real inductance is frequency-independent under all real-world conditions (core saturation etc., explicitly out of scope). [Section A, third narrow correction pass] UNIT_SYMBOL's normalizedClaim was found bundling a supported henry claim (BIPM) with an unsupported 'inductive reactance is measured in ohms' clause riding on that same BIPM citation, which never mentions ohms. Corrected by splitting into two atomic single-clause claims: the henry claim (unchanged, BIPM) and a separate ohm claim now genuinely sourced to IEC 60050 IEV 131-12-43 'impedance', which directly states Z = R + jX and that impedance's coherent SI unit is the ohm -- since reactance X is one of the two components of Z, this is a real textual entailment for reactance's unit, not an inference from the absence of a unit statement in the reactance entry itself. The identical bundling defect was found and fixed the same way on the sibling capacitive-reactance and impedance UNIT_SYMBOL rows in this batch's evidence records.",
+      "correctionNote": "[Section A, third narrow correction pass] The evidence-level bundling defect underlying this LP's UNIT_SYMBOL claim (an unsupported 'ohms' clause riding on a henry-only BIPM citation) has now been corrected at the EVIDENCE-RESULTS.json source, not merely in this LP's prose -- see evidenceReadinessNote. normalizedClaimRefs mechanically rebuilt to reflect the corrected, split claims.",
       "underlyingEvidenceStatuses": {
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION": "VERIFIED",
         "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL": "VERIFIED",
@@ -732,8 +759,13 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::impedance-meaning-quantity-symbol-unit-name-symbol-distinction-from-resistance-and-reactance::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ],
       "normalizedClaimRefs": [
-        "SRC-EOLSS-ELECQUANT: Z, complex impedance R+jX, vector diagram",
-        "SRC-BIPM-BROCHURE: ohm (Ω) as impedance's unit symbol, same as resistance"
+        "SRC-ETW-IMPEDANCE: Impedance is the total opposition to the flow of alternating electrical current in an AC circuit and is expressed in ohms.",
+        "SRC-EOLSS-ELECQUANT: Impedance is a function of frequency -- unlike plain resistance -- and combines the circuit's resistance and reactance.",
+        "SRC-EOLSS-ELECQUANT: Impedance is the complex quantity used to express the relationship between AC voltage and current; it is measured in ohms, the same unit as…",
+        "SRC-ETW-IMPEDANCE: Impedance is NOT the simple arithmetic sum of resistance and reactance (R+X does not equal Z); resistance and reactance combine as a vector…",
+        "SRC-EOLSS-ELECQUANT: Impedance is a complex quantity whose real part is resistance (R) and whose imaginary part is reactance (X): Z = R + jX, with magnitude |Z|…",
+        "SRC-EOLSS-ELECQUANT: Impedance's quantity symbol is Z.",
+        "SRC-IEC-IEV-131-12-43: IEC 60050 directly and explicitly states impedance's coherent SI unit is the ohm (Ω)."
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Sequenced (via its own prerequisites) after capacitive reactance (EQCT-LP-10) and inductive reactance (EQCT-LP-12), since impedance's own distinction outcome explicitly presupposes both reactance concepts; also carries a genuine cross-domain prerequisite on the accepted Batch 02 EFS-LP-05 (Resistance), since the distinction explicitly requires already knowing what resistance is. Definition, distinction and both symbol facets are combined into one learning point as a single coherent comparison, consistent with this batch's other combined-comparison points. Deliberately excludes teaching R+jX complex-number arithmetic or phasor calculation as a mastery/calculation outcome, since no frozen requirement demands it beyond DEFINITION/DISTINCTION/QUANTITY_SYMBOL/UNIT_SYMBOL.",
@@ -761,7 +793,7 @@
       ],
       "contextualEvidenceRequirementIds": [],
       "assessmentEligibility": "ASSESSABLE_WHEN_READY",
-      "evidenceReadinessNote": "[Stage A re-adjudication, narrow correction pass] SRC-ETW-IMPEDANCE's embedded authorityClass was corrected from AUTHORITATIVE_TECHNICAL_REFERENCE to the canonical AUTHORITATIVE_EDUCATIONAL_REFERENCE (SOURCE-REGISTER-authoritative), which is not permitted for this LP's SYMBOL_OR_CONVENTION dimensions. Re-adjudicated: DEFINITION/DISTINCTION remain VERIFIED (CONCEPT_DEFINITION mode permits AUTHORITATIVE_EDUCATIONAL_REFERENCE); QUANTITY_SYMBOL and UNIT_SYMBOL remain independently VERIFIED via SRC-EOLSS-ELECQUANT and SRC-BIPM-BROCHURE respectively (both genuinely permitted-class, both already present as candidate evidence). This LP genuinely remains READY -- the ETW citation was never load-bearing once its duplicate/redundant claims are removed."
+      "evidenceReadinessNote": "[Stage A re-adjudication, narrow correction pass] SRC-ETW-IMPEDANCE's embedded authorityClass was corrected from AUTHORITATIVE_TECHNICAL_REFERENCE to the canonical AUTHORITATIVE_EDUCATIONAL_REFERENCE (SOURCE-REGISTER-authoritative), which is not permitted for this LP's SYMBOL_OR_CONVENTION dimensions. Re-adjudicated: DEFINITION/DISTINCTION remain VERIFIED (CONCEPT_DEFINITION mode permits AUTHORITATIVE_EDUCATIONAL_REFERENCE); QUANTITY_SYMBOL remains independently VERIFIED via SRC-EOLSS-ELECQUANT (genuinely permitted-class). This LP genuinely remains READY -- the ETW citation was never load-bearing once its duplicate/redundant claims are removed. [Section A, third narrow correction pass] UNIT_SYMBOL was found resting on an inference from SRC-BIPM-BROCHURE, which establishes the ohm only for resistance, not impedance -- the same bundling-by-proximity defect found on the sibling inductive/capacitive-reactance UNIT_SYMBOL rows (see EQCT-LP-12's evidenceReadinessNote). Corrected by replacing that inference with a direct textual statement: IEC 60050 IEV 131-12-43 \"impedance\", Note 3, states in terms \"the coherent SI unit of impedance is ohm, Ω\" -- impedance's own IEC entry now directly and explicitly supplies its unit, so no inference or composition across sources is needed for this dimension."
     },
     {
       "id": "EQCT-LP-14",
@@ -782,7 +814,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::voltmeter-measures-potential-difference-parallel-connection::EXACT_FACT"
       ],
       "normalizedClaimRefs": [
-        "SRC-OPENSTAX-METERS: ammeter series, voltmeter parallel"
+        "SRC-OPENSTAX-METERS: An ammeter measures electric current and must be connected in series with the component/circuit whose current is being measured.",
+        "SRC-OPENSTAX-METERS: A voltmeter measures potential difference (voltage) and must be connected in parallel with the component/circuit whose voltage is being mea…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Combined into one learning point because ammeter and voltmeter connection rules are taught and diagnosed as a natural contrasting pair (series vs parallel) in exactly the way Batch 03 combined mass/weight -- the contrast IS the teachable content. Genuinely depends on already knowing what current and voltage ARE (EQCT-LP-03, EQCT-LP-04) before learning how to measure them, matching this batch's explicit guardrail distinguishing 'current/voltage quantity knowledge vs measuring them correctly'.",
@@ -823,7 +856,7 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-measures-resistance::EXACT_FACT"
       ],
       "normalizedClaimRefs": [
-        "SRC-FLUKE-RESISTANCE: ohmmeter/multimeter resistance function"
+        "SRC-IEC-IEV-313-01-09: An ohmmeter is an instrument intended to measure electrical resistance."
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Deliberately kept separate from the ohmmeter's safe-use principle (EQCT-LP-16), per this batch's explicit guardrail distinguishing 'identifying an instrument's function vs using it safely' -- a learner may correctly identify what an ohmmeter measures without yet knowing the circuit must be de-energised first, and vice versa. Carries a genuine cross-domain prerequisite on the accepted Batch 02 EFS-LP-05 (Resistance), since identifying what an ohmmeter measures presupposes already knowing what resistance is.",
@@ -862,7 +895,7 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::ohmmeter-circuit-de-energised-safe-use-principle::PROCEDURE_COVERAGE"
       ],
       "normalizedClaimRefs": [
-        "SRC-FLUKE-RESISTANCE: turn off power, discharge capacitor before resistance reading"
+        "SRC-FLUKE-RESISTANCE: Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first,…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Kept separate from EQCT-LP-15 as its own procedural/safety mastery point (see EQCT-LP-15's justification). Explicitly includes the stored-energy (charged capacitor) case named in the evidence and required by this batch's depth guardrail, since a de-energised MAIN supply alone does not address charge already stored in a component.",
@@ -902,7 +935,7 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::wattmeter-measures-electrical-power-appropriate-current-voltage-sensing-arrangement-at-qualification-depth::EXACT_FACT"
       ],
       "normalizedClaimRefs": [
-        "SRC-PHILADELPHIA-WATTMETER: current coil series, voltage coil parallel, single-phase wattmeter"
+        "SRC-PHILADELPHIA-WATTMETER: A wattmeter is the instrument used for measuring AVERAGE (real) power. It consists essentially of two coils used together: a current coil o…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Depends on already knowing what power is (EQCT-LP-05) and how ammeters/voltmeters connect (EQCT-LP-14), since a wattmeter's principle is explained as 'an ammeter-like sensing element plus a voltmeter-like sensing element combined'. Bound to single-phase wattmeter operation only, per this batch's explicit depth guardrail.",
@@ -941,8 +974,8 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::energy-meter-measures-integrates-electrical-energy::EXACT_FACT"
       ],
       "normalizedClaimRefs": [
-        "SRC-MICROCHIP-AN994-ENERGY-METER: \"you are measuring energy (i.e., accumulating power over time)\"",
-        "SRC-NISTIR-8248: electrical energy usage is measured with watt-hour meters"
+        "SRC-MICROCHIP-AN994-ENERGY-METER: A manufacturer of energy-metering ICs (Microchip, application note AN994) states directly that measuring energy IS accumulating power over …",
+        "SRC-NISTIR-8248: Electrical energy usage is measured with watt-hour meters (energy meters), which register accumulated energy usage in watt-hours/kilowatt-h…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Depends on already knowing what energy is and how it differs from power (EQCT-LP-06), since an energy meter's function is explained precisely as measuring the accumulated (energy) quantity rather than the instantaneous (power) one.",
@@ -982,7 +1015,7 @@
         "ER::provisional::unit202::electrical-quantities-and-circuit-theory::low-high-meter-internal-resistance::EXACT_FACT"
       ],
       "normalizedClaimRefs": [
-        "SRC-OPENSTAX-METERS: ammeter resistance 'very small', voltmeter resistance 'a few orders of magnitude greater'"
+        "SRC-OPENSTAX-METERS: A practical ammeter is built to have a very low internal resistance (small compared with the circuit it is inserted into, so it disturbs th…"
       ],
       "evidenceReadiness": "READY",
       "depthJustification": "Depends on already knowing how ammeters/voltmeters connect (EQCT-LP-14), since internal-resistance behaviour is explained in terms of how much each meter disturbs its series/parallel connection. Marked OPTIONAL_CONTEXT priority in the frozen plan; included as a genuine (not merely idealised) explanation, using the evidence's own honest 'very small'/'a few orders of magnitude greater' language rather than teaching real meters as literally zero/infinite resistance.",

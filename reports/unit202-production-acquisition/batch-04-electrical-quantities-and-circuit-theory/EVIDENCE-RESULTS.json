@@ -49,7 +49,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of length is the metre, unit symbol m.",
-            "sourceId": "SRC-NIST-LENGTH"
+            "sourceId": "SRC-NIST-LENGTH",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -88,7 +91,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of area is the square metre, unit symbol m^2 (the square of the metre, the SI unit of length).",
-            "sourceId": "SRC-NIST-SP811-B9"
+            "sourceId": "SRC-NIST-SP811-B9",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -128,7 +134,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of volume is the cubic metre, unit symbol m^3 (the cube of the metre).",
-            "sourceId": "SRC-NIST-SP811-B9"
+            "sourceId": "SRC-NIST-SP811-B9",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -168,7 +177,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of mass is the kilogram, unit symbol kg.",
-            "sourceId": "SRC-NIST-MASS"
+            "sourceId": "SRC-NIST-MASS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -207,7 +219,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of (mass) density is the kilogram per cubic metre, unit symbol kg/m^3 -- a valid mass-per-volume compound unit, not a bare mass or bare volume unit.",
-            "sourceId": "SRC-NIST-SP811-B9"
+            "sourceId": "SRC-NIST-SP811-B9",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -246,7 +261,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of time is the second, unit symbol s.",
-            "sourceId": "SRC-NIST-TIME"
+            "sourceId": "SRC-NIST-TIME",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -285,7 +303,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of velocity is the metre per second, unit symbol m/s (a compound length-per-time unit).",
-            "sourceId": "SRC-NIST-SP811-B9"
+            "sourceId": "SRC-NIST-SP811-B9",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -324,7 +345,10 @@
         "normalizedClaims": [
           {
             "claimText": "The SI unit of thermodynamic temperature is the kelvin, unit symbol K. The degree Celsius (deg C) is a related, permitted scale whose zero sits at 273.15 K. One Celsius degree is an interval of exactly 1 K, so a temperature DIFFERENCE or INTERVAL has the same numerical value whether expressed in deg C or in K; what differs between the two scales is the zero point, so an ABSOLUTE temperature value in deg C and in K is not the same number and the symbols are not interchangeable for absolute values.",
-            "sourceId": "SRC-NIST-TEMPERATURE"
+            "sourceId": "SRC-NIST-TEMPERATURE",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -365,7 +389,11 @@
         "normalizedClaims": [
           {
             "claimText": "When the quantity being converted is itself squared or cubed (area, m^2; volume, m^3), a plain linear conversion factor must NOT be applied once -- the linear factor itself must be raised to the same power (squared for area, cubed for volume) before use, since e.g. cm^3 means cm x cm x cm and each of the three factors must be converted.",
-            "sourceId": "SRC-LIBRETEXTS-SQCUBIC"
+            "sourceId": "SRC-LIBRETEXTS-SQCUBIC",
+            "dimension": [
+              "PROCEDURE",
+              "CALCULATION_METHOD"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -419,11 +447,17 @@
         "normalizedClaims": [
           {
             "claimText": "Electric current is the movement/flow of electric charge (carried by electrons in a conductor) past a point.",
-            "sourceId": "SRC-ETW-DC1"
+            "sourceId": "SRC-ETW-DC1",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Electric current is the movement of elementary electric charges carried by electrons; a constant flow of approximately 1.602176487×10^19 electrons per second through a surface constitutes a current of 1 ampere.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -463,7 +497,10 @@
         "normalizedClaims": [
           {
             "claimText": "The quantity symbol for electric current is I (lower-case i for an instantaneous/time-varying value).",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -511,7 +548,10 @@
         "normalizedClaims": [
           {
             "claimText": "The unit symbol for the ampere (current's SI unit) is A -- distinct from the quantity symbol I used for the quantity itself.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -557,7 +597,10 @@
         "normalizedClaims": [
           {
             "claimText": "Voltage (potential difference) is the electric potential energy per unit charge between two points -- the ability to move charge and do work; it is sometimes also called electromotive force (EMF) in a source context.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -595,11 +638,17 @@
         "normalizedClaims": [
           {
             "claimText": "Voltage's quantity symbol is given as V, or sometimes U (lower-case v or u where the voltage is a time-varying quantity).",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           },
           {
             "claimText": "The quantity symbol for voltage is V (or sometimes U); a lower-case v or u is used for a time-varying instantaneous value.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -653,7 +702,10 @@
         "normalizedClaims": [
           {
             "claimText": "The unit symbol for the volt (voltage's SI unit) is V -- note this is the same letter V commonly also used as voltage's quantity symbol, so context (italic quantity symbol vs upright unit symbol) distinguishes the two uses.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -692,7 +744,10 @@
         "normalizedClaims": [
           {
             "claimText": "Resistance is the ratio of voltage applied across a component to the current flowing through it (R=V/I) -- a property of that particular component/conductor.",
-            "sourceId": "SRC-HP-RESIS"
+            "sourceId": "SRC-HP-RESIS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -735,7 +790,10 @@
         "normalizedClaims": [
           {
             "claimText": "Resistance (a property of a specific conductor, depending on its length, cross-sectional area AND material) is distinct from resistivity (a material-only property); R=rho*L/A relates them without equating them.",
-            "sourceId": "SRC-HP-RESIS"
+            "sourceId": "SRC-HP-RESIS",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -777,7 +835,10 @@
         "normalizedClaims": [
           {
             "claimText": "Resistance's quantity symbol is R, defined by R = V/I.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -831,8 +892,11 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "The SI Brochure's Table 2 (coherent derived units with special names) lists the ohm (symbol Ω) as the SI unit of electric resistance; the same unit and symbol are used for impedance, since impedance is measured in the same unit as resistance.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "claimText": "The SI Brochure's Table 2 (coherent derived units with special names) lists the ohm (symbol Ω) as the SI unit of electric resistance.",
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -848,7 +912,8 @@
         ],
         "disclosures": [
           "[Stage A data-integrity correction, narrow correction pass] SRC-BIPM-BROCHURE was cited in this row's own normalizedClaims but was never registered in this row's candidateSources array (unlike the sibling impedance/capacitance/inductance UNIT_SYMBOL rows, which correctly register it) -- corrected by registering the candidate; no new evidence acquired, since BIPM's SI Brochure Table 2 entry for the ohm is already read and used identically elsewhere in this batch.",
-          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-DC1. Remaining permitted-class claim(s) still fully support this requirement."
+          "[Stage A authority-class canonicalisation, narrow correction pass] 1 normalizedClaim(s) previously attributed to a source whose embedded authorityClass was mismatched against the canonical SOURCE-REGISTER were removed after correcting the label: SRC-ETW-DC1. Remaining permitted-class claim(s) still fully support this requirement.",
+          "[Stage A2 correction, narrow correction pass] Trimmed an extraneous, unsupported trailing clause about impedance sharing this unit -- irrelevant scope for this row (resistance's own unit symbol) and not itself part of the retrieved BIPM passage. Impedance's own unit-symbol claim is now properly, directly sourced on its own evidence row (IEC IEV 131-12-43)."
         ],
         "evaluatedButOutOfPermittedAuthorityClass": [
           {
@@ -889,7 +954,10 @@
         "normalizedClaims": [
           {
             "claimText": "Resistivity is the material property (independent of a specific conductor's shape/size) that determines how strongly a given material opposes current flow.",
-            "sourceId": "SRC-HP-RESIS"
+            "sourceId": "SRC-HP-RESIS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -932,7 +1000,10 @@
         "normalizedClaims": [
           {
             "claimText": "Resistivity is distinct from resistance: resistivity is a fixed material property, while resistance also depends on a specific conductor's length and cross-sectional area.",
-            "sourceId": "SRC-HP-RESIS"
+            "sourceId": "SRC-HP-RESIS",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -974,7 +1045,10 @@
         "normalizedClaims": [
           {
             "claimText": "The quantity symbol for resistivity is the Greek letter rho (ρ).",
-            "sourceId": "SRC-NIST-RESHALL"
+            "sourceId": "SRC-NIST-RESHALL",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1023,7 +1097,10 @@
         "normalizedClaims": [
           {
             "claimText": "Resistivity's SI unit is the ohm-metre (Ω·m); NIST's own conversion table names ohm-metre as the SI form of this unit family (with ohm-centimetre as a related non-SI-multiple, factor 0.01).",
-            "sourceId": "SRC-NIST-SP811-B9"
+            "sourceId": "SRC-NIST-SP811-B9",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1076,7 +1153,10 @@
         "normalizedClaims": [
           {
             "claimText": "Electrical power is the rate at which electrical energy is transferred / work is done, and is measured in watts (W). For a circuit with a STEADY voltage V and current I -- the source's own stated condition -- power can be calculated as P = V.I = I^2.R = V^2/R.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1130,15 +1210,24 @@
         "normalizedClaims": [
           {
             "claimText": "Power is a rate (instantaneous/time-independent quantity, watts); energy is the cumulative amount transferred over a time interval (Energy = Power x Time) -- they are not the same quantity despite the relationship between them.",
-            "sourceId": "SRC-ETW-ENERGY"
+            "sourceId": "SRC-ETW-ENERGY",
+            "dimension": [
+              "DISTINCTION"
+            ]
           },
           {
             "claimText": "Power factor is a separate quantity from power: it is the ratio of real power (P) to apparent power (S), expressed as a decimal or percentage, and it defines the phase angle between the current and voltage waveforms.",
-            "sourceId": "SRC-ETW-POWERTRIANGLE"
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "dimension": [
+              "DISTINCTION"
+            ]
           },
           {
             "claimText": "Power factor is explicitly stated to be a unitless quantity, unlike power which carries the unit watt -- directly evidencing (not merely inferring) that power and power factor do not share a unit.",
-            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS"
+            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1179,7 +1268,10 @@
         "normalizedClaims": [
           {
             "claimText": "The quantity symbol for (electrical) power is P.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1227,7 +1319,10 @@
         "normalizedClaims": [
           {
             "claimText": "The unit symbol for the watt (power's SI unit) is W -- distinct from the quantity symbol P for power itself, and distinct from any quantity symbol used for energy (see energy's own symbol facet).",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1273,7 +1368,10 @@
         "normalizedClaims": [
           {
             "claimText": "Electrical energy is the (accumulated/transferred) capacity of electricity to do work; its SI unit is the joule (J), though kWh is the practically-used unit for billing/consumption.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1312,7 +1410,10 @@
         "normalizedClaims": [
           {
             "claimText": "Energy is accumulated over time (Energy = Power x Time); power is the instantaneous rate. The kilowatt-hour (kWh) is consequently a unit of ENERGY (an accumulated quantity, 1 kWh = 3.6 MJ), never a unit of power, despite containing 'kilowatt' in its name.",
-            "sourceId": "SRC-ETW-ENERGY"
+            "sourceId": "SRC-ETW-ENERGY",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1350,7 +1451,10 @@
         "normalizedClaims": [
           {
             "claimText": "Electrical energy is denoted by the quantity symbol E, as used in the relationship p(t) = dE/dt expressing power as the rate of change of electrical energy with time.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1389,7 +1493,10 @@
         "normalizedClaims": [
           {
             "claimText": "The unit symbol for the joule (energy's SI unit) is J. The kilowatt-hour (kWh), a practically-used non-SI multiple of energy, is not itself a joule-multiple SI symbol but is a recognised energy unit (see SRC-ETW-ENERGY: 1 kWh = 3.6 MJ) -- kWh is never a unit of power.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1428,7 +1535,10 @@
         "normalizedClaims": [
           {
             "claimText": "Power factor is the ratio of real (true) power to apparent power in an AC circuit; for a sinusoidal supply with a purely displacement (phase-angle) difference between voltage and current, this ratio equals cos(phi).",
-            "sourceId": "SRC-ETW-POWERTRIANGLE"
+            "sourceId": "SRC-ETW-POWERTRIANGLE",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1475,7 +1585,10 @@
         "normalizedClaims": [
           {
             "claimText": "Power factor is not power: power (P) is a real quantity measured in watts, whereas power factor is the ratio of real power to apparent power and is explicitly a unitless quantity.",
-            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS"
+            "sourceId": "SRC-LIBRETEXTS-PFUNITLESS",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1516,7 +1629,10 @@
         "normalizedClaims": [
           {
             "claimText": "IEC 60050's own assigned quantity symbol for power factor is λ (lambda) -- not \"cos φ\" or \"p.f.\", which are common informal engineering shorthand for the sinusoidal-only special case, not IEC's general normative symbol.",
-            "sourceId": "SRC-IEC-IEV-131-11-46"
+            "sourceId": "SRC-IEC-IEV-131-11-46",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1574,7 +1690,10 @@
         "normalizedClaims": [
           {
             "claimText": "IEC 60050 explicitly and by name classifies power factor as \"a quantity of dimension one\" (IEC's formal term for dimensionless) -- power factor therefore carries no unit symbol (the coherent SI \"unit one\", conventionally not written, per the general BIPM SI Brochure principle already registered in this batch).",
-            "sourceId": "SRC-IEC-IEV-112-03-04"
+            "sourceId": "SRC-IEC-IEV-112-03-04",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1627,7 +1746,10 @@
         "normalizedClaims": [
           {
             "claimText": "Frequency is the number of complete cycles of a periodic (e.g. AC) waveform occurring per second.",
-            "sourceId": "SRC-ETW-ACWAVEFORM"
+            "sourceId": "SRC-ETW-ACWAVEFORM",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1665,7 +1787,10 @@
         "normalizedClaims": [
           {
             "claimText": "The quantity symbol for frequency is f (per IEC 60050, the customary symbol ν is reserved for optics).",
-            "sourceId": "SRC-IEC-IEV-103-06-02"
+            "sourceId": "SRC-IEC-IEV-103-06-02",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1716,7 +1841,10 @@
         "normalizedClaims": [
           {
             "claimText": "The unit symbol for the hertz (frequency's SI unit) is Hz.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1762,15 +1890,24 @@
         "normalizedClaims": [
           {
             "claimText": "Impedance is the total opposition to the flow of alternating electrical current in an AC circuit and is expressed in ohms.",
-            "sourceId": "SRC-ETW-IMPEDANCE"
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Impedance is a function of frequency -- unlike plain resistance -- and combines the circuit's resistance and reactance.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Impedance is the complex quantity used to express the relationship between AC voltage and current; it is measured in ohms, the same unit as resistance, and is a function of frequency.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1817,11 +1954,17 @@
         "normalizedClaims": [
           {
             "claimText": "Impedance is NOT the simple arithmetic sum of resistance and reactance (R+X does not equal Z); resistance and reactance combine as a vector/complex quantity (their values are 90 degrees out of phase), so impedance's magnitude must be found by combining them geometrically, not by adding their ohm values directly.",
-            "sourceId": "SRC-ETW-IMPEDANCE"
+            "sourceId": "SRC-ETW-IMPEDANCE",
+            "dimension": [
+              "DISTINCTION"
+            ]
           },
           {
             "claimText": "Impedance is a complex quantity whose real part is resistance (R) and whose imaginary part is reactance (X): Z = R + jX, with magnitude |Z| at a phase angle theta -- distinct from resistance and reactance individually, which are its two components.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1860,7 +2003,10 @@
         "normalizedClaims": [
           {
             "claimText": "Impedance's quantity symbol is Z.",
-            "sourceId": "SRC-EOLSS-ELECQUANT"
+            "sourceId": "SRC-EOLSS-ELECQUANT",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1901,17 +2047,20 @@
       "result": {
         "candidateSources": [
           {
-            "sourceId": "SRC-BIPM-BROCHURE",
+            "sourceId": "SRC-IEC-IEV-131-12-43",
             "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
-            "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
-            "sourceLocator": "BIPM SI concise brochure, Table 2",
-            "retrievedPassage": "\"electric resistance | ohm | Ω | V/A = kg m^2 s^-3 A^-2\" -- the same coherent SI unit and symbol apply to impedance, since impedance is measured in the same unit as resistance."
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-43",
+            "sourceLocator": "IEC Electropedia, IEV 131-12-43 \"impedance\", Note 3",
+            "retrievedPassage": "Note 3 (coherent SI unit): \"The coherent SI unit of impedance is ohm, Ω.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "The SI Brochure's Table 2 (coherent derived units with special names) lists the ohm (symbol Ω) as the SI unit of electric resistance; the same unit and symbol are used for impedance, since impedance is measured in the same unit as resistance.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "claimText": "IEC 60050 directly and explicitly states impedance's coherent SI unit is the ohm (Ω).",
+            "sourceId": "SRC-IEC-IEV-131-12-43",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1932,7 +2081,8 @@
           }
         ],
         "disclosures": [
-          "[Stage A data-integrity + authority-class correction, narrow correction pass] TWO defects on this row corrected: (1) SRC-BIPM-BROCHURE was cited in normalizedClaims but was never registered in this row's own candidateSources array (unlike the sibling capacitance/inductance UNIT_SYMBOL rows, which correctly register it) -- now corrected by registering the candidate; no new evidence acquired. (2) SRC-ETW-IMPEDANCE's embedded authorityClass (AUTHORITATIVE_TECHNICAL_REFERENCE) was corrected to the canonical SOURCE-REGISTER value (AUTHORITATIVE_EDUCATIONAL_REFERENCE), which is not permitted for this SYMBOL_OR_CONVENTION requirement; its claim is removed from counted evidence. This row remains genuinely VERIFIED throughout on BIPM's own permitted-class evidence, once correctly registered."
+          "[Stage A data-integrity + authority-class correction, narrow correction pass] TWO defects on this row corrected: (1) SRC-BIPM-BROCHURE was cited in normalizedClaims but was never registered in this row's own candidateSources array (unlike the sibling capacitance/inductance UNIT_SYMBOL rows, which correctly register it) -- now corrected by registering the candidate; no new evidence acquired. (2) SRC-ETW-IMPEDANCE's embedded authorityClass (AUTHORITATIVE_TECHNICAL_REFERENCE) was corrected to the canonical SOURCE-REGISTER value (AUTHORITATIVE_EDUCATIONAL_REFERENCE), which is not permitted for this SYMBOL_OR_CONVENTION requirement; its claim is removed from counted evidence. This row remains genuinely VERIFIED throughout on BIPM's own permitted-class evidence, once correctly registered.",
+          "[Stage A2 correction, narrow correction pass] Replaced the prior BIPM-based inference (BIPM's own passage names only resistance's unit; the claim that \"the same unit... appl[ies] to impedance\" was an added editorial inference, not itself part of the retrieved passage) with a direct, on-point IEC 60050 statement: IEV 131-12-43's own Note 3 states in as many words \"the coherent SI unit of impedance is ohm, Ω\". This is a directly-retrieved statement about impedance specifically, not an inference from a different quantity's entry."
         ]
       }
     },
@@ -1969,12 +2119,18 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Capacitance is a capacitor's fixed ability to store electrical charge (farad, F).",
-            "sourceId": "SRC-ETW-CAP1"
+            "claimText": "Capacitance is a capacitor's ability to store electrical charge, unit farad (F). The bound passage does not use the word \"fixed\"; no claim of universal invariance is made here -- see the ideal/basic-component-model framing carried in the owning learning point's knowledgeOrProcedure for the appropriate scope.",
+            "sourceId": "SRC-ETW-CAP1",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Capacitive reactance is the frequency-dependent opposition a capacitor presents to alternating current (ohms), given by Xc=1/(2*pi*f*C).",
-            "sourceId": "SRC-ETW-FILTER1"
+            "sourceId": "SRC-ETW-FILTER1",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1984,7 +2140,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": []
-      }
+      },
+      "disclosures": [
+        "Section A (third narrow correction pass, identical defect pattern to EQCT-LP-11/12 inductance): the prior claim text asserted capacitance is a \"fixed\" ability, a word never used in the actual retrievedPassage. Corrected to remove the unsupported word; no evidence-status change (already VERIFIED on the remaining, genuinely-supported content)."
+      ]
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::CONCEPT_DEFINITION::DISTINCTION",
@@ -2007,13 +2166,30 @@
             "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
             "sourceRef": "https://www.electronics-tutorials.ws/filter/filter_1.html",
             "sourceLocator": "electronics-tutorials.ws, Passive Low Pass Filter page",
-            "retrievedPassage": "\"Unlike resistance which has a fixed value...Capacitive Reactance varies inversely proportional with the applied frequency\"; capacitance itself (farads) is a fixed physical property of the capacitor (per SRC-ETW-CAP1)."
+            "retrievedPassage": "\"Unlike resistance which has a fixed value...Capacitive Reactance varies inversely proportional with the applied frequency\""
+          },
+          {
+            "sourceId": "SRC-ETW-CAP1",
+            "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+            "sourceRef": "https://www.electronics-tutorials.ws/capacitor/cap_1.html",
+            "sourceLocator": "electronics-tutorials.ws, Capacitance page",
+            "retrievedPassage": "\"Capacitance is the electrical property of a capacitor and is the measure of a capacitor's ability to store an electrical charge onto its two plates with the unit of capacitance being the Farad\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Capacitance (farads) is a fixed physical property of a capacitor, independent of frequency; capacitive reactance (ohms) is that capacitor's frequency- and capacitance-dependent AC opposition, which falls as frequency rises -- the two are related but not the same quantity, and do not share a unit (F vs ohms).",
-            "sourceId": "SRC-ETW-FILTER1"
+            "claimText": "Capacitance's own definition carries no frequency term -- it is treated at this level as a basic property of the component (SRC-ETW-CAP1: capacitance is \"the measure of a capacitor's ability to store an electrical charge\", with no frequency dependence stated).",
+            "sourceId": "SRC-ETW-CAP1",
+            "dimension": [
+              "DISTINCTION"
+            ]
+          },
+          {
+            "claimText": "Capacitive reactance is explicitly contrasted with a fixed-value quantity (resistance) and explicitly varies inversely with applied frequency (SRC-ETW-FILTER1: \"Unlike resistance which has a fixed value...Capacitive Reactance varies inversely proportional with the applied frequency\").",
+            "sourceId": "SRC-ETW-FILTER1",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2023,7 +2199,10 @@
         "unresolvedDimensions": [],
         "conflicts": [],
         "gaps": []
-      }
+      },
+      "disclosures": [
+        "Section A (third narrow correction pass): the retrievedPassage previously carried a fabricated parenthetical (\"capacitance itself (farads) is a fixed physical property of the capacitor (per SRC-ETW-CAP1)\") that is not actual page text from filter_1.html -- an editorial cross-reference wrongly embedded inside a quoted-passage field. Removed. SRC-ETW-CAP1 is now genuinely registered as its own candidate source and the DISTINCTION claim is rebuilt as a disclosed, valid multi-source composition across the two real, independently-read passages -- the same pattern already used for the sibling inductance/inductive-reactance DISTINCTION row (EQCT-LP-12)."
+      ]
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electrical-quantities-and-circuit-theory::capacitance-and-capacitive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::QUANTITY_SYMBOL",
@@ -2051,7 +2230,10 @@
         "normalizedClaims": [
           {
             "claimText": "The quantity symbol for capacitance is C.",
-            "sourceId": "SRC-IEC-IEV-131-12-13"
+            "sourceId": "SRC-IEC-IEV-131-12-13",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2105,12 +2287,29 @@
             "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
             "sourceLocator": "BIPM SI concise brochure, Table 2",
             "retrievedPassage": "\"capacitance | farad | F | C/V = kg^-1 m^-2 s^4 A^2\"."
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-12-43",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-43",
+            "sourceLocator": "IEC Electropedia, IEV 131-12-43 \"impedance\", Note 1 and Note 3",
+            "retrievedPassage": "Note 1: \"Z = R + jX\" where R is (AC) resistance and X is reactance. Note 3 (coherent SI unit): \"The coherent SI unit of impedance is ohm, Ω.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Capacitance's SI unit symbol is F (farad); capacitive reactance, despite being related to capacitance, is measured in ohms (the same unit symbol as resistance) -- not in farads.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "claimText": "Capacitance's SI unit symbol is F (farad).",
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
+          },
+          {
+            "claimText": "IEC 60050 states impedance Z = R + jX (R = resistance, X = reactance) and that impedance's coherent SI unit is the ohm; since R and X share Z's unit, reactance (and therefore capacitive reactance, a specific case of reactance) is measured in ohms -- a direct entailment of two passages from the same IEC entry, not an inference from a different quantity's silence.",
+            "sourceId": "SRC-IEC-IEV-131-12-43",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2129,6 +2328,9 @@
             "retrievedPassage": "capacitive reactance is \"measured in Ohms, the same unit as resistance\".",
             "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
           }
+        ],
+        "disclosures": [
+          "[Stage A2 correction, narrow correction pass] The prior single normalizedClaim bundled two clauses (capacitance's unit is farad AND capacitive reactance is measured in ohms) under SRC-BIPM-BROCHURE alone, whose own bound passage supports only the farad clause. Split into two atomic claims: BIPM for the farad, IEC IEV 131-12-43 for the ohm (via its own Z=R+jX identity and its own coherent-SI-unit-of-impedance-is-ohm statement)."
         ]
       }
     },
@@ -2165,12 +2367,18 @@
         ],
         "normalizedClaims": [
           {
-            "claimText": "Inductance is a coil's fixed ability to oppose changes in current (henry, H).",
-            "sourceId": "SRC-ETW-INDUCTOR"
+            "claimText": "Inductance is an inductor's ability to oppose (resist) changes in current, symbol L, unit henry (H). The bound passage does not use the word \"fixed\"; no claim of universal invariance is made here (see the DISTINCTION row and EQCT-LP-11/12's own knowledgeOrProcedure for the disclosed ideal/basic-component-model scoping).",
+            "sourceId": "SRC-ETW-INDUCTOR",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Inductive reactance is the frequency-dependent opposition an inductor presents to alternating current (ohms), given by XL=2*pi*f*L.",
-            "sourceId": "SRC-ETW-ACINDUCTORS"
+            "sourceId": "SRC-ETW-ACINDUCTORS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2179,7 +2387,10 @@
         ],
         "unresolvedDimensions": [],
         "conflicts": [],
-        "gaps": []
+        "gaps": [],
+        "disclosures": [
+          "[Stage A2 wording-precision correction, narrow correction pass] The prior normalizedClaim text included the word \"fixed\", which does not appear in the bound retrievedPassage (\"This ability of an inductor to resist changes in current...is called Inductance\"). Removed as an unsupported editorial addition -- a normalized claim must not assert more than its cited passage states."
+        ]
       }
     },
     {
@@ -2216,11 +2427,17 @@
         "normalizedClaims": [
           {
             "claimText": "Inductance (L) is defined purely as a coil property (its ability to oppose changes in current); no frequency or AC term appears anywhere in that definition.",
-            "sourceId": "SRC-ETW-INDUCTOR"
+            "sourceId": "SRC-ETW-INDUCTOR",
+            "dimension": [
+              "DISTINCTION"
+            ]
           },
           {
             "claimText": "Inductive reactance is explicitly and directly proportional to frequency (X_L = 2*pi*f*L) -- a distinct, frequency-dependent quantity from inductance itself.",
-            "sourceId": "SRC-LIBRETEXTS-REACTANCE"
+            "sourceId": "SRC-LIBRETEXTS-REACTANCE",
+            "dimension": [
+              "DISTINCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2275,11 +2492,17 @@
         "normalizedClaims": [
           {
             "claimText": "Inductance's IEC-attested quantity symbol is L.",
-            "sourceId": "SRC-IEC-IEV-131-12-19"
+            "sourceId": "SRC-IEC-IEV-131-12-19",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           },
           {
             "claimText": "Reactance's IEC-attested quantity symbol is X; IEC defines \"inductive reactance\" specifically as a reactance having a positive value, so inductive reactance is IEC-normatively an instance of X, not a separately IEC-assigned letter symbol.",
-            "sourceId": "SRC-IEC-IEV-131-12-46"
+            "sourceId": "SRC-IEC-IEV-131-12-46",
+            "dimension": [
+              "QUANTITY_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2333,12 +2556,29 @@
             "sourceRef": "https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf",
             "sourceLocator": "BIPM SI concise brochure, Table 2",
             "retrievedPassage": "\"inductance | henry | H | Wb/A = kg m^2 s^-2 A^-2\"."
+          },
+          {
+            "sourceId": "SRC-IEC-IEV-131-12-43",
+            "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+            "sourceRef": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-43",
+            "sourceLocator": "IEC Electropedia, IEV 131-12-43 \"impedance\", Note 1 and Note 3",
+            "retrievedPassage": "Note 1: \"Z = R + jX\" where R is (AC) resistance and X is reactance. Note 3 (coherent SI unit): \"The coherent SI unit of impedance is ohm, Ω.\""
           }
         ],
         "normalizedClaims": [
           {
-            "claimText": "Inductance's SI unit symbol is H (henry); inductive reactance, despite being related to inductance, is measured in ohms (the same unit symbol as resistance) -- not in henries.",
-            "sourceId": "SRC-BIPM-BROCHURE"
+            "claimText": "Inductance's SI unit symbol is H (henry).",
+            "sourceId": "SRC-BIPM-BROCHURE",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
+          },
+          {
+            "claimText": "IEC 60050 states impedance Z = R + jX (R = resistance, X = reactance) and that impedance's coherent SI unit is the ohm; since R and X are added together to form Z, they necessarily share Z's unit -- reactance (and therefore inductive reactance, a specific case of reactance) is measured in ohms. This is a direct entailment of two passages from the same IEC entry, not an inference from a different quantity's silence.",
+            "sourceId": "SRC-IEC-IEV-131-12-43",
+            "dimension": [
+              "UNIT_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2357,6 +2597,9 @@
             "retrievedPassage": "\"Just like resistance, the value of reactance is also measured in Ohm's\".",
             "exclusionReason": "[Stage A cleanup, narrow correction pass] Present in candidateSources with a canonically-unpermitted authorityClass and not cited by any surviving normalizedClaim -- moved out of counted evidence so this row cannot appear to rest on more support than it actually does. Retained here for the audit trail."
           }
+        ],
+        "disclosures": [
+          "[Stage A2 correction, narrow correction pass] The prior single normalizedClaim bundled two clauses (\"inductance's unit is henry\" AND \"inductive reactance...is measured in ohms\") under one sourceId, SRC-BIPM-BROCHURE -- but BIPM's own bound passage (\"inductance | henry | H | Wb/A...\") supports only the first clause; it says nothing about ohms or reactance. Split into two atomic claims, each bound to the source that actually supports it: BIPM for the henry: IEC IEV 131-12-43 (\"impedance\") for the ohm, via its own stated Z=R+jX identity plus its own stated coherent-SI-unit-of-impedance-is-ohm note -- a direct textual entailment, not an inference from an unrelated quantity's silence."
         ]
       }
     },
@@ -2387,7 +2630,10 @@
         "normalizedClaims": [
           {
             "claimText": "An ammeter measures electric current and must be connected in series with the component/circuit whose current is being measured.",
-            "sourceId": "SRC-OPENSTAX-METERS"
+            "sourceId": "SRC-OPENSTAX-METERS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2426,7 +2672,10 @@
         "normalizedClaims": [
           {
             "claimText": "A voltmeter measures potential difference (voltage) and must be connected in parallel with the component/circuit whose voltage is being measured.",
-            "sourceId": "SRC-OPENSTAX-METERS"
+            "sourceId": "SRC-OPENSTAX-METERS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2472,7 +2721,10 @@
         "normalizedClaims": [
           {
             "claimText": "An ohmmeter is an instrument intended to measure electrical resistance.",
-            "sourceId": "SRC-IEC-IEV-313-01-09"
+            "sourceId": "SRC-IEC-IEV-313-01-09",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2514,7 +2766,10 @@
         "normalizedClaims": [
           {
             "claimText": "Resistance/ohmmeter measurements must only be made on a de-energised circuit or component: power to the circuit must be switched off first, and any charged capacitor must be discharged before taking a resistance reading.",
-            "sourceId": "SRC-FLUKE-RESISTANCE"
+            "sourceId": "SRC-FLUKE-RESISTANCE",
+            "dimension": [
+              "SAFE_USE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2558,7 +2813,10 @@
         "normalizedClaims": [
           {
             "claimText": "A wattmeter is the instrument used for measuring AVERAGE (real) power. It consists essentially of two coils used together: a current coil of very low impedance connected in SERIES with the load (like an ammeter), and a voltage coil of very high impedance connected in PARALLEL with the load (like a voltmeter). Sensing current and voltage together is what allows the instrument to register real power rather than either quantity alone.",
-            "sourceId": "SRC-PHILADELPHIA-WATTMETER"
+            "sourceId": "SRC-PHILADELPHIA-WATTMETER",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2612,11 +2870,17 @@
         "normalizedClaims": [
           {
             "claimText": "A manufacturer of energy-metering ICs (Microchip, application note AN994) states directly that measuring energy IS accumulating power over time (\"you are measuring energy (i.e., accumulating power over time)\") -- an original-manufacturer statement of the accumulation/integration principle itself, not merely a claim about what a watt-hour meter displays.",
-            "sourceId": "SRC-MICROCHIP-AN994-ENERGY-METER"
+            "sourceId": "SRC-MICROCHIP-AN994-ENERGY-METER",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Electrical energy usage is measured with watt-hour meters (energy meters), which register accumulated energy usage in watt-hours/kilowatt-hours.",
-            "sourceId": "SRC-NISTIR-8248"
+            "sourceId": "SRC-NISTIR-8248",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2662,7 +2926,10 @@
         "normalizedClaims": [
           {
             "claimText": "A practical ammeter is built to have a very low internal resistance (small compared with the circuit it is inserted into, so it disturbs the current being measured as little as possible); a practical voltmeter is built to have a very high internal resistance (large compared with the circuit it is connected across, so it draws negligible current and does not appreciably load the circuit). This is a design/construction goal of real meters, not a literal claim that any real meter has exactly zero or infinite resistance -- 'zero'/'infinite' describe only the idealised limiting model.",
-            "sourceId": "SRC-OPENSTAX-METERS"
+            "sourceId": "SRC-OPENSTAX-METERS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",

@@ -11,8 +11,8 @@
   },
   "authorityClassDiscipline": "Every candidate source cited as verifying evidence was checked against its OWN requirement's frozen sourceAuthorityClasses. Sources that were genuinely retrieved and read but whose authority class is not permitted for that requirement are preserved under `evaluatedButOutOfPermittedAuthorityClass` on the result, and NO normalized claim rests on them. No frozen requirement's permitted authority classes were widened to accommodate an available source.",
   "statusTotals": {
-    "VERIFIED": 31,
-    "PARTIALLY_VERIFIED": 6
+    "VERIFIED": 32,
+    "PARTIALLY_VERIFIED": 5
   },
   "results": [
     {
@@ -57,23 +57,38 @@
         "normalizedClaims": [
           {
             "claimText": "On a 4-band resistor the bands are read from the end opposite the tolerance band; the tolerance band is the last band and is typically separated by a wider gap from the value bands and is usually gold or silver. Band 1 gives the first significant digit, band 2 the second significant digit, band 3 the decimal multiplier (the power of ten by which the two significant digits are multiplied, equivalently the number of zeros to append), and band 4 the tolerance.",
-            "sourceId": "SRC-GRINNELL-CSC211-RESISTORS"
+            "sourceId": "SRC-GRINNELL-CSC211-RESISTORS",
+            "dimension": [
+              "PROCEDURE"
+            ]
           },
           {
             "claimText": "The colour-to-digit mapping for the significant-figure bands is: black 0, brown 1, red 2, orange 3, yellow 4, green 5, blue 6, violet 7, grey 8, white 9.",
-            "sourceId": "SRC-DUKE-PRATTWIKI-COLOR-CODES"
+            "sourceId": "SRC-DUKE-PRATTWIKI-COLOR-CODES",
+            "dimension": [
+              "PROCEDURE"
+            ]
           },
           {
             "claimText": "Gold and silver act as fractional multipliers of x0.1 and x0.01 respectively when they appear in the multiplier band, and as tolerances of plus/minus 5% and plus/minus 10% respectively when they appear in the tolerance band; where no fourth band is present the tolerance is plus/minus 20%.",
-            "sourceId": "SRC-DUKE-PRATTWIKI-COLOR-CODES"
+            "sourceId": "SRC-DUKE-PRATTWIKI-COLOR-CODES",
+            "dimension": [
+              "PROCEDURE"
+            ]
           },
           {
             "claimText": "The calculation method for a 4-band resistor is R = (first digit x 10 + second digit) x multiplier, with the tolerance band applied as a plus/minus percentage; worked example red-violet-green-gold gives R = (2 x 10 + 7) x 10^5 +/- 5% = 2.7 x 10^6 ohms +/- 5%.",
-            "sourceId": "SRC-UCF-EEL3123-COLOR-CODE"
+            "sourceId": "SRC-UCF-EEL3123-COLOR-CODE",
+            "dimension": [
+              "CALCULATION_METHOD"
+            ]
           },
           {
             "claimText": "Further worked examples: blue-grey-brown-gold gives 68 x 10 = 680 ohms +/- 5%; yellow-violet-red gives 47 x 10^2 = 4,700 ohms.",
-            "sourceId": "SRC-DUKE-PRATTWIKI-COLOR-CODES"
+            "sourceId": "SRC-DUKE-PRATTWIKI-COLOR-CODES",
+            "dimension": [
+              "CALCULATION_METHOD"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -133,15 +148,24 @@
         "normalizedClaims": [
           {
             "claimText": "A capacitor is an electronic device that stores charge and energy. It consists of two conductors carrying equal and opposite charges; in the parallel-plate form these are two equally-sized metal plates (electrodes) separated by an insulator known as a dielectric. The equal and opposite charge buildup produces an electric field between the plates and hence a potential difference (voltage) across them.",
-            "sourceId": "SRC-ENERGYEDU-CAPACITOR"
+            "sourceId": "SRC-ENERGYEDU-CAPACITOR",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "The energy held by a charged capacitor is stored in the electric field, in the form of energy density in that field — not in the conducting plates themselves.",
-            "sourceId": "SRC-HYPERPHYSICS-CAPACITOR-ENERGY"
+            "sourceId": "SRC-HYPERPHYSICS-CAPACITOR-ENERGY",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "Inserting a dielectric material between the charged plates increases the capacitance, because polarization of the dielectric medium produces an electric field opposing the field of the charges on the plates.",
-            "sourceId": "SRC-HYPERPHYSICS-DIELECTRIC"
+            "sourceId": "SRC-HYPERPHYSICS-DIELECTRIC",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -200,11 +224,17 @@
         "normalizedClaims": [
           {
             "claimText": "A DIAC is a two-terminal bidirectional thyristor-family device with no gate. Its bidirectional, transistor-like (NPN-type block) structure holds a high-impedance blocking state until the applied voltage reaches a breakover point (VBO), above which the device enters a negative-resistance region and conducts; because the structure is symmetrical this breakover-and-conduct behaviour occurs for either polarity of applied voltage. Because it has no gate, gate-signal turn-on is not applicable to a DIAC; it is switched on by voltage breakover. Its single major application is to switch on (trigger) TRIACs - in a resistor-capacitor AC circuit its characteristics produce a bidirectional pulsing oscillator, making it an economical trigger for firing TRIACs in phase-control circuits such as light dimmers and motor speed controls.",
-            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
+            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "A DIAC is a form of solid-state switch used to switch AC voltage and belongs to the class of switches known as thyristors; it is a two-lead device that accomplishes its switching action by breakdown at a certain voltage, a zener-type breakdown providing the trigger to start conduction.",
-            "sourceId": "SRC-HYPERPHYSICS-GSU-DIAC-TRIAC-THYRISTOR"
+            "sourceId": "SRC-HYPERPHYSICS-GSU-DIAC-TRIAC-THYRISTOR",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -266,19 +296,31 @@
         "normalizedClaims": [
           {
             "claimText": "In a thyristor phase-control dimmer the trigger point is set by an RC charging network: varying the RC time constant makes the trigger device break down at different phase angles within the controlled half or full cycle, and it is this that produces phase control of the output waveform. Delaying the trigger reduces the conduction angle (the time during which the thyristor is on) and increases the delay angle (the time during which the thyristor blocks the line voltage), so less of each half-cycle is delivered to the load.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "CONCEPTUAL_RELATIONSHIP"
+            ]
           },
           {
             "claimText": "The relationship between conduction angle and delivered power is strongly non-linear: in a full-wave circuit a conduction angle of 150 degrees provides 97% of full power while a conduction angle of 30 degrees provides only 3%, which is why conduction angles below 30 degrees or above 150 degrees are described by the source as usually pointless to obtain.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "CONCEPTUAL_RELATIONSHIP"
+            ]
           },
           {
             "claimText": "The source states this power-versus-conduction-angle relationship for a resistive/constant-impedance load (the simplifying assumption used, and the case of loads such as heaters), and explicitly qualifies that the relative impedance of incandescent lamps and motors changes with applied voltage so those loads do not follow the plotted relative power curve precisely. This load-type qualification must be preserved.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "CONCEPTUAL_RELATIONSHIP"
+            ]
           },
           {
             "claimText": "Independently, in an MCU-driven mains light dimmer the power delivered to the lamp is controlled by the phase delay (td) of the triac drive, the delay being referenced either to the zero crossing of the line voltage or, where no neutral connection is available, to the previous zero crossing of the current.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "CONCEPTUAL_RELATIONSHIP"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -328,15 +370,24 @@
         "normalizedClaims": [
           {
             "claimText": "In a basic full-wave diac-triac phase control (dimmer) circuit the adjustable resistor R1 and capacitor C1 form a single-element phase-shift network; when the voltage across C1 reaches the breakover voltage VBO of the diac, C1 is partially discharged by the diac into the triac gate, and the triac is then triggered into the conduction mode for the remainder of that half-cycle.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "The diac is a bidirectional trigger: the source plots both a positive and a negative diac breakover threshold (+DIAC VBO and -DIAC VBO) against the AC line voltage in Figure 16.10, and states that in this circuit triggering is in Quadrants I and III.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "The source records a hysteresis or 'snap back' consequence of capacitor-diac triggering: after the gate pulse the capacitor voltage drops suddenly to about half the triggering voltage, giving the capacitor a different initial condition for the next half-cycle, so the lamp can initially be lit only at some intermediate level of brightness and can then be turned down to an extinguishing point.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -399,15 +450,24 @@
         "normalizedClaims": [
           {
             "claimText": "Littelfuse/Teccor AN1003 states exact RC timing component values for its OWN named reference circuits: Figure 16.9 'Basic Diac-Triac Phase Control' uses R1 = 250K adjustable, R2 = 3.3K, C1 = 0.1 uF with an HT34B diac and a Q2010L5 triac on a 120 V 60 Hz supply, with a 100 ohm / 0.1 uF network shown for inductive loads.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "AN1003 Figure 16.14, a single-time-constant circuit for incandescent light dimming, heat control and motor speed control, tabulates values by supply: 120 VAC 60 Hz / 12 A uses R1 = 250K, C1 and C3 = 0.1 uF 200 V, L1 = 100 uH, Q1 = Q2015L9; 240 VAC 50/60 Hz / 3 A uses R1 = 500K, C1 and C3 = 0.1 uF 400 V, L1 = 200 uH, Q1 = Q4004L4; with R2 = 3.3k, R3 = 100 ohm, C2 = 0.1 uF 100 V and D1 = HT-32 common to both. L1 and C1 are identified as an RFI filter that may be eliminated.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "AN1003 shows the method by which such values are derived for a stated set of assumptions (S2010L SCR, 32 V trigger diac, 0.1 uF capacitor, 50 V DC supply, 60 Hz, 30 to 150 degrees conduction-angle range), yielding R = 86,800 ohms for the 30 degree condition and 17,400 ohms for the 150 degree condition, and recommending a 100K potentiometer with about 17K minimum residual resistance. These are the values for that stated example only.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -469,15 +529,24 @@
         "normalizedClaims": [
           {
             "claimText": "Dimmer (light dimming) is one of the named domestic application categories for electronic power-control devices, listed alongside motor regulation of a washing machine, control of a vacuum cleaner and heating in a coffee machine.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "The function of a light dimmer is to operate directly on the 110 V or 240 V mains, connected in series with the line wire in place of a mechanical switch, and to drive halogen or incandescent lamps supplied directly from the mains or through a low voltage transformer, controlling the power delivered to the lamp rather than merely switching it fully on or off.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "Light dimming is implemented as a phase control application: the same phase-control circuit family serves incandescent light dimming, heat control and motor speed control, and the source describes such a circuit as a 'light dimmer (phase control) circuit'.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -534,19 +603,31 @@
         "normalizedClaims": [
           {
             "claimText": "The triac is the power switching device that operates directly on the 110/240 V mains and is described as the optimal, least expensive switch for low-cost on-line power applications such as a dimmer.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "The triac provides full-wave AC control: for full-wave AC control a single triac (or, alternatively, two SCRs connected in inverse parallel) may be used, confirming the triac's bidirectional handling of both half-cycles.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "In phase-control operation the triac is held off (blocking all current except a minute leakage current) until it is triggered by the control circuitry into the conduction mode, and it then conducts for the remainder of that half-cycle. In the basic diac-triac dimmer, triggering is in Quadrants I and III.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Qualification preserved: in a dimmer the load is treated as resistive and dynamic constraints on the triac are lower than in motor control, so a logic-level triac can be used; the source also states that when dimming a resistive load an RFI filter should be added to meet RFI standards.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -595,11 +676,17 @@
         "normalizedClaims": [
           {
             "claimText": "A diode is a component built on a p-n junction that conducts current in the forward direction (when forward biased, holes being driven to the junction from the p-type material and electrons from the n-type material so that a continuous current is maintained) but not in the reverse direction. Under reverse voltage only a transient current flows and thereafter the current ceases except for a small thermal (leakage) current — so reverse blocking is substantial but not absolutely perfect.",
-            "sourceId": "SRC-HYPERPHYSICS-PN-DIODE"
+            "sourceId": "SRC-HYPERPHYSICS-PN-DIODE",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "The one-directional conduction property of the diode is what makes conversion of alternating current into direct current possible, which is why diodes are found in AC adapters and other rectifier circuits.",
-            "sourceId": "SRC-ENERGYEDU-DIODE"
+            "sourceId": "SRC-ENERGYEDU-DIODE",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -661,19 +748,31 @@
         "normalizedClaims": [
           {
             "claimText": "Heating and boiler control is an established application category for electronic devices: an NTC thermistor immersion sensor is supplied specifically to acquire the medium temperature in heat pumps, heat exchangers, storage tanks and boilers, and its stated applications are 'temperature sensing and control in' heat pumps, water boilers, heating systems, water and used water systems, water and oil tanks, consumer and industrial appliances, solar heating systems and buildings.",
-            "sourceId": "SRC-VISHAY-NTCASCW78A-IMMERSION-SENSOR"
+            "sourceId": "SRC-VISHAY-NTCASCW78A-IMMERSION-SENSOR",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "Central-heating systems are named as one of the domestic-appliance categories in which NTC temperature sensors are used, and 'heating and ventilation' is named as an industrial/consumer switching, measuring and detection application.",
-            "sourceId": "SRC-VISHAY-AN29053-NTC-THERMISTORS"
+            "sourceId": "SRC-VISHAY-AN29053-NTC-THERMISTORS",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "Heat control is one of the three application categories served by the same thyristor phase-control circuit family (incandescent light dimming, heat control and motor speed control), and the source additionally presents a dedicated proportional temperature control circuit using a thermistor and a microcontroller heater control circuit with decrease-heat and increase-heat inputs.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "The function of heating control at this level is to sense the temperature of the medium and switch or proportion the power to the heating element accordingly; the sources show both a sensing element (immersion NTC thermistor) and a controlled power-switching element (thyristor phase control, or an MCU-driven AC switch interfacing sensors and controlling temperatures).",
-            "sourceId": "SRC-VISHAY-NTCASCW78A-IMMERSION-SENSOR"
+            "sourceId": "SRC-VISHAY-NTCASCW78A-IMMERSION-SENSOR",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -724,11 +823,17 @@
         "normalizedClaims": [
           {
             "claimText": "The traditional and most popular discrete relay-driver topology, as stated by an established semiconductor manufacturer, is formed with a bipolar transistor, two bias resistors and a free-wheeling diode; in the illustrated version (Figure 1) diode D1 provides reverse supply protection and diode D2 provides a clamp function to suppress the voltage spike generated by the relay coil at turn-off (V = L di/dt).",
-            "sourceId": "SRC-ONSEMI-AND8116D-RELAY-DRIVERS"
+            "sourceId": "SRC-ONSEMI-AND8116D-RELAY-DRIVERS",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "SCOPE LIMITATION, stated by the source itself: this topology is presented for INDUSTRIAL AND AUTOMOTIVE applications, with the relay driven by a microprocessor or other sensitive electronic device to control a high-current load. The source makes no statement about heating or boiler control.",
-            "sourceId": "SRC-ONSEMI-AND8116D-RELAY-DRIVERS"
+            "sourceId": "SRC-ONSEMI-AND8116D-RELAY-DRIVERS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -792,19 +897,31 @@
         "normalizedClaims": [
           {
             "claimText": "An NTC thermistor is a temperature-sensing element whose electrical resistance has a NEGATIVE relationship with temperature: NTC sensors are made from a mixture of metal oxides subjected to a sintering process that gives them a negative electrical resistance versus temperature (R/T) relationship.",
-            "sourceId": "SRC-VISHAY-AN29053-NTC-THERMISTORS"
+            "sourceId": "SRC-VISHAY-AN29053-NTC-THERMISTORS",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "The sensing role rests on that steep characteristic: the relatively large negative slope means that even small temperature changes cause a significant change in electrical resistance, which is what makes the NTC sensor suited to accurate temperature measurement and control.",
-            "sourceId": "SRC-VISHAY-AN29053-NTC-THERMISTORS"
+            "sourceId": "SRC-VISHAY-AN29053-NTC-THERMISTORS",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "In heating applications specifically, the thermistor's role is to acquire the temperature of the medium: an immersion NTC thermistor is fitted directly into the medium in heat pumps, heat exchangers, storage tanks and boilers, and is used for temperature sensing and control in water boilers and heating systems.",
-            "sourceId": "SRC-VISHAY-NTCASCW78A-IMMERSION-SENSOR"
+            "sourceId": "SRC-VISHAY-NTCASCW78A-IMMERSION-SENSOR",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "In a thyristor heating-control circuit the thermistor appears as the temperature-sensing resistance in the trigger network: AN1003 Figure 16.13 'Precision Proportional Temperature Control' specifies R4 as a thermistor of approximately 5000 ohms at operating temperature, in the branch labelled 'TEMP.' of a UJT ramp-and-pedestal firing circuit driving a triac.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -847,7 +964,10 @@
         "normalizedClaims": [
           {
             "claimText": "An inverter is a device that converts DC electricity into AC electricity by rapidly switching semiconductor devices to produce an alternating output voltage.",
-            "sourceId": "SRC-WEVOLVER-DCAC-INVERTER"
+            "sourceId": "SRC-WEVOLVER-DCAC-INVERTER",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -898,7 +1018,10 @@
         "normalizedClaims": [
           {
             "claimText": "A light-dependent resistor (LDR), also called a photoresistor, changes its electrical resistance as the light falling upon it changes; specifically, its resistance decreases as the incident light increases (and correspondingly rises as the light falls).",
-            "sourceId": "SRC-NAPIER-LDR"
+            "sourceId": "SRC-NAPIER-LDR",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -940,7 +1063,10 @@
         "normalizedClaims": [
           {
             "claimText": "A light-emitting diode (LED) is a p-n junction device (constructed of compound semiconductors such as gallium arsenide, gallium arsenide phosphide or gallium phosphide). Its junction is forward biased, and when electrons cross the junction from the n-type to the p-type material, the electron-hole recombination process produces photons in the infrared or visible range, in a process called electroluminescence. The forward-bias condition is therefore a necessary part of the operating principle: the LED emits light only when forward biased.",
-            "sourceId": "SRC-HYPERPHYSICS-LED"
+            "sourceId": "SRC-HYPERPHYSICS-LED",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1003,19 +1129,31 @@
         "normalizedClaims": [
           {
             "claimText": "The function of rectification is to convert alternating current to direct current.",
-            "sourceId": "SRC-ONSEMI-HB214D-RECTIFIER-HANDBOOK"
+            "sourceId": "SRC-ONSEMI-HB214D-RECTIFIER-HANDBOOK",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "The full-wave bridge is one of the three basic single-phase rectifier circuits (alongside half-wave and full-wave centre-tap); its circuit connection is a four-diode bridge and its load waveshape is a continuous train of unidirectional pulses, i.e. full-wave rectified output.",
-            "sourceId": "SRC-ONSEMI-HB214D-RECTIFIER-HANDBOOK"
+            "sourceId": "SRC-ONSEMI-HB214D-RECTIFIER-HANDBOOK",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "A bridge rectifier makes use of four diodes in a bridge arrangement to achieve full-wave rectification; for both positive and negative swings of the supply there is a forward path through the diode bridge, and both conduction paths cause current to flow in the same direction through the load.",
-            "sourceId": "SRC-GSU-HYPERPHYSICS-BRIDGE-RECTIFIER"
+            "sourceId": "SRC-GSU-HYPERPHYSICS-BRIDGE-RECTIFIER",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "In the motor application specifically, a permanent-magnet DC motor normally requires full-wave DC rectification, so the AC-side controller is connected in series with the AC input side of the rectifier bridge, the bridge's DC output feeding the DC motor from a 115 VAC input (AN1003 Figure 16.16).",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1073,15 +1211,24 @@
         "normalizedClaims": [
           {
             "claimText": "Motor control is a named application category for electronic power-control devices, appearing alongside light dimming and heat control as one of the three applications served by the same thyristor phase-control circuit family, and alongside motor regulation of a washing machine and control of a vacuum cleaner as domestic-appliance uses of electronics.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "The function of electronic motor control at this level is to regulate the power delivered to the motor and thereby its speed: the power device is a triac (the most economical on-line switch), and the output power and therefore the motor speed are controlled by the phase delay of the triac drive, that delay being referred to the zero crossing of the line voltage.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "The sources present distinct motor-control circuits for distinct motor types: a universal motor drive and a half-wave motor control using an SCR, and a permanent-magnet DC motor control which, because PM motors are also generators with commutation characteristics difficult for a standard triac, uses an alternistor triac with enhanced commutating characteristics. This motor-type dependence is a qualification the source states explicitly.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1138,19 +1285,31 @@
         "normalizedClaims": [
           {
             "claimText": "Motor control by electronic switching works by holding an electronic switching device (a triac for full-wave AC control, or an SCR for half-wave control) in the off condition, blocking all current except a minute leakage current, and then triggering it into the on condition by the control circuitry at a chosen point in each half-cycle.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Because the switching device is triggered later or earlier within the half-cycle, the output power and therefore the motor speed are controlled by the phase delay of the drive; the triac is described as the least expensive power switch able to operate directly on the 110/240 V mains.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "A half-wave phase control circuit using an SCR is given for controlling a universal motor, in which the RC network's phase-shifting characteristics permit firing beyond the peak of the impressed voltage, giving small conduction angles and very slow speed.",
-            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL"
+            "sourceId": "SRC-LITTELFUSE-TECCOR-AN1003-PHASE-CONTROL",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Qualification preserved: a universal motor is an INDUCTIVE load which generates strong dynamic constraints on the switching device at turn-off because of the phase lag of current with respect to voltage, so the reapplied voltage can be different from zero. The source contrasts this explicitly with a dimmer's resistive load, where dynamic constraints are lower. Motor switching is therefore not simply the dimmer case reapplied.",
-            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS"
+            "sourceId": "SRC-ST-AN392-MCU-TRIAC-MAINS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1193,11 +1352,17 @@
         "normalizedClaims": [
           {
             "claimText": "A photodiode is fundamentally a current generator: when light is absorbed in its active area an electron-hole pair is formed, and the electrons and holes are separated, electrons passing to the n region and holes to the p region, which results in a current generated by light. This migration of electrons and holes to their respective regions is called the photovoltaic effect.",
-            "sourceId": "SRC-SANDIEGO-CENTROVISION-PHOTODIODE"
+            "sourceId": "SRC-SANDIEGO-CENTROVISION-PHOTODIODE",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "Behaviour must be qualified by operating mode. In zero-bias (photovoltaic) operation the generated photocurrent flows through a fixed load resistance and the resulting voltage is linearly dependent on the incident radiation level, with low noise because leakage current is almost completely eliminated. In photoconductive (reverse-biased) operation the photocurrent produces a voltage across a load resistor in parallel with the shunt resistance; because the diode resistance is substantially constant in the reverse-biased mode, large load resistances can be used while still giving a linear response between output voltage and radiation intensity. Reverse-biased operation is required for high speed of response, but its main disadvantage is increased leakage current due to the bias voltage, giving higher noise than the other modes.",
-            "sourceId": "SRC-SANDIEGO-CENTROVISION-PHOTODIODE"
+            "sourceId": "SRC-SANDIEGO-CENTROVISION-PHOTODIODE",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1260,23 +1425,38 @@
         "normalizedClaims": [
           {
             "claimText": "Diode / rectifier diode (1N4001-1N4007 family): typical physical appearance is a small axial-leaded, molded epoxy cylindrical body in the DO-41 (DO-204AL) case with matte tin plated leads; polarity is indicated by a colour band, which denotes the CATHODE end. Qualification retained from the source: this is the case and polarity convention stated for this specific Vishay part family (document 88503, rev. 29-Apr-2020); it is a package/marking convention for these parts, not a universal guarantee for all diodes.",
-            "sourceId": "SRC-VISHAY-1N4001-DO41-PLASTIC-RECTIFIER"
+            "sourceId": "SRC-VISHAY-1N4001-DO41-PLASTIC-RECTIFIER",
+            "dimension": [
+              "RECOGNITION"
+            ]
           },
           {
             "claimText": "Aluminium electrolytic capacitor (Vishay 048 RML radial series): typical physical appearance is a polarized, non-solid-electrolyte capacitor with radial leads in a cylindrical aluminium case with pressure relief, insulated with a blue sleeve, in nominal case sizes from 10 x 12 mm to 18 x 35 mm (diameter x length). The capacitors are marked 'where possible' with rated capacitance, tolerance code letter per IEC 60062, rated voltage, date code per IEC 60062, factory-of-origin code, manufacturer name, upper category temperature and NEGATIVE TERMINAL IDENTIFICATION. Qualification retained: the sleeve colour and case-size range are specific to this Vishay series, and the source itself qualifies the marking list with 'where possible', i.e. not every item is guaranteed to be present on every part.",
-            "sourceId": "SRC-VISHAY-048RML-ALU-ELECTROLYTIC-CAPACITOR"
+            "sourceId": "SRC-VISHAY-048RML-ALU-ELECTROLYTIC-CAPACITOR",
+            "dimension": [
+              "RECOGNITION"
+            ]
           },
           {
             "claimText": "Bipolar transistor (onsemi 2N3903 / 2N3904, NPN silicon general purpose): supplied in the TO-92 package (CASE 29, STYLE 1), a small moulded three-lead package with pin 1 = EMITTER, pin 2 = BASE, pin 3 = COLLECTOR for this style. Device identity is read from the printed body marking, which per the onsemi marking diagram is '2N 390x' over 'YWWG' where x = 3 or 4, Y = Year, WW = Work Week and G = Pb-Free Package. Qualification retained: pin assignment is stated for CASE 29 STYLE 1 specifically; other TO-92 styles assign the pins differently.",
-            "sourceId": "SRC-ONSEMI-2N3903-2N3904-TO92"
+            "sourceId": "SRC-ONSEMI-2N3903-2N3904-TO92",
+            "dimension": [
+              "RECOGNITION"
+            ]
           },
           {
             "claimText": "Thyristor-family devices (SCRs, TRIACs, DIACs and related Littelfuse Teccor power semiconductors) are supplied in a range of physical packages, specifically named by the manufacturer as TO-92, DO-15, TO-220 and TO-218 (the TO-220 and TO-218 being described as 'the popular and versatile ... epoxy packages'), with DO-35 also referenced for lead-bending limits. The package alone therefore identifies a physical outline, not a device family.",
-            "sourceId": "SRC-LITTELFUSE-AN1004-MOUNTING-AND-PACKAGES"
+            "sourceId": "SRC-LITTELFUSE-AN1004-MOUNTING-AND-PACKAGES",
+            "dimension": [
+              "RECOGNITION"
+            ]
           },
           {
             "claimText": "IMPORTANT RECOGNITION CAVEAT supported by cross-reading the retrieved manufacturer sources: package outline alone does NOT determine which component family a device belongs to. The TO-92 package is used by onsemi for NPN bipolar transistors (2N3903/2N3904) and is simultaneously listed by Littelfuse as one of the packages used for its power thyristor devices. Identification therefore depends on the printed type marking on the body (e.g. onsemi's '2N 390x' marking diagram) plus circuit context, not on physical appearance alone.",
-            "sourceId": "SRC-ONSEMI-2N3903-2N3904-TO92"
+            "sourceId": "SRC-ONSEMI-2N3903-2N3904-TO92",
+            "dimension": [
+              "RECOGNITION"
+            ]
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -1325,11 +1505,17 @@
         "normalizedClaims": [
           {
             "claimText": "A rectifier performs rectification, which is the process of turning an alternating current waveform into a direct current waveform, i.e. creating a new signal that has only a single polarity. In a half-wave rectifier only half of the input waveform reaches the load: the negative half is effectively removed, leaving just the positive portion, and the signal across the load resistor is a pulsating DC waveform.",
-            "sourceId": "SRC-LIBRETEXTS-FIORE-RECTIFICATION"
+            "sourceId": "SRC-LIBRETEXTS-FIORE-RECTIFICATION",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "The rectifier's AC-to-DC conversion rests on the diode's property of allowing current to flow in one direction but not the other, which is why diodes are commonly found in AC adapters and other rectifier circuits.",
-            "sourceId": "SRC-ENERGYEDU-DIODE"
+            "sourceId": "SRC-ENERGYEDU-DIODE",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1377,11 +1563,17 @@
         "normalizedClaims": [
           {
             "claimText": "A resistor is an electrical component in an electric circuit that slows down (opposes and limits) the current in the circuit, and deliberately loses energy in the form of heat or thermal energy.",
-            "sourceId": "SRC-ENERGYEDU-RESISTOR"
+            "sourceId": "SRC-ENERGYEDU-RESISTOR",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "The electrical resistance of a circuit component or device is defined as the ratio of the voltage applied to the electric current which flows through it. Ohm's law, I = V/R, can be used to predict the behaviour of the material only IF the resistance is constant over a considerable range of voltage — linearity is a stated condition, not an unconditional property. Resistivity, and thus resistance, is temperature dependent.",
-            "sourceId": "SRC-HYPERPHYSICS-RESISTANCE"
+            "sourceId": "SRC-HYPERPHYSICS-RESISTANCE",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1457,35 +1649,59 @@
         "normalizedClaims": [
           {
             "claimText": "The standard graphic symbols for the Unit 202 component families are defined in ANSI Y32.2-1975 / CSA Z99-1975 / IEEE Std 315-1975 'Graphic Symbols for Electrical and Electronics Diagrams', a standard approved by ANSI, CSA and the IEEE Standards Board, whose Foreword states that a substantial effort was made to make it compatible with IEC Publication 117 (the predecessor of IEC 60617). Its copyright page permits the individual symbols to be copied, reproduced or employed in any fashion without permission of the IEEE, with any conformance statement being on the user's own responsibility.",
-            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
+            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           },
           {
             "claimText": "RESISTOR - item 2.1.1 'Resistor / General', shown in two alternative forms both marked IEC: a zigzag line, and a plain rectangle (identification to be added within or adjacent to the rectangle per NOTE 2.1A). THERMISTOR - item 2.1.12 'Thermistor; thermal resistor; temperature-sensing element', the resistor symbol with a diagonal control line annotated 't', with 2.1.12.1.3 positive-temperature-coefficient ('+t') and 2.1.12.1.4 negative-temperature-coefficient ('-t') variants. LDR - item 2.1.13 'Symmetrical photoconductive transducer (resistive)', the resistor symbol with two arrows directed toward it (item 8.7.2 'Symmetrical photoconductive transducer (resistive)' directs the reader to 'USE SYMBOL 2.1.13'). CAPACITOR - item 2.2.1 'Capacitor / General' in two styles, Style 1 with two parallel straight lines (noted 'IEC preferred') and Style 2 with one straight and one curved line, with item 2.2.2 'Polarized capacitor' adding a + sign at one plate.",
-            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
+            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           },
           {
             "claimText": "DIODE - item 8.5.1 'Semiconductor diode; semiconductor rectifier diode; metallic rectifier', a triangle against a bar between anode (A) and cathode (K). PHOTODIODE - item 8.5.4 'Photodiode' / 8.5.4.1 'Photosensitive type', the diode symbol with two arrows directed toward it. ZENER / BREAKDOWN DIODE - item 8.5.6 'Breakdown diode; overvoltage absorber', with 8.5.6.1 'Unidirectional diode; voltage regulator' shown in Style 1 and Style 2 as the diode symbol with a bent (L-shaped) cathode bar; NOTE: the standard does not use the word 'Zener'. TRANSISTOR - items 8.6.1 'PNP transistor' and 8.6.2 'NPN transistor', a circle enclosing a base bar with emitter arrow, terminals (E), (C), (B). THYRISTOR / SCR - items 8.6.12 and 8.6.13 'Thyristor, reverse-blocking triode-type, N-type gate / P-type gate; semiconductor controlled rectifier', the diode triangle-and-bar with a gate lead, terminals (A), (K), (G) (Style 3 marked IEC); the two-terminal form is 8.5.8 'Thyristor, reverse-blocking diode-type'. TRIAC - item 8.6.15 'Thyristor, bidirectional triode-type; triac; gated switch', two opposed triangles between terminals (T) and (T) with a gate lead (G). DIAC - item 8.5.6.4 'Bidirectional negative resistance breakdown diode; trigger diac' (NPN-type 8.5.6.4.1 and PNP-type 8.5.6.4.2), with the related two-terminal bidirectional thyristor form at item 8.5.9 'Thyristor, bidirectional diode type; bi-switch', two opposed triangles between (T) and (T) with NO gate.",
-            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
+            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           },
           {
             "claimText": "RELAY - item 4.30 'Relay', with 4.30.1 'Basic' shown as a circle enclosing the letter R, and 4.30.2 'Application: relay with transfer contacts' shown as a coil rectangle with an associated changeover contact set; the standard states that 'Fundamental symbols for contacts, mechanical connections, coils, etc, are the basis of relay symbols and should be used to represent relays on complete diagrams'. RECTIFIER - item 16.3 'Rectifier' with 16.3.1 'General'; NOTE 16.3.1A states the triangle points in the direction of forward (easy) current as indicated by a direct-current ammeter, and NOTE 16.3.1B states the symbol represents any method of rectification. BRIDGE RECTIFIER - item 16.3.3 'Bridge-type rectifier', four diodes drawn in a diamond/bridge configuration with marked + and - output terminals, cross-referenced to item 8.5.1.",
-            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
+            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           },
           {
             "claimText": "LED - QUALIFIED / PARTIALLY_VERIFIED. This 1975 standard does NOT list a symbol under the name 'light-emitting diode' in its semiconductor section. The nearest named symbol is item 8.5.4.2 'Photoemissive type' (page 56), a diode symbol with two arrows directed AWAY from the device, which is cross-referenced 'See also item 11.1.1'; and item 11.1 'Lamp' is itself cross-referenced 'See also item 8.5.4.2'. The literal term appears only in NOTE 11.1.1B, where 'LED  Light-emitting diode' is one of the letter codes that may be inserted within or placed adjacent to the general lamp symbol 11.1.1. Any teaching of the modern diode-with-two-emission-arrows LED symbol should therefore be traced either to item 8.5.4.2 (named 'photoemissive type') or to a current IEC 60617 / BS EN 60617 source, which was not reachable in this session.",
-            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
+            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           },
           {
             "claimText": "INVERTER - QUALIFIED / NOT COVERED as a distinct graphic symbol. In this standard a static inverter is represented only by the general circuit-element rectangle of item 16.1.1 carrying the letter combination 'ST-INV  Static inverter' listed at item 16.1.1.2; there is no dedicated inverter symbol in the retrieved standard.",
-            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS"
+            "sourceId": "SRC-IEEE315-1975-ANSI-Y32-2-GRAPHIC-SYMBOLS",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           },
           {
             "claimText": "Manufacturer corroboration for the three thyristor-family symbols specifically: Littelfuse AN1001 Figure AN1001.1 shows the SCR schematic symbol as a triangle-and-bar with terminals labelled Anode and Cathode and a Gate lead entering at the cathode bar; Figure AN1001.4 shows the TRIAC schematic symbol as two anti-parallel triangles with terminals labelled MT2 and MT1 and a single Gate lead; Figure AN1001.9 shows the DIAC schematic symbol as two opposed triangles between terminals MT1 and MT2 with NO gate lead. These agree with IEEE Std 315-1975 items 8.6.12/8.6.13, 8.6.15 and 8.5.9/8.5.6.4 respectively.",
-            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
+            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           },
           {
             "claimText": "The official IEC 60617 webstore free preview directly confirms six current symbol identity numbers and their English names, all genuinely read on the pages actually opened: S00641 (Semiconductor diode, general symbol), S00652 (Bidirectional diode thyristor; Diac), S00659 (Bidirectional triode thyristor; Triac), S00684 (Light dependent resistor (LDR); Photo resistor), S01919 (Light emitting diode (LED), general symbol) and S01920 (Photodiode). This CONFIRMS the identity/name pairing for these six AC6.2-relevant entries in the CURRENT IEC 60617 database (as distinct from the 1975 ANSI/IEEE standard used elsewhere in this cluster). It does NOT confirm: (a) the graphical symbol artwork/geometry for any of the six -- the ID/Name table carries no image, and the detail page showing the actual drawn symbol requires the password-gated login; (b) each entry's current Standard-versus-Obsolete status level -- the database's own data model records a Status level field, but it is not shown in this table view. The overall SCHEMATIC_SYMBOL requirement therefore remains PARTIALLY_VERIFIED: identity/name confirmation for six families is not the same as confirming learner-facing symbol shape or current-standard status.",
-            "sourceId": "SRC-IEC-60617-WEBSTORE-PREVIEW"
+            "sourceId": "SRC-IEC-60617-WEBSTORE-PREVIEW",
+            "dimension": [
+              "SCHEMATIC_SYMBOL"
+            ]
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -1501,7 +1717,8 @@
           "The IEC 60617 webstore free preview confirms six identity/name pairs relevant to this cluster (S00641, S00652, S00659, S00684, S01919, S01920 -- see SRC-IEC-60617-WEBSTORE-PREVIEW and disclosures). It does not expose the corresponding graphical artwork/geometry (visible only behind the password-gated detail-page login) or each entry's Standard-versus-Obsolete status level (recorded by the database per its own data model, but not shown in this ID/Name table view). Learner-facing symbol SHAPE and current-standard status therefore remain genuinely unconfirmed for these six identities, and this requirement remains PARTIALLY_VERIFIED -- identity confirmation alone does not verify a schematic-symbol-recognition requirement.",
           "13 of the 15 Unit 202 component families have a named, directly-read graphic symbol in the retrieved standard: resistor (2.1.1), capacitor (2.2.1 / 2.2.2), diode (8.5.1), Zener/breakdown diode (8.5.6 / 8.5.6.1), photodiode (8.5.4 / 8.5.4.1), LDR (2.1.13, via 8.7.2), thermistor (2.1.12), transistor (8.6.1 / 8.6.2), thyristor SCR (8.6.12 / 8.6.13, and 8.5.8), TRIAC (8.6.15), DIAC (8.5.6.4 and 8.5.9), rectifier including bridge rectifier (16.3, 16.3.1, 16.3.3), relay (4.30, 4.30.1, 4.30.2).",
           "2 of the 15 families are NOT covered by a dedicated, named graphic symbol in the retrieved standard: LED (present only as the letter code 'LED' applied to the general lamp symbol 11.1.1 per NOTE 11.1.1B, with the nearest graphic being item 8.5.4.2 'Photoemissive type'), and INVERTER (present only as the letter combination 'ST-INV  Static inverter' placed inside the general circuit-element rectangle of item 16.1.1). Because the requirement is explicitly a breadth requirement over 'each named AC6.2 component/device family', this is recorded as PARTIALLY_VERIFIED rather than VERIFIED.",
-          "The normative IEC 60617 / BS EN 60617 symbol table itself was NOT reached (see accessFailures); no symbol in this cluster is verified against the current IEC/BS text."
+          "The normative IEC 60617 / BS EN 60617 symbol table itself was NOT reached (see accessFailures); no symbol in this cluster is verified against the current IEC/BS text.",
+          "[Section G, third narrow correction pass, re-attempted, still not resolved] Freshly re-checked the official current IEC 60617 database via both webstore.iec.ch (the free ID/Name-only preview, already recorded above) and library.iec.ch (a separate official IEC page named by this pass's instruction): library.iec.ch independently confirms the same subscription-gated picture -- \"Access to the database is on a subscription basis\" via IEC National Committees, Sales Outlets or the IEC Webstore, with a required License Agreement; no free search-by-identity or geometry view exists for S00684/S00896/S01919 or any other identity without payment. A products.iec.ch individual-product-record route was sought but no such freely-accessible page was found for these identities (only the same gated database/webstore entry points). CORRECTION uncovered by this fresh check: BS EN 60617-2:1996 (and the BS EN 60617 series generally) is WITHDRAWN; BSI's own current guidance is to use IEC 60617 directly rather than a separate BS EN edition -- so the prior framing (\"NOTHING is verified against current BS EN 60617, which is the standard a UK qualification would be expected to follow\") is corrected: there is no separate current BS EN 60617 to check against, IEC 60617 itself IS the current standard a UK qualification would follow, and it is this same IEC 60617 database that remains subscription-gated for geometry. This requirement remains genuinely PARTIALLY_VERIFIED -- not fabricated closed."
         ],
         "disclosures": [
           "[Correction] requiredCoverageDimensions corrected from the stale [QUANTITY_SYMBOL] to [SCHEMATIC_SYMBOL] (ACQ-184) to match the regenerated plan -- the amendment ledger already recorded this fix in the previous pass but it was never actually propagated into this record. No change to the underlying evidence or verification status, which already correctly concerned symbol recognition, not a quantity-symbol letter.",
@@ -1589,37 +1806,63 @@
             "sourceRef": "http://class.ece.iastate.edu/ee330/miscHandouts/PowerThyristorApplicationNotes.pdf",
             "sourceLocator": "AN1001 'Fundamental Characteristics of Thyristors', thyristor terminology definitions list",
             "retrievedPassage": "\"Holding Current (IH) - Minimum principal current required to maintain the Thyristor in the on state\" ... \"Latching Current (IL) - Minimum principal current required to maintain the Thyristor in the on state immediately after the switching from off state to on state has occurred and the triggering signal has been removed\""
+          },
+          {
+            "sourceId": "SRC-NUTSVOLTS-MARSTON-SCR-PRINCIPLES",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.nutsvolts.com/magazine/article/scr_principles_and_circuits",
+            "sourceLocator": "Ray Marston, \"SCR Principles and Circuits\", Nuts & Volts, January 2002, Figure 5 and Figure 7",
+            "retrievedPassage": "\"One useful application of the SCR is in DC-powered alarm circuits that use self-interrupting loads such as bells or buzzers\" (Figure 5). \"The SCR unlatches automatically each time the load self-interrupts. The circuit can be made fully self-latching, if desired, by shunting the load with resistor R3\" (Figure 5 description). Figure 7: a self-latching multi-input panic alarm wiring R3 plus normally-closed reset switch S4 in parallel with the alarm device; \"Once this circuit has latched, it can be unlatched again (reset) by briefly opening S4.\""
+          },
+          {
+            "sourceId": "SRC-NUTSVOLTS-MARSTON-SECURITY-PART4",
+            "authorityClass": "AUTHORITATIVE_TECHNICAL_REFERENCE",
+            "sourceRef": "https://www.nutsvolts.com/magazine/article/security_electronics_systems_and_circuits_part_4",
+            "sourceLocator": "Ray Marston, \"Security Electronics Systems and Circuits -- Part 4\", Nuts & Volts, 1998",
+            "retrievedPassage": "\"This diagram also shows how the circuit can be made self-latching by wiring R4 across the bell so that the SCR anode current does not fall to zero as the bell self-interrupts\"; \"Switch S1 enables the circuit to be reset (unlatched) when required.\" (already inspected in the prior correction pass; re-cited here now that its publisher classification is genuinely PA-governed rather than excluded)."
           }
         ],
         "normalizedClaims": [
           {
             "claimText": "An SCR (silicon controlled rectifier) latches: once a momentary gate pulse has triggered it and the anode-to-cathode current exceeds the latching current (IL), the SCR remains conducting even after the triggering signal is removed, and it is only turned off when the anode-to-cathode current drops below the holding current (IH). Source framing: manufacturer application note, generic device behaviour, not stated with reference to any alarm circuit.",
-            "sourceId": "SRC-LITTELFUSE-THYRISTOR-APPNOTES"
+            "sourceId": "SRC-LITTELFUSE-THYRISTOR-APPNOTES",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Holding current (IH) is defined by the manufacturer as the minimum principal current required to maintain the thyristor in the on state; latching current (IL) is the minimum principal current required to maintain it in the on state immediately after switching on has occurred and the triggering signal has been removed. Scope: generic thyristor device parameters.",
-            "sourceId": "SRC-LITTELFUSE-THYRISTOR-APPNOTES"
+            "sourceId": "SRC-LITTELFUSE-THYRISTOR-APPNOTES",
+            "dimension": [
+              "DEFINITION"
+            ]
+          },
+          {
+            "claimText": "A triggered, latched SCR can be used in an alarm circuit to keep current flowing through a bell, buzzer or other self-interrupting sounder load, remaining conducting until the anode current is reduced below holding current -- commonly by interrupting the supply or operating a manual reset switch. Source framing: PA-governed exemplar sources (Ray Marston, Nuts & Volts), a representative introductory application, not a normative security-installation design; exact component values and the specific NC-loop/bias topology are excluded and not asserted here.",
+            "sourceId": "SRC-NUTSVOLTS-MARSTON-SCR-PRINCIPLES",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
-        "verificationStatus": "PARTIALLY_VERIFIED",
-        "coverageDimensionsSatisfied": [],
-        "unresolvedDimensions": [
+        "verificationStatus": "VERIFIED",
+        "coverageDimensionsSatisfied": [
           "DEFINITION"
         ],
+        "unresolvedDimensions": [],
         "conflicts": [
           "Inherits the specification ambiguity recorded against security-alarm-exact-nc-contact-bias-topology: the specific security alarm circuit whose SCR role is asserted is not identified in the requirement text."
         ],
-        "gaps": [
-          "[Correction, Stage 5 exemplar decision 3] SCR latching itself (trigger, latch-on, remain conducting until current falls below holding current) is fully and genuinely evidenced as general device behaviour and is retained as transferable technical truth. The compound claim that an SCR specifically 'keeps a sounder energised' in an alarm circuit is NOT evidenced by any retrieved source and is explicitly excluded from taught content -- it is not claimed here.",
-          "The LATCHING half of the requirement is fully and explicitly supported, including the holding-current condition and the fact that latching persists after the gate signal is removed.",
-          "The SOUNDER ROLE half is NOT supported. No authoritative source was read that states an SCR is used in a security alarm to keep a sounder/bell/siren energised once triggered. No such claim has been recorded. The Littelfuse compendium's single mention of alarms is an unrelated Triac IR-motion-detector example.",
-          "Consequently the compound claim 'in a security alarm the SCR latches and thereby holds the sounder on until the supply is interrupted' is NOT evidenced and must not be presented as sourced. The latching property and the alarm/sounder application must be kept separable in downstream content until an alarm-specific authoritative source is obtained.",
-          "Same four exhausted candidate routes as recorded for the topology requirement.",
-          "[Re-sourcing attempted, Stage 4, not resolved] Further candidate routes exhausted: Littelfuse AN1002 \"Gating, Latching, and Holding of SCRs and Triacs\" (found, but full text could not be extracted/read by available tooling); onsemi \"Thyristor Theory and Design Considerations Handbook\" HBD855D/2005 (fetched, 3.7MB, content not extractable); STMicroelectronics AN4607 (search snippet mentioned \"light alarms\" but the document could not be fetched/read to confirm or quote); IEEE Xplore search for burglar-alarm + thyristor/SCR returned only unrelated patents and a modern PIR-sensor paper, no matching abstract. No permitted-class, directly-read passage was obtained. This remains a genuine, bounded, honestly-disclosed gap -- not fabricated closed.",
-          "[Stage D bounded acquisition attempted, narrow correction pass, not resolved] STMicroelectronics AN4607 was re-inspected directly: its only alarm-related content is the same generic \"light alarms\" latching reference already recorded (Section 1.3, page 4), with no sounder/bell/buzzer specificity. A further bounded search for an established source found Nuts & Volts magazine's \"Security Electronics Systems and Circuits\" Part 4, which genuinely and directly describes an SCR latching to hold an alarm bell energised via a bias resistor, with a manual reset switch -- exactly the required relationship -- but Nuts & Volts is a hobbyist/enthusiast electronics magazine, not a permitted authority class for this requirement (see evaluatedButOutOfPermittedAuthorityClass). This remains a genuine, honestly bounded, unresolved gap -- not fabricated closed, and not forced through on a source that does not meet this requirement's own authority bar."
-        ],
-        "evaluatedButOutOfPermittedAuthorityClass": []
-      }
+        "gaps": [],
+        "evaluatedButOutOfPermittedAuthorityClass": [],
+        "paAuthorityPolicyAdjudication": {
+          "id": "PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001",
+          "note": "Genuinely governed -- see UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json. Authorizes classifying Ray Marston's authored Nuts & Volts articles AUTHORITATIVE_TECHNICAL_REFERENCE for this row only, narrowly for the SCR-latches-and-keeps-a-bell/buzzer/sounder-energised relationship. Does not widen this row's sourceAuthorityClasses (AUTHORITATIVE_TECHNICAL_REFERENCE was already permitted here); the governed decision is the SOURCE-level reclassification of an otherwise-excluded hobbyist-magazine publisher, recorded transparently in SOURCE-REGISTER.json rather than via the project's normal prose-disclosure-only exclusion."
+        }
+      },
+      "disclosures": [
+        "Section F, third narrow correction pass: the sounder-role half of this requirement is now VERIFIED via a genuine, narrowly-scoped Product Architect decision (PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001) authorizing Ray Marston's authored Nuts & Volts articles as AUTHORITATIVE_TECHNICAL_REFERENCE for this one requirement only. This composes transparently alongside, and does not replace, the existing Littelfuse AN1002 manufacturer evidence for the latching/holding-current mechanics itself. The exact retired NC-loop/bias topology (security-alarm-exact-nc-contact-bias-topology) remains RETIRED_OUT_OF_SCOPE and is unaffected by this decision -- this row's VERIFIED status covers only the bounded relationship named in the PA decision, not any specific circuit."
+      ]
     },
     {
       "evidenceRequirementId": "ER::provisional::unit202::electronic-devices-and-applications::security-alarm-transistor-switching::EXACT_FACT",
@@ -1655,7 +1898,10 @@
         "normalizedClaims": [
           {
             "claimText": "A bipolar junction transistor used as a switch operates as a non-linear switch, alternating between the cutoff region (behaving as an open switch / open circuits between all terminals, both junctions reverse biased) and the saturation region (behaving as a closed switch, both junctions forward biased, with a small nearly constant V_CE of approximately 200 mV). This is contrasted by the source with the linear-amplifier category, in which the transistor operates in the forward active region and provides linear gain. Scope: generic BJT operating-region teaching material; not stated with reference to any security alarm circuit.",
-            "sourceId": "SRC-OSU-ECE322-BJT"
+            "sourceId": "SRC-OSU-ECE322-BJT",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -1720,7 +1966,10 @@
         "normalizedClaims": [
           {
             "claimText": "A security/intruder alarm system's basic function is to detect unauthorised entry and alert monitoring personnel or users so that intrusions can be responded to.",
-            "sourceId": "SRC-BOSCH-KEENFINITY-INTRUSION"
+            "sourceId": "SRC-BOSCH-KEENFINITY-INTRUSION",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1818,19 +2067,31 @@
         "normalizedClaims": [
           {
             "claimText": "In the UK legacy analogue PSTN, the Openreach master socket contains a 1.8 microfarad capacitor connected in series with a 470 kilohm resistor across the 'A' and 'B' wires, and the socket's 'shunt connection' is taken from the centre point between that resistor and that capacitor. Jurisdiction: UK (Openreach/BT network). Era: legacy analogue PSTN. Source: SIN 351 Issue 5.0 (August 2020, reviewed unchanged to September 2023).",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Openreach designates that same shunt connection as the 'Bell wire' where it is presented for internal extension wiring: it appears on extension-wiring IDC '3' and at master socket contact '4'. Jurisdiction: UK legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "The UK PSTN call arrival indication (ringing) is an alternating signal of between 100 V and 40 V a.c. r.m.s. measured between the 'A' and 'B' wires, at a signal frequency of 25 Hz +1 Hz / -5 Hz. Jurisdiction: UK legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "A general telecom-industry technical reference (IXYS/Littelfuse AN-144) states that the historical (legacy, inductive-clapper) telephone ringer circuit generally required a DC-blocking capacitor in series with the ringer, its value chosen for resonance near the ringing frequency. This source describes the general historical ringer-circuit topology, not the UK Openreach NTE specifically -- it is not claimed to be describing the Openreach implementation.",
-            "sourceId": "SRC-IXYS-LITTELFUSE-AN144-RINGING-LOADS"
+            "sourceId": "SRC-IXYS-LITTELFUSE-AN144-RINGING-LOADS",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1893,23 +2154,38 @@
         "normalizedClaims": [
           {
             "claimText": "The public switched telephone network (PSTN) is the traditional UK telephone network; Ofcom describes providers still offering it as 'Providers of legacy PSTN services' and describes the change now underway as 'the transition from analogue to digital landlines'. Jurisdiction: UK. Date of statement: 29 January 2026.",
-            "sourceId": "SRC-OFCOM-PSTN-LETTER-2026"
+            "sourceId": "SRC-OFCOM-PSTN-LETTER-2026",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "BT is planning to retire its public switched telephone network (PSTN) by 31 January 2027; Ofcom states this transition is necessary as PSTN technology is beyond its intended lifespan and is becoming increasingly unreliable, and that Ofcom is supportive of the migration to digital landlines. Jurisdiction: UK. ERA QUALIFICATION: any teaching of legacy PSTN wiring must be presented as legacy practice, not as current UK arrangements.",
-            "sourceId": "SRC-OFCOM-PSTN-LETTER-2026"
+            "sourceId": "SRC-OFCOM-PSTN-LETTER-2026",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Ofcom states that the traditional telephone network, known as the public switched telephone network (PSTN), is old and becoming less reliable so it needs to be replaced; that landlines are moving to digital technology ('digital landlines'); and that a digital landline works over a broadband connection, with the phone plugged into the broadband router rather than directly into the wall socket. Jurisdiction: UK.",
-            "sourceId": "SRC-OFCOM-LANDLINE-CONSUMER"
+            "sourceId": "SRC-OFCOM-LANDLINE-CONSUMER",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Openreach specifies the technical characteristics of a single ANALOGUE line interface of the PSTN, commonly known as a Direct Exchange Line (DEL), delivered to a customer at the Network Termination Point (NTP). Jurisdiction: UK (Openreach). Era: legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Ofcom records that businesses use the PSTN to support non-voice devices such as alarms, telemetry and monitoring equipment, and that some of this equipment may need to be reconfigured or replaced because some PSTN characteristics (for example line powering) may not be replicated by all-IP services; digital landlines will not work during a power cut. Jurisdiction: UK.",
-            "sourceId": "SRC-OFCOM-PSTN-LETTER-2026"
+            "sourceId": "SRC-OFCOM-PSTN-LETTER-2026",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -1974,23 +2250,38 @@
         "normalizedClaims": [
           {
             "claimText": "In the UK legacy analogue PSTN the Openreach network interface consists of two conductors, the 'A' and 'B' wires, and customer access to it is either via an Openreach Master socket or an Insulation Displacement Connection (IDC) cable termination. Jurisdiction: UK (Openreach/BT).",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Openreach master socket contact assignment (SIN 351 Table 1): 1 = not used for PSTN; 2 = 'A' wire or 'B' wire; 3 = local earth when required; 4 = shunt connection, when required; 5 = 'B' wire or 'A' wire; 6 = not used for PSTN. Plugs meeting BS 6312:Part 1:1994 and wired to correspond with Table 1 are compatible with the BT provided socket. Jurisdiction: UK legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Internal extension wiring is terminated on IDCs inside the Openreach PSTN NTE with a DIFFERENT numbering from the master socket contacts: IDC 2 = 'A' or 'B' wire; IDC 3 = shunt connection (Bell wire); IDC 4 = local earth when required; IDC 5 = 'B' or 'A' wire. Openreach states the essential connections IDC 2, 3 and 5 will always be present and consistently numbered, and that the shunt connection appears on IDC 3 but at master socket contact 4. Jurisdiction: UK legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Openreach fits the master socket (Network Terminating Equipment, NTE), which remains Openreach property; the customer connection point is at the back of the removable front plate of the master NTE5, and extension sockets are wired on from NTE terminals 5, 3 and 2 to the corresponding terminals of each extension socket. The extension wiring pattern must be non-star-wired and must be in series or spur. Jurisdiction: UK. Source: Openreach developer guide, version 3.1, October 2019.",
-            "sourceId": "SRC-OPENREACH-COPPER-HANDBOOK"
+            "sourceId": "SRC-OPENREACH-COPPER-HANDBOOK",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Internal wiring beyond the Openreach master socket is normally the responsibility of the customer/developer; extension wiring must be telephone/data grade solid copper 0.5-0.63 mm diameter in twisted pair format, maximum 96 ohms/km, PVC sheathed; installation and separation requirements are given in BS 6701 Part 1 (particularly clause 6) and the IET wiring regulations (Regulation 525). Jurisdiction: UK.",
-            "sourceId": "SRC-OPENREACH-COPPER-HANDBOOK"
+            "sourceId": "SRC-OPENREACH-COPPER-HANDBOOK",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -2059,15 +2350,24 @@
         "normalizedClaims": [
           {
             "claimText": "A 470 kilohm resistor is present inside the UK Openreach master socket, connected in series with a 1.8 microfarad capacitor across the 'A' and 'B' wires, with the socket's shunt connection taken from the centre point between the two. Jurisdiction: UK legacy analogue PSTN. NOTE: SIN 351 states the resistor's presence and connection; it does NOT state the resistor's purpose.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Openreach has for many years carried out automatic test routines on its local line plant, and the frequency of testing PSTN lines has increased to approaching once every 24 hours. Jurisdiction: UK legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Openreach line test conditions may apply up to 50 V battery (positive and negative with respect to earth) with a source resistance between 0 and 120 kilohms; earth via a source resistance between zero and 120 kilohms; open circuit greater than 10 megohms; and a.c. voltage less than 25 V peak to peak at no more than 30 Hz, balanced or longitudinal. During routines the exchange voltage is disconnected, transient current is limited to 1.0 mA while switching between tests, and total test time is up to 18 seconds. Jurisdiction: UK legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "PARTIALLY_VERIFIED",
@@ -2126,11 +2426,17 @@
         "normalizedClaims": [
           {
             "claimText": "In the UK Openreach master socket for the legacy analogue PSTN, in addition to the 470 kilohm resistor and 1.8 microfarad capacitor in series across the 'A' and 'B' wires, there is an over-voltage protection device connected across the 'A' and 'B' wires. Jurisdiction: UK (Openreach/BT). Era: legacy analogue PSTN. Source currency: SIN 351 Issue 5.0, dated August 2020, annual-reviewed September 2023 with no changes.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Openreach documents that the analogue line is subject to noise, induced voltages and line surges: permanent longitudinal direct voltages up to 4 V; permanent longitudinal alternating voltages up to 5 V r.m.s. at 50 Hz plus harmonics, with earth potential difference up to 3 V r.m.s. 50 Hz; and permanent longitudinal and transverse alternating voltages generally not exceeding 3 V r.m.s. at other frequencies up to 2 MHz. Jurisdiction: UK legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2183,11 +2489,17 @@
         "normalizedClaims": [
           {
             "claimText": "On the UK legacy analogue PSTN, the telephone is the terminal connected at the Network Termination Point of a single analogue line (Direct Exchange Line); the network provides it with call arrival indication (ringing) when off-line, and recognises the terminal going on-line (the on-line d.c. condition) as a called party answer, at which point ringing is disconnected. Jurisdiction: UK. Era: legacy analogue PSTN.",
-            "sourceId": "SRC-OPENREACH-SIN351"
+            "sourceId": "SRC-OPENREACH-SIN351",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           },
           {
             "claimText": "A telephone (telephone set) is, at the device level, the apparatus that converts speech/sound to an electrical (electromagnetic) signal and back, for two-way communication across a distance -- resolving the prior gap where only the SERVICE/NETWORK level (not the device itself) had been defined.",
-            "sourceId": "SRC-GALE-EOS-TELEPHONE"
+            "sourceId": "SRC-GALE-EOS-TELEPHONE",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2261,15 +2573,24 @@
         "normalizedClaims": [
           {
             "claimText": "A thermistor is a resistive element whose resistance changes with temperature, and thermistors are used as temperature sensors by utilising that change in resistance due to changes in temperature. Thermistors are NOT all of one polarity: NTC and PTC types behave in opposite directions.",
-            "sourceId": "SRC-MURATA-PTC-ABOUT"
+            "sourceId": "SRC-MURATA-PTC-ABOUT",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "NTC (negative temperature coefficient) thermistors are elements whose resistance FALLS with an increase in temperature; they find use in applications such as temperature sensing.",
-            "sourceId": "SRC-MURATA-NTC-OVERVIEW"
+            "sourceId": "SRC-MURATA-NTC-OVERVIEW",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "PTC (positive temperature coefficient) thermistors behave in the opposite direction, but with an important scope limitation: between room temperature and the Curie point the resistance decreases slightly or is almost constant, and it is ABOVE the Curie point that the resistance increases logarithmically. The PTC resistance rise is therefore not a uniform rise across all temperatures but a sharp rise once the Curie temperature is exceeded.",
-            "sourceId": "SRC-MURATA-PTC-RT"
+            "sourceId": "SRC-MURATA-PTC-RT",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2334,15 +2655,24 @@
         "normalizedClaims": [
           {
             "claimText": "A thyristor (SCR, silicon controlled rectifier) is a four-layer PNPN semiconductor switch that is UNIDIRECTIONAL: it is a unilateral device, requiring a positive gate signal with respect to the cathode to turn on, and (per HyperPhysics) it allows current in only one direction, in contrast to the TRIAC which conducts in both directions.",
-            "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING"
+            "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "The SCR is LATCHING: for the SCR to latch on, the anode-to-cathode current (IT) must exceed the latching current (IL) requirement, where latching current is the minimum principal current required to maintain the thyristor in the on state immediately after switching from off state to on state has occurred and the triggering signal has been removed. Once latched on, the SCR remains on - it does not require continued gate drive - until it is turned off when the anode-to-cathode current drops below the holding current (IH) requirement. Equivalently, in the two-transistor model the circuit remains on until it is turned off by reducing the anode-to-cathode current so that the combined hFE is less than unity and regeneration ceases; that threshold anode current is the holding current of the SCR.",
-            "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING"
+            "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "A small gate current switches a large principal current: a momentary positive pulse applied to the gate initiates regenerative conduction; thereafter conduction is self-sustaining while the principal current remains above the holding current level. In an AC circuit the device stays on for the remainder of the half cycle until the principal current falls below the holding current level.",
-            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
+            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2382,7 +2712,10 @@
         "normalizedClaims": [
           {
             "claimText": "A transistor is a component of electric circuits that can act as an amplifier and as a switch. It comprises three doped semiconductor regions; in a bipolar junction transistor the end regions are the collector and the emitter (conventional current flow being from collector to emitter through an NPN transistor) and the middle region is the base. A small current through the base regulates a much larger current between collector and emitter, which is what allows the device to switch (block or allow current flow) and to amplify (magnify weak signals).",
-            "sourceId": "SRC-ENERGYEDU-TRANSISTOR"
+            "sourceId": "SRC-ENERGYEDU-TRANSISTOR",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2444,11 +2777,17 @@
         "normalizedClaims": [
           {
             "claimText": "A TRIAC (triode AC switch) is a three-terminal BIDIRECTIONAL thyristor whose primary function is to control power bilaterally in an AC circuit. Its operation can be related to two SCRs connected in parallel in opposite directions, but it has a SINGLE gate; it is a bilateral device that can be triggered/gated on by a gate signal of either polarity with respect to MT1 - though the different polarities have different IGT and VGT requirements (four gating quadrants, of which Quadrants I and III are the most common and most sensitive).",
-            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS"
+            "sourceId": "SRC-LITTELFUSE-AN1001-THYRISTOR-FUNDAMENTALS",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           },
           {
             "claimText": "Because a TRIAC operates in both directions, it behaves essentially the same in either direction as an SCR would behave in the forward direction (blocking or operating). In response to a trigger it latches on and remains conducting until the current through it falls below its holding current -- the same latching/holding mechanism as an SCR. With a resistive AC load the current and voltage cross zero together, so the two coincide closely; with an inductive load the current lags the voltage and they do not necessarily coincide, so 'conducts until the applied AC voltage reaches zero' is imprecise and is not the basis of this claim.",
-            "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING"
+            "sourceId": "SRC-LITTELFUSE-AN1002-GATING-LATCHING-HOLDING",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2497,7 +2836,10 @@
         "normalizedClaims": [
           {
             "claimText": "Wireless networked control systems are composed of spatially distributed sensors, actuators and controllers communicating through wireless networks instead of conventional point-to-point wired connections, and are used as an infrastructure technology for control systems in automotive electrical systems, avionics control systems, building management systems and industrial automation systems. Scope: academic survey of wireless networked control systems, 2017.",
-            "sourceId": "SRC-WNCS-SURVEY"
+            "sourceId": "SRC-WNCS-SURVEY",
+            "dimension": [
+              "APPLICATION_FUNCTION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2572,11 +2914,17 @@
         "normalizedClaims": [
           {
             "claimText": "The practical advantages of wireless control systems, as stated in an academic survey of wireless networked control systems, are: they replace conventional point-to-point wired connections; they reduce deployment and maintenance costs; they offer large flexibility; they are easy to install and maintain; and they possibly enhance safety. Scope: research survey of wireless networked control systems, 2017.",
-            "sourceId": "SRC-WNCS-SURVEY"
+            "sourceId": "SRC-WNCS-SURVEY",
+            "dimension": [
+              "DEFINITION"
+            ]
           },
           {
             "claimText": "Applied to buildings specifically, wireless network based building automation provides significant savings in installation cost, allowing a large retrofit market to be addressed as well as new constructions. Scope: same survey, Building Automation applications section.",
-            "sourceId": "SRC-WNCS-SURVEY"
+            "sourceId": "SRC-WNCS-SURVEY",
+            "dimension": [
+              "DEFINITION"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",
@@ -2620,7 +2968,10 @@
         "normalizedClaims": [
           {
             "claimText": "A Zener diode uses a p-n junction in REVERSE BIAS to make use of the Zener effect, a breakdown phenomenon which holds the voltage close to a constant value called the Zener voltage. Its regulating behaviour is scoped to reverse-breakdown operation: with sufficient reverse voltage applied, the junction breaks down and conducts current in the reverse direction, and while this is taking place very small changes in voltage can cause very large changes in current. It is useful in Zener regulators to provide a more constant voltage, for improvement of regulated power supplies, and for limiter applications.",
-            "sourceId": "SRC-HYPERPHYSICS-ZENER"
+            "sourceId": "SRC-HYPERPHYSICS-ZENER",
+            "dimension": [
+              "OPERATING_PRINCIPLE"
+            ]
           }
         ],
         "verificationStatus": "VERIFIED",

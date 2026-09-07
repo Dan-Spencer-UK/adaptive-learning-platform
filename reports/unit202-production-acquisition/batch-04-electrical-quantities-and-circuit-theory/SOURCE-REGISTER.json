@@ -1,8 +1,8 @@
 {
   "batchId": "batch-04-electrical-quantities-and-circuit-theory",
-  "sourceCount": 38,
+  "sourceCount": 39,
   "reusedSourceCount": 4,
-  "newSourceCount": 34,
+  "newSourceCount": 35,
   "note": "22 sources were freshly acquired in this session via real web search and retrieval. 4 sources (SRC-NIST-MASS, SRC-NIST-SP811-B9, SRC-HP-RESIS, SRC-NIST-RESHALL) were registered in earlier accepted batches (Batch 02 and/or Batch 03) and are reused here; see reusedSourceIds below for the exact list. Each reused source was re-fetched and its exact passage freshly re-read in this session (not assumed from the prior normalized claim), per the task's cross-batch reuse discipline. Several sources are also reused ACROSS multiple Batch 04 requirements within this batch where the retrieved passage genuinely supports more than one requirement -- see each source's 'supports' list.",
   "reusedSourceIds": [
     "SRC-NIST-MASS",
@@ -756,6 +756,24 @@
       "locator": "IEC Electropedia, IEV 112-03-04 \"factor\", Note 2",
       "supportsRequirementSuffixes": [
         "power-factor-meaning-quantity-symbol-unit-name-symbol-dimensionless-distinction-from-power::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
+      ]
+    },
+    {
+      "accessDate": "2026-09-07",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered passage returned by the fetch tool was captured, not raw source bytes; no hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-IEC-IEV-131-12-43",
+      "publisher": "IEC (International Electrotechnical Commission)",
+      "title": "IEV 131-12-43 \"impedance\"",
+      "url": "https://www.electropedia.org/iev/iev.nsf/display?openform&ievref=131-12-43",
+      "authorityClass": "PRIMARY_NORMATIVE_OR_STANDARDS_BODY",
+      "authorityRationale": "IEC Electropedia is the IEC's own free public online database of the International Electrotechnical Vocabulary (IEC 60050), the normative multilingual electrotechnical terminology standard.",
+      "locator": "IEC Electropedia, IEV 131-12-43 \"impedance\", Note 1 and Note 3 (coherent SI unit)",
+      "supportsRequirementSuffixes": [
+        "inductance-and-inductive-reactance-meaning-quantity-symbol-unit-name-symbol-distinction-between-the-two::SYMBOL_OR_CONVENTION::UNIT_SYMBOL"
       ]
     }
   ],

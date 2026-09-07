@@ -1,8 +1,8 @@
 {
   "batchId": "batch-05",
-  "sourceCount": 50,
+  "sourceCount": 51,
   "reusedSourceCount": 0,
-  "newSourceCount": 50,
+  "newSourceCount": 51,
   "note": "All sources were genuinely retrieved and read during this acquisition. `supportsRequirementSuffixes` is derived mechanically from the actual citations in EVIDENCE-RESULTS.json, never asserted by hand, so the register cannot over-claim. `citedAsVerifyingEvidence: false` marks a source that was genuinely read but whose authority class is not permitted for any requirement it was evaluated for; such sources are retained for the audit trail and support no claim.",
   "reusedSourceIds": [],
   "sources": [
@@ -1002,6 +1002,25 @@
       "locator": "Module ES-07 \"Basic AC Theory\", section \"AC GENERATION\", Figure 1 \"Simple AC Generator\" and \"AC Generation Summary\" box (Page 1 and Page 3)",
       "supportsRequirementSuffixes": [
         "single-loop-alternator-generator-parts::SCHEMATIC_OR_DIAGRAM_RECOGNITION"
+      ],
+      "citedAsVerifyingEvidence": true
+    },
+    {
+      "accessDate": "2026-09-06",
+      "rawContentCaptured": false,
+      "contentHash": null,
+      "hashReason": "Only the rendered page-image passage was read and transcribed; no raw file hash is claimed.",
+      "retrievalTimestamp": null,
+      "timestampNote": "Event timing was not captured contemporaneously; only the order of retrieval within this session's acquisition log is recorded.",
+      "sourceId": "SRC-HUGHES-EET-10E-P141",
+      "publisher": "Pearson Education Limited",
+      "title": "Hughes Electrical and Electronic Technology, 10th edition (Edward Hughes, revised by John Hiley, Keith Brown and Ian McKenzie Smith)",
+      "url": "https://fliphtml5.com/lbsh/qlhp/Electrical_and_Electronic_Technology_-_10th-1_by_E_Hughes/ (retrieval route only -- a page-image scan; the cited authority is the published textbook itself, ISBN 978-0-13-206011-0, not the hosting website)",
+      "authorityClass": "AUTHORITATIVE_EDUCATIONAL_REFERENCE",
+      "authorityRationale": "Published, professionally-edited university/college textbook in its 10th edition from a major academic publisher; the actual typeset page image (printed page 141) was read directly, confirmed genuine by its own header (\"CHAPTER 6 ELECTROMAGNETISM\"), page number (\"141\"), and section sequence (6.9(a) followed by 6.9(b) \"Lenz's law\" and 6.10 on the next page).",
+      "locator": "Chapter 6 \"Electromagnetism\", section 6.9(a) \"Fleming's right-hand rule\", printed page 141, and Fig. 6.18 \"Fleming's right-hand rule\"",
+      "supportsRequirementSuffixes": [
+        "fleming-right-hand-generator-rule::OPERATIONAL_USE_RULE"
       ],
       "citedAsVerifyingEvidence": true
     }
