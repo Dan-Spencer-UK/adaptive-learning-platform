@@ -34,22 +34,17 @@
       "CORRECTLY_NOT_ASSESSED": 3
     },
     "visualCoverageStatus": {
-      "NOT_APPLICABLE": 119,
+      "NOT_APPLICABLE": 117,
       "PRESENT_VERIFIED": 11,
+      "PRESENT_UNVERIFIED": 2,
       "MISSING": 2,
       "PRODUCED_NOT_WIRED": 1
     },
     "curriculumDispositionState": {
-      "READY": 125,
+      "READY": 127,
       "DEFERRED_CONTEXT_ONLY": 3,
-      "HELD_PENDING_EVIDENCE_CORRECTION": 3,
+      "HELD_PENDING_EVIDENCE_CORRECTION": 1,
       "RETIRED_OUT_OF_SCOPE": 2
-    },
-    "urgencySafetyImpact": {
-      "NONE": 124,
-      "LOW": 3,
-      "MEDIUM": 5,
-      "HIGH": 1
     }
   },
   "obsoleteContentCount": 5,
@@ -71,8 +66,8 @@
     },
     {
       "id": "EDA-LP-25",
-      "urgencySafetyImpact": "HIGH",
-      "description": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop/SCR-sounder-latching claim the governed evidence review retired/could not evidence. Sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class."
+      "urgencySafetyImpact": "MEDIUM",
+      "description": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop-reclose-survival claim, sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class. [Section F, third narrow correction pass] The general SCR-latches-and-keeps-a-sounder-energised relationship is now independently VERIFIED via PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 (Ray Marston/Nuts & Volts) -- but the runtime's specific \"survives loop reclose\" behaviour is a different, more specific claim tied to the still-retired NC-loop topology, and remains unevidenced. The runtime question should be revised to test the general (now-evidenced) relationship, not the loop-reclose-specific detail."
     },
     {
       "id": "EDA-LP-28",
@@ -83,12 +78,12 @@
   "contentAheadOfEvidenceCount": 2,
   "contentAheadOfEvidenceRows": [
     {
-      "id": "EMI-LP-16",
-      "note": "EL-CONCEPT-FLEMING-RIGHT-HAND-001 (cc04) teaches the exact thumb=motion/first-finger=field/second-finger=current mapping as directly-supported fact (source: Wikipedia, citing Hughes 12th ed. p.145) -- the same mapping the governed evidence pipeline could not itself verify from any permitted-class source after ten independent access attempts. The mapping is almost certainly correct; the runtime's confidence in it currently exceeds the governed evidence's own standard."
+      "id": "EDA-LP-16",
+      "note": "[Section H, third narrow correction pass] The deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat to the learner, though the governed EDA-LP-16 explicitly holds both symbols' geometry as unverified against the current IEC 60617 standard (see its own evidenceReadinessNote/gaps). This is a genuine content-ahead-of-evidence case, not merely a missing-visual gap -- correcting the prior mis-classification as visualCoverageStatus=NOT_APPLICABLE and contentAheadOfEvidenceRisk=false, which incorrectly implied no visual exists and no risk arises, when in fact a visual exists and asserts more certainty than the governed evidence supports."
     },
     {
       "id": "EDA-LP-25",
-      "note": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop/SCR-sounder-latching claim the governed evidence review retired/could not evidence. Sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class."
+      "note": "SAFETY FINDING (narrowed, not resolved): a live, actively-assessed runtime assertion states an SCR keeps a sounder energised specifically \"even if the loop is reclosed\" -- a normally-closed-loop-reclose-survival behaviour tied to the retired, unevidenced NC-loop/bias topology, sourced from a hobbyist tutorial site outside any permitted authority class. [Section F, third narrow correction pass] The governed EDA-LP-25 required facet (the general relationship: a triggered, latched SCR can keep current flowing through a bell/buzzer/sounder until current falls below holding current, via supply interruption or reset) is now VERIFIED via a genuine PA decision (PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001, Ray Marston/Nuts & Volts). This does NOT cover the runtime's more specific \"survives loop reclose\" claim, which remains tied to the still-retired NC-loop topology -- the runtime content should be corrected to teach the general, now-evidenced relationship rather than the specific, still-unevidenced loop-reclose behaviour. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11."
     }
   ],
   "rows": [
@@ -1507,12 +1502,12 @@
       "id": "EMI-LP-02",
       "batch": "batch-05",
       "primaryDisposition": "MAPPED_WRONG_DEPTH",
-      "primaryNote": "Bar-magnet field pattern shown, but the straight-conductor field shape is never taught independently of the direction rule; a related hybrid image pair has no semantic-audit contract entry.",
+      "primaryNote": "Bar-magnet field pattern shown, but the straight-conductor field shape is never taught independently of the direction rule; a related hybrid image pair has no semantic-audit contract entry. [Section H, third narrow correction pass] Reclassified visualCoverageStatus from the incorrect NOT_APPLICABLE (implying no visual asset exists) to PRESENT_UNVERIFIED: a hybrid image pair exists in the runtime corpus but has no semantic-audit contract entry, so its accuracy is unverified by the production pipeline's own process, even though the underlying governed EMI-LP-02 evidence itself is READY/VERIFIED (this is a production/audit-process gap, not a curriculum-evidence gap -- contentAheadOfEvidenceRisk correctly remains false).",
       "axes": {
         "lessonCoverageStatus": "TAUGHT_PARTIAL",
         "depthStatus": "TOO_SHALLOW",
         "assessmentCoverageStatus": "NOT_ASSESSED",
-        "visualCoverageStatus": "NOT_APPLICABLE",
+        "visualCoverageStatus": "PRESENT_UNVERIFIED",
         "obsoleteContentFlag": false,
         "obsoleteContentDescription": null,
         "curriculumDispositionState": "READY",
@@ -1745,7 +1740,7 @@
       "id": "EMI-LP-16",
       "batch": "batch-05",
       "primaryDisposition": "MAPPED_CORRECT",
-      "primaryNote": "SAFETY FLAG: the exact thumb=motion/first-finger=field/second-finger=current mapping the governed evidence pipeline could NOT verify from any permitted-class source is taught in the runtime corpus as a directly-supported fact (sourced to a general encyclopedia article, not a permitted-class technical/professional-body/standards source). Content is ahead of its evidence here. No dedicated visual exists for this specific rule.",
+      "primaryNote": "[Section E/H, third narrow correction pass -- RESOLVED] The thumb=motion/first-finger=field/second-finger=current mapping is now genuinely VERIFIED by the governed evidence pipeline (published Hughes textbook, 10th ed., 2008, Chapter 6 section 6.9(a), p.141, read directly). The runtime corpus's own citation (a general encyclopedia article, not itself a permitted-class source) remains a lower-rigour citation than the governed evidence now on file, but the underlying taught fact is no longer ahead of unverified evidence -- it is now independently confirmed by a permitted-class source. No dedicated visual exists for this specific rule.",
       "axes": {
         "lessonCoverageStatus": "TAUGHT_AS_SETTLED_FACT",
         "depthStatus": "CORRECT_DEPTH",
@@ -1753,10 +1748,10 @@
         "visualCoverageStatus": "MISSING",
         "obsoleteContentFlag": false,
         "obsoleteContentDescription": null,
-        "curriculumDispositionState": "HELD_PENDING_EVIDENCE_CORRECTION",
-        "contentAheadOfEvidenceRisk": true,
-        "urgencySafetyImpact": "MEDIUM",
-        "contentAheadOfEvidenceNote": "EL-CONCEPT-FLEMING-RIGHT-HAND-001 (cc04) teaches the exact thumb=motion/first-finger=field/second-finger=current mapping as directly-supported fact (source: Wikipedia, citing Hughes 12th ed. p.145) -- the same mapping the governed evidence pipeline could not itself verify from any permitted-class source after ten independent access attempts. The mapping is almost certainly correct; the runtime's confidence in it currently exceeds the governed evidence's own standard."
+        "curriculumDispositionState": "READY",
+        "contentAheadOfEvidenceRisk": false,
+        "urgencySafetyImpact": "NONE",
+        "contentAheadOfEvidenceNote": "[RESOLVED, third narrow correction pass] EL-CONCEPT-FLEMING-RIGHT-HAND-001 (cc04) teaches the exact thumb=motion/first-finger=field/second-finger=current mapping as directly-supported fact. This is no longer ahead of the governed evidence: the same mapping is now independently VERIFIED via a directly-read passage from the published Hughes textbook, 10th edition, 2008, Chapter 6 section 6.9(a), p.141 (SRC-HUGHES-EET-10E-P141). Retained here as history of a resolved content-ahead-of-evidence finding, not a live risk."
       }
     },
     {
@@ -2120,17 +2115,18 @@
       "id": "EDA-LP-16",
       "batch": "batch-06",
       "primaryDisposition": "MAPPED_WRONG_DEPTH",
-      "primaryNote": "A deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat, though the governed LP explicitly holds both as unverified against the current standard; no LDR symbol exists at all.",
+      "primaryNote": "A deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat, though the governed LP explicitly holds both as unverified against the current standard; no LDR symbol exists at all. [Section H, third narrow correction pass] Reclassified visualCoverageStatus from the incorrect NOT_APPLICABLE (implying no visual asset exists) to PRESENT_UNVERIFIED (a visual asset exists and draws with more confidence than the governed evidence supports); contentAheadOfEvidenceRisk corrected from false to true for the same reason.",
       "axes": {
         "lessonCoverageStatus": "TAUGHT_PARTIAL",
         "depthStatus": "TOO_SHALLOW",
         "assessmentCoverageStatus": "NOT_ASSESSED",
-        "visualCoverageStatus": "NOT_APPLICABLE",
+        "visualCoverageStatus": "PRESENT_UNVERIFIED",
         "obsoleteContentFlag": false,
         "obsoleteContentDescription": null,
         "curriculumDispositionState": "HELD_PENDING_EVIDENCE_CORRECTION",
-        "contentAheadOfEvidenceRisk": false,
-        "urgencySafetyImpact": "NONE"
+        "contentAheadOfEvidenceRisk": true,
+        "urgencySafetyImpact": "LOW",
+        "contentAheadOfEvidenceNote": "[Section H, third narrow correction pass] The deterministic component-symbols renderer draws a definite LED symbol and inverter block with no caveat to the learner, though the governed EDA-LP-16 explicitly holds both symbols' geometry as unverified against the current IEC 60617 standard (see its own evidenceReadinessNote/gaps). This is a genuine content-ahead-of-evidence case, not merely a missing-visual gap -- correcting the prior mis-classification as visualCoverageStatus=NOT_APPLICABLE and contentAheadOfEvidenceRisk=false, which incorrectly implied no visual exists and no risk arises, when in fact a visual exists and asserts more certainty than the governed evidence supports."
       }
     },
     {
@@ -2273,17 +2269,17 @@
       "id": "EDA-LP-25",
       "batch": "batch-06",
       "primaryDisposition": "OBSOLETE_SHOULD_REMOVE",
-      "primaryNote": "SAFETY FINDING: a live, actively-assessed runtime assertion states an SCR keeps a sounder energised after a normally-closed loop is broken -- exactly the topology/sounder-role claim the governed evidence review retired and marked unevidenced, sourced from a hobbyist tutorial site outside any permitted authority class. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11.",
+      "primaryNote": "SAFETY FINDING (narrowed, not resolved): a live, actively-assessed runtime assertion states an SCR keeps a sounder energised specifically \"even if the loop is reclosed\" -- a normally-closed-loop-reclose-survival behaviour tied to the retired, unevidenced NC-loop/bias topology, sourced from a hobbyist tutorial site outside any permitted authority class. [Section F, third narrow correction pass] The governed EDA-LP-25 required facet (the general relationship: a triggered, latched SCR can keep current flowing through a bell/buzzer/sounder until current falls below holding current, via supply interruption or reset) is now VERIFIED via a genuine PA decision (PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001, Ray Marston/Nuts & Volts). This does NOT cover the runtime's more specific \"survives loop reclose\" claim, which remains tied to the still-retired NC-loop topology -- the runtime content should be corrected to teach the general, now-evidenced relationship rather than the specific, still-unevidenced loop-reclose behaviour. The general transistor-switching and SCR-latching principles remain correctly, separately mapped to EDA-LP-10/EDA-LP-11.",
       "axes": {
         "lessonCoverageStatus": "TAUGHT_AS_SETTLED_FACT",
         "depthStatus": "N/A",
         "assessmentCoverageStatus": "FULLY_ASSESSED",
         "visualCoverageStatus": "NOT_APPLICABLE",
         "obsoleteContentFlag": true,
-        "obsoleteContentDescription": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop/SCR-sounder-latching claim the governed evidence review retired/could not evidence. Sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class.",
-        "curriculumDispositionState": "HELD_PENDING_EVIDENCE_CORRECTION",
+        "obsoleteContentDescription": "EL-APPLICATION-SECURITY-ALARM-TRANSISTOR-THYRISTOR-001 (cc04-unit202-electrical-science.ts) teaches, as REQUIRED_FOR fact, and actively assesses (question text: \"...which component latches on and continues to power the sounder even if the loop is reclosed...\") the exact NC-loop-reclose-survival claim, sourced to ElProCus, a hobbyist tutorial site outside any permitted authority class. [Section F, third narrow correction pass] The general SCR-latches-and-keeps-a-sounder-energised relationship is now independently VERIFIED via PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 (Ray Marston/Nuts & Volts) -- but the runtime's specific \"survives loop reclose\" behaviour is a different, more specific claim tied to the still-retired NC-loop topology, and remains unevidenced. The runtime question should be revised to test the general (now-evidenced) relationship, not the loop-reclose-specific detail.",
+        "curriculumDispositionState": "READY",
         "contentAheadOfEvidenceRisk": true,
-        "urgencySafetyImpact": "HIGH"
+        "urgencySafetyImpact": "MEDIUM"
       }
     },
     {
@@ -2356,12 +2352,12 @@
     }
   ],
   "productionDeltaSummary": {
-    "newLessonContentNeeded": "43 learning points have zero runtime teaching content -- the largest single category, dominated by Batch 01 (24 of 25 foundational-mathematics LPs exist only as unused knowledge-graph prerequisite nodes, never taught or tested standalone).",
+    "newLessonContentNeeded": "46 learning points have zero runtime teaching content (axisTotals.lessonCoverageStatus.NOT_TAUGHT) -- of these, 4 (EDA-LP-17, EDA-LP-19, EDA-LP-21, EDA-LP-27) are non-blocking DEFERRED_CONTEXT_ONLY/RETIRED_OUT_OF_SCOPE deferrals excluded from core production need, leaving 42 core (READY or HELD_PENDING_EVIDENCE_CORRECTION) learning points genuinely needing new lesson content. This is the largest single category, dominated by Batch 01 (24 of 25 foundational-mathematics LPs exist only as unused knowledge-graph prerequisite nodes, never taught or tested standalone).",
     "depthCorrectionNeeded": "29 learning points have some runtime content but at the wrong depth -- both under-depth (missing a required nuance, e.g. EDA-LP-09's PTC Curie-point qualification, EQCT-LP-16's capacitor-discharge caveat) and over-depth/scope-creep (MM-LP-14 teaches the excluded KE=1/2 m v^2 calculation; EQCT-LP-13 teaches the excluded Z=sqrt(R^2+X^2) phasor calculation; EMI-LP-14 corpus separately teaches Faraday's law quantitatively beyond this batch's scope).",
-    "newAssessmentItemsNeeded": "4 learning points have teaching content but no assessment reaching the required application type.",
+    "newAssessmentItemsNeeded": "4 learning points (MM-LP-02, MM-LP-03, EQCT-LP-17, EMI-LP-21) are taught correctly, at the correct depth, but have NOT_ASSESSED assessmentCoverageStatus -- i.e. teaching content is otherwise complete and reaches no assessment at all. (This is narrower than the raw NOT_ASSESSED axis total of 74, most of which is explained by content that is also NOT_TAUGHT or under-depth and therefore counted under newLessonContentNeeded/depthCorrectionNeeded instead.)",
     "obsoleteContentToRemoveOrCorrect": "2 learning points (both in Batch 06: EDA-LP-25, EDA-LP-28) have runtime content that is LIVE, ACTIVELY ASSESSED, and directly contradicts the governed evidence review's explicit retirement/exclusion of the same claim -- see safetyFindings. This is the single most safety-relevant finding of this mapping and should be prioritised over any other production-delta item.",
-    "visualsAssessment": "Visual coverage is generally strong where lesson content already exists (series/parallel topology, instrument connections, lever/gear/pulley diagrams, motional-EMF geometry all pass semantic-audit contracts) and is not the primary bottleneck. Known exceptions: EDA-LP-16's deterministic component-symbols renderer draws LED/inverter/LDR symbols with more confidence than the governed evidence currently supports; EDA-LP-17's 11 physical-appearance photo assets are produced but not wired into the shipped app; EMI-LP-02's straight-conductor field-pattern hybrid image has no semantic-audit contract entry; EMI-LP-06 (solenoid) has no visual asset of any kind.",
-    "contentAheadOfEvidence": "EMI-LP-16 (Fleming's right-hand rule): the runtime corpus teaches, as settled fact, the exact thumb/field/current finger mapping the governed evidence pipeline could not verify from any permitted-class source after multiple genuine re-sourcing attempts -- sourced instead to a general encyclopedia article. This is not a factual error (the mapping is almost certainly correct) but is content whose confidence in the runtime exceeds what the governed evidence review currently supports, and should be reconciled (either accept the encyclopedia-tier source into the governed evidence with disclosure, or flag the runtime claim as provisional) rather than left silently mismatched.",
+    "visualsAssessment": "Visual coverage is generally strong where lesson content already exists (series/parallel topology, instrument connections, lever/gear/pulley diagrams, motional-EMF geometry all pass semantic-audit contracts) and is not the primary bottleneck. Known exceptions: EDA-LP-16's deterministic component-symbols renderer draws LED/inverter/LDR symbols with more confidence than the governed evidence currently supports (visualCoverageStatus=PRESENT_UNVERIFIED, and -- corrected this pass -- flagged contentAheadOfEvidenceRisk=true, not false); EDA-LP-17's 11 physical-appearance photo assets are produced but not wired into the shipped app (PRODUCED_NOT_WIRED); EMI-LP-02's straight-conductor field-pattern hybrid image has no semantic-audit contract entry (visualCoverageStatus=PRESENT_UNVERIFIED, corrected this pass from the prior NOT_APPLICABLE, though its underlying governed evidence is unaffected -- READY); EMI-LP-06 (solenoid) has no visual asset of any kind (MISSING).",
+    "contentAheadOfEvidence": "EDA-LP-16 (component symbols) and EDA-LP-25 (SCR/sounder alarm application) -- see contentAheadOfEvidenceRows for detail on each. [Section E, third narrow correction pass] EMI-LP-16 (Fleming's right-hand rule) is RESOLVED and no longer content-ahead-of-evidence: the exact finger mapping the runtime already taught is now independently VERIFIED by a directly-read passage from the published Hughes textbook (10th ed., 2008, Chapter 6 section 6.9(a), p.141), so the runtime's confidence no longer exceeds the governed evidence's own standard for this LP.",
     "overallFraming": "This mapping confirms the user's own framing exactly: the governed 133-point curriculum-definition input finishing (this pass's work) is a distinct and substantially smaller achievement than the learner-facing Unit 202 course/app being finished. The old runtime corpus (24 lessons historically reported) was authored before, and independently of, this governed evidence-acquisition pipeline, and only partially and unevenly overlaps with it."
   }
 }
