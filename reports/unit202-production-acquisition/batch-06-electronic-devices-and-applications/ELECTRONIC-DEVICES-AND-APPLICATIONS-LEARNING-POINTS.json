@@ -1,7 +1,7 @@
 {
   "domain": "electronic-devices-and-applications",
   "status": "ACCEPTED_BY_PRODUCT_ARCHITECT",
-  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. All 29 EDA-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 -- this is a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
+  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. All 29 EDA-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 -- this is a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete. Under the accepted Stage-6 facet partition, a REQUIRED facet that remains PARTIALLY_VERIFIED or SOURCE_GAP blocks readiness (evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION); an incomplete facet that is optional/context-only rather than required may instead leave its learning point DEFERRED_CONTEXT_ONLY; and a mixed learning point may remain READY where every required facet is VERIFIED even if a contextual facet on the same learning point remains partial. Batch 06 currently has 25 READY, 2 DEFERRED_CONTEXT_ONLY, 2 RETIRED_OUT_OF_SCOPE and 0 HELD -- no learning point is marked READY on evidence that does not support it.",
   "identityFreezePolicy": {
     "status": "FROZEN as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001",
     "note": "EDA-LP-01 through EDA-LP-29 are now the approved Batch 06 learning-point identity baseline. Future revisions to this inventory must: (1) preserve every existing ID exactly -- an ID is never reassigned to a different learning point; (2) append new IDs (EDA-LP-30 onward) for genuinely new learning points, rather than inserting into the existing numeric sequence; (3) deprecate rather than silently reuse a removed ID -- if a learning point is retired, its ID is marked deprecated here, not recycled; (4) never renumber the inventory merely because the taught/instructional sequence changes. Instructional order is tracked separately via the instructionalSequence field below, which may be freely reordered without affecting any learning point's stable id."
@@ -44,15 +44,15 @@
     "EDA-LP-28",
     "EDA-LP-29"
   ],
-  "crossDomainPrerequisiteNote": "Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25) and Batch 02 (EFS-LP-01..20) inventories only. No FM-LP-*, EFS-LP-* or MM-LP-* identity is edited, renumbered or duplicated. EFS-LP-05 and EFS-LP-08 are attached to the resistor principle because its outcome uses both the resistance quantity and Ohm's law; FM-LP-06, FM-LP-14 and FM-LP-19 are attached to the colour code because decoding genuinely requires percentages, powers of ten and SI prefixes. No prerequisite is declared on any EQCT-LP-* or EMI-LP-* identity, because Batches 04 and 05 are themselves PROPOSED and unfrozen -- the genuine relationships are disclosed in the overlap audit instead of encoded as dependencies on unfrozen identities.",
+  "crossDomainPrerequisiteNote": "Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25), Batch 02 (EFS-LP-01..20) and Batch 04 (EQCT-LP-01..25) inventories. No FM-LP-*, EFS-LP-*, EQCT-LP-* or MM-LP-* identity is edited, renumbered or duplicated. EFS-LP-05 and EFS-LP-08 are attached to the resistor principle because its outcome uses both the resistance quantity and Ohm's law; FM-LP-06, FM-LP-14 and FM-LP-19 are attached to the colour code because decoding genuinely requires percentages, powers of ten and SI prefixes. EDA-LP-03 additionally carries EQCT-LP-09 (capacitance: meaning, symbol and unit) as a cross-domain prerequisite: now that Batch 04 is accepted and identity-frozen, this genuine relationship (see the capacitance overlapAudit entry) is encoded as a dependency rather than merely disclosed. No prerequisite is declared on any EMI-LP-* identity: the one candidate relationship (the relay, see the relay overlapAudit entry) does not require one, because the Batch 06 learning point that would have carried it, EDA-LP-21, is RETIRED_OUT_OF_SCOPE.",
   "overlapAudit": [
     {
       "topic": "Capacitance and the capacitor",
-      "decision": "NEW_LP_ADDED_DISTINCT_MASTERY",
-      "relatedLearningPointId": "EQCT-LP-09 (Batch 04, PROPOSED and unfrozen)",
+      "decision": "NEW_LP_ADDED_DISTINCT_MASTERY_WITH_CROSS_DOMAIN_PREREQUISITE",
+      "relatedLearningPointId": "EQCT-LP-09 (Batch 04, ACCEPTED_BY_PRODUCT_ARCHITECT and identity-frozen)",
       "newLearningPointId": "EDA-LP-03",
-      "rationale": "Batch 04's EQCT-LP-09 teaches CAPACITANCE as an electrical quantity -- its meaning, quantity symbol and unit. EDA-LP-03 teaches the CAPACITOR as a component: what it stores, how it is constructed, and that the energy resides in the electric field rather than in the plates. These are different masteries with different evidence requirements, and EDA-LP-03 deliberately does not re-teach the quantity identity.",
-      "flaggedForProductArchitect": "Confirm at the consolidated review whether EDA-LP-03 should carry EQCT-LP-09 as a cross-domain prerequisite once Batch 04 identities are settled. Not encoded here because Batch 04 is unfrozen."
+      "rationale": "Batch 04's EQCT-LP-09 teaches CAPACITANCE as an electrical quantity -- its meaning, quantity symbol and unit. EDA-LP-03 teaches the CAPACITOR as a physical component: its construction, its storage behaviour and the electric field it sets up. These remain distinct masteries with different evidence requirements, and EDA-LP-03 deliberately does not re-teach the quantity identity.",
+      "productArchitectDecision": "RESOLVED, PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-CORRECTION-001: now that Batch 04 is accepted and identity-frozen, EQCT-LP-09 is encoded as a genuine cross-domain prerequisite of EDA-LP-03 (see EDA-LP-03.crossDomainPrerequisiteIds), since EQCT-LP-09 is the genuine, stable, frozen prerequisite for the electrical-quantity meaning/symbol/unit that EDA-LP-03 presupposes. This was deliberately left undecided at initial acquisition only because Batch 04 was then PROPOSED and unfrozen; no further Product Architect action is outstanding on this relationship."
     },
     {
       "topic": "Resistance the quantity versus the resistor the component",
@@ -62,10 +62,10 @@
     },
     {
       "topic": "Relay",
-      "decision": "POTENTIAL_DUPLICATION_FLAGGED_NOT_RESOLVED",
-      "relatedLearningPointId": "EMI-LP-08 (Batch 05, PROPOSED and unfrozen)",
-      "rationale": "Batch 05's EMI-LP-08 teaches the relay and contactor as ELECTROMAGNETICALLY OPERATED SWITCHES, from the electromagnetism side. Batch 06 has no relay PRINCIPLE requirement of its own; the relay appears here only inside the schematic-symbol recognition requirement (EDA-LP-16) and inside the held heating transistor/relay topology (EDA-LP-21). No relay principle content is duplicated in this batch.",
-      "flaggedForProductArchitect": "If EDA-LP-21 is ever unheld and given real content, check it against EMI-LP-08 to ensure the relay is not explained twice across the two batches."
+      "decision": "NO_CURRENT_DUPLICATION_RETIRED_LP_CREATES_NO_DEPENDENCY",
+      "relatedLearningPointId": "EMI-LP-08 (Batch 05, ACCEPTED_BY_PRODUCT_ARCHITECT and identity-frozen)",
+      "rationale": "Batch 05's EMI-LP-08 teaches the relay and contactor as ELECTROMAGNETICALLY OPERATED SWITCHES, from the electromagnetism side. Batch 06 has no relay PRINCIPLE requirement of its own; the relay appears here only inside the schematic-symbol recognition requirement (EDA-LP-16) and inside the retired heating transistor/relay topology (EDA-LP-21). No relay-principle content is duplicated in this batch.",
+      "productArchitectDecision": "RESOLVED, PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-CORRECTION-001: EDA-LP-21 is RETIRED_OUT_OF_SCOPE, not held, so no current relay-principle duplication exists and no cross-domain prerequisite is required for the retired EDA-LP-21. This is a settled current-state decision, not an open question. Governance constraint for the future (not a current dependency): if a future governed change reintroduces a heating relay exemplar, it must reuse EMI-LP-08 rather than duplicate relay-principle teaching."
     },
     {
       "topic": "Rectification and the diode",
@@ -260,7 +260,9 @@
       "learnerOutcome": "The learner will be able to explain what a capacitor does, describe its basic construction, and state where the stored energy actually resides.",
       "knowledgeOrProcedure": "A capacitor is an electronic device that STORES CHARGE AND ENERGY. It consists of two conductors carrying equal and opposite charges; in the parallel-plate form these are two equally-sized metal plates (electrodes) separated by an insulator known as a DIELECTRIC. The equal and opposite charge build-up produces an ELECTRIC FIELD between the plates. IMPORTANT: the energy held by a charged capacitor is stored IN THE ELECTRIC FIELD -- as energy density in that field -- and NOT in the conducting plates themselves. Inserting a dielectric material between the charged plates INCREASES the capacitance, because polarisation of the dielectric produces an electric field opposing the field of the charges on the plates.",
       "prerequisiteLearningPointIds": [],
-      "crossDomainPrerequisiteIds": [],
+      "crossDomainPrerequisiteIds": [
+        "EQCT-LP-09"
+      ],
       "knowledgeTargetIds": [
         "unit202::ACQ-170"
       ],
@@ -273,7 +275,7 @@
         "SRC-HYPERPHYSICS-DIELECTRIC: Inserting a dielectric material between the charged plates increases the capacitance, because polarization of the dielectric medium produce…"
       ],
       "evidenceReadiness": "READY",
-      "depthJustification": "A single-component mastery. The \"energy is stored in the electric field, not in the plates\" statement is carried as explicit knowledge content because \"a capacitor stores electricity\" is the vague formulation this learning point exists to displace. Deliberately scoped to the component's operating principle; capacitance as an electrical QUANTITY with its symbol and unit belongs to Batch 04 (EQCT-LP-09) and is not re-taught here.",
+      "depthJustification": "A single-component mastery. The \"energy is stored in the electric field, not in the plates\" statement is carried as explicit knowledge content because \"a capacitor stores electricity\" is the vague formulation this learning point exists to displace. Deliberately scoped to the component's operating principle; capacitance as an electrical QUANTITY with its symbol and unit belongs to Batch 04 (EQCT-LP-09) and is not re-taught here, though it is carried as a genuine cross-domain prerequisite (see the capacitance overlapAudit entry for the resolved decision).",
       "explicitExclusions": [
         "Capacitance as a quantity, its symbol and unit (Batch 04, EQCT-LP-09)",
         "Capacitive reactance (Batch 04, EQCT-LP-10)",
@@ -952,7 +954,7 @@
       "depthJustification": "The four VERIFIED dimmer requirements are combined because they describe one circuit doing one job: the function, the phase-control mechanism, and the two device roles are only meaningful in relation to each other, and separating them would produce four points that each have to restate the circuit. The exact component-value requirement is deliberately held OUT of this point (see EDA-LP-19) precisely so that the well-evidenced conceptual content is not blocked by the unevidenced exact implementation. SAFETY: treatment is function and conceptual topology only -- this is mains equipment and no construction or wiring instruction is given.",
       "explicitExclusions": [
         "ANY construction, wiring or installation instruction -- this is a mains circuit and treatment is conceptual only",
-        "Exact component values (see EDA-LP-19, which is held)",
+        "Exact component values (see EDA-LP-19, which is RETIRED_OUT_OF_SCOPE by the accepted scope decision)",
         "Snubber design, dV/dt and commutation constraints",
         "Electronic transformers, LED-lamp dimming compatibility and trailing/leading-edge dimmer types",
         "A closed-form algebraic power-versus-firing-angle equation -- not evidenced at this level"
@@ -1002,12 +1004,12 @@
       "evidenceReadiness": "RETIRED_OUT_OF_SCOPE",
       "depthJustification": "Deliberately separated from EDA-LP-18 so that a genuinely unevidenced exact-implementation requirement does not block the well-evidenced conceptual dimmer content. This is the correct structural response to a requirement whose object cannot be identified: isolate it, hold it, and leave the rest of the topic deliverable.",
       "explicitExclusions": [
-        "Any specific component values as taught content, pending Product Architect adjudication",
+        "Any specific component values as taught content -- retired from canonical mastery by the accepted Product Architect scope decision (RETIRED_OUT_OF_SCOPE)",
         "Circuit construction or wiring instruction of any kind",
         "Component selection and design calculation"
       ],
       "applicationTypes": [],
-      "evidenceReadinessNote": "Underlying evidence is PARTIALLY_VERIFIED, and the root problem is a SPECIFICATION AMBIGUITY that only the Product Architect can resolve. The frozen requirement text names no figure, no circuit and no source document, so there is no determinate circuit against which any retrieved values can be checked. Exact values WERE found and are recorded verbatim in the evidence results, but the single manufacturer application note relied upon gives FOUR mutually inconsistent value sets across its own figures, differing by supply voltage, load current and control range; and a second manufacturer source implements the same function with NO RC timing network at all, because the timing is done in microcontroller firmware. Selecting one set would be an editorial choice presented as a fact, and was deliberately not done. Note that this requirement is OPTIONAL_CONTEXT priority in the frozen plan, so descoping it is a legitimate option.",
+      "evidenceReadinessNote": "The underlying source material remains partial and ambiguous: the frozen requirement text names no figure, no circuit and no source document, so there is no determinate circuit against which any retrieved values can be checked. Exact values WERE found and are recorded verbatim in the evidence results, but the single manufacturer application note relied upon gives FOUR mutually inconsistent value sets across its own figures, differing by supply voltage, load current and control range; and a second manufacturer source implements the same function with NO RC timing network at all, because the timing is done in microcontroller firmware. The Product Architect has resolved that ambiguity by retiring this exact exemplar from canonical mastery (RETIRED_OUT_OF_SCOPE) rather than selecting one value set as an editorial invention presented as fact -- no adjudication remains pending. This learning point's conceptual parent, EDA-LP-18, remains READY: the well-evidenced dimmer function, TRIAC role and DIAC role are taught and assessed there. This retired learning point (EDA-LP-19) is neither taught nor assessed.",
       "underlyingEvidenceStatuses": {
         "dimmer-exact-rc-timing-implementation-component-values::EXACT_FACT": "RETIRED_OUT_OF_SCOPE"
       },
@@ -1019,7 +1021,7 @@
       ],
       "assessmentEligibility": "CONTEXT_ONLY_NOT_ASSESSED",
       "contextualExamples": [
-        "(Held pending adjudication -- no application types are proposed while the intended circuit is unidentified.)"
+        "(Retired from canonical mastery by accepted scope decision -- no application types are proposed because no specific circuit is taught under this learning point; the well-evidenced conceptual dimmer content is taught and assessed under EDA-LP-18.)"
       ]
     },
     {
@@ -1053,7 +1055,7 @@
       "evidenceReadiness": "READY",
       "depthJustification": "Function and sensing role are combined because the thermistor's role IS the sensing half of the function -- the application cannot be described without saying what senses the temperature. The exact switching topology is deliberately held out (EDA-LP-21) for the same reason as in the dimmer: an unevidenced exact circuit should not block evidenced conceptual content. The NTC type qualification is carried explicitly per this batch's guardrail.",
       "explicitExclusions": [
-        "The exact transistor/relay switching topology (see EDA-LP-21, which is held)",
+        "The exact transistor/relay switching topology (see EDA-LP-21, which is RETIRED_OUT_OF_SCOPE by the accepted scope decision)",
         "UK domestic heating control architecture -- programmers, room and cylinder thermostats, boiler interlock, TRVs -- which is a heating-systems topic and was NOT evidenced here",
         "Gas boiler internal control and ignition sequences",
         "Control theory: proportional, hysteresis and PID behaviour",
@@ -1100,12 +1102,12 @@
       "evidenceReadiness": "RETIRED_OUT_OF_SCOPE",
       "depthJustification": "Isolated from EDA-LP-20 so that the unevidenced exact topology does not block the evidenced heating-control content, exactly as EDA-LP-19 is isolated from EDA-LP-18.",
       "explicitExclusions": [
-        "Any specific circuit topology as taught content, pending Product Architect adjudication",
+        "Any specific circuit topology as taught content -- retired from canonical mastery by the accepted Product Architect scope decision (RETIRED_OUT_OF_SCOPE)",
         "Relay-driver design, flyback protection sizing and transistor selection",
         "Mains switching construction or wiring instruction"
       ],
       "applicationTypes": [],
-      "evidenceReadinessNote": "Underlying evidence is PARTIALLY_VERIFIED, with the same SPECIFICATION AMBIGUITY problem as EDA-LP-19: the frozen requirement names no figure, circuit or source document, so there is no determinate topology to verify. The only authoritative topology retrieved is a manufacturer's GENERIC discrete relay driver (bipolar transistor, two bias resistors, free-wheeling diode), and that source itself scopes it to INDUSTRIAL AND AUTOMOTIVE applications with the relay driven by a microprocessor -- never to heating. A telling further finding for the reviewer: the authoritative HEATING circuits that WERE located are THYRISTOR-switched, not relay-switched, so the generic relay evidence may not even concern the right device family. The topology was deliberately NOT inferred from generic component behaviour.",
+      "evidenceReadinessNote": "The underlying source material remains partial and ambiguous, with the same specification-ambiguity problem as EDA-LP-19: the frozen requirement names no figure, circuit or source document, so there is no determinate topology to verify. The only authoritative topology retrieved is a manufacturer's GENERIC discrete relay driver (bipolar transistor, two bias resistors, free-wheeling diode), and that source itself scopes it to INDUSTRIAL AND AUTOMOTIVE applications with the relay driven by a microprocessor -- never to heating. A further finding: the authoritative HEATING circuits that WERE located are THYRISTOR-switched, not relay-switched, so the generic relay evidence may not even concern the right device family. The topology was deliberately NOT inferred from generic component behaviour. The Product Architect has resolved this ambiguity by retiring this exact exemplar from canonical mastery (RETIRED_OUT_OF_SCOPE) -- no adjudication remains pending. This learning point's conceptual parent, EDA-LP-20, remains READY: the well-evidenced heating-control function and thermistor sensing role are taught and assessed there. This retired learning point (EDA-LP-21) is neither taught nor assessed, and creates no current relay-principle dependency on Batch 05's EMI-LP-08 (see the relay overlapAudit entry).",
       "underlyingEvidenceStatuses": {
         "heating-exact-transistor-relay-topology::EXACT_FACT": "RETIRED_OUT_OF_SCOPE"
       },
@@ -1117,7 +1119,7 @@
       ],
       "assessmentEligibility": "CONTEXT_ONLY_NOT_ASSESSED",
       "contextualExamples": [
-        "(Held pending adjudication -- no application types are proposed while the intended circuit is unidentified.)"
+        "(Retired from canonical mastery by accepted scope decision -- no application types are proposed because no specific circuit is taught under this learning point; the well-evidenced conceptual heating-control content is taught and assessed under EDA-LP-20.)"
       ]
     },
     {

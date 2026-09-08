@@ -86,5 +86,39 @@
     "This decision does not resolve or authorise fixing the three runtime-curriculum-delta content-ahead-of-evidence findings (EDA-LP-16, EDA-LP-25, EDA-LP-28) -- those remain open runtime-production corrections, to be made during later re-authoring per the runtime-to-curriculum delta mapping.",
     "This decision does not begin, authorise or reopen the learning-package pipeline audit, lesson re-authoring, storyboard work, visual production, assessment editing, runtime correction, or vertical-slice implementation."
   ],
-  "externalRecord": "This JSON record, together with the corresponding dated PROJECT-STATUS.md entry, is the genuine external Product Architect acceptance record for this freeze -- consistent with how PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 and the CC-BATCH01 precedent are each externally recorded in UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json."
+  "externalRecord": "This JSON record, together with the corresponding dated PROJECT-STATUS.md entry, is the genuine external Product Architect acceptance record for this freeze -- consistent with how PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 and the CC-BATCH01 precedent are each externally recorded in UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json.",
+  "addenda": [
+    {
+      "addendumId": "PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-CORRECTION-001",
+      "date": "2026-09-08",
+      "recordType": "PRODUCT_ARCHITECT_NARROW_POST_FREEZE_METADATA_AND_PREREQUISITE_CORRECTION",
+      "amends": "PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001",
+      "relationship": "Narrow addendum only. Does not replace, weaken, reopen or supersede the base freeze decision, its verdict, its six decisions, or its identityFreeze statement -- all remain in full force.",
+      "trigger": "Independent review of the frozen Batch 05/06 canonical learning-point artifacts (unit202-pa-freeze-review-20260908-152327) found that several accepted Batch 05/06 current-state fields still carried live pre-freeze statements (describing Batch 04/05 as PROPOSED and unfrozen, or Product Architect adjudication as pending) that contradicted the freeze this same record establishes. Those statements were deliberately deferred, not resolved, at initial acquisition solely because Batch 04/05 had not yet been accepted and identity-frozen.",
+      "explicitlyUnchanged": [
+        "No learning-point identity was added, removed, merged, reused or renumbered in any batch.",
+        "No evidence-readiness, technical-evidence, or evidence-authority decision changed for any learning point.",
+        "EDA-LP-19 and EDA-LP-21 remain RETIRED_OUT_OF_SCOPE; no adjudication is reopened for either.",
+        "All six batches (01-06) remain ACCEPTED_BY_PRODUCT_ARCHITECT and identity-frozen.",
+        "Batch 05 readiness totals remain 21 READY / 1 DEFERRED_CONTEXT_ONLY / 0 HELD; Batch 06 readiness totals remain 25 READY / 2 DEFERRED_CONTEXT_ONLY / 2 RETIRED_OUT_OF_SCOPE / 0 HELD."
+      ],
+      "resolvedCrossDomainPrerequisiteDecisions": [
+        {
+          "learningPointId": "EMI-LP-18",
+          "decision": "EMI-LP-18.crossDomainPrerequisiteIds now includes EQCT-LP-08, alongside its existing FM-LP prerequisites. EQCT-LP-08 (Batch 04) supplies the already-mastered electrical-quantity meaning/symbol/unit for frequency; EMI-LP-18 applies frequency to the generated AC waveform and teaches cycle, periodic time and T = 1/f. The two learning points remain distinct and neither is merged or renumbered."
+        },
+        {
+          "learningPointId": "EDA-LP-03",
+          "decision": "EDA-LP-03.crossDomainPrerequisiteIds now includes EQCT-LP-09. EQCT-LP-09 (Batch 04) supplies the already-mastered electrical-quantity meaning/symbol/unit for capacitance; EDA-LP-03 teaches the capacitor as a physical component, its construction, storage behaviour and electric field. The two learning points remain distinct and neither is merged or renumbered."
+        },
+        {
+          "learningPointId": "EDA-LP-21",
+          "decision": "EDA-LP-21 is RETIRED_OUT_OF_SCOPE, not held. No current relay-principle duplication exists against Batch 05's EMI-LP-08, and no cross-domain prerequisite is added to the retired EDA-LP-21. Forward governance constraint only (not a current dependency): if a future governed change reintroduces a heating relay exemplar, it must reuse EMI-LP-08 rather than duplicate relay-principle teaching."
+        }
+      ],
+      "correctedMetadataScope": "Corrected present-state wording only, in both the JSON and corresponding governed Markdown representations of Batches 05 and 06: each batch's top-level note (to state the accepted Stage-6 required/context/mixed readiness semantics accurately instead of falsely claiming every PARTIALLY_VERIFIED/SOURCE_GAP facet holds its parent learning point), each batch's crossDomainPrerequisiteNote, the three overlapAudit entries above (frequency, capacitance, relay), the stale sibling-status cross-references in EDA-LP-18 and EDA-LP-20 (which described EDA-LP-19/EDA-LP-21 as \"held\" rather than RETIRED_OUT_OF_SCOPE), and the EDA-LP-19/EDA-LP-21 evidenceReadinessNote/explicitExclusions/contextualExamples fields that still implied pending Product Architect adjudication. Historical correctionNote chronology and clearly dated history are preserved verbatim.",
+      "validatorScope": "The correction-pass validator (scripts/backtests/unit202-production-acquisition/validate-correction-pass.mjs) was extended with a non-vacuous check over the accepted Batch 04-06 current-state fields per this addendum's requirements, and the freeze-manifest generator/validator was strengthened to recursively enumerate governed files, reject symlinks/path escapes, and cross-check manifest/live file-count/path-set/hash equality.",
+      "externalRecord": "This addendum, together with the corresponding dated PROJECT-STATUS.md entry and the UNIT202-CORRECTION-AMENDMENT-LEDGER.json processAuditNotes entry, is the genuine external Product Architect record for this narrow post-freeze correction -- consistent with how the base freeze decision above is itself recorded."
+    }
+  ]
 }

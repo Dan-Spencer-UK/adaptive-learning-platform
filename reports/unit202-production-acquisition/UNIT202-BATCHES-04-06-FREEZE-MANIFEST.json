@@ -59,12 +59,12 @@
     {
       "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS.json",
       "batchId": "batch-05",
-      "sha256": "6479d4217c491960c47042944111b7b6d28fad813284457e71022c328886b110"
+      "sha256": "d2cb151ce0ff663a2fb30dff110b07826ce012964cf543e812cdca8c8b9dfff5"
     },
     {
       "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS.md",
       "batchId": "batch-05",
-      "sha256": "a73c83dbb6a3f331a78a3f017764c33dd2cea2e8025ce2d65c76e2fbeda2af2b"
+      "sha256": "6099937e1e4fbcc73a18071de459e7def3b8ab27d46de0b90cb1f2e429e6825e"
     },
     {
       "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/EVIDENCE-RESULTS.json",
@@ -89,12 +89,12 @@
     {
       "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS.json",
       "batchId": "batch-06",
-      "sha256": "d0d69cadc084fa233ea8a152b65855c2735f7379d55c94990b31bcb6d099398b"
+      "sha256": "07e516cf690521160a464927778995a32835b297f8c67aef330274c950c2f2a5"
     },
     {
       "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS.md",
       "batchId": "batch-06",
-      "sha256": "a3fa6f2cd153a2503a4f8ef76f9ba76edade00b07889a277ed12abd910d6fee6"
+      "sha256": "a568653467f73a9993731639390a3aacb97ce5adf6289bbe656d201cd6a9f8c3"
     },
     {
       "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/EVIDENCE-RESULTS.json",

@@ -1,10 +1,10 @@
-# Batch 05 -- Electromagnetism and Induction: Proposed Learning Points
+# Batch 05 -- Electromagnetism and Induction: Learning Points
 
-**Status:** `PROPOSED_FOR_PA_REVIEW` -- none of these learning points is accepted, frozen or identity-locked.
+**Status:** `ACCEPTED_BY_PRODUCT_ARCHITECT` -- all 22 EMI-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 (a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete).
 
-Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EMI-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 22 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
+Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. Under the accepted Stage-6 facet partition, a REQUIRED facet that remains PARTIALLY_VERIFIED or SOURCE_GAP blocks readiness (evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION); an incomplete facet that is optional/context-only rather than required may instead leave its learning point DEFERRED_CONTEXT_ONLY; and a mixed learning point may remain READY where every required facet is VERIFIED even if a contextual facet on the same learning point remains partial. No learning point is marked READY on evidence that does not support it.
 
-**Readiness:** 20 READY, 1 HELD_PENDING_EVIDENCE_CORRECTION, 1 DEFERRED_CONTEXT_ONLY. **Curriculum role:** 20 REQUIRED_MASTERY, 2 CONTEXTUAL_SUPPORT_ONLY.
+**Readiness (as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001):** 21 READY, 0 HELD_PENDING_EVIDENCE_CORRECTION, 1 DEFERRED_CONTEXT_ONLY. **Curriculum role:** 20 REQUIRED_MASTERY, 2 CONTEXTUAL_SUPPORT_ONLY.
 
 ## Instructional sequence
 
@@ -701,7 +701,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Within-domain prerequisites:** `EMI-LP-17`
 
-**Cross-domain prerequisites:** `FM-LP-13`, `FM-LP-16`, `FM-LP-19`
+**Cross-domain prerequisites:** `FM-LP-13`, `FM-LP-16`, `FM-LP-19`, `EQCT-LP-08`
 
 **Knowledge-target IDs:** `unit202::ACQ-130`, `unit202::ACQ-137`, `unit202::ACQ-138`, `unit202::ACQ-139`
 
@@ -718,7 +718,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - SRC-LIBRETEXTS-KUPHALDT-AC-1-02: Frequency is the number of complete cycles a wave completes in a given amount of time; it is the reciprocal of...
 - SRC-LIBRETEXTS-KUPHALDT-AC-1-02: Period and frequency are reciprocals: f = 1/T, and equivalently T = 1/f, with the period T being the time in s...
 
-**Depth justification:** These four requirements are combined because period and frequency are defined in terms of the cycle, and T = 1/f simply states that the two are reciprocals -- they are one interlocking definition set, taught and assessed together, and separating them would produce learning points that each have to restate the others to make sense. Note that Batch 04's EQCT-LP-08 covers frequency as an ELECTRICAL QUANTITY (meaning, symbol, unit); this learning point covers it as a property of the generated AC WAVEFORM, tied to the cycle and the period. See the overlap audit -- that relationship is flagged for Product Architect confirmation.
+**Depth justification:** These four requirements are combined because period and frequency are defined in terms of the cycle, and T = 1/f simply states that the two are reciprocals -- they are one interlocking definition set, taught and assessed together, and separating them would produce learning points that each have to restate the others to make sense. Batch 04's EQCT-LP-08 covers frequency as an ELECTRICAL QUANTITY (meaning, symbol, unit); this learning point covers it as a property of the generated AC WAVEFORM, tied to the cycle and the period, and is accordingly built on EQCT-LP-08 as a cross-domain prerequisite (see the overlap audit for the resolved decision).
 
 **Explicit exclusions:**
 - Angular frequency (omega = 2*pi*f) and radian measure

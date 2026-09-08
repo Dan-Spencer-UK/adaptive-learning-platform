@@ -1,10 +1,10 @@
-# Batch 06 -- Electronic Devices and Applications: Proposed Learning Points
+# Batch 06 -- Electronic Devices and Applications: Learning Points
 
-**Status:** `PROPOSED_FOR_PA_REVIEW` -- none of these learning points is accepted, frozen or identity-locked.
+**Status:** `ACCEPTED_BY_PRODUCT_ARCHITECT` -- all 29 EDA-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 (a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete).
 
-Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.
+Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. Under the accepted Stage-6 facet partition, a REQUIRED facet that remains PARTIALLY_VERIFIED or SOURCE_GAP blocks readiness (evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION); an incomplete facet that is optional/context-only rather than required may instead leave its learning point DEFERRED_CONTEXT_ONLY; and a mixed learning point may remain READY where every required facet is VERIFIED even if a contextual facet on the same learning point remains partial. No learning point is marked READY on evidence that does not support it.
 
-**Readiness:** 23 READY, 2 HELD_PENDING_EVIDENCE_CORRECTION, 2 DEFERRED_CONTEXT_ONLY, 2 RETIRED_OUT_OF_SCOPE. **Curriculum role:** 21 REQUIRED_MASTERY, 4 CONTEXTUAL_SUPPORT_ONLY, 4 MIXED_REQUIRED_AND_CONTEXT. DEFERRED_CONTEXT_ONLY (Stage 5) marks a CONTEXTUAL_SUPPORT_ONLY learning point whose optional-context evidence remains incomplete -- an explicit non-blocking V1 deferral, never counted as a core release blocker alongside a HELD REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point.
+**Readiness (as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001):** 25 READY, 0 HELD_PENDING_EVIDENCE_CORRECTION, 2 DEFERRED_CONTEXT_ONLY, 2 RETIRED_OUT_OF_SCOPE. **Curriculum role:** 21 REQUIRED_MASTERY, 4 CONTEXTUAL_SUPPORT_ONLY, 4 MIXED_REQUIRED_AND_CONTEXT. DEFERRED_CONTEXT_ONLY (Stage 5) marks a CONTEXTUAL_SUPPORT_ONLY learning point whose optional-context evidence remains incomplete -- an explicit non-blocking V1 deferral, never counted as a core release blocker alongside a HELD REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point.
 
 ## Instructional sequence
 
@@ -127,7 +127,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Within-domain prerequisites:** (none)
 
-**Cross-domain prerequisites:** (none)
+**Cross-domain prerequisites:** `EQCT-LP-09`
 
 **Knowledge-target IDs:** `unit202::ACQ-170`
 
@@ -139,7 +139,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 - SRC-HYPERPHYSICS-CAPACITOR-ENERGY: The energy held by a charged capacitor is stored in the electric field, in the form of energy density in that ...
 - SRC-HYPERPHYSICS-DIELECTRIC: Inserting a dielectric material between the charged plates increases the capacitance, because polarization of ...
 
-**Depth justification:** A single-component mastery. The "energy is stored in the electric field, not in the plates" statement is carried as explicit knowledge content because "a capacitor stores electricity" is the vague formulation this learning point exists to displace. Deliberately scoped to the component's operating principle; capacitance as an electrical QUANTITY with its symbol and unit belongs to Batch 04 (EQCT-LP-09) and is not re-taught here.
+**Depth justification:** A single-component mastery. The "energy is stored in the electric field, not in the plates" statement is carried as explicit knowledge content because "a capacitor stores electricity" is the vague formulation this learning point exists to displace. Deliberately scoped to the component's operating principle; capacitance as an electrical QUANTITY with its symbol and unit belongs to Batch 04 (EQCT-LP-09) and is not re-taught here, though it is carried as a genuine cross-domain prerequisite (see the capacitance overlap-audit entry for the resolved decision).
 
 **Explicit exclusions:**
 - Capacitance as a quantity, its symbol and unit (Batch 04, EQCT-LP-09)
@@ -723,7 +723,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 
 **Explicit exclusions:**
 - ANY construction, wiring or installation instruction -- this is a mains circuit and treatment is conceptual only
-- Exact component values (see EDA-LP-19, which is held)
+- Exact component values (see EDA-LP-19, which is RETIRED_OUT_OF_SCOPE by the accepted scope decision)
 - Snubber design, dV/dt and commutation constraints
 - Electronic transformers, LED-lamp dimming compatibility and trailing/leading-edge dimmer types
 - A closed-form algebraic power-versus-firing-angle equation -- not evidenced at this level
@@ -762,14 +762,14 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Depth justification:** Deliberately separated from EDA-LP-18 so that a genuinely unevidenced exact-implementation requirement does not block the well-evidenced conceptual dimmer content. This is the correct structural response to a requirement whose object cannot be identified: isolate it, hold it, and leave the rest of the topic deliverable.
 
 **Explicit exclusions:**
-- Any specific component values as taught content, pending Product Architect adjudication
+- Any specific component values as taught content -- retired from canonical mastery by the accepted Product Architect scope decision (RETIRED_OUT_OF_SCOPE)
 - Circuit construction or wiring instruction of any kind
 - Component selection and design calculation
 
 **Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
 
 **Contextual examples (non-assessable, background only):**
-- (Held pending adjudication -- no application types are proposed while the intended circuit is unidentified.)
+- (Retired from canonical mastery by accepted scope decision -- no application types are proposed because no specific circuit is taught under this learning point; the well-evidenced conceptual dimmer content is taught and assessed under EDA-LP-18.)
 
 ---
 
@@ -806,7 +806,7 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Depth justification:** Function and sensing role are combined because the thermistor's role IS the sensing half of the function -- the application cannot be described without saying what senses the temperature. The exact switching topology is deliberately held out (EDA-LP-21) for the same reason as in the dimmer: an unevidenced exact circuit should not block evidenced conceptual content. The NTC type qualification is carried explicitly per this batch's guardrail.
 
 **Explicit exclusions:**
-- The exact transistor/relay switching topology (see EDA-LP-21, which is held)
+- The exact transistor/relay switching topology (see EDA-LP-21, which is RETIRED_OUT_OF_SCOPE by the accepted scope decision)
 - UK domestic heating control architecture -- programmers, room and cylinder thermostats, boiler interlock, TRVs -- which is a heating-systems topic and was NOT evidenced here
 - Gas boiler internal control and ignition sequences
 - Control theory: proportional, hysteresis and PID behaviour
@@ -845,14 +845,14 @@ Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (
 **Depth justification:** Isolated from EDA-LP-20 so that the unevidenced exact topology does not block the evidenced heating-control content, exactly as EDA-LP-19 is isolated from EDA-LP-18.
 
 **Explicit exclusions:**
-- Any specific circuit topology as taught content, pending Product Architect adjudication
+- Any specific circuit topology as taught content -- retired from canonical mastery by the accepted Product Architect scope decision (RETIRED_OUT_OF_SCOPE)
 - Relay-driver design, flyback protection sizing and transistor selection
 - Mains switching construction or wiring instruction
 
 **Representative application types:** (none currently assessable -- see contextual examples below and/or evidence readiness note)
 
 **Contextual examples (non-assessable, background only):**
-- (Held pending adjudication -- no application types are proposed while the intended circuit is unidentified.)
+- (Retired from canonical mastery by accepted scope decision -- no application types are proposed because no specific circuit is taught under this learning point; the well-evidenced conceptual heating-control content is taught and assessed under EDA-LP-20.)
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "domain": "electromagnetism-and-induction",
   "status": "ACCEPTED_BY_PRODUCT_ARCHITECT",
-  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. All 22 EMI-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 -- this is a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
+  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. All 22 EMI-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 -- this is a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete. Under the accepted Stage-6 facet partition, a REQUIRED facet that remains PARTIALLY_VERIFIED or SOURCE_GAP blocks readiness (evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION); an incomplete facet that is optional/context-only rather than required may instead leave its learning point DEFERRED_CONTEXT_ONLY; and a mixed learning point may remain READY where every required facet is VERIFIED even if a contextual facet on the same learning point remains partial. Batch 05 currently has 21 READY, 1 DEFERRED_CONTEXT_ONLY and 0 HELD -- no learning point is marked READY on evidence that does not support it.",
   "identityFreezePolicy": {
     "status": "FROZEN as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001",
     "note": "EMI-LP-01 through EMI-LP-22 are now the approved Batch 05 learning-point identity baseline. Future revisions to this inventory must: (1) preserve every existing ID exactly -- an ID is never reassigned to a different learning point; (2) append new IDs (EMI-LP-23 onward) for genuinely new learning points, rather than inserting into the existing numeric sequence; (3) deprecate rather than silently reuse a removed ID -- if a learning point is retired, its ID is marked deprecated here, not recycled; (4) never renumber the inventory merely because the taught/instructional sequence changes. Instructional order is tracked separately via the instructionalSequence field below, which may be freely reordered without affecting any learning point's stable id."
@@ -35,15 +35,15 @@
     "EMI-LP-21",
     "EMI-LP-22"
   ],
-  "crossDomainPrerequisiteNote": "Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25) and Batch 02 (EFS-LP-01..20) inventories. No FM-LP-*, EFS-LP-* or MM-LP-* identity is edited, renumbered or duplicated here; a prerequisite is attached only where a learning point's own outcome genuinely uses that prior skill. EFS-LP-03 (conventional current and electron flow) is attached to all three directional-rule learning points because each rule is only correct for one current convention. No prerequisite is declared on any EQCT-LP-* identity, because Batch 04 is itself PROPOSED and unfrozen -- the one genuine relationship (frequency) is disclosed in the overlap audit instead of encoded as a dependency on an unfrozen identity.",
+  "crossDomainPrerequisiteNote": "Cross-domain prerequisites reference the accepted, frozen Batch 01 (FM-LP-01..25), Batch 02 (EFS-LP-01..20) and Batch 04 (EQCT-LP-01..25) inventories. No FM-LP-*, EFS-LP-*, EQCT-LP-* or MM-LP-* identity is edited, renumbered or duplicated here; a prerequisite is attached only where a learning point's own outcome genuinely uses that prior skill. EFS-LP-03 (conventional current and electron flow) is attached to all three directional-rule learning points because each rule is only correct for one current convention. EMI-LP-18 additionally carries EQCT-LP-08 (frequency: meaning, symbol and unit) as a cross-domain prerequisite, alongside its existing FM-LP prerequisites: now that Batch 04 is accepted and identity-frozen, this genuine relationship (see the frequency overlapAudit entry) is encoded as a dependency rather than merely disclosed.",
   "overlapAudit": [
     {
       "topic": "Frequency (meaning, quantity symbol, unit) versus frequency as a property of the generated AC waveform",
-      "decision": "NEW_LP_ADDED_DISTINCT_MASTERY",
-      "relatedLearningPointId": "EQCT-LP-08 (Batch 04, PROPOSED and unfrozen)",
+      "decision": "NEW_LP_ADDED_DISTINCT_MASTERY_WITH_CROSS_DOMAIN_PREREQUISITE",
+      "relatedLearningPointId": "EQCT-LP-08 (Batch 04, ACCEPTED_BY_PRODUCT_ARCHITECT and identity-frozen)",
       "newLearningPointId": "EMI-LP-18",
-      "rationale": "Batch 04's EQCT-LP-08 teaches frequency as an ELECTRICAL QUANTITY -- its meaning, quantity symbol f and unit hertz -- alongside the other quantities of that domain. EMI-LP-18 teaches frequency as a property of the GENERATED AC WAVEFORM, defined in terms of the cycle and tied to periodic time by T = 1/f, in the context of what an alternator actually produces. The two are genuinely different masteries and Batch 05's frequency requirement carries its own distinct evidence-requirement ID. No content is duplicated: EMI-LP-18 does not re-teach the quantity symbol/unit identity.",
-      "flaggedForProductArchitect": "Batch 04 is PROPOSED, not frozen, so this relationship cannot be resolved as a settled reuse the way Batch 04 could reuse the frozen EFS-LP-05/06. If the Product Architect accepts EQCT-LP-08 as-is, confirm whether EMI-LP-18 should carry it as a cross-domain prerequisite. That dependency is deliberately NOT encoded here, because encoding a dependency on an unfrozen identity would create exactly the kind of coupling the batch-by-batch freeze discipline exists to prevent."
+      "rationale": "Batch 04's EQCT-LP-08 teaches frequency as an ELECTRICAL QUANTITY -- its meaning, quantity symbol f and unit hertz -- alongside the other quantities of that domain. EMI-LP-18 teaches frequency as a property of the GENERATED AC WAVEFORM, defined in terms of the cycle and tied to periodic time by T = 1/f, in the context of what an alternator actually produces. The two remain genuinely distinct masteries and Batch 05's frequency requirement carries its own distinct evidence-requirement ID; EMI-LP-18 does not re-teach the quantity symbol/unit identity. EQCT-LP-08 supplies the already-mastered electrical-quantity meaning/symbol/unit; EMI-LP-18 applies frequency to the generated AC waveform and teaches cycle, periodic time and T = 1/f on top of it.",
+      "productArchitectDecision": "RESOLVED, PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-CORRECTION-001: now that Batch 04 is accepted and identity-frozen, EQCT-LP-08 is encoded as a genuine cross-domain prerequisite of EMI-LP-18 (see EMI-LP-18.crossDomainPrerequisiteIds), alongside its existing FM-LP prerequisites. This was deliberately left undecided at initial acquisition only because Batch 04 was then PROPOSED and unfrozen; no further Product Architect action is outstanding on this relationship."
     },
     {
       "topic": "Inductance and inductive reactance",
@@ -946,7 +946,8 @@
       "crossDomainPrerequisiteIds": [
         "FM-LP-13",
         "FM-LP-16",
-        "FM-LP-19"
+        "FM-LP-19",
+        "EQCT-LP-08"
       ],
       "knowledgeTargetIds": [
         "unit202::ACQ-130",
@@ -968,7 +969,7 @@
         "SRC-LIBRETEXTS-KUPHALDT-AC-1-02: Period and frequency are reciprocals: f = 1/T, and equivalently T = 1/f, with the period T being the time in seconds to complete one cycle …"
       ],
       "evidenceReadiness": "READY",
-      "depthJustification": "These four requirements are combined because period and frequency are defined in terms of the cycle, and T = 1/f simply states that the two are reciprocals -- they are one interlocking definition set, taught and assessed together, and separating them would produce learning points that each have to restate the others to make sense. Note that Batch 04's EQCT-LP-08 covers frequency as an ELECTRICAL QUANTITY (meaning, symbol, unit); this learning point covers it as a property of the generated AC WAVEFORM, tied to the cycle and the period. See the overlap audit -- that relationship is flagged for Product Architect confirmation.",
+      "depthJustification": "These four requirements are combined because period and frequency are defined in terms of the cycle, and T = 1/f simply states that the two are reciprocals -- they are one interlocking definition set, taught and assessed together, and separating them would produce learning points that each have to restate the others to make sense. Batch 04's EQCT-LP-08 covers frequency as an ELECTRICAL QUANTITY (meaning, symbol, unit); this learning point covers it as a property of the generated AC WAVEFORM, tied to the cycle and the period, and is accordingly built on EQCT-LP-08 as a cross-domain prerequisite (see the overlap audit for the resolved decision).",
       "explicitExclusions": [
         "Angular frequency (omega = 2*pi*f) and radian measure",
         "Phase, phase difference and phasor representation",

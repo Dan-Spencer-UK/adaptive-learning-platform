@@ -28,16 +28,54 @@ function sha256Of(absPath) {
   return crypto.createHash("sha256").update(fs.readFileSync(absPath)).digest("hex");
 }
 
+// Recursively enumerate every REGULAR file beneath absDir (repository-relative
+// paths, forward-slash-normalised). Symlinks are rejected outright -- a
+// symlinked file or directory could point outside the governed batch
+// directory and silently smuggle ungoverned content into the freeze. Any
+// resolved relative path that escapes the batch directory (e.g. via "..")
+// is likewise rejected, even though normal directory walking cannot produce
+// one; this is a defence against a future change to the walk itself.
+function walkGovernedFiles(absDir, repoRelDir) {
+  const out = [];
+  const entries = fs.readdirSync(absDir, { withFileTypes: true });
+  for (const e of entries) {
+    const absChild = path.join(absDir, e.name);
+    const repoRelChild = `${repoRelDir}/${e.name}`;
+    const lst = fs.lstatSync(absChild);
+    if (lst.isSymbolicLink()) {
+      throw new Error(`Freeze manifest generation refused: symlink found at ${repoRelChild}. Governed batch directories must contain only regular files and directories.`);
+    }
+    const normalizedRel = repoRelChild.replace(/\\/g, "/");
+    const escapesRoot = normalizedRel.split("/").some((seg) => seg === "..");
+    if (escapesRoot) {
+      throw new Error(`Freeze manifest generation refused: path escape detected at ${repoRelChild}.`);
+    }
+    if (lst.isDirectory()) {
+      out.push(...walkGovernedFiles(absChild, repoRelChild));
+    } else if (lst.isFile()) {
+      out.push(normalizedRel);
+    }
+  }
+  return out;
+}
+
 const files = [];
 for (const b of ACCEPTED_BATCH_DIRS) {
   const absDir = rel(b.dir);
-  const entries = fs.readdirSync(absDir, { withFileTypes: true }).filter((e) => e.isFile());
-  for (const e of entries) {
-    const relPath = `${b.dir}/${e.name}`.replace(/\\/g, "/");
-    files.push({ path: relPath, batchId: b.id, sha256: sha256Of(path.join(absDir, e.name)) });
+  const relPaths = walkGovernedFiles(absDir, b.dir);
+  for (const relPath of relPaths) {
+    files.push({ path: relPath, batchId: b.id, sha256: sha256Of(rel(relPath)) });
   }
 }
 files.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+
+const seenPaths = new Set();
+for (const f of files) {
+  if (seenPaths.has(f.path)) {
+    throw new Error(`Freeze manifest generation refused: duplicate path ${f.path}.`);
+  }
+  seenPaths.add(f.path);
+}
 
 const manifest = {
   manifestId: "UNIT202-BATCHES-04-06-FREEZE-MANIFEST",

@@ -84,6 +84,28 @@ const currentSchemaValidationCohort = batches.filter((b) => !b.legacyBaselineFro
 // accident.
 const batches0406ReportingCohort = batches.filter((b) => BATCHES_0406_IDS.has(b.id));
 
+// Independent recursive enumeration of every REGULAR file beneath a batch
+// directory, used only by check 68 to cross-check the freeze manifest --
+// deliberately never imports or reuses the generator script itself, so a
+// bug shared between the two could not silently cancel out. Symlinks and
+// any path segment of ".." are rejected outright rather than silently
+// skipped, matching the generator's own refusal behaviour.
+function walkGovernedFilesForValidation(absDir, repoRelDir) {
+  const out = [];
+  for (const e of fs.readdirSync(absDir, { withFileTypes: true })) {
+    const absChild = path.join(absDir, e.name);
+    const repoRelChild = `${repoRelDir}/${e.name}`;
+    const lst = fs.lstatSync(absChild);
+    if (lst.isSymbolicLink()) throw new Error(`symlink found at ${repoRelChild}`);
+    const normalizedRel = repoRelChild.replace(/\\/g, "/");
+    if (normalizedRel.split("/").some((seg) => seg === "..")) throw new Error(`path escape detected at ${repoRelChild}`);
+    if (lst.isDirectory()) out.push(...walkGovernedFilesForValidation(absChild, repoRelChild));
+    else if (lst.isFile()) out.push(normalizedRel);
+  }
+  return out;
+}
+const SHA256_HEX = /^[0-9a-f]{64}$/;
+
 // =====================================================================
 // 1. Every JSON artifact parses.
 // =====================================================================
@@ -1636,22 +1658,39 @@ check(67, "The freeze decision ID resolves to the canonical Product Architect de
   return `freeze decision ${FREEZE_DECISION_ID} resolves to ${FREEZE_DECISION_RECORD_PATH}, verdict ACCEPT, all six batches listed as accepted`;
 });
 
-check(68, "The Batches 04-06 freeze manifest contains exactly the governed files, and every hash matches", () => {
+check(68, "The Batches 04-06 freeze manifest contains exactly the governed files, recursively enumerated, with unique paths, valid hash formats, correct batchIds, and every hash matches", () => {
   if (!fs.existsSync(rel(FREEZE_MANIFEST_PATH))) throw new Error(`${FREEZE_MANIFEST_PATH} does not exist`);
   const manifest = readJson(FREEZE_MANIFEST_PATH);
   if (manifest.freezeDecisionId !== FREEZE_DECISION_ID) throw new Error(`manifest freezeDecisionId="${manifest.freezeDecisionId}" does not match "${FREEZE_DECISION_ID}"`);
   const manifestBatchIds = [...manifest.acceptedBatchIds ?? []].sort();
   if (JSON.stringify(manifestBatchIds) !== JSON.stringify([...EXPECTED_BATCHES_0406_IDS].sort())) throw new Error(`manifest.acceptedBatchIds=${JSON.stringify(manifestBatchIds)}, expected exactly ${JSON.stringify(EXPECTED_BATCHES_0406_IDS)}`);
 
-  // Independently enumerate the governed files on disk (never trust the manifest's own listing for this half).
+  const manifestFilesArr = manifest.files ?? [];
+  if (manifest.fileCount !== manifestFilesArr.length) throw new Error(`manifest.fileCount=${manifest.fileCount} does not equal manifest.files.length=${manifestFilesArr.length}`);
+
+  // Unique manifest paths.
+  const seenManifestPaths = new Set();
+  for (const f of manifestFilesArr) {
+    if (seenManifestPaths.has(f.path)) throw new Error(`duplicate manifest path: ${f.path}`);
+    seenManifestPaths.add(f.path);
+  }
+
+  // Every SHA-256 field is well-formed.
+  for (const f of manifestFilesArr) {
+    if (typeof f.sha256 !== "string" || !SHA256_HEX.test(f.sha256)) throw new Error(`manifest entry ${f.path} has a malformed sha256 field: ${JSON.stringify(f.sha256)}`);
+  }
+
+  // Independently, RECURSIVELY enumerate the governed files on disk (never trust the manifest's own listing for this half); reject symlinks/path escapes.
   const liveFiles = new Map();
   for (const b of batches0406ReportingCohort) {
-    for (const name of fs.readdirSync(rel(b.dir), { withFileTypes: true }).filter((e) => e.isFile()).map((e) => e.name)) {
-      const relPath = `${b.dir}/${name}`;
+    for (const relPath of walkGovernedFilesForValidation(rel(b.dir), b.dir)) {
       liveFiles.set(relPath, crypto.createHash("sha256").update(fs.readFileSync(rel(relPath))).digest("hex"));
     }
   }
-  const manifestFiles = new Map((manifest.files ?? []).map((f) => [f.path, f.sha256]));
+  const manifestFiles = new Map(manifestFilesArr.map((f) => [f.path, f.sha256]));
+  const manifestBatchIdByPath = new Map(manifestFilesArr.map((f) => [f.path, f.batchId]));
+
+  if (manifestFilesArr.length !== liveFiles.size) throw new Error(`manifest.files.length=${manifestFilesArr.length} does not equal the independently enumerated live-file count=${liveFiles.size}`);
 
   const livePaths = new Set(liveFiles.keys());
   const manifestPaths = new Set(manifestFiles.keys());
@@ -1660,6 +1699,17 @@ check(68, "The Batches 04-06 freeze manifest contains exactly the governed files
   if (missingFromManifest.length > 0) throw new Error(`governed file(s) on disk missing from the manifest: ${missingFromManifest.join(", ")}`);
   if (extraInManifest.length > 0) throw new Error(`manifest lists file(s) not present on disk / not governed: ${extraInManifest.join(", ")}`);
 
+  // Every entry's batchId matches its containing batch directory.
+  const batchIdProblems = [];
+  for (const b of batches0406ReportingCohort) {
+    for (const p of livePaths) {
+      if (!p.startsWith(`${b.dir}/`)) continue;
+      const declaredBatchId = manifestBatchIdByPath.get(p);
+      if (declaredBatchId !== b.id) batchIdProblems.push(`${p}: manifest batchId="${declaredBatchId}", expected "${b.id}" from its containing directory`);
+    }
+  }
+  if (batchIdProblems.length > 0) throw new Error(batchIdProblems.join("; "));
+
   const mismatches = [];
   for (const [p, liveHash] of liveFiles) {
     const manifestHash = manifestFiles.get(p);
@@ -1667,7 +1717,8 @@ check(68, "The Batches 04-06 freeze manifest contains exactly the governed files
   }
   if (mismatches.length > 0) throw new Error(`hash mismatch(es): ${mismatches.join("; ")}`);
   if (liveFiles.size === 0) throw new Error("0 governed files enumerated -- vacuous manifest check");
-  return `${liveFiles.size} governed Batch 04-06 file(s), exact path-set equality with the manifest, every SHA-256 matches`;
+  if (liveFiles.size !== 18) throw new Error(`expected exactly 18 governed Batch 04-06 files, found ${liveFiles.size} -- if this reflects a genuine new nested governed file, stop and report before proceeding`);
+  return `${liveFiles.size} governed Batch 04-06 file(s) (recursively enumerated), exact path-set/batchId/hash-format equality with the manifest, every SHA-256 matches`;
 });
 
 check(69, "The live review-pack status is accepted/frozen, not HOLD/proposed/unfrozen", () => {
@@ -1776,6 +1827,92 @@ check(76, "The learner-facing course/app is not falsely declared complete anywhe
     if (pat.test(packText)) throw new Error(`review pack contains a banned learner-facing-completion claim matching ${pat}`);
   }
   return "explicit non-claim present; no learner-facing course/app completion claim found anywhere in the review pack";
+});
+
+check(77, "Batch 05/06 current-state fields carry no stale pre-freeze wording, and the two cross-domain prerequisite decisions plus the relay retirement are correctly encoded (structured source data, not review-pack prose)", () => {
+  const problems = [];
+  const b0506 = batches0406ReportingCohort.filter((b) => b.id === "batch-05" || b.id === "batch-06");
+
+  const UNFROZEN_CLAIM = /(Batch 0[456]).{0,40}(is|are|remains?)\s+(itself\s+)?(PROPOSED|PROPOSED_FOR_PA_REVIEW)\b|(Batch 0[456]).{0,60}\bunfrozen\b/i;
+  const FALSE_UNIVERSAL_HELD_CLAIM = /Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION/;
+  const PENDING_ADJUDICATION = /pending Product Architect adjudication|only the Product Architect can resolve|descoping it is a legitimate option|Held pending adjudication/i;
+  const SIBLING_IS_HELD = /`?((?:EDA|EMI|EQCT)-LP-\d+)`?,?\s+which is held/gi;
+
+  for (const b of b0506) {
+    const lp = b.lpJson;
+
+    // (a) top-level live note must not say an accepted batch is proposed/unfrozen, and must not carry the false universal HELD claim.
+    if (UNFROZEN_CLAIM.test(lp.note ?? "")) problems.push(`${b.id}: top-level note claims an accepted batch is proposed/unfrozen`);
+    if (FALSE_UNIVERSAL_HELD_CLAIM.test(lp.note ?? "")) problems.push(`${b.id}: top-level note falsely equates every PARTIALLY_VERIFIED/SOURCE_GAP facet with a HELD learning point`);
+
+    // (b) crossDomainPrerequisiteNote must not say an accepted batch is proposed/unfrozen.
+    if (UNFROZEN_CLAIM.test(lp.crossDomainPrerequisiteNote ?? "")) problems.push(`${b.id}: crossDomainPrerequisiteNote claims an accepted batch is proposed/unfrozen`);
+
+    // (c) overlapAudit: no entry may retain an unresolved flaggedForProductArchitect solely because Batch 04/05 was unfrozen.
+    for (const entry of lp.overlapAudit ?? []) {
+      const flagged = entry.flaggedForProductArchitect;
+      if (typeof flagged === "string" && /unfrozen|PROPOSED_FOR_PA_REVIEW|Batch 0[45] is (itself )?PROPOSED/i.test(flagged)) {
+        problems.push(`${b.id}: overlapAudit entry "${entry.topic}" still carries an unresolved flaggedForProductArchitect citing an unfrozen batch`);
+      }
+    }
+
+    // (d) explicit exclusions: no "which is held" reference to a sibling that is not actually HELD.
+    const byId = new Map((lp.learningPoints ?? []).map((p) => [p.id, p]));
+    for (const p of lp.learningPoints ?? []) {
+      for (const excl of p.explicitExclusions ?? []) {
+        for (const m of excl.matchAll(SIBLING_IS_HELD)) {
+          const siblingId = m[1];
+          const sibling = byId.get(siblingId);
+          const siblingReadiness = sibling?.evidenceReadiness;
+          if (siblingReadiness !== "HELD_PENDING_EVIDENCE_CORRECTION") {
+            problems.push(`${b.id}: ${p.id}.explicitExclusions calls ${siblingId} "held" but its evidenceReadiness is "${siblingReadiness}"`);
+          }
+        }
+      }
+    }
+
+    // (e) EDA-LP-19 / EDA-LP-21: no current field may say Product Architect adjudication is pending.
+    for (const targetId of ["EDA-LP-19", "EDA-LP-21"]) {
+      const p = byId.get(targetId);
+      if (!p) continue;
+      const fieldsToCheck = [p.evidenceReadinessNote, ...(p.explicitExclusions ?? []), ...(p.contextualExamples ?? [])];
+      for (const field of fieldsToCheck) {
+        if (typeof field === "string" && PENDING_ADJUDICATION.test(field)) {
+          problems.push(`${b.id}: ${targetId} still has a current field implying pending Product Architect adjudication: "${field.slice(0, 80)}..."`);
+        }
+      }
+    }
+  }
+
+  // (f) EMI-LP-18 must carry EQCT-LP-08 as a cross-domain prerequisite.
+  const batch05 = b0506.find((b) => b.id === "batch-05");
+  const emi18 = batch05?.lpJson.learningPoints.find((p) => p.id === "EMI-LP-18");
+  if (!emi18?.crossDomainPrerequisiteIds?.includes("EQCT-LP-08")) problems.push("EMI-LP-18.crossDomainPrerequisiteIds is missing EQCT-LP-08");
+
+  // (g) EDA-LP-03 must carry EQCT-LP-09 as a cross-domain prerequisite.
+  const batch06 = b0506.find((b) => b.id === "batch-06");
+  const eda03 = batch06?.lpJson.learningPoints.find((p) => p.id === "EDA-LP-03");
+  if (!eda03?.crossDomainPrerequisiteIds?.includes("EQCT-LP-09")) problems.push("EDA-LP-03.crossDomainPrerequisiteIds is missing EQCT-LP-09");
+
+  // (h) the frequency and capacitance overlap-audit entries must record their decisions as resolved.
+  const freqEntry = batch05?.lpJson.overlapAudit?.find((e) => /frequency/i.test(e.topic ?? "") && /generated AC waveform/i.test(e.topic ?? ""));
+  if (!freqEntry || !/RESOLVED/i.test(JSON.stringify(freqEntry))) problems.push("batch-05 frequency overlapAudit entry does not record a RESOLVED decision");
+  const capEntry = batch06?.lpJson.overlapAudit?.find((e) => /Capacitance/i.test(e.topic ?? ""));
+  if (!capEntry || !/RESOLVED/i.test(JSON.stringify(capEntry))) problems.push("batch-06 capacitance overlapAudit entry does not record a RESOLVED decision");
+
+  // (i) the relay overlap must not treat EDA-LP-21 as held/unresolved.
+  const relayEntry = batch06?.lpJson.overlapAudit?.find((e) => /relay/i.test(e.topic ?? ""));
+  if (relayEntry) {
+    if (relayEntry.flaggedForProductArchitect) problems.push("batch-06 relay overlapAudit entry still carries an unresolved flaggedForProductArchitect field");
+    if (relayEntry.decision === "POTENTIAL_DUPLICATION_FLAGGED_NOT_RESOLVED") problems.push(`batch-06 relay overlapAudit entry decision is still "${relayEntry.decision}" (unresolved)`);
+    if (/\bunheld\b/i.test(JSON.stringify(relayEntry))) problems.push("batch-06 relay overlapAudit entry still treats EDA-LP-21 as potentially unheld");
+    if (!/RETIRED_OUT_OF_SCOPE/.test(JSON.stringify(relayEntry))) problems.push("batch-06 relay overlapAudit entry does not record EDA-LP-21 as RETIRED_OUT_OF_SCOPE");
+  } else {
+    problems.push("batch-06 overlapAudit has no relay entry");
+  }
+
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return "Batch 05/06 current-state fields carry no stale pre-freeze wording; EMI-LP-18/EQCT-LP-08 and EDA-LP-03/EQCT-LP-09 cross-domain prerequisites present; relay overlap correctly resolved";
 });
 
 // --- Report ---
