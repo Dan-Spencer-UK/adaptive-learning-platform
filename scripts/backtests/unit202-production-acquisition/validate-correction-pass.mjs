@@ -26,18 +26,34 @@ function check(n, name, fn) {
 
 const BASELINE_COMMIT = "8127768b34d7bec7db0fb72975d459586e5240a4";
 
+// Two independent concerns, deliberately never collapsed into one boolean
+// (see PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 and
+// UNIT202-PA-FREEZE-DECISION-RECORD.json for the freeze this distinction
+// makes possible):
+//  - legacyBaselineFrozen: true only for Batches 01-03 -- protects byte-
+//    identity against BASELINE_COMMIT (check 2) and marks the pre-Stage-6
+//    legacy schema, excluded from Stage 2-6 current-schema validation.
+//  - acceptedAndIdentityFrozen: Product-Architect acceptance/identity-freeze
+//    status. True for all six batches as of the freeze decision above.
+// Flipping acceptedAndIdentityFrozen to true for Batches 04-06 must NOT
+// change which batches are baseline-protected or which are covered by
+// current-schema validation -- that is entirely legacyBaselineFrozen's job.
 const BATCH_DIRS = [
-  { dir: "reports/unit202-production-acquisition/batch-01-foundational-mathematics", lp: "FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS", frozen: true },
-  { dir: "reports/unit202-production-acquisition/batch-02-electrical-fundamentals-and-safety", lp: "ELECTRICAL-FUNDAMENTALS-AND-SAFETY-LEARNING-POINTS", frozen: true },
-  { dir: "reports/unit202-production-acquisition/batch-03-mechanics-and-machines", lp: "MECHANICS-AND-MACHINES-LEARNING-POINTS", frozen: true },
-  { dir: "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory", lp: "ELECTRICAL-QUANTITIES-AND-CIRCUIT-THEORY-LEARNING-POINTS", frozen: false },
-  { dir: "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction", lp: "ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS", frozen: false },
-  { dir: "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications", lp: "ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS", frozen: false },
+  { id: "batch-01", dir: "reports/unit202-production-acquisition/batch-01-foundational-mathematics", lp: "FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS", legacyBaselineFrozen: true, acceptedAndIdentityFrozen: true },
+  { id: "batch-02", dir: "reports/unit202-production-acquisition/batch-02-electrical-fundamentals-and-safety", lp: "ELECTRICAL-FUNDAMENTALS-AND-SAFETY-LEARNING-POINTS", legacyBaselineFrozen: true, acceptedAndIdentityFrozen: true },
+  { id: "batch-03", dir: "reports/unit202-production-acquisition/batch-03-mechanics-and-machines", lp: "MECHANICS-AND-MACHINES-LEARNING-POINTS", legacyBaselineFrozen: true, acceptedAndIdentityFrozen: true },
+  { id: "batch-04", dir: "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory", lp: "ELECTRICAL-QUANTITIES-AND-CIRCUIT-THEORY-LEARNING-POINTS", legacyBaselineFrozen: false, acceptedAndIdentityFrozen: true },
+  { id: "batch-05", dir: "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction", lp: "ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS", legacyBaselineFrozen: false, acceptedAndIdentityFrozen: true },
+  { id: "batch-06", dir: "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications", lp: "ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS", legacyBaselineFrozen: false, acceptedAndIdentityFrozen: true },
 ];
+const BATCHES_0406_IDS = new Set(["batch-04", "batch-05", "batch-06"]);
+const FREEZE_DECISION_ID = "PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001";
 const PLAN_PATH = "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json";
 const LEDGER_PATH = "reports/unit202-production-acquisition/UNIT202-CORRECTION-AMENDMENT-LEDGER.json";
 const PACK_JSON_PATH = "reports/unit202-production-acquisition/UNIT202-ACQUISITION-REVIEW-PACK.json";
 const PACK_MD_PATH = "reports/unit202-production-acquisition/UNIT202-ACQUISITION-REVIEW-PACK.md";
+const FREEZE_DECISION_RECORD_PATH = "reports/unit202-production-acquisition/UNIT202-PA-FREEZE-DECISION-RECORD.json";
+const FREEZE_MANIFEST_PATH = "reports/unit202-production-acquisition/UNIT202-BATCHES-04-06-FREEZE-MANIFEST.json";
 
 const CANONICAL_EVIDENCE_STATUSES = new Set(["VERIFIED", "PARTIALLY_VERIFIED", "SOURCE_GAP", "CONFLICTED", "NOT_ATTEMPTED"]);
 const CANONICAL_ROW_DISPOSITIONS = new Set([undefined, "STRUCTURALLY_SATISFIED", "RETIRED_OUT_OF_SCOPE"]);
@@ -53,6 +69,20 @@ const batches = BATCH_DIRS.map((b) => ({
   lpMdPath: path.join(b.dir, `${b.lp}.md`),
   srPath: path.join(b.dir, "SOURCE-REGISTER.json"),
 }));
+
+// The Stage 2-6 current-schema validation cohort (every check below that
+// scans Batches 04-06's richer fields) is computed from legacyBaselineFrozen
+// only -- NEVER from acceptedAndIdentityFrozen, so accepting/identity-
+// freezing Batches 04-06 can never silently empty this cohort or make any
+// check below vacuous.
+const currentSchemaValidationCohort = batches.filter((b) => !b.legacyBaselineFrozen);
+// The Batches-04-06 reporting cohort (used specifically where a check
+// reproduces the review pack's own "batches0406Only" scope) is computed
+// independently, by explicit batch-id allowlist -- a second, deliberately
+// separate computation from currentSchemaValidationCohort so the two
+// concerns can never silently drift into being "the same filter" by
+// accident.
+const batches0406ReportingCohort = batches.filter((b) => BATCHES_0406_IDS.has(b.id));
 
 // =====================================================================
 // 1. Every JSON artifact parses.
@@ -74,7 +104,7 @@ check(1, "Every JSON artifact parses", () => {
 // 2. Batches 01-03 byte-identical to the accepted baseline commit.
 // =====================================================================
 check(2, "Batches 01-03 byte-identical to baseline commit " + BASELINE_COMMIT.slice(0, 7), () => {
-  const frozenDirs = batches.filter((b) => b.frozen).map((b) => b.dir);
+  const frozenDirs = batches.filter((b) => b.legacyBaselineFrozen).map((b) => b.dir);
   const diff = execSync(`git diff --stat ${BASELINE_COMMIT} -- ${frozenDirs.map((d) => `"${d}"`).join(" ")}`, { cwd: repoRoot }).toString();
   if (diff.trim().length > 0) throw new Error("Frozen batch diff vs. baseline detected:\n" + diff);
   return "clean";
@@ -124,7 +154,7 @@ check(4, "Every disposition uses the approved disposition vocabulary", () => {
 // =====================================================================
 check(5, "Per-batch totals recompute from records (Batches 04-06; 01-03 covered by check 2's byte-identity)", () => {
   const report = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     const totals = {};
     let structSat = 0, retired = 0;
     for (const r of b.ev.results) {
@@ -185,7 +215,7 @@ check(6, "Whole-unit totals recompute from records and agree with the review pac
   return `requirements=${computed.requirementCount} status=${JSON.stringify(computed.statusTotals)} lp=${computed.lpCount}`;
 });
 check(7, "Batches-04-06-only totals recompute independently and agree with the review pack", () => {
-  const scope = batches.filter((b) => !b.frozen);
+  const scope = batches0406ReportingCohort;
   const computed = recomputeScope(scope);
   assertScopeEqual("batches0406Only", computed, pack.dispositionTotals.batches0406Only, pack.learningPoints.batches0406Only);
   return `requirements=${computed.requirementCount} status=${JSON.stringify(computed.statusTotals)} lp=${computed.lpCount}`;
@@ -197,7 +227,7 @@ check(7, "Batches-04-06-only totals recompute independently and agree with the r
 // =====================================================================
 check(8, "Required coverage dimensions equal satisfied plus unresolved (Batches 04-06; 01-03 use a legacy schema without requiredCoverageDimensions, covered by check 2)", () => {
   let n = 0;
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       const required = new Set(r.requiredCoverageDimensions ?? []);
       const satisfied = new Set(r.result.coverageDimensionsSatisfied ?? []);
@@ -262,7 +292,7 @@ check(12, "Plan/result mode, specification mode, text, dimensions and authority 
   const planById = new Map(plan.requirements.map((r) => [r.evidenceRequirementId, r]));
   const setEq = (a, b) => a.length === b.length && new Set(a).size === new Set(b).size && [...new Set(a)].every((x) => new Set(b).has(x));
   let n = 0;
-  const scopedRows = nonStructuralRows.filter((r) => !batches.find((b) => b.dir === r.batch)?.frozen);
+  const scopedRows = nonStructuralRows.filter((r) => !batches.find((b) => b.dir === r.batch)?.legacyBaselineFrozen);
   for (const r of scopedRows) {
     const p = planById.get(r.evidenceRequirementId);
     if (!p) continue; // already reported by check 11
@@ -409,7 +439,7 @@ const globalSourceIds = new Set(batches.flatMap((b) => readJson(b.srPath).source
 check(20, "Every candidate and normalized-claim source ID resolves to a source-register entry (Batches 04-06; 01-03 covered by check 2)", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       const ids = [
         ...(r.result.candidateSources ?? []).map((c) => c.sourceId),
@@ -439,7 +469,7 @@ check(21, "Every candidate actually counted toward a VERIFIED result uses a perm
   // check targets (see check 22 for VERIFIED-specific dimension checks).
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       if (r.result.verificationStatus !== "VERIFIED") continue;
       const permitted = new Set(r.sourceAuthorityClasses ?? []);
@@ -634,7 +664,7 @@ check(27, "The official IEC 60617 preview is represented accurately: all six ID/
 // =====================================================================
 check(28, "JSON and Markdown learning-point artifacts are semantically equivalent (Batches 04-06; 01-03 covered by check 2)", () => {
   let n = 0;
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     const md = readText(b.lpMdPath);
     for (const p of b.lpJson.learningPoints) {
       n++;
@@ -710,7 +740,7 @@ check(32, "No unqualified universal AC power-formula claim introduced in Batches
   // passages (e.g. a retrievedPassage stating "P=V.I=I^2.R=V^2/R" as the
   // source's own general formula list) which are historical record, not this
   // pass's own taught assertion.
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const f of fs.readdirSync(rel(b.dir)).filter((f) => f.includes("LEARNING-POINTS"))) {
       const text = readText(path.join(b.dir, f));
       const matches = text.match(/P\s*=\s*V\s*[.x*×]\s*I(?!\w)/g) ?? [];
@@ -808,7 +838,7 @@ function suffixOfFull(id) {
 check(36, "Every Batches 04-06 LP's underlyingEvidenceStatuses has exact key/value equality with its referenced current results", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       const ids = p.evidenceRequirementIds ?? [];
       const expected = {};
@@ -835,7 +865,7 @@ check(36, "Every Batches 04-06 LP's underlyingEvidenceStatuses has exact key/val
 
 check(37, "Each batch's declared readinessCounts and curriculumRoleCounts equal recomputed counts", () => {
   const report = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     const readiness = {};
     const curriculumRole = {};
     for (const p of b.lpJson.learningPoints) {
@@ -858,7 +888,7 @@ check(37, "Each batch's declared readinessCounts and curriculumRoleCounts equal 
 check(38, "A HELD learning point with wholly verified/structurally-satisfied evidence has an explicit non-evidence blocker", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (p.evidenceReadiness !== "HELD_PENDING_EVIDENCE_CORRECTION") continue;
       const ids = p.evidenceRequirementIds ?? [];
@@ -878,7 +908,7 @@ check(38, "A HELD learning point with wholly verified/structurally-satisfied evi
 check(39, "Context-only learning points expose no assessable application types", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (p.curriculumRole !== "CONTEXTUAL_SUPPORT_ONLY") continue;
       n++;
@@ -892,7 +922,7 @@ check(39, "Context-only learning points expose no assessable application types",
 check(40, "Required/context evidence arrays exactly match the plan's acquisitionPriority partition", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (!p.curriculumRole) continue;
       n++;
@@ -920,7 +950,7 @@ check(40, "Required/context evidence arrays exactly match the plan's acquisition
 check(41, "Structured cross-requirement/cross-LP satisfaction claims resolve and their supporting evidence is sufficient", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       const coverage = r.result.patternComponentCoverage;
       if (!coverage) continue;
@@ -1009,7 +1039,7 @@ check(45, "Review-pack required/context totals recompute independently from sour
     return { required, optionalContext };
   }
   const wholeComputed = computeRequiredContext(batches);
-  const b0406Computed = computeRequiredContext(batches.filter((b) => !b.frozen));
+  const b0406Computed = computeRequiredContext(batches0406ReportingCohort);
   const packWhole = pack.requirementCounts.requiredVsContext.wholeUnit202;
   const packB0406 = pack.requirementCounts.requiredVsContext.batches0406Only;
   if (wholeComputed.required !== packWhole.REQUIRED || wholeComputed.optionalContext !== packWhole.OPTIONAL_CONTEXT) {
@@ -1029,7 +1059,7 @@ check(45, "Review-pack required/context totals recompute independently from sour
 check(46, "DEFERRED_CONTEXT_ONLY is used only for non-blocking context-only learning points", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (p.evidenceReadiness !== "DEFERRED_CONTEXT_ONLY") continue;
       n++;
@@ -1046,7 +1076,7 @@ check(46, "DEFERRED_CONTEXT_ONLY is used only for non-blocking context-only lear
 check(47, "Core-release-blocker and contextual-deferral counts in the review pack are mechanically correct", () => {
   const liveBlockers = [];
   const liveDeferrals = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (p.evidenceReadiness === "HELD_PENDING_EVIDENCE_CORRECTION") liveBlockers.push(p.id);
       if (p.evidenceReadiness === "DEFERRED_CONTEXT_ONLY") liveDeferrals.push(p.id);
@@ -1102,7 +1132,7 @@ const PROTECTED_FILE_HASHES = {
 check(49, "Every embedded candidateSource/evaluatedButOutOfPermittedAuthorityClass authorityClass matches its canonical SOURCE-REGISTER entry", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     const sr = readJson(b.srPath);
     const canonical = new Map(sr.sources.map((s) => [s.sourceId, s.authorityClass]));
     for (const r of b.ev.results) {
@@ -1123,7 +1153,7 @@ check(50, "Every normalizedClaim cites a source that is both a registered candid
   const governedIds = new Set(paRegistry.decisions.map((d) => d.id));
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       const adjudication = r.result.paAuthorityPolicyAdjudication;
       if (adjudication && !governedIds.has(adjudication.id)) {
@@ -1157,7 +1187,7 @@ check(51, "Every VERIFIED row has structured, atomic per-dimension claim coverag
   let n = 0;
   let claimsChecked = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       if (r.disposition) continue; // STRUCTURALLY_SATISFIED / RETIRED_OUT_OF_SCOPE rows have no direct claims of their own
       const required = r.requiredCoverageDimensions ?? [];
@@ -1196,7 +1226,7 @@ check(51, "Every VERIFIED row has structured, atomic per-dimension claim coverag
 check(52, "No PARTIALLY_VERIFIED row has an empty unresolvedDimensions array", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       if (r.disposition) continue; // STRUCTURALLY_SATISFIED/RETIRED_OUT_OF_SCOPE rows: disposition is the terminal status, not result.verificationStatus (same convention as terminalStatusOf/check 51)
       if (r.result.verificationStatus !== "PARTIALLY_VERIFIED") continue;
@@ -1211,7 +1241,7 @@ check(52, "No PARTIALLY_VERIFIED row has an empty unresolvedDimensions array", (
 check(53, "No atomic dimension is simultaneously recorded as satisfied and unresolved on the same row", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const r of b.ev.results) {
       n++;
       const satisfied = new Set(r.result.coverageDimensionsSatisfied ?? []);
@@ -1229,7 +1259,7 @@ check(54, "No REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point depe
   const problems = [];
   const lpById = new Map();
   for (const b of batches) for (const p of b.lpJson.learningPoints) lpById.set(p.id, p);
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (p.curriculumRole !== "REQUIRED_MASTERY" && p.curriculumRole !== "MIXED_REQUIRED_AND_CONTEXT") continue;
       n++;
@@ -1250,7 +1280,7 @@ check(54, "No REQUIRED_MASTERY or MIXED_REQUIRED_AND_CONTEXT learning point depe
 check(55, "No DEFERRED_CONTEXT_ONLY or RETIRED_OUT_OF_SCOPE learning point appears in its batch's core V1 instructional sequence", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     const readinessById = new Map(b.lpJson.learningPoints.map((p) => [p.id, p.evidenceReadiness]));
     for (const id of b.lpJson.coreInstructionalSequence ?? []) {
       n++;
@@ -1311,7 +1341,7 @@ function claimRefLine(c) {
 check(58, "Every Batches 04-06 LP's normalizedClaimRefs is an exact, exhaustive, current mechanical cache of its referenced evidence rows' normalizedClaims", () => {
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     const rowById = new Map(b.ev.results.map((r) => [r.evidenceRequirementId, r]));
     for (const p of b.lpJson.learningPoints) {
       const ids = p.evidenceRequirementIds ?? [];
@@ -1338,7 +1368,7 @@ check(59, "No READY (or READY-facet) learning point's required-facing fields con
   const CONTEXTUAL_MARKERS = /context only|not required (recall|core mastery)|contextual|CONTEXT ONLY|line-test|line testing|widely repeated but/i;
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (p.evidenceReadiness !== "READY") continue;
       n++;
@@ -1430,7 +1460,7 @@ check(60, "Runtime-mapping rows with facet-level governed evidence references co
   if (!fs.existsSync(rel(mappingPath))) throw new Error("runtime delta mapping not generated -- governedFacetReferences coverage cannot be checked");
   const mapping = readJson(mappingPath);
   const rowById = new Map();
-  for (const b of batches.filter((x) => !x.frozen)) for (const r of b.ev.results) rowById.set(r.evidenceRequirementId, r);
+  for (const b of currentSchemaValidationCohort) for (const r of b.ev.results) rowById.set(r.evidenceRequirementId, r);
   const REQUIRED_FACET_ROW_IDS = ["EDA-LP-16", "EDA-LP-25", "EDA-LP-28"];
   const rowsById = new Map((mapping.rows ?? []).map((r) => [r.id, r]));
   const seenEvidenceRequirementIds = new Set();
@@ -1513,7 +1543,7 @@ check(62, "READY-state consistency also covers evidenceReadinessNote, depthJusti
   const CONTEXTUAL_MARKERS = /context only|not required (recall|core mastery)|contextual|CONTEXT ONLY|line-test|line testing|widely repeated but/i;
   let n = 0;
   const problems = [];
-  for (const b of batches.filter((x) => !x.frozen)) {
+  for (const b of currentSchemaValidationCohort) {
     for (const p of b.lpJson.learningPoints) {
       if (p.evidenceReadiness !== "READY") continue;
       n++;
@@ -1551,6 +1581,201 @@ check(63, "The consolidated review pack's core-blocker summary is genuinely empt
   if (batteryList !== expectedList) throw new Error(`battery text's core-blocker list ("${batteryList}") does not match the mechanically-expected list ("${expectedList}")`);
   if (count === 0 && pack.productArchitectFreezeReadiness?.coreAcquisitionAndCurriculumInputFreezeReady !== true) throw new Error("coreReleaseBlockerCount is 0 but productArchitectFreezeReadiness.coreAcquisitionAndCurriculumInputFreezeReady is not true");
   return `review pack's core-blocker summary is mechanically consistent (count=${count}, list="${batteryList}")`;
+});
+
+// =====================================================================
+// Checks 64-76 (Product Architect acceptance and curriculum-input freeze,
+// 2026-09-08): prove the freeze established by PA-UNIT202-20260908-
+// CURRICULUM-INPUT-FREEZE-001 is real and mechanically enforced, and that
+// none of the existing 1-63 checks became vacuous as a side effect.
+// =====================================================================
+
+const ALL_BATCH_IDS = batches.map((b) => b.id);
+const EXPECTED_BATCHES_0406_IDS = ["batch-04", "batch-05", "batch-06"];
+
+check(64, "All six batches report ACCEPTED_AND_FROZEN identity status in the review pack", () => {
+  const packNow = readJson(PACK_JSON_PATH);
+  const problems = [];
+  for (const id of ALL_BATCH_IDS) {
+    const status = packNow.learningPoints?.byBatch?.[id]?.identityStatus;
+    if (status !== "ACCEPTED_AND_FROZEN") problems.push(`${id}: identityStatus=${status}, expected ACCEPTED_AND_FROZEN`);
+  }
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `${ALL_BATCH_IDS.length} batches all report ACCEPTED_AND_FROZEN`;
+});
+
+check(65, "Batches 04-06 remain fully covered by current-schema validation after the freeze (cohort is non-vacuous and exactly batch-04/05/06)", () => {
+  const cohortIds = [...new Set(currentSchemaValidationCohort.map((b) => b.id))].sort();
+  const expected = [...EXPECTED_BATCHES_0406_IDS].sort();
+  if (JSON.stringify(cohortIds) !== JSON.stringify(expected)) throw new Error(`currentSchemaValidationCohort=${JSON.stringify(cohortIds)}, expected exactly ${JSON.stringify(expected)}`);
+  if (currentSchemaValidationCohort.length === 0) throw new Error("currentSchemaValidationCohort is empty -- freezing Batches 04-06 must never silently skip their current-schema validation");
+  let totalLps = 0;
+  for (const b of currentSchemaValidationCohort) totalLps += b.lpJson.learningPoints.length;
+  if (totalLps === 0) throw new Error("0 learning points examined across the current-schema validation cohort -- vacuous coverage");
+  return `currentSchemaValidationCohort=${JSON.stringify(cohortIds)}, ${totalLps} learning points covered, non-vacuous`;
+});
+
+check(66, "The Batches 04-06 reporting cohort contains exactly 70 learning points", () => {
+  const cohortIds = [...new Set(batches0406ReportingCohort.map((b) => b.id))].sort();
+  const expected = [...EXPECTED_BATCHES_0406_IDS].sort();
+  if (JSON.stringify(cohortIds) !== JSON.stringify(expected)) throw new Error(`batches0406ReportingCohort=${JSON.stringify(cohortIds)}, expected exactly ${JSON.stringify(expected)}`);
+  const total = batches0406ReportingCohort.reduce((sum, b) => sum + b.lpJson.learningPoints.length, 0);
+  if (total !== 70) throw new Error(`batches0406ReportingCohort learning-point total=${total}, expected exactly 70`);
+  return `batches0406ReportingCohort=${JSON.stringify(cohortIds)}, ${total} learning points (expected 70)`;
+});
+
+check(67, "The freeze decision ID resolves to the canonical Product Architect decision record", () => {
+  if (!fs.existsSync(rel(FREEZE_DECISION_RECORD_PATH))) throw new Error(`${FREEZE_DECISION_RECORD_PATH} does not exist`);
+  const record = readJson(FREEZE_DECISION_RECORD_PATH);
+  if (record.decisionId !== FREEZE_DECISION_ID) throw new Error(`decision record's own decisionId="${record.decisionId}" does not match expected "${FREEZE_DECISION_ID}"`);
+  if (record.verdict !== "ACCEPT") throw new Error(`decision record verdict="${record.verdict}", expected "ACCEPT"`);
+  const packNow = readJson(PACK_JSON_PATH);
+  if (packNow.productArchitectFreeze?.decisionId !== FREEZE_DECISION_ID) throw new Error(`review pack productArchitectFreeze.decisionId="${packNow.productArchitectFreeze?.decisionId}" does not match "${FREEZE_DECISION_ID}"`);
+  const recordBatchSet = new Set(record.identityFreeze?.acceptedBatchIds ?? []);
+  for (const id of ALL_BATCH_IDS) if (!recordBatchSet.has(id)) throw new Error(`decision record's identityFreeze.acceptedBatchIds is missing "${id}"`);
+  return `freeze decision ${FREEZE_DECISION_ID} resolves to ${FREEZE_DECISION_RECORD_PATH}, verdict ACCEPT, all six batches listed as accepted`;
+});
+
+check(68, "The Batches 04-06 freeze manifest contains exactly the governed files, and every hash matches", () => {
+  if (!fs.existsSync(rel(FREEZE_MANIFEST_PATH))) throw new Error(`${FREEZE_MANIFEST_PATH} does not exist`);
+  const manifest = readJson(FREEZE_MANIFEST_PATH);
+  if (manifest.freezeDecisionId !== FREEZE_DECISION_ID) throw new Error(`manifest freezeDecisionId="${manifest.freezeDecisionId}" does not match "${FREEZE_DECISION_ID}"`);
+  const manifestBatchIds = [...manifest.acceptedBatchIds ?? []].sort();
+  if (JSON.stringify(manifestBatchIds) !== JSON.stringify([...EXPECTED_BATCHES_0406_IDS].sort())) throw new Error(`manifest.acceptedBatchIds=${JSON.stringify(manifestBatchIds)}, expected exactly ${JSON.stringify(EXPECTED_BATCHES_0406_IDS)}`);
+
+  // Independently enumerate the governed files on disk (never trust the manifest's own listing for this half).
+  const liveFiles = new Map();
+  for (const b of batches0406ReportingCohort) {
+    for (const name of fs.readdirSync(rel(b.dir), { withFileTypes: true }).filter((e) => e.isFile()).map((e) => e.name)) {
+      const relPath = `${b.dir}/${name}`;
+      liveFiles.set(relPath, crypto.createHash("sha256").update(fs.readFileSync(rel(relPath))).digest("hex"));
+    }
+  }
+  const manifestFiles = new Map((manifest.files ?? []).map((f) => [f.path, f.sha256]));
+
+  const livePaths = new Set(liveFiles.keys());
+  const manifestPaths = new Set(manifestFiles.keys());
+  const missingFromManifest = [...livePaths].filter((p) => !manifestPaths.has(p));
+  const extraInManifest = [...manifestPaths].filter((p) => !livePaths.has(p));
+  if (missingFromManifest.length > 0) throw new Error(`governed file(s) on disk missing from the manifest: ${missingFromManifest.join(", ")}`);
+  if (extraInManifest.length > 0) throw new Error(`manifest lists file(s) not present on disk / not governed: ${extraInManifest.join(", ")}`);
+
+  const mismatches = [];
+  for (const [p, liveHash] of liveFiles) {
+    const manifestHash = manifestFiles.get(p);
+    if (manifestHash !== liveHash) mismatches.push(`${p}: manifest=${manifestHash} live=${liveHash}`);
+  }
+  if (mismatches.length > 0) throw new Error(`hash mismatch(es): ${mismatches.join("; ")}`);
+  if (liveFiles.size === 0) throw new Error("0 governed files enumerated -- vacuous manifest check");
+  return `${liveFiles.size} governed Batch 04-06 file(s), exact path-set equality with the manifest, every SHA-256 matches`;
+});
+
+check(69, "The live review-pack status is accepted/frozen, not HOLD/proposed/unfrozen", () => {
+  const packNow = readJson(PACK_JSON_PATH);
+  const status = String(packNow.status ?? "");
+  const statusMeaning = String(packNow.statusMeaning ?? "");
+  const combined = `${status} ${statusMeaning}`;
+  const bannedPatterns = [/\bHOLD\b/, /\bproposed\b/i, /\bunfrozen\b/i, /BATCHES 04-06 REMAIN PROPOSED/i, /awaiting Product Architect review/i];
+  for (const pat of bannedPatterns) {
+    if (pat.test(combined)) throw new Error(`live status/statusMeaning still contains banned pattern ${pat}: "${combined.slice(0, 200)}..."`);
+  }
+  if (!/\bACCEPT\b/.test(status)) throw new Error(`status does not contain "ACCEPT": "${status}"`);
+  if (!/FROZEN/i.test(status)) throw new Error(`status does not contain "FROZEN": "${status}"`);
+  return `live status="${status}" carries no HOLD/proposed/unfrozen wording and asserts ACCEPT + FROZEN`;
+});
+
+check(70, "Remaining Product Architect questions are empty", () => {
+  const packNow = readJson(PACK_JSON_PATH);
+  const remaining = packNow.remainingProductArchitectQuestions ?? null;
+  if (!Array.isArray(remaining)) throw new Error("remainingProductArchitectQuestions is missing or not an array");
+  if (remaining.length !== 0) throw new Error(`remainingProductArchitectQuestions has ${remaining.length} entr(y/ies), expected exactly 0: ${JSON.stringify(remaining)}`);
+  return "remainingProductArchitectQuestions is the empty array";
+});
+
+check(71, "All six resolved Product Architect decisions are present, each traceable to the freeze decision", () => {
+  const packNow = readJson(PACK_JSON_PATH);
+  const resolved = packNow.resolvedProductArchitectDecisions ?? [];
+  if (resolved.length !== 6) throw new Error(`resolvedProductArchitectDecisions has ${resolved.length} entr(y/ies), expected exactly 6`);
+  const ns = resolved.map((d) => d.n).sort((a, b) => a - b);
+  if (JSON.stringify(ns) !== JSON.stringify([1, 2, 3, 4, 5, 6])) throw new Error(`resolved decision numbers=${JSON.stringify(ns)}, expected exactly [1,2,3,4,5,6]`);
+  for (const d of resolved) {
+    if (!d.title || !d.decision) throw new Error(`resolved decision n=${d.n} is missing title/decision text`);
+    if (d.resolvedByDecisionId !== FREEZE_DECISION_ID) throw new Error(`resolved decision n=${d.n} resolvedByDecisionId="${d.resolvedByDecisionId}" does not match "${FREEZE_DECISION_ID}"`);
+  }
+  return `6/6 Product Architect decisions present and resolved by ${FREEZE_DECISION_ID}, with an audit-trail title/text for each`;
+});
+
+check(72, "Whole-unit readiness totals remain exactly 128 READY / 3 DEFERRED_CONTEXT_ONLY / 2 RETIRED_OUT_OF_SCOPE / 0 HELD, recomputed live", () => {
+  const live = { READY: 0, DEFERRED_CONTEXT_ONLY: 0, RETIRED_OUT_OF_SCOPE: 0, HELD_PENDING_EVIDENCE_CORRECTION: 0 };
+  let total = 0;
+  for (const b of batches) {
+    for (const p of b.lpJson.learningPoints) {
+      total++;
+      if (p.evidenceReadiness in live) live[p.evidenceReadiness]++;
+    }
+  }
+  const expected = { READY: 128, DEFERRED_CONTEXT_ONLY: 3, RETIRED_OUT_OF_SCOPE: 2, HELD_PENDING_EVIDENCE_CORRECTION: 0 };
+  const problems = [];
+  for (const k of Object.keys(expected)) if (live[k] !== expected[k]) problems.push(`${k}: live=${live[k]} expected=${expected[k]}`);
+  if (total !== 133) problems.push(`total learning points=${total}, expected 133`);
+  if (problems.length > 0) throw new Error(problems.join("; "));
+  return `live readiness totals exactly match: READY=128 DEFERRED_CONTEXT_ONLY=3 RETIRED_OUT_OF_SCOPE=2 HELD=0 (total 133)`;
+});
+
+check(73, "Core blocker count/list remain exactly zero/empty, matching both the live pack and the freeze decision record's snapshot", () => {
+  const packNow = readJson(PACK_JSON_PATH);
+  if (packNow.coreReleaseBlockerCount !== 0) throw new Error(`pack.coreReleaseBlockerCount=${packNow.coreReleaseBlockerCount}, expected 0`);
+  if ((packNow.coreReleaseBlockerLearningPointIds ?? []).length !== 0) throw new Error(`pack.coreReleaseBlockerLearningPointIds is non-empty: ${JSON.stringify(packNow.coreReleaseBlockerLearningPointIds)}`);
+  const record = readJson(FREEZE_DECISION_RECORD_PATH);
+  const snapshot = record.independentlyConfirmedFacts?.coreCurriculumInputBlockers;
+  if (snapshot !== 0) throw new Error(`freeze decision record's independentlyConfirmedFacts.coreCurriculumInputBlockers=${snapshot}, expected 0`);
+  return "core release blocker count/list are exactly zero/empty in both the live pack and the freeze decision record";
+});
+
+check(74, "Content-ahead-of-evidence rows remain exactly EDA-LP-16, EDA-LP-25 and EDA-LP-28", () => {
+  const mappingPath = "reports/unit202-production-acquisition/UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING.json";
+  if (!fs.existsSync(rel(mappingPath))) throw new Error("runtime delta mapping not generated");
+  const mapping = readJson(mappingPath);
+  const liveIds = [...new Set((mapping.contentAheadOfEvidenceRows ?? []).map((r) => r.id))].sort();
+  const EXPECTED = ["EDA-LP-16", "EDA-LP-25", "EDA-LP-28"];
+  if (JSON.stringify(liveIds) !== JSON.stringify([...EXPECTED].sort())) throw new Error(`contentAheadOfEvidenceRows ids=${JSON.stringify(liveIds)}, expected exactly ${JSON.stringify(EXPECTED)}`);
+  const record = readJson(FREEZE_DECISION_RECORD_PATH);
+  const recordIds = [...(record.independentlyConfirmedFacts?.contentAheadOfEvidenceRows ?? [])].sort();
+  if (JSON.stringify(recordIds) !== JSON.stringify([...EXPECTED].sort())) throw new Error(`freeze decision record's contentAheadOfEvidenceRows=${JSON.stringify(recordIds)}, expected exactly ${JSON.stringify(EXPECTED)}`);
+  return `content-ahead-of-evidence rows exactly match ${JSON.stringify(EXPECTED)} in both the live runtime mapping and the freeze decision record`;
+});
+
+check(75, "Runtime-evidence grounding remains exactly seven governed facet references and ten runtimeEvidence records", () => {
+  const mappingPath = "reports/unit202-production-acquisition/UNIT202-RUNTIME-CURRICULUM-DELTA-MAPPING.json";
+  if (!fs.existsSync(rel(mappingPath))) throw new Error("runtime delta mapping not generated");
+  const mapping = readJson(mappingPath);
+  let facetCount = 0;
+  let runtimeEvidenceCount = 0;
+  for (const row of mapping.rows ?? []) {
+    for (const f of row.axes?.governedFacetReferences ?? []) {
+      facetCount++;
+      runtimeEvidenceCount += (f.runtimeEvidence ?? []).length;
+    }
+  }
+  if (facetCount !== 7) throw new Error(`governed facet reference count=${facetCount}, expected exactly 7`);
+  if (runtimeEvidenceCount !== 10) throw new Error(`runtimeEvidence record count=${runtimeEvidenceCount}, expected exactly 10`);
+  const record = readJson(FREEZE_DECISION_RECORD_PATH);
+  if (record.independentlyConfirmedFacts?.governedFacetReferenceCount !== 7) throw new Error("freeze decision record's governedFacetReferenceCount is not 7");
+  if (record.independentlyConfirmedFacts?.runtimeEvidenceRecordCount !== 10) throw new Error("freeze decision record's runtimeEvidenceRecordCount is not 10");
+  return `7 governed facet references grounded through 10 runtimeEvidence records, matching the freeze decision record`;
+});
+
+check(76, "The learner-facing course/app is not falsely declared complete anywhere in the live review pack", () => {
+  const packNow = readJson(PACK_JSON_PATH);
+  const nonClaims = packNow.explicitNonClaims ?? [];
+  const hasAppNonClaim = nonClaims.some((c) => /learner-facing Unit 202 course or mobile app is finished/i.test(c));
+  if (!hasAppNonClaim) throw new Error("explicitNonClaims no longer contains the learner-facing-course/app-is-not-finished statement");
+  const bannedCompletionPatterns = [/learner-facing (course|app) is (finished|complete)/i, /Unit 202 course is (fully )?production[- ]ready for learners/i];
+  const packText = JSON.stringify(packNow);
+  for (const pat of bannedCompletionPatterns) {
+    if (pat.test(packText)) throw new Error(`review pack contains a banned learner-facing-completion claim matching ${pat}`);
+  }
+  return "explicit non-claim present; no learner-facing course/app completion claim found anywhere in the review pack";
 });
 
 // --- Report ---

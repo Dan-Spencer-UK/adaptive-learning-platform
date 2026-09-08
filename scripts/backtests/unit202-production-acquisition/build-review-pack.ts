@@ -24,14 +24,26 @@ function readJson<T>(relPath: string): T {
 
 const PLAN_PATH = "reports/backtests/unit202-evidence-acquisition-preflight/UNIT202-EVIDENCE-REQUIREMENT-PLAN.json";
 
+// Two independent concerns, deliberately never collapsed into one boolean:
+//  - legacyBaselineFrozen: true only for Batches 01-03, the pre-Stage-6-schema
+//    batches whose byte-identity is protected against BASELINE_COMMIT and
+//    which are excluded from Stage 2-6 current-schema validation/reporting.
+//  - acceptedAndIdentityFrozen: Product-Architect acceptance/identity-freeze
+//    status. As of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 this is
+//    true for all six batches -- Batches 04-06 joined Batches 01-03 as
+//    accepted and identity-frozen, WITHOUT becoming legacy-schema batches:
+//    they remain fully covered by current-schema validation and by the
+//    "Batches 04-06 cohort" reporting section below.
 const BATCHES = [
-  { id: "batch-01", name: "foundational-mathematics", dir: "reports/unit202-production-acquisition/batch-01-foundational-mathematics", lpFile: "FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.json", frozen: true },
-  { id: "batch-02", name: "electrical-fundamentals-and-safety", dir: "reports/unit202-production-acquisition/batch-02-electrical-fundamentals-and-safety", lpFile: "ELECTRICAL-FUNDAMENTALS-AND-SAFETY-LEARNING-POINTS.json", frozen: true },
-  { id: "batch-03", name: "mechanics-and-machines", dir: "reports/unit202-production-acquisition/batch-03-mechanics-and-machines", lpFile: "MECHANICS-AND-MACHINES-LEARNING-POINTS.json", frozen: true },
-  { id: "batch-04", name: "electrical-quantities-and-circuit-theory", dir: "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory", lpFile: "ELECTRICAL-QUANTITIES-AND-CIRCUIT-THEORY-LEARNING-POINTS.json", frozen: false },
-  { id: "batch-05", name: "electromagnetism-and-induction", dir: "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction", lpFile: "ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS.json", frozen: false },
-  { id: "batch-06", name: "electronic-devices-and-applications", dir: "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications", lpFile: "ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS.json", frozen: false },
+  { id: "batch-01", name: "foundational-mathematics", dir: "reports/unit202-production-acquisition/batch-01-foundational-mathematics", lpFile: "FOUNDATIONAL-MATHEMATICS-LEARNING-POINTS.json", legacyBaselineFrozen: true, acceptedAndIdentityFrozen: true },
+  { id: "batch-02", name: "electrical-fundamentals-and-safety", dir: "reports/unit202-production-acquisition/batch-02-electrical-fundamentals-and-safety", lpFile: "ELECTRICAL-FUNDAMENTALS-AND-SAFETY-LEARNING-POINTS.json", legacyBaselineFrozen: true, acceptedAndIdentityFrozen: true },
+  { id: "batch-03", name: "mechanics-and-machines", dir: "reports/unit202-production-acquisition/batch-03-mechanics-and-machines", lpFile: "MECHANICS-AND-MACHINES-LEARNING-POINTS.json", legacyBaselineFrozen: true, acceptedAndIdentityFrozen: true },
+  { id: "batch-04", name: "electrical-quantities-and-circuit-theory", dir: "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory", lpFile: "ELECTRICAL-QUANTITIES-AND-CIRCUIT-THEORY-LEARNING-POINTS.json", legacyBaselineFrozen: false, acceptedAndIdentityFrozen: true },
+  { id: "batch-05", name: "electromagnetism-and-induction", dir: "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction", lpFile: "ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS.json", legacyBaselineFrozen: false, acceptedAndIdentityFrozen: true },
+  { id: "batch-06", name: "electronic-devices-and-applications", dir: "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications", lpFile: "ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS.json", legacyBaselineFrozen: false, acceptedAndIdentityFrozen: true },
 ] as const;
+const BATCHES_0406_IDS = new Set(["batch-04", "batch-05", "batch-06"]);
+const FREEZE_DECISION_ID = "PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001";
 
 interface EvidenceResultRow {
   readonly evidenceRequirementId: string;
@@ -78,6 +90,19 @@ interface HeldLedgerFile {
 const HELD_LEDGER_PATH = "reports/unit202-production-acquisition/UNIT202-HELD-POINT-COMPLETION-LEDGER.json";
 const heldLedger = readJson<HeldLedgerFile>(HELD_LEDGER_PATH);
 
+interface FreezeDecisionRecord {
+  readonly decisionId: string;
+  readonly verdict: string;
+  readonly date: string;
+  readonly decisions: readonly { readonly n: number; readonly title: string; readonly decision: string }[];
+  readonly identityFreeze: { readonly acceptedBatchIds: readonly string[]; readonly newlyFrozenBatchIds: readonly string[] };
+}
+const FREEZE_DECISION_RECORD_PATH = "reports/unit202-production-acquisition/UNIT202-PA-FREEZE-DECISION-RECORD.json";
+const freezeDecisionRecord = readJson<FreezeDecisionRecord>(FREEZE_DECISION_RECORD_PATH);
+if (freezeDecisionRecord.decisionId !== FREEZE_DECISION_ID) {
+  throw new Error(`freeze decision record id "${freezeDecisionRecord.decisionId}" does not match expected "${FREEZE_DECISION_ID}"`);
+}
+
 const plan = readJson<PlanFile>(PLAN_PATH);
 const originalRequirementCount = plan.requirements.length; // this IS the corrected count post-Stage-1; the historically-cited "213" is recorded separately below.
 const HISTORICAL_ORIGINAL_COUNT = 213;
@@ -103,7 +128,8 @@ function priorityOf(evidenceRequirementId: string): "REQUIRED" | "OPTIONAL_CONTE
 interface BatchSummary {
   readonly id: string;
   readonly name: string;
-  readonly frozen: boolean;
+  readonly legacyBaselineFrozen: boolean;
+  readonly acceptedAndIdentityFrozen: boolean;
   readonly requirementCount: number;
   readonly statusTotals: Record<string, number>;
   readonly structurallySatisfiedCount: number;
@@ -162,7 +188,8 @@ for (const b of BATCHES) {
   batchSummaries.push({
     id: b.id,
     name: b.name,
-    frozen: b.frozen,
+    legacyBaselineFrozen: b.legacyBaselineFrozen,
+    acceptedAndIdentityFrozen: b.acceptedAndIdentityFrozen,
     requirementCount: ev.results.length,
     statusTotals,
     structurallySatisfiedCount: structSat,
@@ -176,7 +203,7 @@ for (const b of BATCHES) {
     coreReleaseBlockerLPIds,
     contextualDeferralLPIds,
     crossBatchSatisfactions,
-    identityStatus: b.frozen ? "ACCEPTED_AND_FROZEN" : (lp.status ?? "PROPOSED_FOR_PA_REVIEW"),
+    identityStatus: b.acceptedAndIdentityFrozen ? "ACCEPTED_AND_FROZEN" : (lp.status ?? "PROPOSED_FOR_PA_REVIEW"),
   });
 }
 
@@ -184,9 +211,15 @@ for (const b of BATCHES) {
 const totalAccountedFor = batchSummaries.reduce((sum, b) => sum + b.requirementCount, 0);
 
 // --- Two distinct, never-mixed scopes: WHOLE UNIT 202 (all six batches) and
-//     BATCHES 04-06 ONLY (the batches this pass corrects). Every total below
-//     is mechanically derived from `batchSummaries`, split by `b.frozen`, so
-//     the two scopes can never silently collapse into one another again. ---
+//     the BATCHES 04-06 COHORT (the Stage-6-schema batches this pass tracks
+//     under current-schema validation and reports separately). Every total
+//     below is mechanically derived from `batchSummaries`, split by
+//     `b.legacyBaselineFrozen` (the legacy-schema/baseline-protection
+//     concern) -- deliberately NOT by `acceptedAndIdentityFrozen` (the
+//     Product-Architect acceptance concern), so accepting and identity-
+//     freezing Batches 04-06 can never silently empty this reporting cohort
+//     or collapse it into the whole-unit scope. ---
+const batches0406ReportingCohort = batchSummaries.filter((b) => BATCHES_0406_IDS.has(b.id));
 function aggregate(scope: readonly BatchSummary[]) {
   const statusTotals: Record<string, number> = {};
   let structSat = 0;
@@ -211,7 +244,7 @@ function aggregate(scope: readonly BatchSummary[]) {
 }
 
 const wholeUnit = aggregate(batchSummaries);
-const batches0406 = aggregate(batchSummaries.filter((b) => !b.frozen));
+const batches0406 = aggregate(batches0406ReportingCohort);
 
 // Back-compat local names used by the JSON/MD below refer to the WHOLE-UNIT
 // scope only where historically they meant "all six batches"; the
@@ -235,8 +268,8 @@ const pack = {
   qualificationContextId: "unit202",
   generatedBy: "scripts/backtests/unit202-production-acquisition/build-review-pack.ts",
   generatedOn: "DETERMINISTIC -- see git commit for the generation point; this field is not wall-clock timestamped to keep regeneration reproducible",
-  status: "HOLD -- BOUNDED CORRECTION PASS APPLIED; BATCHES 04-06 REMAIN PROPOSED AND UNFROZEN",
-  statusMeaning: "Batches 01-03 are accepted and identity-frozen. Batches 04-06 have received the Product-Architect-directed bounded correction pass (generic evidence architecture + Stages 2-5 data corrections) but are NOT yet accepted or identity-frozen -- this pack is ready for one final consolidated Product Architect review, not a declaration of acceptance.",
+  status: "ACCEPT -- ALL SIX BATCHES ACCEPTED AND IDENTITY-FROZEN; CURRICULUM-DEFINITION/EVIDENCE-INPUT FREEZE COMPLETE",
+  statusMeaning: `All six batches (01-06) are accepted and identity-frozen under Product Architect decision ${FREEZE_DECISION_ID} (verdict: ${freezeDecisionRecord.verdict}, ${freezeDecisionRecord.date}). Batches 01-03 remain frozen against their original baseline (see dispositionTotals/BASELINE_COMMIT protection); Batches 04-06 are newly accepted and identity-frozen by this decision, mechanically enforced via UNIT202-BATCHES-04-06-FREEZE-MANIFEST.json. This is the curriculum-definition/evidence-input freeze only -- it is NOT a claim that the learner-facing course/app, lesson production, storyboarding or visual assets are finished; see the runtime-to-curriculum delta mapping for that separate, larger body of work.`,
   requirementCounts: {
     historicalOriginalCount: HISTORICAL_ORIGINAL_COUNT,
     correctedFrozenPlanCount: originalRequirementCount,
@@ -249,13 +282,13 @@ const pack = {
     },
   },
   dispositionTotals: {
-    scopeNote: "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums only the unfrozen batches this correction pass touches. Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
+    scopeNote: "The two scopes below are computed independently and never mixed: wholeUnit202 sums all six batches (01-06); batches0406Only sums the Batches 04-06 cohort (accepted and identity-frozen alongside Batches 01-03, but tracked under current-schema validation/reporting since they are not the legacy pre-Stage-6-schema baseline batches). Neither figure is hand-asserted -- both are recomputed from `batchSummaries` on every run.",
     wholeUnit202: { verifiedOrPartiallyVerifiedOrGap: wholeUnit.statusTotals, structurallySatisfied: wholeUnit.structSat, retiredOutOfScope: wholeUnit.retired, requirementCount: wholeUnit.requirementCount },
     batches0406Only: { verifiedOrPartiallyVerifiedOrGap: batches0406.statusTotals, structurallySatisfied: batches0406.structSat, retiredOutOfScope: batches0406.retired, requirementCount: batches0406.requirementCount },
   },
   evidenceStatusTotalsByBatch: Object.fromEntries(batchSummaries.map((b) => [b.id, { ...b.statusTotals, STRUCTURALLY_SATISFIED: b.structurallySatisfiedCount, RETIRED_OUT_OF_SCOPE: b.retiredOutOfScopeCount, requirementCount: b.requirementCount }])),
   learningPoints: {
-    scopeNote: "wholeUnit202 sums all six batches; batches0406Only sums only the unfrozen batches. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness, curriculum role or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
+    scopeNote: "wholeUnit202 sums all six batches; batches0406Only sums the Batches 04-06 cohort. Learning-point readiness (evidenceReadiness) is never mixed with evidence status, structural satisfaction, retirement, exemplar readiness, curriculum role or learner-facing asset readiness -- see technicalEvidenceExemplarAndAssetDependenciesSeparated below for those.",
     wholeUnit202: { total: wholeUnit.learningPointCount, readinessTotals: wholeUnit.lpReadiness },
     batches0406Only: { total: batches0406.learningPointCount, readinessTotals: batches0406.lpReadiness },
     curriculumRoleNote: "REQUIRED_MASTERY / CONTEXTUAL_SUPPORT_ONLY / MIXED_REQUIRED_AND_CONTEXT, derived mechanically per learning point from the plan's acquisitionPriority partition of its own evidenceRequirementIds. Only recorded for Batches 04-06 (curriculumRole is a Stage-6 field not retrofitted onto the frozen Batches 01-03).",
@@ -284,26 +317,35 @@ const pack = {
   productArchitectFreezeReadiness: {
     coreAcquisitionAndCurriculumInputFreezeReady: paFreezeReady,
     statement: paFreezeReady
-      ? "All required-mastery and mixed required/context learning points across Batches 04-06 have their required facet(s) VERIFIED or STRUCTURALLY_SATISFIED. Zero core release blockers remain. Unit 202's evidence-acquisition and curriculum-definition input is a genuine freeze candidate for Product Architect sign-off, subject to the remaining Product Architect questions below and the explicit non-claims -- this is NOT a claim that the learner-facing course/app is finished; see the runtime-to-curriculum delta mapping for that separate, larger body of work."
+      ? `All required-mastery and mixed required/context learning points across Batches 04-06 have their required facet(s) VERIFIED or STRUCTURALLY_SATISFIED. Zero core release blockers remain. Product Architect decision ${FREEZE_DECISION_ID} (verdict: ${freezeDecisionRecord.verdict}) accepted Unit 202's evidence-acquisition and curriculum-definition input and identity-froze all six batches -- this is NOT a claim that the learner-facing course/app is finished; see the runtime-to-curriculum delta mapping for that separate, larger body of work.`
       : `${coreReleaseBlockerCount} core release blocker(s) remain across Batches 04-06 (${allCoreReleaseBlockerLPIds.join(", ")}). Each is a required-mastery or mixed required/context learning point with a genuinely unresolved required facet after real, bounded, permitted-class-respecting acquisition attempts -- see heldPointCompletionLedger and each requirement's own EVIDENCE-RESULTS.json gaps for detail. Unit 202 is NOT yet a full freeze candidate while these remain; ${contextualDeferralCount} additional learning point(s) are correctly excluded from this blocker count as non-blocking DEFERRED_CONTEXT_ONLY optional-context deferrals, not core gaps.`,
   },
+  productArchitectFreeze: {
+    decisionId: freezeDecisionRecord.decisionId,
+    verdict: freezeDecisionRecord.verdict,
+    date: freezeDecisionRecord.date,
+    decisionRecordPath: FREEZE_DECISION_RECORD_PATH,
+    freezeManifestPath: "reports/unit202-production-acquisition/UNIT202-BATCHES-04-06-FREEZE-MANIFEST.json",
+    acceptedBatchIds: freezeDecisionRecord.identityFreeze.acceptedBatchIds,
+    newlyFrozenBatchIds: freezeDecisionRecord.identityFreeze.newlyFrozenBatchIds,
+  },
+  resolvedProductArchitectDecisions: freezeDecisionRecord.decisions.map((d) => ({ n: d.n, title: d.title, decision: d.decision, resolvedByDecisionId: freezeDecisionRecord.decisionId })),
   remainingGenuineGaps: {
     battery: `See each batch's own EVIDENCE-RESULTS.json \`gaps\` fields for full detail (every VERIFIED row has an empty \`gaps\` array -- resolved history lives in \`disclosures\`, genuine open items below). CORE (required-mastery) blockers remaining after this pass's re-sourcing (${coreReleaseBlockerCount} total, mechanically derived from coreReleaseBlockerLearningPointIds -- never hand-listed): ${coreReleaseBlockerCount > 0 ? allCoreReleaseBlockerLPIds.join(", ") : "(none)"}. RESOLVED, no longer blockers (kept here as history, since this paragraph had gone stale across earlier passes and still named already-resolved points as live blockers): EQCT-LP-07 (power factor's UNIT_SYMBOL/dimensionless attestation -- resolved via IEC 60050 IEV 112-03-04 "factor", which names power factor explicitly); EMI-LP-16 (Fleming's right-hand-rule finger mapping -- resolved via the published Hughes textbook, 10th edition, 2008, Chapter 6 section 6.9(a), p.141, see its own evidenceReadinessNote); EMI-LP-17 (the single-loop generator diagram gap -- resolved via DOE Handbook Module ES-07; its underlying evidence requirement genuinely belongs to AC5.4, not AC6.2/EDA-LP-16's symbol question); EDA-LP-16 (schematic-symbol recognition -- was the sole remaining core blocker; resolved via a bounded acquisition pass closing the LED/inverter breadth gap in the same already-registered 1975 IEEE Std 315/ANSI Y32.2 standard, per an explicit Product Architect decision; the currency limitation against the current, paywalled IEC 60617 database was accepted as non-blocking at this qualification depth, not resolved by verifying it); EDA-LP-28 (the ringer capacitor's DC-block/AC-pass functional mechanism -- resolved via IXYS/Littelfuse AN-144); EDA-LP-25 (the SCR-to-sounder alarm-specific application -- resolved via a genuine, narrowly-scoped Product Architect decision, PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001, admitting Ray Marston's authored Nuts & Volts articles for this one bounded relationship only). OPTIONAL-CONTEXT-ONLY, non-blocking (DEFERRED_CONTEXT_ONLY, see contextualDeferralLearningPointIds): EDA-LP-17 (component physical-appearance recognition -- evidence covers only 4 of 15 families, no photographs); EDA-LP-27 (UK master/extension socket terminology and internals). Other non-blocking items: the dimmer-RC-values and heating-relay-topology exemplars remain retired out of scope (both OPTIONAL_CONTEXT priority).`,
   },
-  remainingProductArchitectQuestions: [
-    "Is the corrected 211-requirement count (down from the historical 213, both integration targets structurally satisfied) accepted, given full traceability is preserved via the amendment ledger's requirementIdMigrations?",
-    `${coreReleaseBlockerCount} learning point(s) remain genuine core release blockers after real, bounded re-sourcing (see heldPointCompletionLedger and remainingGenuineGaps). It rests on a disclosed, honestly-recorded external access barrier (a paid IEC 60617 login gating symbol geometry for 2 of 15 AC6.2 component families). Is a further dedicated, possibly paid, re-sourcing pass authorised for this before Batches 04-06 are frozen, or should it be re-scoped/retired instead?`,
-    "Is the PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 decision (admitting two of Ray Marston's authored Nuts & Volts articles as AUTHORITATIVE_TECHNICAL_REFERENCE, narrowly for EDA-LP-25's SCR-to-sounder relationship only) accepted as recorded, given it is this pass's own instruction serving as the external record rather than a separately-authored PROJECT-STATUS.md/DECISION-LOG.md entry?",
-    "Is the new DEFERRED_CONTEXT_ONLY evidenceReadiness state (Stage 5 of this pass), reserved for CONTEXTUAL_SUPPORT_ONLY learning points with incomplete-but-non-blocking optional-context evidence, accepted as the correct way to keep a V1 context deferral from being counted as a core release blocker?",
-    "Is the disclosed judgment call classifying Instrumentation Tools, Microchip AN994, the DOE power-thyristor/AC-generator handbook host, NICC ND1601, and the Gale Encyclopedia of Science as AUTHORITATIVE_TECHNICAL_REFERENCE (rather than a stricter tier) accepted?",
-    "Is the Stage-6 required-vs-context curriculum-role partition (mechanically derived from the plan's acquisitionPriority field) an acceptable basis for scoping assessable content, including the BLOCKED/ASSESSABLE_WHEN_READY/CONTEXT_ONLY_NOT_ASSESSED assessmentEligibility classification?",
-  ],
+  // All six former Product Architect questions were resolved by
+  // FREEZE_DECISION_ID -- see resolvedProductArchitectDecisions above for
+  // the audit trail (each decision echoes its own question). This array is
+  // mechanically empty, not silently dropped: a future genuinely new
+  // question is appended here, never hidden inside a "resolved" entry.
+  remainingProductArchitectQuestions: [] as string[],
   explicitNonClaims: [
-    "This pack does not claim Batches 04-06 are accepted, complete for lesson production, or identity-frozen.",
+    "This pack does not claim Batches 04-06 (or any batch) are complete for lesson production, storyboard authoring, or visual asset production -- curriculum-definition/evidence-input identity freeze is not lesson-production completion.",
     "This pack does not claim the corrected requirement count is a coverage loss where a removed/retired row was an inappropriate course-specific exemplar detail rather than genuine syllabus-performance content.",
     "This pack does not claim every genuine remaining gap has been resolved -- see remainingGenuineGaps and heldPointCompletionLedger above.",
     "This pack does not claim the learner-facing Unit 202 course or mobile app is finished. It reports the governed evidence-acquisition and curriculum-definition input only; see the runtime-to-curriculum delta mapping (separate artifact) for the remaining lesson/storyboard/app-production scope.",
-    "Batches 01-03 remain accepted and identity-frozen and were not modified by this pass.",
+    `This pack does not resolve or authorise fixing the runtime-curriculum-delta mapping's contentAheadOfEvidenceRows (EDA-LP-16, EDA-LP-25, EDA-LP-28) -- those remain open runtime-production corrections, explicitly preserved by ${FREEZE_DECISION_ID}, not fixed by this freeze.`,
+    `Batches 01-03 remain accepted and identity-frozen from their original baseline and were not modified by this pass. Batches 04-06 are accepted and identity-frozen as of ${FREEZE_DECISION_ID}.`,
   ],
 };
 
@@ -338,7 +380,7 @@ ${pack.statusMeaning}
 - Structurally satisfied (integration targets, zero independent requirement): **${wholeUnit.structSat}**
 - Retired out of scope (non-canonical exemplar detail): **${wholeUnit.retired}**
 
-## Disposition totals -- BATCHES 04-06 ONLY (the batches this pass corrects; Batches 01-03 are frozen and excluded from this scope)
+## Disposition totals -- BATCHES 04-06 COHORT (Batches 01-03 use the legacy pre-Stage-6 schema and are excluded from this scope; see check 2's baseline byte-identity instead)
 
 - Evidence-status totals: ${JSON.stringify(batches0406.statusTotals)}
 - Requirement count: **${batches0406.requirementCount}**
@@ -347,7 +389,7 @@ ${pack.statusMeaning}
 
 ## Per-batch evidence status
 
-${batchSummaries.map((b) => `- **${b.id} (${b.name})** -- ${b.frozen ? "FROZEN" : "unfrozen, proposed"}: ${b.requirementCount} requirements, status ${JSON.stringify(b.statusTotals)}, structurally satisfied ${b.structurallySatisfiedCount}, retired ${b.retiredOutOfScopeCount}`).join("\n")}
+${batchSummaries.map((b) => `- **${b.id} (${b.name})** -- ${b.identityStatus}: ${b.requirementCount} requirements, status ${JSON.stringify(b.statusTotals)}, structurally satisfied ${b.structurallySatisfiedCount}, retired ${b.retiredOutOfScopeCount}`).join("\n")}
 
 ## Learning points -- WHOLE UNIT 202 (all six batches)
 
@@ -355,7 +397,7 @@ ${batchSummaries.map((b) => `- **${b.id} (${b.name})** -- ${b.frozen ? "FROZEN" 
 - Readiness totals: ${JSON.stringify(wholeUnit.lpReadiness)}
 - Curriculum-role totals (Batches 04-06 only carry this Stage-6 field): ${JSON.stringify(wholeUnit.lpCurriculumRole)}
 
-## Learning points -- BATCHES 04-06 ONLY
+## Learning points -- BATCHES 04-06 COHORT
 
 - Total: **${batches0406.learningPointCount}**
 - Readiness totals: ${JSON.stringify(batches0406.lpReadiness)}
@@ -406,9 +448,17 @@ ${pack.productArchitectFreezeReadiness.statement}
 
 ${pack.remainingGenuineGaps.battery}
 
+## Product Architect freeze decision
+
+**${pack.productArchitectFreeze.decisionId}** -- verdict **${pack.productArchitectFreeze.verdict}** (${pack.productArchitectFreeze.date}). Full record: \`${pack.productArchitectFreeze.decisionRecordPath}\`. Freeze manifest (Batches 04-06 file-set + SHA-256): \`${pack.productArchitectFreeze.freezeManifestPath}\`. Accepted batches: ${pack.productArchitectFreeze.acceptedBatchIds.join(", ")}. Newly frozen by this decision: ${pack.productArchitectFreeze.newlyFrozenBatchIds.join(", ")}.
+
+### Resolved Product Architect decisions
+
+${pack.resolvedProductArchitectDecisions.map((d) => `${d.n}. **${d.title}** -- ${d.decision}`).join("\n\n")}
+
 ## Remaining Product Architect questions
 
-${pack.remainingProductArchitectQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}
+${pack.remainingProductArchitectQuestions.length > 0 ? pack.remainingProductArchitectQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n") : `(none -- all six former questions were resolved by ${pack.productArchitectFreeze.decisionId}; see "Resolved Product Architect decisions" above)`}
 
 ## Explicit non-claims
 
@@ -416,7 +466,7 @@ ${pack.explicitNonClaims.map((c) => `- ${c}`).join("\n")}
 
 ## Frozen batches
 
-Batches 01-03 (\`FM-LP-*\`, \`EFS-LP-*\`, \`MM-LP-*\`) remain accepted and identity-frozen. This pass did not modify them.
+All six batches (\`FM-LP-*\`, \`EFS-LP-*\`, \`MM-LP-*\`, \`EQCT-LP-*\`, \`EMI-LP-*\`, \`EDA-LP-*\`) are accepted and identity-frozen. Batches 01-03 remain frozen against their original baseline and were not modified by this pass; Batches 04-06 are newly accepted and identity-frozen by ${pack.productArchitectFreeze.decisionId}.
 `;
 writeFileSync(path.join(repoRoot, outDir, "UNIT202-ACQUISITION-REVIEW-PACK.md"), md, "utf-8");
 

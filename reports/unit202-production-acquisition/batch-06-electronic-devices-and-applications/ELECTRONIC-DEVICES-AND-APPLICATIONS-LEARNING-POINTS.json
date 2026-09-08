@@ -1,7 +1,11 @@
 {
   "domain": "electronic-devices-and-applications",
-  "status": "PROPOSED_FOR_PA_REVIEW",
-  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No EDA-LP-* learning point in this file is accepted, frozen, or identity-locked -- all 29 are proposals for Product Architect review. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
+  "status": "ACCEPTED_BY_PRODUCT_ARCHITECT",
+  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. All 29 EDA-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 -- this is a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete. Learning points whose underlying evidence is PARTIALLY_VERIFIED or SOURCE_GAP carry evidenceReadiness HELD_PENDING_EVIDENCE_CORRECTION together with an evidenceReadinessNote saying exactly what is missing; none is marked READY on evidence that does not support it.",
+  "identityFreezePolicy": {
+    "status": "FROZEN as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001",
+    "note": "EDA-LP-01 through EDA-LP-29 are now the approved Batch 06 learning-point identity baseline. Future revisions to this inventory must: (1) preserve every existing ID exactly -- an ID is never reassigned to a different learning point; (2) append new IDs (EDA-LP-30 onward) for genuinely new learning points, rather than inserting into the existing numeric sequence; (3) deprecate rather than silently reuse a removed ID -- if a learning point is retired, its ID is marked deprecated here, not recycled; (4) never renumber the inventory merely because the taught/instructional sequence changes. Instructional order is tracked separately via the instructionalSequence field below, which may be freely reordered without affecting any learning point's stable id."
+  },
   "learningPointCount": 29,
   "readinessCounts": {
     "READY": 25,

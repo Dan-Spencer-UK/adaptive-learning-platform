@@ -1,0 +1,90 @@
+{
+  "decisionId": "PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001",
+  "qualificationContextId": "unit202",
+  "recordType": "PRODUCT_ARCHITECT_FREEZE_AND_ACCEPTANCE_DECISION",
+  "verdict": "ACCEPT",
+  "date": "2026-09-08",
+  "scope": "The governed Unit 202 curriculum-definition/evidence-input layer: all six batches (batch-01 through batch-06), their EVIDENCE-RESULTS.json / *-LEARNING-POINTS.json / *-LEARNING-POINTS.md / SOURCE-REGISTER.json / ACQUISITION-LOG.json / COVERAGE-REPORT.md artifacts, the frozen evidence-requirement plan, and the consolidated acquisition review pack.",
+  "explicitlyOutOfScope": [
+    "Lesson authoring, storyboard production, embedded lesson checks, or formative/mock assessment content.",
+    "Visual/asset production or approval (see reports/instructional-visuals/).",
+    "The learning-package pipeline audit and qualification plan (docs/architecture/LEARNING-PACKAGE-PIPELINE-AUDIT-AND-QUALIFICATION-PLAN.md).",
+    "Any runtime lesson/assessment code correction implied by the runtime-curriculum delta mapping's three content-ahead-of-evidence findings -- those remain open production work, tracked separately, not resolved by this freeze."
+  ],
+  "supersedes": "The 'HOLD -- BOUNDED CORRECTION PASS APPLIED; BATCHES 04-06 REMAIN PROPOSED AND UNFROZEN' status previously carried by UNIT202-ACQUISITION-REVIEW-PACK.json/.md and by every batch-04/05/06 *-LEARNING-POINTS.json's own top-level status field.",
+  "priorReviewBasis": "reports/unit202-production-acquisition/UNIT202-ACQUISITION-REVIEW-PACK.json (pre-freeze state) and its six remainingProductArchitectQuestions, all resolved by the six decisions below.",
+  "independentlyConfirmedFacts": {
+    "uniqueLearningPoints": 133,
+    "readinessTotals": { "READY": 128, "DEFERRED_CONTEXT_ONLY": 3, "RETIRED_OUT_OF_SCOPE": 2, "HELD_PENDING_EVIDENCE_CORRECTION": 0 },
+    "deferredContextOnlyIds": ["EMI-LP-03", "EDA-LP-17", "EDA-LP-27"],
+    "coreCurriculumInputBlockers": 0,
+    "contentAheadOfEvidenceRows": ["EDA-LP-16", "EDA-LP-25", "EDA-LP-28"],
+    "governedFacetReferenceCount": 7,
+    "runtimeEvidenceRecordCount": 10,
+    "vitestTotals": { "files": 10, "tests": 239 },
+    "batches0103ByteIdentical": true,
+    "learnerFacingRuntimeContentChanged": false
+  },
+  "decisions": [
+    {
+      "n": 1,
+      "title": "Requirement count",
+      "decision": "The corrected frozen-plan count of 211 requirements is accepted as the production basis. The historical original total of 213 remains fully traceable via the amendment ledger's requirementIdMigrations: two historical integration targets (unit202::ACQ-134, unit202::ACQ-146, both AC5 procedure/integration targets in batch-05) were converted to structural satisfactions rather than silently lost.",
+      "boundaries": ["Does not reopen the frozen plan for further requirement additions/removals outside the already-recorded migrations."]
+    },
+    {
+      "n": 2,
+      "title": "EDA-LP-16 / IEC 60617",
+      "decision": "EDA-LP-16 remains VERIFIED and READY. No further paid or dedicated IEC 60617 acquisition is authorised or required before freeze. Fourteen of the fifteen AC6.2 component families are evidenced against IEEE Std 315-1975/ANSI Y32.2-1975; the inverter uses the accepted labelled functional-block convention (no claimed standard symbol). The current IEC 60617 geometry/status limitation remains an explicit, disclosed, non-blocking currency caveat.",
+      "boundaries": [
+        "This acceptance does not permit learner-facing content to claim that the fifteen representations have been verified against the current IEC 60617 database.",
+        "The currency caveat must remain disclosed at the facet level in the runtime-curriculum delta mapping (governedFacetReferences), not silently dropped."
+      ]
+    },
+    {
+      "n": 3,
+      "title": "EDA-LP-25 authority decision",
+      "decision": "PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 (recorded in UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json) is accepted. Ray Marston's authored Nuts & Volts material is admitted as AUTHORITATIVE_TECHNICAL_REFERENCE only for the narrowly recorded SCR-to-sounder relationship.",
+      "boundaries": [
+        "Does not restore the retired NC-loop/bias topology (security-alarm-exact-nc-contact-bias-topology remains RETIRED_OUT_OF_SCOPE).",
+        "Does not validate the 'survives loop reclosure' runtime claim -- that claim remains an open runtime-content finding (EDA-LP-25 in contentAheadOfEvidenceRows), not resolved by this freeze.",
+        "Creates no general source-authority precedent beyond this one bounded relationship."
+      ]
+    },
+    {
+      "n": 4,
+      "title": "DEFERRED_CONTEXT_ONLY",
+      "decision": "DEFERRED_CONTEXT_ONLY is accepted as the correct non-blocking evidenceReadiness state for incomplete optional-context evidence that is not part of required V1 mastery or assessment. The three accepted deferrals remain EMI-LP-03, EDA-LP-17 and EDA-LP-27.",
+      "boundaries": ["A DEFERRED_CONTEXT_ONLY learning point must never appear in a batch's coreInstructionalSequence and must never expose an assessable applicationType (enforced mechanically by the correction-pass validator)."]
+    },
+    {
+      "n": 5,
+      "title": "Disclosed source classifications",
+      "decision": "The recorded AUTHORITATIVE_TECHNICAL_REFERENCE classifications of Instrumentation Tools, Microchip AN994, the DOE power-thyristor/AC-generator handbook host, NICC ND1601 and the Gale Encyclopedia of Science are accepted for their exact, bounded Unit 202 claims as recorded in the relevant EVIDENCE-RESULTS.json rows.",
+      "boundaries": ["This is not a global widening of the evidence-authority policy and creates no automatic precedent for another course, claim or requirement."]
+    },
+    {
+      "n": 6,
+      "title": "Required/context partition",
+      "decision": "The Stage-6 required-versus-context partition, mechanically derived from the governed plan's own acquisitionPriority field, is accepted as the production basis for required mastery, contextual support, assessment eligibility and core V1 instructional sequencing.",
+      "boundaries": [
+        "Technical-evidence readiness, curriculum role, assessment eligibility, exemplar readiness, visual/asset readiness and learner-facing runtime correctness remain distinct concerns and must not be conflated.",
+        "Does not itself certify assessment content -- assessment authoring/generation remains separate, unauthorised-by-this-decision production work."
+      ]
+    }
+  ],
+  "identityFreeze": {
+    "statement": "Batches 04-06 (batch-04-electrical-quantities-and-circuit-theory, batch-05-electromagnetism-and-induction, batch-06-electronic-devices-and-applications) move from PROPOSED_FOR_PA_REVIEW/unfrozen to ACCEPTED_BY_PRODUCT_ARCHITECT and identity-frozen, joining the already-accepted-and-frozen Batches 01-03. All six batches now report ACCEPTED_AND_FROZEN identity status.",
+    "mechanism": "Recorded in the canonical governing data: each of the three batches' own *-LEARNING-POINTS.json top-level status/identityFreezePolicy fields, and mechanically enforced via reports/unit202-production-acquisition/UNIT202-BATCHES-04-06-FREEZE-MANIFEST.json (an independent SHA-256 file-set manifest over all 18 canonical Batch 04-06 files), verified by the correction-pass validator.",
+    "freezeManifestPath": "reports/unit202-production-acquisition/UNIT202-BATCHES-04-06-FREEZE-MANIFEST.json",
+    "acceptedBatchIds": ["batch-01", "batch-02", "batch-03", "batch-04", "batch-05", "batch-06"],
+    "newlyFrozenBatchIds": ["batch-04", "batch-05", "batch-06"]
+  },
+  "explicitNonClaims": [
+    "This decision does not claim the learner-facing Unit 202 course or mobile app is finished.",
+    "This decision does not claim lesson production, storyboard authoring or visual asset production for Batches 04-06 is complete.",
+    "This decision does not resolve or authorise fixing the three runtime-curriculum-delta content-ahead-of-evidence findings (EDA-LP-16, EDA-LP-25, EDA-LP-28) -- those remain open runtime-production corrections, to be made during later re-authoring per the runtime-to-curriculum delta mapping.",
+    "This decision does not begin, authorise or reopen the learning-package pipeline audit, lesson re-authoring, storyboard work, visual production, assessment editing, runtime correction, or vertical-slice implementation."
+  ],
+  "externalRecord": "This JSON record, together with the corresponding dated PROJECT-STATUS.md entry, is the genuine external Product Architect acceptance record for this freeze -- consistent with how PA-UNIT202-20260906-SCR-ALARM-EXEMPLAR-001 and the CC-BATCH01 precedent are each externally recorded in UNIT202-PA-AUTHORITY-DECISION-REGISTRY.json."
+}

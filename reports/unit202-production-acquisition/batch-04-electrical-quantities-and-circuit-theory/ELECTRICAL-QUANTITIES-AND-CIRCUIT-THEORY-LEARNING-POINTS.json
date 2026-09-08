@@ -1,7 +1,11 @@
 {
   "domain": "electrical-quantities-and-circuit-theory",
-  "status": "PROPOSED_FOR_PA_REVIEW",
-  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. No Batch 04 learning point in this file is accepted, frozen, or identity-locked -- all 19 are proposals for Product Architect review.",
+  "status": "ACCEPTED_BY_PRODUCT_ARCHITECT",
+  "note": "Curriculum-review artifact, not finished lesson prose. Sequenced pedagogically (see instructionalSequence), not alphabetically or by numeric identity. Every learning point traces to at least one evidence-requirement claim in EVIDENCE-RESULTS.json. All 19 EQCT-LP-* learning point identities in this file are accepted and identity-frozen as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001 -- this is a curriculum-definition/evidence-input identity freeze, not a claim that lesson production, storyboarding or visual assets are complete.",
+  "identityFreezePolicy": {
+    "status": "FROZEN as of PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001",
+    "note": "EQCT-LP-01 through EQCT-LP-19 are now the approved Batch 04 learning-point identity baseline. Future revisions to this inventory must: (1) preserve every existing ID exactly -- an ID is never reassigned to a different learning point; (2) append new IDs (EQCT-LP-20 onward) for genuinely new learning points, rather than inserting into the existing numeric sequence; (3) deprecate rather than silently reuse a removed ID -- if a learning point is retired, its ID is marked deprecated here, not recycled; (4) never renumber the inventory merely because the taught/instructional sequence changes. Instructional order is tracked separately via the instructionalSequence field below, which may be freely reordered without affecting any learning point's stable id."
+  },
   "learningPointCount": 19,
   "instructionalSequence": [
     "EQCT-LP-01",

@@ -1,0 +1,110 @@
+{
+  "manifestId": "UNIT202-BATCHES-04-06-FREEZE-MANIFEST",
+  "freezeDecisionId": "PA-UNIT202-20260908-CURRICULUM-INPUT-FREEZE-001",
+  "qualificationContextId": "unit202",
+  "generatedBy": "scripts/backtests/unit202-production-acquisition/generate-batches-04-06-freeze-manifest.mjs",
+  "note": "Deterministic content-hash manifest -- no wall-clock value, so regeneration from an unchanged working tree is byte-for-byte identical. Every listed file's SHA-256 is independently recomputed by the correction-pass validator, which also enumerates the three accepted batch directories itself and requires exact path-set equality with this manifest (no missing file, no extra file).",
+  "acceptedBatchIds": [
+    "batch-04",
+    "batch-05",
+    "batch-06"
+  ],
+  "batchDirs": {
+    "batch-04": "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory",
+    "batch-05": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction",
+    "batch-06": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications"
+  },
+  "fileCount": 18,
+  "files": [
+    {
+      "path": "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/ACQUISITION-LOG.json",
+      "batchId": "batch-04",
+      "sha256": "d8c4537849284130e380093ff6db37e823aa83a3381264ca74097cabece34971"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/COVERAGE-REPORT.md",
+      "batchId": "batch-04",
+      "sha256": "b174450cf06113a5a052bfb1d65eb33eace065551781008b6fc009cfa1bd975e"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/ELECTRICAL-QUANTITIES-AND-CIRCUIT-THEORY-LEARNING-POINTS.json",
+      "batchId": "batch-04",
+      "sha256": "d4dcb12297f770ef1fa2d982d273e5b3f456fae3f6d9a3e6bc96f57b35ef1c82"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/ELECTRICAL-QUANTITIES-AND-CIRCUIT-THEORY-LEARNING-POINTS.md",
+      "batchId": "batch-04",
+      "sha256": "530a4a3815c2153ac89cd41f931b2dd36d710aba910ac8e27f03b6db89fc9c63"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/EVIDENCE-RESULTS.json",
+      "batchId": "batch-04",
+      "sha256": "148ae97d63e5e4444e1570b796311db2d3e34bd3648211f7c9d0317f436ea2a0"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-04-electrical-quantities-and-circuit-theory/SOURCE-REGISTER.json",
+      "batchId": "batch-04",
+      "sha256": "c22f61847d46cfb355118ac67eee3154a81cb722e5a53e8bdac8aa85640f5b7c"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/ACQUISITION-LOG.json",
+      "batchId": "batch-05",
+      "sha256": "7131c9977c7efdaae25b25aad8e39fd702bcf78be06afb09b32ac37bd24bf237"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/COVERAGE-REPORT.md",
+      "batchId": "batch-05",
+      "sha256": "5c977ef3f0f85f29be9127060f03414a3c4e0d049d52a1fea571579fdadef974"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS.json",
+      "batchId": "batch-05",
+      "sha256": "6479d4217c491960c47042944111b7b6d28fad813284457e71022c328886b110"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/ELECTROMAGNETISM-AND-INDUCTION-LEARNING-POINTS.md",
+      "batchId": "batch-05",
+      "sha256": "a73c83dbb6a3f331a78a3f017764c33dd2cea2e8025ce2d65c76e2fbeda2af2b"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/EVIDENCE-RESULTS.json",
+      "batchId": "batch-05",
+      "sha256": "94c7575801a49793771d6251c38e2a5130ba91ff95b85af1d7bb5bac153bbb6a"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-05-electromagnetism-and-induction/SOURCE-REGISTER.json",
+      "batchId": "batch-05",
+      "sha256": "b8f6eabf99df4dfbd6013d16d83c03e4e187ace112cd1d3d5044f7ee8fbb7d52"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/ACQUISITION-LOG.json",
+      "batchId": "batch-06",
+      "sha256": "26226e1cba2d8790d6c0b9252ca7aa777b562008ec93477ce589350702ba8b0d"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/COVERAGE-REPORT.md",
+      "batchId": "batch-06",
+      "sha256": "328d6355252fa84bb33972c2fbaad47191f70aebdc16610325d91be46ca1ac40"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS.json",
+      "batchId": "batch-06",
+      "sha256": "d0d69cadc084fa233ea8a152b65855c2735f7379d55c94990b31bcb6d099398b"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/ELECTRONIC-DEVICES-AND-APPLICATIONS-LEARNING-POINTS.md",
+      "batchId": "batch-06",
+      "sha256": "a3fa6f2cd153a2503a4f8ef76f9ba76edade00b07889a277ed12abd910d6fee6"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/EVIDENCE-RESULTS.json",
+      "batchId": "batch-06",
+      "sha256": "a1713e6743147dcc94ef7da4384823d93af77fec4a01f003e71d3e98a48d6955"
+    },
+    {
+      "path": "reports/unit202-production-acquisition/batch-06-electronic-devices-and-applications/SOURCE-REGISTER.json",
+      "batchId": "batch-06",
+      "sha256": "913bdd4d37c82631229219ed18c4cbd3492e06df468cfe94f78c1cc02b2ff211"
+    }
+  ]
+}
